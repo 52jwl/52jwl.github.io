@@ -1,0 +1,866 @@
+<!doctype html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/0f81ff2f.js","daovoice"),daovoice("init",{app_id:"493d9281"}),daovoice("update")</script><link href="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Microsoft YaHei UI Light:300,300italic,400,400italic,700,700italic|方正楷体:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STHeiti TC:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="react,create-react-app,JSX,Antd,redux,react-transition-group,redux-thunk,redux-saga,Styled-components,immutabel,redux-immutable,react-redux,react-loadable,react-router,axios,组件化,UI组件,容器组件,无状态组件,项目实战,"><link rel="alternate" href="/atom.xml" title="ilovejwl" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="React 16.4 开发简书项目课程第一章课程导学第二章React初探第三章React基础精讲第四章React高级内容第五章Redux入门第六章Redux进阶第七章 项目实战：Header组件开发第八章 项目实战：首页开发第九章 项目实战：详情页和登陆功能开发第十章 课程总结第一章课程导学环境搭建基础语法原理进阶动画ReduxRedux 进阶实战项目环境搭建Header首页详情页登陆校验上线技术"><meta name="keywords" content="react,create-react-app,JSX,Antd,redux,react-transition-group,redux-thunk,redux-saga,Styled-components,immutabel,redux-immutable,react-redux,react-loadable,react-router,axios,组件化,UI组件,容器组件,无状态组件,项目实战"><meta property="og:type" content="article"><meta property="og:title" content="React16_4"><meta property="og:url" content="https://www.52jwl.com/2018/09/10/React16-4/index.html"><meta property="og:site_name" content="ilovejwl"><meta property="og:description" content="React 16.4 开发简书项目课程第一章课程导学第二章React初探第三章React基础精讲第四章React高级内容第五章Redux入门第六章Redux进阶第七章 项目实战：Header组件开发第八章 项目实战：首页开发第九章 项目实战：详情页和登陆功能开发第十章 课程总结第一章课程导学环境搭建基础语法原理进阶动画ReduxRedux 进阶实战项目环境搭建Header首页详情页登陆校验上线技术"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-09-10T00:48:19.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="React16_4"><meta name="twitter:description" content="React 16.4 开发简书项目课程第一章课程导学第二章React初探第三章React基础精讲第四章React高级内容第五章Redux入门第六章Redux进阶第七章 项目实战：Header组件开发第八章 项目实战：首页开发第九章 项目实战：详情页和登陆功能开发第十章 课程总结第一章课程导学环境搭建基础语法原理进阶动画ReduxRedux 进阶实战项目环境搭建Header首页详情页登陆校验上线技术"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:"",labels:""}}</script><link rel="canonical" href="https://www.52jwl.com/2018/09/10/React16-4/"><script type="text/javascript">!function(){var o="";try{o=sessionStorage.password||"",sessionStorage.initState||"0"}catch(s){o="","0",console.log("sessionStorage 无法使用。")}if("jwl"!==o)if("jwl"!==(o=prompt("请输入文章密码")))alert("密码错误！"),1===history.length?location.replace("https://www.52jwl.com"):history.back();else try{sessionStorage.password=o,sessionStorage.initState="1"}catch(s){console.log("sessionStorage 无法使用。")}}()</script><title>React16_4 | ilovejwl</title><link href="https://cdn.staticfile.org/prettify/r298/prettify.min.css" rel="stylesheet"><style type="text/css">.prettyprint{background:#131513;font-family:Menlo,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,Consolas,monospace;border:0!important}.pln{color:#f4fbf4}ol.linenums{margin-top:0;margin-bottom:0;color:#687d68}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#131513;list-style-type:decimal}@media screen{.str{color:#29a329}.kwd{color:#ad2bee}.com{color:#687d68}.typ{color:#3d62f5}.lit{color:#87711d}.pun{color:#f4fbf4}.opn{color:#f4fbf4}.clo{color:#f4fbf4}.tag{color:#e6193c}.atn{color:#87711d}.atv{color:#1999b3}.dec{color:#87711d}.var{color:#e6193c}.fun{color:#3d62f5}}</style></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container one-collumn sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fd6c6c;color:#fff;position:absolute;top:0;border:0;right:0;z-index:1" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">ilovejwl</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">52jwl</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.52jwl.com/2018/09/10/React16-4/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="jwl"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="ilovejwl"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">React16_4</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T08:48:19+08:00">2018-09-10 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span> </a></span>， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/react/react、redux、项目实战/" itemprop="url" rel="index"><span itemprop="name">react、redux、项目实战</span> </a></span></span><span class="post-meta-divider">|</span> <span class="page-pv"><i class="fa fa-file-o"></i> 本文热度 <span class="busuanzi-value" id="busuanzi_value_page_pv">1314520</span>°C</span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">15,900 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">64</span></div></div></header><div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="React-16-4-开发简书项目"><a href="#React-16-4-开发简书项目" class="headerlink" title="React 16.4 开发简书项目"></a>React 16.4 开发简书项目</h1><h2 id="课程"><a href="#课程" class="headerlink" title="课程"></a>课程</h2><ol><li>第一章课程导学</li><li>第二章React初探</li><li>第三章React基础精讲</li><li>第四章React高级内容</li><li>第五章Redux入门</li><li>第六章Redux进阶</li><li>第七章 项目实战：<code>Header组件开发</code></li><li>第八章 项目实战：<code>首页开发</code></li><li>第九章 项目实战：<code>详情页和登陆功能开发</code></li><li>第十章 课程总结</li></ol><h2 id="第一章课程导学"><a href="#第一章课程导学" class="headerlink" title="第一章课程导学"></a>第一章课程导学</h2><ol><li>环境搭建</li><li>基础语法</li><li>原理进阶</li><li>动画</li><li>Redux</li><li>Redux 进阶</li></ol><h3 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h3><ol><li>环境搭建</li><li>Header</li><li>首页</li><li>详情页</li><li>登陆校验</li><li>上线</li></ol><h3 id="技术点"><a href="#技术点" class="headerlink" title="技术点"></a>技术点</h3><ol><li><code>create-react-app</code> 脚手架工具</li><li>组件化思维</li><li>JSX</li><li>开发调试工具</li><li>虚拟DOM</li><li>生命周期</li><li><code>React-transition-group</code></li><li>Redux</li><li>Antd</li><li>UI,容器组件</li><li>无状态组件</li><li>redux-thunk</li><li>redux-saga</li><li>Styled-components</li><li>immutabel.js</li><li>redux-immutable</li><li>axios</li></ol><h3 id="学习前提"><a href="#学习前提" class="headerlink" title="学习前提"></a>学习前提</h3><ol><li>js</li><li>ES6</li><li>webpack</li><li>npm</li></ol><h3 id="讲授方式"><a href="#讲授方式" class="headerlink" title="讲授方式"></a>讲授方式</h3><ol><li>通俗易懂的案例讲解基础</li><li>借助基础知识实现项目</li><li>带着你编写每一行代码</li><li>图文讲解复杂知识点</li></ol><h3 id="课程收获"><a href="#课程收获" class="headerlink" title="课程收获"></a>课程收获</h3><ol><li>彻底入门React的使用</li><li>完整了解React的工具全家桶</li><li>上手大型项目的前端开发</li><li>规范的代码编写</li><li>20K 以上的工作薪资</li></ol><h2 id="第二章React初探"><a href="#第二章React初探" class="headerlink" title="第二章React初探"></a>第二章React初探</h2><h3 id="React-js简介"><a href="#React-js简介" class="headerlink" title="React.js简介"></a>React.js简介</h3><ol><li>Facebook 推出</li><li>2013年开源</li><li>函数式编程</li><li>使用人数最多的前端框架</li><li>健全的文档与完善的社区</li><li>React Fiber</li></ol><h3 id="React-js-与-Vue-js-对比"><a href="#React-js-与-Vue-js-对比" class="headerlink" title="React.js 与 Vue.js 对比"></a>React.js 与 Vue.js 对比</h3><ol><li>React.js 灵活性更大一些</li><li>React.js 处理一些复杂的方案时有更多一点的选择</li><li>Vue.js 提供了更加丰富的API 实现功能更简单</li><li>Vue.js 的灵活性就有了一定的限制</li><li>复杂度大的项目时倾向使用React.js</li><li>复杂度不是特别高的项目时用vue.js开发更爽一些</li></ol><h3 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h3><h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><ol><li><code>引入.js</code>来使用React，这种方式<code>性能很低</code>，<code>不好维护</code>。</li><li>通过脚手架工具来编码，一般通过<code>grunt、gulp、webpack</code>这样的工具来<code>编译</code>脚手架。<ol><li>官方脚手架工具：<code>Create-react-app</code></li><li>使用npm命令：<code>npm install -g create-react-app</code> 安装这个脚手架工具</li><li>使用命令<code>create-react-app my-app</code> 创建一个项目</li><li>cd 进入 <code>my-app</code>目录 使用 <code>yarn start</code> 开一个服务后自动打开浏览器查看默认页面</li></ol></li></ol><h4 id="工程目录简介"><a href="#工程目录简介" class="headerlink" title="工程目录简介"></a>工程目录简介</h4><ol><li><code>npm run start</code> 和y<code>arn start</code> 一样</li><li><code>yarn.lock</code> 文件<ol><li>项目文件的安装包以及一些限制（不要去动）</li></ol></li><li><code>README.md</code> 文件<ol><li>这是这个项目的说明文件</li></ol></li><li><code>package.json</code>文件<ol><li>这是项目的依赖包以及指令定义说明文件</li></ol></li><li><code>.gitignore</code>文件<ol><li>如果你进行代码管理的时候，</li><li>不想把一些文件上传到仓库时，</li><li>可以将那些文件及文件夹写到里面去</li></ol></li><li><code>node_modules</code> 文件夹<ol><li>存放一些第三方的包文件、一些第三方的模块儿</li></ol></li></ol><h5 id="public-文件夹"><a href="#public-文件夹" class="headerlink" title="public 文件夹"></a><code>public</code> 文件夹</h5><ol><li><code>favicon.ico</code> : 网站图标文件</li><li><code>index.html</code>: 简单的模板文件<ol><li><code>&lt;noscript&gt;</code>当前网页禁用脚本<code>&lt;/noscript&gt;</code></li><li>标签标识页面如果禁用了脚本，</li><li>就会显示脚本标签中的内容</li></ol></li><li><code>manifest.json</code>: 配置 PWA 渐进式web应用的 清单内容<ol><li>如定义 当在手机桌面时作为一个app 快捷名称</li><li>如定义 当在手机桌面时作为一个app 快捷图标的规格大小</li><li>如定义 当在手机桌面时作为一个app 快捷图标的网址</li><li>定义主题颜色、背景颜色等等。</li><li>首页会去引入这个文件 <code>&lt;link rel = &quot;manifest&quot; href = &quot;%PUBLIC_URL%/manifest.json&quot;&gt;</code></li></ol></li></ol><h5 id="src-文件夹"><a href="#src-文件夹" class="headerlink" title="src 文件夹"></a>src 文件夹</h5><ol><li>当前项目所有的源代码</li><li>整个程序的入口在index.js中<ol><li><code>import React from &#39;react&#39;</code> 表示引入react模块儿</li><li><code>import &#39;./index.css&#39;</code> 表示引入这个css文件嵌入到js中</li><li><code>import App from &#39;./App&#39;</code> 表示引入当前目录下的App.js文件</li><li><code>import logo from &#39;./logo.svg&#39;</code> 表示引入一个图片格式的文件</li><li><code>import registerServiceWorker from &#39;./registerServiceWorker&#39;</code> 表示注册一个<code>ServiceWorker</code></li></ol></li><li><code>import registerServiceWorker from &#39;./registerServiceWorker&#39;</code><ol><li>表示引入一个<code>registerServiceWorker.js</code>文件</li><li>这是一个 <code>PWA</code> 文件 表示写网页就像写一个手机app一样，</li><li><code>渐进式</code>web应用的标准</li><li>然后把这个网页放到一台https协议的服务器上，</li><li>用户首次访问这个网页需要联网，</li><li>如果突然间这个网页断网了，</li><li>第二次也依然可以访问这个网页，</li><li>因为<code>registerServiceWorker</code>将网页<code>存储</code>到<code>本地</code>了。</li></ol></li><li>App.test.js 文件<ol><li>这是一个自动化的测试文件</li></ol></li></ol><h4 id="React中的组件"><a href="#React中的组件" class="headerlink" title="React中的组件"></a>React中的组件</h4><ol><li>一个页面很难写，但是如果把他们拆分成一个个小组件就简单多了。</li><li><code>import React, {Component} from &#39;react&#39;</code>中的<code>Component</code> 等价于 <code>React.Component</code></li><li>之所以要引入 <code>React</code><ol><li>因为 将html标签或者自定组件<code>生成虚拟dom</code>时</li><li>要<code>用</code>到<code>React.createElemnt()</code>这个方法，</li><li>所以你<code>不引</code>入就<code>会报错</code>。</li></ol></li></ol><h4 id="React中最基本的JSX语法"><a href="#React中最基本的JSX语法" class="headerlink" title="React中最基本的JSX语法"></a>React中最基本的JSX语法</h4><ol><li>在react中JSX语法可以直接写html标签，<ol><li><code>不需要</code>你在html标签外面<code>加单、双引号</code></li></ol></li><li>jsx中自定义组件无论是<code>函数式</code>还是<code>类语法糖式</code>，<ol><li>都要首字母大写，</li><li>如果是小写就会不支持，</li><li>因为<code>避免</code>和html<code>原本</code>的<code>标签</code>起<code>冲突</code>。</li></ol></li></ol><h2 id="第三章React基础精讲"><a href="#第三章React基础精讲" class="headerlink" title="第三章React基础精讲"></a>第三章React基础精讲</h2><h3 id="使用React编写TodoList功能"><a href="#使用React编写TodoList功能" class="headerlink" title="使用React编写TodoList功能"></a>使用React编写TodoList功能</h3><ol><li>React 中JSX语法，<ol><li>render函数中只能有一个根节点，</li><li>所以你写的多个html标签必须包含在一个容器中，</li><li>比如<code>&lt;div&gt;&lt;/div&gt;</code>中</li></ol></li><li>如果你不想页面中<code>多一个div包在你众多html标签外面</code>，<ol start="2"><li>可以通过引入 <code>import React, {Component, Fragment} from &#39;react&#39;</code></li><li>来引入 <code>Fragment</code>，</li><li>然后用<code>Fragment</code>替换掉<code>render</code>函数中外层包裹着<code>div</code>，</li><li>这样就能够在渲染页面时<code>只显示你</code>写的<code>众多html标签</code>。</li></ol></li></ol><h3 id="React中的响应式设计思想和事件绑定"><a href="#React中的响应式设计思想和事件绑定" class="headerlink" title="React中的响应式设计思想和事件绑定"></a>React中的响应式设计思想和事件绑定</h3><ol><li>你可以通过 <code>this.state={}</code> 来存储数据，这样你就能够在JSX中使用了</li><li>如果你想在<code>JSX</code>中使<code>用js</code>的<code>表达式</code>或者<code>变量</code>，你必须使用<code>{}</code>括起来</li><li>在JSX语法中如果你<code>给</code>一个<code>标签设置</code>了<code>值</code>，<ol><li>如<code>input</code>标签的<code>value</code>，</li><li>你设置了<code>{this.state.inputValue}</code>，</li><li>那么你给<code>this.state.inputValue</code>设置了值，</li><li>就会<code>导致</code>你的<code>输入框</code>中就<code>无法输入值</code>了。</li></ol></li><li>除非你绑定<code>onChange</code>事件，<ol><li>这个<code>onChange</code>事件与<code>onchange</code>事件不同，</li><li>这是<code>JSX</code>中的，</li><li>所以你给他添加的方法还是需要用<code>{}</code>括号括起来。</li></ol></li><li>在<code>给事件绑定方法</code>时，<ol><li>必须要这样，</li><li><code>onChange= {this.changeHandler.bind(this)}</code>，</li><li>不然<code>this指向</code>会有问题，</li><li>或者<code>onChange={() =&gt; {this.changeHandler()}}</code>,</li><li>因为<code>箭头函数</code>就<code>是匿名函数</code>使<code>用了bind(this)</code>。</li></ol></li><li>事件绑定的方法里你可以通过<code>e.target</code>来获取你输入的值，<ol><li>这时候你可以通过以下的方式来让文本框中的值改变。<pre><code class="react"> this.setState({this.state.inputValue: e.target.value});
+</code></pre></li></ol></li><li><code>React</code>只能够直接<code>以数据驱动视图</code>，<ol><li>并不能<code>直接</code>以视图来改变数据`，</li><li>而且如果你使用 <code>this.state.inputValue= e.target.value;</code>那也是<code>无效</code>的，</li><li>它只能使用<code>this.setState</code>来进行<code>修改state</code>中的值。</li><li>它<code>不像vue</code>那种<code>响应式监听</code>，</li><li>自动给你修改<code>data</code>中的值，</li><li>这也是<code>它</code>和<code>vue</code>的<code>不同点</code>。</li></ol></li></ol><h3 id="实现TodoList-新增删删除功能"><a href="#实现TodoList-新增删删除功能" class="headerlink" title="实现TodoList 新增删删除功能"></a>实现TodoList 新增删删除功能</h3><ol><li><code>es6</code>中有一个<code>展开运算符</code>: <code>...</code><ol><li>如<code>[...[1,2,3,4]]</code> 会把数组中的元素一个个的展开，</li><li>变成这样<code>[1,2,3,4]</code>，</li><li>也就是把原数组中的元素放入了新数组中，</li><li>也可以在对象中使用</li></ol></li><li>你在<code>this.setState</code>中加的<code>{}</code>里面的<code>成员</code>都会<code>变</code>成<code>this.state</code>的<code>成员</code>。</li><li>这表示将原来的<code>this.state.list</code>平铺到新的数组中<ol><li>并且还将<code>this.state.inputValue</code>添加进去。<pre><code class="react"> this.setState({list: [...this.state.list, this.state.inputValue]});
+</code></pre></li></ol></li><li>可以将已经添加的文本框中的值<code>清空</code>掉。<pre><code class="react">     this.setState({list: [...this.state.list, this.state.inputValue], this.state.inputValue: &#39;&#39;});
+</code></pre></li><li>在React中你做循环渲染标签的时候一定要给这个标签添加一个key属性，<ol><li>属性值可以赋值为index，但是在实际的编程中，</li><li>使用index作为key值是一个不好的习惯。<pre><code class="react"> &lt;ul&gt;
+     {this.state.list.map((item,index) =&gt; {
+         retrun (&lt;li key = {index}&gt;{item}&lt;/li&gt;)
+       })
+     }
+ &lt;/ul&gt;
+</code></pre></li></ol></li><li><p>React中有一个规则叫<code>immutable</code> ，</p><ol><li>表示<code>state 不允许</code>我们<code>做</code>任何的<code>改变</code>，</li><li><p>不然<code>性能优化</code>方面就会<code>出现问题</code>。</p><pre><code class="react"> // 所以你删除的时候不允许直接用下面这种方式
+ // this.state.list.splice(index, 1);
+
+ // 需要你拷贝一个副本 
+ const list = [...this.state.list];
+ list.splice(index, 1);
+ this.setState({
+     list: list
+ });
+</code></pre></li></ol></li></ol><h3 id="JSX细节语法补充"><a href="#JSX细节语法补充" class="headerlink" title="JSX细节语法补充"></a>JSX细节语法补充</h3><ol><li>JSX中<code>大写字母开头</code>的标签<code>表示</code>这是一个<code>组件</code>，<ol><li><code>小写字母开头</code>的标签表示这是一个<code>html元素</code>。</li></ol></li><li><code>{/* 注释内容 */}</code> 是JSX中的<code>注释</code></li><li>JSX中添加<code>类名</code>和 <code>style</code><ol><li><code>className = &quot;box&quot;</code></li><li><code>style = { {color: red} }</code></li></ol></li><li>JSX中 使用<code>label</code>标签时使用<code>for</code>时要<code>改</code>为<code>htmlFor</code></li></ol><h4 id="JSX中不去转义-手动输入的Html标签"><a href="#JSX中不去转义-手动输入的Html标签" class="headerlink" title="JSX中不去转义 手动输入的Html标签"></a>JSX中不去转义 手动输入的Html标签</h4><ol><li>也就是页面文本框中输入 <code>&lt;h1&gt;xxxx&lt;/h1&gt;</code> 在页面中显示时会被<code>转义</code>成下面这样。<pre><code class="html">     &amp;it;h1&amp;gt;xxxx&amp;it;/h1&amp;gt;
+</code></pre></li><li>通过给对应的标签 <code>加</code>上 <code>dangerouslySetInnerHTML = { {__html: &lt;h1&gt;xxx&lt;/h1&gt;} }</code><ol><li>表示<code>危险</code>的设置<code>InnerHTML</code>内容，这样就会存在被<code>xss攻击</code>的可能。<pre><code class="react"> // 因为写了dangerouslySetInnerHTML 所以li标签对中的item就没必要写了
+ &lt;li key={index} dangerouslySetInnerHTML = {{__html:item}}&gt;&lt;li&gt;
+</code></pre></li></ol></li></ol><h3 id="拆分组件与组件之间的传值"><a href="#拆分组件与组件之间的传值" class="headerlink" title="拆分组件与组件之间的传值"></a>拆分组件与组件之间的传值</h3><ol><li><p>组件会变成一个树形的结构，因为一个大的组件中会有很多个小组件，小组件中又有其它的更小的组件。</p><ol><li><p><code>父</code>组件<code>传</code>递<code>子</code>组件<code>数据</code>的<code>方式</code>，直接<code>在子组件中添加属性</code></p><pre><code class="react">     // 给子组件传递一个content属性
+     &lt;TodoList content = {this.state.inputValue} /&gt;
+
+     // 子组件中通过 this.props.属性名来使用
+     &lt;div&gt;{this.props.content}&lt;div&gt;
+</code></pre></li></ol></li><li>如果你嫌每次绑定事件的方法都写<code>.bind(this)</code>，<ol><li>那么你可以把这一步放到<code>constructor</code>中去做,这样可以<code>节约一些性能</code><pre><code class="react"> constructor (props) {
+     super(props);
+     this.handleClick = this.handleClick.bind(this);
+ }
+</code></pre></li></ol></li><li>当你给<code>子</code>组件<code>传递父</code>组件中的<code>方法</code>，<ol><li>记得<code>给方法加</code>上一个<code>.bind(this)</code>，不然<code>子</code>组件<code>调用</code>时<code>会出现this指向问题</code>。</li></ol></li></ol><h3 id="TodoList代码优化"><a href="#TodoList代码优化" class="headerlink" title="TodoList代码优化"></a>TodoList代码优化</h3><ol><li>通过代码解构来优化代码<pre><code class="react">     const {content} = this.props;
+     //上面这行代码表示 将this.props.content 赋值给content
+     //const content = this.props.content;
+</code></pre></li><li>将<code>样式</code>的引入<code>放</code>到引入<code>组件</code>的<code>后</code>面</li><li><code>将</code>事件绑定的方法中需要<code>.bind(this)</code>的写法，<ol><li><code>统一</code>的放<code>到</code>构造函数中`,</li><li>这样JSX中<code>调用方法</code>时就<code>不必</code>每次都.bind(this)`了<pre><code class="react"> constructor (props) {
+     super(props);
+     this.handleClick = this.handleClick.bind(this);
+ }
+</code></pre><pre><code class="react"> &lt;div onClick = {this.handleClick}&gt;&lt;/div&gt;
+</code></pre></li></ol></li><li><p>如果你将 <code>遍历列表</code>的<code>操作</code>直接<code>放</code>到<code>JSX</code>中会<code>显得代码过于臃肿</code>，</p><ol><li><p>那么你可以<code>写一个方法</code>，然后<code>在JSX中</code>直接<code>调用</code>你写的方法<code>即可</code></p><pre><code class="react"> &lt;div&gt;{this.getListItem()}&lt;/div&gt;
+
+ getListItem(){
+   return  this.state.list.map((item,index) =&gt; {
+         return &lt;li key = {index}&gt;{item}&lt;/li&gt;
+     })
+ }
+</code></pre></li></ol></li><li><p>由于<code>React中</code>的<code>setState</code>是<code>异步操作</code>，所以你其实可以<code>传递函数</code>来<code>替代传递对象</code></p><pre><code class="react">     // 原来同步的写法
+     this.setState({
+         list: [&#39;1&#39;,&#39;2&#39;]
+     })
+
+     // 现在的异步写法
+     this.setState(()=&gt;{
+         return {
+             list: [&#39;1&#39;,&#39;2&#39;]
+         }
+     })
+
+     // 再简化一下
+     this.setState(()=&gt;({list: [&#39;1&#39;,&#39;2&#39;]}));
+</code></pre></li><li>如果你使用了 <code>异步写法</code>，那么<code>注意</code>了，<ol><li><code>如果使用了event对象</code>，</li><li><code>那么要将值先保存一下</code>，</li><li>因为<code>异步</code>的<code>写法获取不到`</code>event`对象的，</li><li>就像<code>for循环</code>里面<code>写函数获取不到</code>每次的<code>i</code>一样<pre><code class="react"> handleInput(evnet) {
+      const value = event.value;
+      this.setState({} =&gt; ({inputValue: value}));
+ }
+</code></pre></li></ol></li><li>当使用了异步的写法后，你可以通过函数里传递过来的参数来替代<code>this.state</code><pre><code class="react">         // 再简化一下
+     this.setState((preState)=&gt;(
+             {
+                 list: [...preState.list,inputValue],
+                 inputValue: &#39;&#39;
+             }
+         )
+     );
+</code></pre></li><li><code>循环</code>的<code>时</code>候<code>key</code>的属性因该<code>放</code>到<code>循环体</code>的<code>最外</code>的那个<code>元素上</code>。</li></ol><h3 id="围绕React衍生出的思考"><a href="#围绕React衍生出的思考" class="headerlink" title="围绕React衍生出的思考"></a>围绕React衍生出的思考</h3><h4 id="声明式与命令式开发"><a href="#声明式与命令式开发" class="headerlink" title="声明式与命令式开发"></a>声明式与命令式开发</h4><ol><li><code>声明式开发</code>方式：使<code>用框架</code>来<code>操作DOM</code>，如React、Vue，减少DOM操作</li><li><code>命令式开发</code>方式：<code>直接操作DOM</code> ，如jQuery</li></ol><h4 id="可以与其它框架并存"><a href="#可以与其它框架并存" class="headerlink" title="可以与其它框架并存"></a>可以与其它框架<code>并存</code></h4><ol><li><code>React</code> 最终有一个<code>ReactDOM.Render</code>方法，<ol><li>这个方法会<code>将组件渲染成DOM填充页面中容器</code></li></ol></li><li>也就是说，它最后只会填充那个容器，<ol><li>页面其它的容器它管不着，</li><li>其它的容器你就可以使用其它的技术，</li><li>如Vue，Jquery等等。</li></ol></li><li>这就是React可以与其它框架并存的原因。</li></ol><h4 id="组件式的开发（组件化）"><a href="#组件式的开发（组件化）" class="headerlink" title="组件式的开发（组件化）"></a>组件式的开发（组件化）</h4><ol><li>首字母大写就是组件，首字母小写就是html元素</li><li>父子传值 通过属性的方式，<ol><li>父组件中给子组件设置属性，</li><li>子组件中通过this.props获取属性</li></ol></li><li>子父传值，也是一样，<ol><li>只不过传递的是父组件中的方法，</li><li>但是每个方法都要.bind(this),</li><li>表示将父组件中的方法的this指向父组件，</li><li>这样子组件调用的时候才有效。</li></ol></li></ol><h4 id="单向数据流"><a href="#单向数据流" class="headerlink" title="单向数据流"></a>单向数据流</h4><ol><li>父组件可以给子组件传递值，<ol><li>但是子组件一定不能够直接去修改父组件的值，</li><li>一旦你改变了，React会给你报一个错误出来，</li><li>因为传递过来的值是一个只读的属性。</li></ol></li></ol><h5 id="这是为了让测试起来和开发起来方便，不容易遇到坑。"><a href="#这是为了让测试起来和开发起来方便，不容易遇到坑。" class="headerlink" title="这是为了让测试起来和开发起来方便，不容易遇到坑。"></a>这是为了让测试起来和开发起来方便，不容易遇到坑。</h5><ol><li>如果父组件中有五六个组件，<ol><li>都传递了同一个值，</li><li>然后你在其中一个子组件中直接修改父组件传递给你的那个属性，</li><li>那么其它的组件就完蛋了。</li><li>虽然最后还是会修改父组件中的那个属性，</li><li>但是那不一定，因为setState这个操作是异步进行的，</li><li>前面的修改某个属性的操作，</li><li>会被后面修改某个属性的操作覆盖掉，</li><li>只执行最后一次操作。</li></ol></li><li>如果页面出现了bug，<ol><li>你调试起来也不方便，</li><li>因为你这个属性被五六个组件公用了，</li><li>都可以直接修改值，这样很不好。</li><li>所以React出了单向数据流，</li><li>只允许父组件向子组件传递数据，</li><li>但是不允许子组件直接修改父组件传递过去的数据，</li><li>你可以通过父组件传递过去的方法，</li><li>来修改父组件中的数据。</li></ol></li><li>代码维护方便。</li></ol><h4 id="视图层的框架"><a href="#视图层的框架" class="headerlink" title="视图层的框架"></a>视图层的框架</h4><ol><li>做大型项目时传值是一个问题，<ol><li>所以需要配合一个数据层的框架，</li><li>帮我们解决React中组件间复杂传值的问题。</li></ol></li><li>如 兄弟组件间传值，<ol><li>这个最麻烦，一层一层往上，</li><li>再一层一层的往下，项目很大，</li><li>那就会崩溃。代码冗余。</li></ol></li><li>所以React就把它定义为一个视图层的框架，<ol><li>它并不是什么问题都解决，</li><li>我只帮你解决数据和视图在页面渲染的问题，</li><li>至于组件之间传值我并不负责，</li><li>我交给其它组件来做。</li></ol></li><li>如果只有两层组件，<ol><li>借助React内部的传值机制就可以了，</li><li>如果有多层组件，就是用<code>Redux</code>等等数据层框架来辅助。</li></ol></li><li>这也是为什么<code>React</code>将自己称为<code>一个视图层的框架</code>，<ol><li>而<code>不是一个大型的完整的框架</code>，<code>它会借助很多的辅助框架</code>。</li></ol></li></ol><h4 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h4><ol><li>面向测试的开发流程，</li><li>前端自动化测试的时候，</li><li>如果你的代码都是一个个函数，</li><li>那么测试时就调用这个函数，</li><li>查看输入输出即可，</li><li>这样就给前端自动化测试带来很大的便利。</li></ol><h2 id="第四章React高级内容"><a href="#第四章React高级内容" class="headerlink" title="第四章React高级内容"></a>第四章React高级内容</h2><h3 id="安装-React开发调试工具"><a href="#安装-React开发调试工具" class="headerlink" title="安装 React开发调试工具"></a>安装 React开发调试工具</h3><ol><li>下载 <code>React Developer Tools</code> 插件 然后放到Chrome浏览器中去</li><li>在开发环境下使用这个插件，这个插件的图标会显示<code>红色</code></li><li>如果你的页面不是React开发的，那么图标会显示<code>灰色</code></li><li>如果是线上的环境，那么图标会显示为<code>黑色</code></li></ol><h4 id="使用-React开发调试工具"><a href="#使用-React开发调试工具" class="headerlink" title="使用 React开发调试工具"></a>使用 React开发调试工具</h4><ol><li>打开开发人员工具，<ol><li>选择React选项卡，</li><li>这时候就可以看到页面标签以React组件的方式显示</li></ol></li><li>使用这个组件来调试组件间传值的时候，<ol><li>就不需要使用console.log()来打印了。</li><li>只需要点击这个组件，</li><li>然后在右侧实时的监控整个组件的状态即可。</li></ol></li></ol><h3 id="PropTypes与DefaultProps"><a href="#PropTypes与DefaultProps" class="headerlink" title="PropTypes与DefaultProps"></a>PropTypes与DefaultProps</h3><ol><li><p>对传递过来的属性的类型做校验，</p><ol><li>如果不符合要求，就会自动警告，</li><li>用来限制传值时的数据类型，</li><li><p>对开发是比较友好的。</p><pre><code class="react"> // 你要下载这个模块儿，然后才能引入，脚手架工具中自带了
+ import PropTypes from &#39;prop-types&#39;;
+
+ // ...
+
+ // 对当前组件.props属性 使用 组件.propTypes 的数据类型进行校验
+ TodoItem.propTypes = {
+
+     {/*表示传递过来的content属性一定要是string类型*/}
+     content: PropTypes.string,
+
+     {/* 一定要是一个函数 */}
+     deleteItem: PropTypes.func,
+
+     {/* 一定要是一个数字*/}
+     index: PropTypes.number,
+
+     {/* 表示传递过来的test属性一定要是string类型的，并且这个test参数必须传递过来了，否则就警告*/}
+     test: PropTypes.string.isReuqired,
+
+     {/*表示test2 必须是一个数组，数组的组成内容可以一个string类型或者number类型*/}
+     test2: PropTypes.arrayOf(PropTypes.string, PropTypes.number),
+
+     {/*表示test3 必须是一个string类型或者number类型*/}
+     test3: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+ }
+
+ // 给当前组件.props中的成员设置默认值
+ TodoItem.defaultProps = {
+     test: &#39;hello world&#39;
+ }
+</code></pre></li></ol></li></ol><h3 id="Props-State与render函数"><a href="#Props-State与render函数" class="headerlink" title="Props,State与render函数"></a>Props,State与render函数</h3><ol><li>当组件的state或者props发生改变的时候，组件的render函数就会重新执行。<ol><li>实际<code>原理</code>还是 <code>setState</code>方法<code>被调用</code>了，</li><li>然后执行了<code>re-render</code>(patch)的方法，</li><li>重新渲染页面的组件</li></ol></li></ol><h3 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h3><ol><li>state 数据</li><li>JSX模板</li><li>数据+模板 结合，生成虚拟DOM ，由虚拟DOM生成真实DOM 来显示</li><li>state 发生改变</li><li>数据+模板 结合，生成新虚拟DOM ，对比之前的旧的虚拟DOM，找出差异点</li><li>不是整版替换，而是经过新旧虚拟DOM节点对比</li><li>由框架直接操作DOM，将变化的旧节点的DOM替换成新的节点的DOM。</li><li>虚拟DOM就是使用JS模拟DOM，<ol><li>目的是为了提升性能，因为直接操作太消耗性能，</li><li>一个DOM对象有几百个成员，</li><li>这样会造成进行节点对比的时候极大的损耗性能。</li></ol></li></ol><h3 id="深入了解虚拟DOM"><a href="#深入了解虚拟DOM" class="headerlink" title="深入了解虚拟DOM"></a>深入了解虚拟DOM</h3><ol><li>JSX 语法其实是虚拟dom创建的语法糖，<ol><li>最后会被统一的转换为<code>React.createElement()</code>方法，</li><li>这个方法创建虚拟dom。</li></ol></li><li>因为虚拟DOM 所以性能提升了，<ol><li>它使得跨端应用得以实现，如React Native</li><li>在React Native中让虚拟DOM 不去生成真实的DOM 而是生成一些原生的组件，</li><li>那么就能实现很好的重用了，</li><li>这样就能够让React即能生成网页应用也能够生成原生应用。</li></ol></li></ol><h3 id="虚拟DOM中的Diff算法"><a href="#虚拟DOM中的Diff算法" class="headerlink" title="虚拟DOM中的Diff算法"></a>虚拟DOM中的Diff算法</h3><ol><li>调用setState才会让数据发生变化，<ol><li>setState是异步，这么做是为了提升性能</li></ol></li><li>如果你连续调用三次setState，<ol><li>那么React会将三次操作合并成一次，</li><li>然后再去调用re-render的方法渲染页面，</li><li>这也是为什么setState是异步的原因。</li></ol></li><li>同层虚拟DOM比较，从上往下进行比较，<ol><li>找到差异之后去更新真实的DOM，</li><li>如果有一层有差异就不会往下比较了，</li><li>这样比对的速度非常快。</li></ol></li></ol><h4 id="key属性的设置，就是给虚拟dom的节点设置名字"><a href="#key属性的设置，就是给虚拟dom的节点设置名字" class="headerlink" title="key属性的设置，就是给虚拟dom的节点设置名字"></a>key属性的设置，就是给虚拟dom的节点设置名字</h4><ol><li>假如有一个数组，<ol><li>原来里面有五个数据，</li><li>如果你又增加了一个数据，</li><li>这时候你如果要新旧虚拟dom节点进行对比，</li><li>就会出现双层for循环的对比方式了。</li></ol></li><li>这样很麻烦，<ol><li>如果你设置了key属性，</li><li>那么就直接遍历key值相同的进行对比，</li><li>这样就只是单重for循环的对比了。</li></ol></li><li>这样就只用把新增加的数据添加到ul的dom中就可以了。</li><li>所以不要把key属性的值设置为index，<ol><li>那样没法保证原始的虚拟dom节点的key值与新的虚拟dom节点的key值一致了。</li><li>因为可能会发生数组元素的位置变化，</li><li>那时候新的虚拟dom节点的key值是整版替换的，</li><li>相当于没有设置。</li></ol></li><li>例如 你删除了一个数组元素，<ol><li>然后key值等于index，</li><li>这时候key值相当于整版替换了，</li><li>因为index值是数组元素的全新的下标。</li></ol></li><li>key值很不稳定，<ol><li>key值需要很稳定，</li><li>例如你将key值设置为item，</li><li>这样就确定了唯一性。</li></ol></li><li>能不用index作为key值的时候就不用index作为key值</li><li>key值的设置是为了提高虚拟dom比对的性能。</li></ol><h3 id="React中ref的使用"><a href="#React中ref的使用" class="headerlink" title="React中ref的使用"></a>React中ref的使用</h3><ol><li>之前需要通过<code>e.target</code>来获取事件源<pre><code class="react">     handleInput (e) {
+         // 通过事件源的方式获取页面标签了
+         const input = e.target;
+     }
+</code></pre></li><li><p>现在可以通过 ref 来获取页面中的dom</p><pre><code class="react">     {/*在页面标签中添加ref*/}
+     &lt;input ref = {(input) =&gt; {this.input = input;}}
+
+     handleInput () {
+         // 这样就能够获取 页面中的指定input了
+         const input = this.input;
+     }
+</code></pre></li><li>但是不推荐使用ref，React中推荐使用以数据驱动的方式编写代码，不要直接去操作DOM<ol><li>setState操作是异步的，</li><li>如果你在setState中清空了输入框的内容，</li><li>然后再setState的下面通过dom获取了输入框的内容，</li><li>这时候就会发现值还没有清空。</li><li>因为同步代码会被先执行，</li><li>异步代码是等同步代码执行完毕后才会执行的。</li><li>虽然你可以通过setState的回调函数来使用dom实时的获取输入框中的内容，</li><li>当setState异步操作结束后才会去执行回调函数，</li><li>那时候就能够实时的获取dom中的内容了。</li><li>但是如果你设置dom的内容，</li><li>会导致对比时出现错误。</li><li>如果在做一些极其复杂的业务时可以考虑使用，</li><li>如操作动画时。</li></ol></li></ol><h3 id="React中的生命周期函数"><a href="#React中的生命周期函数" class="headerlink" title="React中的生命周期函数"></a>React中的生命周期函数</h3><ol><li>生命周期函数是指在某一个时刻组件会自动调用执行的函数</li></ol><h4 id="Initialization-初始化"><a href="#Initialization-初始化" class="headerlink" title="Initialization 初始化"></a>Initialization 初始化</h4><ol><li><code>Initialization</code>：<ol><li>在组件初始化的时刻自动执行，</li><li>相当于<code>constructor</code>构造函数里面做一些<code>props</code>和<code>state</code>的设置</li></ol></li></ol><h4 id="Mounting-挂载"><a href="#Mounting-挂载" class="headerlink" title="Mounting 挂载"></a>Mounting 挂载</h4><ol><li><code>componentWillMount</code>：<ol><li>在组件即将被挂载到页面的时刻自动执行</li></ol></li><li><code>render</code>：<ol><li>在组件挂载到页面的时刻自动执行</li></ol></li><li><code>componentDidMount</code>：<ol><li>在组件挂载到页面之后的时刻自动执行</li></ol></li></ol><h4 id="Updation-更新"><a href="#Updation-更新" class="headerlink" title="Updation 更新"></a>Updation 更新</h4><h5 id="props-发生变化"><a href="#props-发生变化" class="headerlink" title="props 发生变化"></a>props 发生变化</h5><ol><li><code>componentWillReceiveProps</code>：<ol><li>当前子组件第二次及第二次之后接收了父组件传递属性的时刻都会被执行，</li><li>也就是父组件执行render更新操作时，</li><li>再次给子组件传递属性时会执行这个生命周期函数。</li></ol></li><li><code>shouldComponentUpdate</code>：<ol><li>在组件确定需要更新之前自动执行，</li><li>需要返回一个bool值，</li><li>这个bool值用来确定是否需要更新当前组件，</li><li>如果返回false就不会执行后面的更新操作了，</li><li>也就是下面的函数都不会再执行了。</li></ol></li><li><code>componentWillUpdate</code>：<ol><li>在组件确定需要更新之后，在组件真正更新之前会自动执行。</li></ol></li><li><code>render</code>：<ol><li>组件真正更新的时刻自动执行，也就是重新渲染DOM</li></ol></li><li><code>componentDidUpdate</code>：<ol><li>组件真正更新完成之后会自动执行</li></ol></li></ol><h5 id="states-发生变化"><a href="#states-发生变化" class="headerlink" title="states 发生变化"></a>states 发生变化</h5><ol><li><code>shouldComponentUpdate</code>：<ol><li>在组件确定需要更新之前自动执行，</li><li>需要返回一个bool值，</li><li>这个bool值用来确定是否需要更新当前组件，</li><li>如果返回false就不会执行后面的更新操作了，</li><li>也就是下面的函数都不会再执行了。</li></ol></li><li><code>componentWillUpdate</code>：<ol><li>在组件确定需要更新之后，</li><li>在组件真正更新之前会自动执行。</li></ol></li><li><code>render</code>：<ol><li>组件真正更新的时刻自动执行，</li><li>也就是重新渲染DOM</li></ol></li><li><code>componentDidUpdate</code>：<ol><li>组件真正更新完成之后会自动执行</li></ol></li></ol><h4 id="Unmounting"><a href="#Unmounting" class="headerlink" title="Unmounting"></a>Unmounting</h4><ol><li><code>componentWillUnmount</code>：<ol><li>在组件在页面上即将被去除的时刻会被执行，</li><li>比如子组件是一个列表项，</li><li>你删除这个列表项时就会自动执行这个函数了。</li></ol></li></ol><h4 id="整个生命周期，每一个组件都可以有生命周期"><a href="#整个生命周期，每一个组件都可以有生命周期" class="headerlink" title="整个生命周期，每一个组件都可以有生命周期"></a>整个生命周期，每一个组件都可以有生命周期</h4><ol><li>初始化 <code>constructor</code></li><li>首次挂载组件到页面之前 <code>componentWillMount</code></li><li>首次挂载组件到页面时 <code>render</code></li><li>首次挂载组件到页面之后 <code>componentDidMount</code></li><li>第二次及第二次之后从父组件那里获取props时 <code>componentWillReceiveProps</code></li><li>确定是否需要更新组件 <code>shouldComponentUpdate</code></li><li>真正更新组件之前 <code>componentWillUpdate</code></li><li>真正更新组件时 <code>render</code></li><li>真正更新组件之后 <code>componentDidUpdate</code></li><li>组件在页面中被卸载时 <code>componentWillUnmount</code></li></ol><h3 id="生命周期函数的使用场景"><a href="#生命周期函数的使用场景" class="headerlink" title="生命周期函数的使用场景"></a>生命周期函数的使用场景</h3><ol><li>组件继承的<code>Component</code>中默认<code>预置</code>了<code>所有</code>的<code>生命周期函数</code>，<ol><li><code>唯独没有预置render函数</code></li></ol></li><li><code>render</code>函数必须有，<ol><li>因为它用来生成虚拟DOM的，</li><li>没有虚拟DOM那就完蛋了。</li></ol></li><li><code>shouldComponentUpdate</code> 可以用来父组件<code>render</code>时<code>自动</code>调用<code>子</code>组件的<code>render前</code>的拒绝操作，<ol><li>也就是父组件更新时不更新子组件，子组件只会进行首次渲染。</li><li>主要是减少子组件render函数的不必要执行，</li><li>虽然虚拟dom的对比比真实dom的对比要性能更优，</li><li>但是减少虚拟dom的生成与对比就能够让性能更优。</li><li>在拒绝更新操作之前要进行判断，</li><li>如判断传递过来的props是否与当前的props不同<pre><code class="react"> shouldComponentUpdate (nextProps, nextState) {
+     // 如果传递过来的props与当前的props不一样，说明子组件需要更新了
+     if (nextProps.content !== this.props.content) {
+         return true;
+     } else {
+     // 说明子组件没有重新被渲染的必要
+         return false;
+     }
+ }
+</code></pre></li></ol></li><li><code>constructor</code> 可以用来绑定当前方法的作用域，<ol><li>只需要绑定一次即可，<code>减少</code>了<code>多次绑定</code>方法的<code>作用域</code>，</li><li>这样就可以在事件绑定时不需要每次都<code>.bind(this)</code><pre><code class="react"> constructor (props) {
+     super(props);
+     this.handleClick = this.handleClick.bind(this);
+ }
+</code></pre></li></ol></li><li><p><code>componentDidMount</code> 可以用来存放ajax请求，</p><ol><li>它永远都不会有问题，因为它只会执行一次。</li><li>其实你也可以放到constructor中，</li><li>因为它也是只执行一次的，</li><li>但是它里面已经放了很多初始化props和state的操作。</li><li><p>操作ajax 可以使用 axios</p><pre><code class="react"> import Axios from &#39;axios&#39;;
+
+ componentDidMount () {
+     Axios.get(&#39;/api/todolist&#39;).then(() =&gt; {alert(&#39;success&#39;);}).catch(() =&gt; {alert(&#39;bad&#39;)})
+ }
+</code></pre></li></ol></li></ol><h3 id="使用-Charles-进行接口数据模拟"><a href="#使用-Charles-进行接口数据模拟" class="headerlink" title="使用 Charles 进行接口数据模拟"></a>使用 Charles 进行接口数据模拟</h3><ol><li>使用教程<ol><li>下载 Charles</li><li>打开 Charles 后选择选项卡 Tools</li><li>选择 Map Local 选项</li><li>点击Add 按钮 设置代理协议、主机、端口、路径</li><li>然后选择被代理的文件(json文件) 点击ok</li><li>之后选中Enable Map Local 点击OK按钮，</li><li>本次设置完成</li></ol></li><li>它的作用是抓取请求，<ol><li>并且对请求做出处理。</li><li>它相当于一个中间的代理服务器。</li></ol></li><li>在前端开发的时候，<ol><li>没有这个接口的数据，</li><li>你可以使用json自己模拟这个接口的数据。</li><li>使用Charles来进行模拟。</li></ol></li><li>josn 文件中的对象或者数组，<ol><li>键值对必须使用双引号，</li><li>单引号会被认为整个对象或者数组是一个字符串。</li></ol></li></ol><h3 id="React-的CSS-过渡动画"><a href="#React-的CSS-过渡动画" class="headerlink" title="React 的CSS 过渡动画"></a>React 的CSS 过渡动画</h3><ol><li><p><code>过渡</code></p><pre><code class="css">     /*需要过渡的属性 持续时间 过渡效果类型 延迟时间*/
+     transition:all 1s ease-in 0s;
+
+</code></pre></li><li><p><code>动画</code></p><pre><code class="css">     /*先定义动画*/
+     @keyframes dong {
+         from {
+             opacity:1;
+         }
+         to {
+             opacity:0;
+         }
+     }
+     @keyframes dong2 {
+         0% { 
+             opacity:0;
+         }
+         100% {
+             opacity:1;
+         }
+     }
+
+     /*使用动画: 动画名(必写) 持续时间(必写) 执行次数 动画方向 延迟时间 动画类型 结束时的状态*/
+     animation: dong 2s 1 normal 0s ease-in forwards;
+</code></pre></li></ol><h3 id="使用-react-transition-group-实现单个元素的动画"><a href="#使用-react-transition-group-实现单个元素的动画" class="headerlink" title="使用 react-transition-group 实现单个元素的动画"></a>使用 react-transition-group 实现单个元素的动画</h3><ol><li>先打开<code>github</code> 搜索这个开源项目</li><li>查看 里面对应的文档</li><li>使用命令安装：<code>yarn add react-transition-group</code><ol><li>或者<code>npm install react-transition-group --save</code></li></ol></li><li><p>使用 <code>react-transition-group</code>中的<code>CSSTransition</code></p><pre><code class="react">     import {CSSTransition}  from &#39;react-transition-group&#39;;
+
+     &lt;CSSTransition
+         {/*  出入场动画设置，通过in的属性值来进行切换 true为入场 false 为出场*/}
+         in={this.state.show}
+         {/* 动画持续时间 */}
+         timeout={1000}
+         {/* 切换的css类名前缀 css文件中会有对应的类 如.fade-enter */}
+         classNames=&#39;fade&#39;
+         {/* 出场动画执行完毕之后 组件就会从页面上被卸载 */}
+         unmountOnExit
+         onExited={(el)=&gt;{
+                 //直接进行DOM操作
+                 //el.style.color=&quot;#f00&quot;;
+                 console.log(el);
+         }}
+     &gt;
+           &lt;div&gt;只是一个div&lt;/div&gt;
+     &lt;/CSSTransition&gt;
+</code></pre><pre><code class="css">     /* 第一次入场 */
+     .fade-appear {
+         opacity:0;
+     }
+
+     /* 第一次入场中 */
+     .fade-appear-active {
+         opacity:1;
+         transition:opacity 1s ease-in;
+     }
+
+     /*-----------------------------------*/
+
+     /* 入场动画执行前的时候  第一个时刻 */
+     .fade-enter {
+         opacity:0;
+     }
+
+     /* 入场动画在执行的时候 第二个时刻 */
+     .fade-enter-active {
+         opacity:1;
+         transition:opacity 1s ease-in;
+     }
+     /* 入场动画完全执行完毕后 第三个时刻*/
+     .fade-enter-done {
+         opacity:1;
+     }
+
+     /*---------------------------*/
+
+     /* 出场动画执行前的时候  第四个时刻 */
+     .fade-exit {
+         opacity:1;
+     }
+
+     /* 出场动画在执行的时候 第五个时刻*/
+     .fade-exit-active {
+         opacity:0;
+         transition:opacity 1s ease-in;
+     }
+
+     /* 出场动画完全执行完毕的时候 第六个时刻 */
+     .fade-exit-done {
+         opacity:0;
+     }
+</code></pre></li></ol><h4 id="使用-react-transition-group中的CSSTransition有许多特性"><a href="#使用-react-transition-group中的CSSTransition有许多特性" class="headerlink" title="使用 react-transition-group中的CSSTransition有许多特性"></a>使用 react-transition-group中的CSSTransition有许多特性</h4><ol><li>可以切换css中定义的类，<code>前缀可以改</code>，<code>后缀是固定</code>的。<code>前缀改了</code>之后，<code>CSSTransition</code>中的<code>classNames</code>也要<code>改为新</code>的<code>前缀</code>名。<ol><li><code>.fade-appear</code> 只在第一次入场时自动切换</li><li><code>.fade-appear-active</code> 只在第一次入场中自动切换</li><li><code>.fade-enter</code> 入场前</li><li><code>.fade-enter-active</code> 入场中</li><li><code>.fade-enter-done</code> 入场后</li><li><code>.fade-exit</code> 出场前</li><li><code>.fade-exit-active</code> 出场中</li><li><code>.fade-exit-done</code> 出场后</li></ol></li><li>还可以操作<code>JS DOM</code> 因为<code>CSSTransition</code>里面<code>内置</code>了许多的<code>生命周期钩子</code>函数，css<code>状态类</code>与下面的<code>生命周期钩子函数对应</code><ol><li><code>onEnter</code> 入场前</li><li><code>onEntering</code> 入场中</li><li><code>onEntered</code> 入场后</li><li><code>onExit</code> 出场前</li><li><code>onExiting</code> 场中</li><li><code>onExited</code> 出场后<pre><code class="react"> /* 传进去的参数是 CSSTransition中最外层的DOM */
+ onExited = {(el) =&gt; {
+     //直接进行DOM操作
+     //el.style.color = &quot;#f00&quot;;
+     console.log(el);
+ }}
+</code></pre></li></ol></li><li><code>unmountOnExit</code>：<ol><li>表示在<code>CSSTransition</code>中的<code>出场动画执行完毕后</code>就<code>会从页面中被移除</code>掉。</li></ol></li></ol><h3 id="使用-react-transition-group-实现多个元素间的动画"><a href="#使用-react-transition-group-实现多个元素间的动画" class="headerlink" title="使用 react-transition-group 实现多个元素间的动画"></a>使用 react-transition-group 实现多个元素间的动画</h3><ol><li><p>使用r<code>eact-transition-group</code>的<code>TransitionGroup</code>配合<code>CSSTransition</code>来<code>实现多</code>个组件的<code>动画</code>效果</p><pre><code class="react">     import {CSSTransition,TransitionGroup} from &#39;react-transition-group&#39;
+
+     {/* 在外面嵌套一层 TransitionGroup 标签*/}
+     &lt;TransitionGroup&gt;
+         {
+             this.state.list.map((item,index) =&gt; {
+                 return (
+                     {/* 每个元素都设置一下 动画，只不过in属性不要了，因为自动为true了*/}
+                     &lt;CSSTransition
+                         timeout = {1000}  // 持续时间
+                         classNames = &quot;fade&quot; // 切换的类前缀
+                         unmountOnExit // 出场时移除这个组件
+                         appear = {true} // 首次入场 是否自动切换 入场动画 
+                         onEntered = {(el) =&gt; { // 出场后的钩子函数
+                             //直接进行DOM操作
+                             el.style.color = &quot;red&quot;;
+                         }}
+                         key = {index}
+                     &gt;
+                         &lt;li&gt;{item}&lt;/li&gt;  
+                     &lt;/CSSTransition&gt;
+                 )
+             })
+         }
+     &lt;/TransitionGroup&gt;
+</code></pre></li></ol><h2 id="第五章Redux入门"><a href="#第五章Redux入门" class="headerlink" title="第五章Redux入门"></a>第五章Redux入门</h2><h3 id="Redux-概念简述"><a href="#Redux-概念简述" class="headerlink" title="Redux 概念简述"></a>Redux 概念简述</h3><ol><li>React是一个简单的轻量级的视图层的框架，<ol><li>内置的组件（同级的组件）传值太麻烦了，</li><li>而且它需要依赖很多的框架才能去实现大项目的构建。</li></ol></li><li>如何你想使用React去做一个大的应用，<ol><li>必须使用一个配套的数据层的框架来结合使用才行，</li><li>这个数据层的框架就是Redux。</li></ol></li><li>将组件中的数据存储到一个公共的区域，<ol><li>其它组件需要数据的话，</li><li>直接到这个公共的存储区域中拿一下即可。</li></ol></li><li><code>Redux=Reducer+Flux</code><ol><li>Flux 是13年开源的时候 FaceBook 放出来和React一起使用的数据层框架。</li><li>Flux 不好用，有人把Flux做了一个升级，升级之后就叫Redux</li></ol></li></ol><h3 id="Redux的工作流程"><a href="#Redux的工作流程" class="headerlink" title="Redux的工作流程"></a>Redux的工作流程</h3><ol><li><code>ReactComponent</code> 、<code>ActionCreators</code>、<code>Strore</code>、<code>Reducers</code><ol><li><code>ReactComponent</code>：借书的人</li><li><code>ActionCreators</code>：借书时说的话</li><li><code>Strore</code>：图书馆的管理员</li><li><code>Reducers</code>：图书记录本</li></ol></li><li>Redux的工作流程<ol><li>首先 <code>ReactComponent</code> 创建一个<code>ActionCreator</code>命令</li><li>通过<code>ActionCreator</code>命令向<code>Strore</code>发起请求</li><li><code>Strore</code>接收到请求后去<code>Reducers</code>查询对应的数据</li><li>从<code>Reducers</code>查询到对应的数据查询后由<code>Strore</code>将对应的数据返回给<code>ReactComponent</code></li></ol></li></ol><h3 id="使用antd-编写-TodoList页面布局"><a href="#使用antd-编写-TodoList页面布局" class="headerlink" title="使用antd 编写 TodoList页面布局"></a>使用antd 编写 TodoList页面布局</h3><ol><li>安装 <code>antd</code><ol><li>使用命令：<code>npm install antd --save</code> 或者 <code>yarn add antd</code></li></ol></li><li><p>使用 <code>antd</code>，<code>引入组件</code>，<code>引入css</code>，<code>直接使用组件</code>即可，可以<code>去官网找对应的组件</code>，<code>复制代码</code>简单使<code>用一下</code>。</p><pre><code class="react">     import { Input ,Button, List } from &#39;antd&#39;;
+     import &#39;../node_modules/antd/dist/antd.css&#39;;
+
+     const data = [
+         &#39;Racing car sprays burning fuel into crowd.&#39;,
+         &#39;Japanese princess to wed commoner.&#39;,
+         &#39;Australian walks 100km after outback crash.&#39;,
+         &#39;Man charged over missing wedding girl.&#39;,
+         &#39;Los Angeles battles huge wildfires.&#39;,
+       ];
+
+     class TodoList extends Component {
+         constructor (props) {
+             super(props);
+         }
+
+         render() {
+             return(
+                 &lt;div style = {{margin: '10px 0px 0px 10px', width: "500px"}}&gt;
+                   &lt;div&gt;
+                   &lt;Input placeholder = &quot;请输入内容&quot;  style = {{marginRight: '10px', width: "350px"}}/&gt;&lt;Button type = &quot;primary&quot; style = {{width: "120px"}}&gt;Primary&lt;/Button&gt;
+                     &lt;List
+                         bordered
+                         dataSource = {data}
+                         style = {{width: '350px', marginTop: '10px'}}
+                         renderItem = {item =&gt; (&lt;List.Item&gt;{item}&lt;/List.Item&gt;)}
+                         /&gt;
+                   &lt;/div&gt;
+                 &lt;/div&gt;
+             )
+         }
+     }
+</code></pre></li><li>它常用于开发后台，可以用它开发出很漂亮的后台页面</li></ol><h3 id="创建redux中的store"><a href="#创建redux中的store" class="headerlink" title="创建redux中的store"></a>创建redux中的store</h3><ol><li>首先安装 <code>redux</code>：<code>yarn add redux</code> 或者 <code>npm i redux --save</code></li><li><p>新建一个<code>store</code>文件夹，新建一个<code>index.js</code>和<code>redcer.js</code></p><ol><li><p><code>index.js</code> 图书管理员</p><pre><code class="react">     import { createStore } from &#39;redux&#39;;
+     import reducer from &#39;./reducer&#39;;
+
+     const store = createStore(reducer);
+
+     export default store;
+</code></pre></li><li>redcer.js 图书记录本<pre><code class="react">     const defaultState = {
+         list: [123,321],
+         inputValue: &#39;789&#39;
+     };
+     export default (state = defaultState,action) =&gt; {
+         // state中存放的是整个图书馆中存放的书籍的信息
+         return state;
+     }
+</code></pre></li></ol></li><li><p>需要<code>用的时候</code>直接<code>引</code>入这个<code>index.js</code>，然后通过<code>对象.getState()</code>方法，就能够<code>获取</code>到<code>store</code>中的<code>内容</code>了,之后你就可以<code>直接</code>使<code>用数据</code>了。</p><pre><code class="react">     //import store from &#39;./store/index.js&#39;
+     // 简写成这样也可以
+     import store from &#39;./store&#39;; 
+
+     this.state = store.getState();
+</code></pre></li><li>引入 <code>store</code> ，<ol><li>直接通过<code>store</code>来<code>获取</code>数据或者<code>修改</code>数据，</li><li><code>store</code>是一个<code>公共的数据层对象</code>。</li></ol></li></ol><h3 id="Action和Reducer-的编写"><a href="#Action和Reducer-的编写" class="headerlink" title="Action和Reducer 的编写"></a>Action和Reducer 的编写</h3><ol><li>安装谷歌浏览器插件：<code>Redux DevTools</code><ol><li>使用浏览器开发人员工具点击选项卡 <code>Redux</code></li><li>如果你没有配置，那么你就将</li><li><code>window.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__()</code></li><li>粘贴到<code>createStore(reducer)</code>的第二个参数中去<pre><code class="react">      const store=createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; window.__REDUX_DEVTOOLS_EXTENSION__());
+</code></pre></li><li><code>__REDUX_DEVTOOLS_EXTENSION__</code>也是<code>Redux</code>的一个<code>中间件</code>。</li></ol></li><li><code>深拷贝</code>一个<code>对象</code>：<code>JSON.parse(JSON.stringify(obj))</code>;</li><li><p>首先创建一个 <code>store</code>对象并且传递一个<code>reducer</code>对象进去</p><ol><li><p><code>reducer</code>实际上一个函数，<code>store</code>在创建的时候将这个函数传递进去了</p><pre><code class="react">     const defaultState = {
+         list: [123,321],
+         inputValue: &#39;789&#39;
+     };
+
+     export default (state = defaultState, action) =&gt; {
+         // 根据行动指令执行对应的操作
+         if (action.type === &quot;changeInputValue&quot;) {
+             // reducer 只能够获取state里面的值 绝对不能修改里面的值
+             const newState = JSON.parse(JSON.stringify(state));
+             newState.inputValue = action.value;
+             return newState;
+         }
+
+         if (action.type === &quot;addListItem&quot;) {
+             const newState = JSON.parse(JSON.stringify(state));
+             newState.list.push(newState.inputValue);
+             newState.inputValue = &quot;&quot;;
+             return newState;
+         }
+
+         // state中存放的是整个图书馆中存放的书籍的信息
+         return state;
+     }
+</code></pre></li><li>当<code>store</code>进行<code>dispatch</code>方法调度的时候就会去执行<code>reducer</code>了<pre><code class="react">    handleChange (e) {
+         const action = {
+             type: &quot;changeInputValue&quot;,
+             value: e.target.value
+         }
+         store.dispatch(action);
+     }
+</code></pre></li><li>执行<code>reducer</code>会对全局的<code>state</code>进行修改<pre><code class="react">     // 根据行动指令执行对应的操作
+     if (action.type === &quot;changeInputValue&quot;) {
+         // reducer 只能够获取state里面的值 绝对不能修改里面的值
+         const newState = JSON.parse(JSON.stringify(state));
+         newState.inputValue = action.value;
+         return newState;
+     }
+</code></pre></li><li>你可以通过<code>store.getState()</code>来获取全局的<code>state</code>对象<pre><code class="react">     this.state = store.getState();
+     console.log(store.getState());
+</code></pre></li><li><p>你可以通过<code>store.subscribe</code>来进行监听全局store的改变，传递进去的回调函数中你可以调用<code>this.setState()</code>来让页面的组件<code>重新渲染</code></p><pre><code class="react">     this.handleStoreChange = this.handleStoreChange.bind(this);
+     // 监听 store中的状态改变
+     store.subscribe(this.handleStoreChange);
+
+     handleStoreChange () {
+         console.log(&quot;store changed&quot;);
+         this.setState(store.getState());
+     }
+</code></pre></li><li>最后就达到了使用redux中store里的全局状态进行传值的目的了。</li></ol></li></ol><h3 id="使用Redux完成TodoList删除功能"><a href="#使用Redux完成TodoList删除功能" class="headerlink" title="使用Redux完成TodoList删除功能"></a>使用Redux完成TodoList删除功能</h3><ol><li>遍历生成item的时候，绑定事件并传递对应的下标</li><li>通过distach方法进行指令的传递，reducer中根据执行进行全局状态的间接更改</li><li>最后组件中监听全局状态的方法里调用this.setState(store.getState())重新渲染组件</li></ol><h3 id="ActionTypes的拆分"><a href="#ActionTypes的拆分" class="headerlink" title="ActionTypes的拆分"></a>ActionTypes的拆分</h3><ol><li>为了防止的你action.type中的字符串写错，<ol><li>你可以定义一个常量与对应的字符串相对应</li></ol></li><li>这样相当于定义了一个规范，<ol><li>不仅利于编写，也利于排错。</li></ol></li><li>你创建一个单独的文件，<ol><li>里面存放这些字符串对应的常量，</li><li>页面中也可以引入这个文件，</li><li>reducer中也可以引入这个文件。</li></ol></li><li>这样一来，你不用担心页面或者reducer中的字符串写错了而导致无法达到预期的效果了。</li></ol><h3 id="使用-actionCreator-统一创建action"><a href="#使用-actionCreator-统一创建action" class="headerlink" title="使用 actionCreator 统一创建action"></a>使用 actionCreator 统一创建action</h3><ol><li>将所有的action进行统一的管理，<ol><li>这么做的好处是分层，这样利于管理，</li><li>可以提高代码的可维护性，</li><li>很像三层架构中<code>模型层</code>、<code>数据访问层</code>、<code>业务逻辑层</code>里的<code>数据访问层</code>。</li></ol></li><li>这样一想，UI组件就是UI层，<ol><li>容器组件就是业务逻辑层，</li><li>模型层和数据访问层就是<code>Redux</code>中的<code>reducer</code>、<code>store</code>、<code>actionCretor</code></li><li>（就像<code>EntityFrameWork</code>通过<code>linq</code>来操作数据库一样）。</li></ol></li><li>并且做自动化测试的时候也会很方便。</li><li>使用方法来进行管理，<ol><li>每一个<code>action</code>对应一个方法，</li><li>页面组件只需要调用对应的方法传递数据即可，</li><li>将对应的指令封装到方法中了，</li><li>你可以调用方法返回指令，</li><li>也可以直接在那个方法中直接调用<code>store.disptach(指令)</code>。</li></ol></li><li><code>React</code>中 <code>数据与视图分离</code>，但是<code>JS逻辑和视图</code>是<code>混在一起</code>的。</li></ol><h3 id="Redux知识点复习补充"><a href="#Redux知识点复习补充" class="headerlink" title="Redux知识点复习补充"></a>Redux知识点复习补充</h3><ol><li><code>store</code> 是唯一的，<ol><li>在store文件夹下的index.js文件被创建，</li><li>全局共享一个，这里面使用一个单例模式</li></ol></li><li>只有store能够改变自己的内容，<ol><li>不要在<code>reducer.js</code>中去改变<code>state</code>，</li><li>你<code>只能深度克隆state</code>，</li><li>然后<code>修改</code>你<code>newState</code>后再<code>return newState</code>，</li><li>这时候<code>store</code>接<code>收到</code>你的<code>返回</code>的<code>newState</code>之后就<code>会</code>去<code>改变</code>自己的<code>state</code>了。</li><li>这是一个规范，就是这么定的。</li></ol></li></ol><h4 id="Reducer必须是纯函数"><a href="#Reducer必须是纯函数" class="headerlink" title="Reducer必须是纯函数"></a>Reducer必须是纯函数</h4><ol><li>纯函数指的是，<ol><li>给定固定的输入，</li><li>就一定会有固定的输出，</li><li>而且不会有任何副作用。</li></ol></li><li>也就是给定<code>state</code>和<code>action</code>就会返回<code>newState</code>，<ol><li>但是<code>newState</code>中的属性，</li><li>是根据<code>state</code>和<code>action</code>来进行确定的，</li><li>不会受到其它的影响也不能受到其它的影响，</li><li>如果受到了就不是纯函数了。</li></ol></li><li>只要一个函数中存在 与<code>日期相关</code>的函数或者有<code>setTimeOut</code>就<code>不再是</code>一个<code>纯函数</code>了，<ol><li>因为这些会让这个函数受到其它的影响，</li><li>不再是固定的输入就有固定的输出。</li></ol></li><li>Reducer里面不能有异步的操作和与时间相关的操作</li><li>对方法传递进来的参数直接做修改就是<code>副作用</code>，<ol><li><code>Reducer</code>中<code>不允许</code>有<code>副作用</code>。</li></ol></li></ol><h4 id="Redux中核心的API"><a href="#Redux中核心的API" class="headerlink" title="Redux中核心的API"></a>Redux中核心的API</h4><ol><li><code>createStore</code> 用来创建 <code>store</code></li><li><code>store.dispatch</code>用来<ol><li>派发<code>action</code>，<code>store</code>会接收这个<code>action</code>，并且根据它来进行<code>state</code>的改变</li></ol></li><li><code>store.getState</code> 获取<code>store</code>中的<code>state</code></li><li><code>store.subscribe</code> 用来监听<code>store中state</code>的变化,<ol><li>只要<code>store</code>发生改变，就会触发<code>subscribe</code>中的<code>回调</code>函数</li></ol></li></ol><h2 id="第六章Redux进阶"><a href="#第六章Redux进阶" class="headerlink" title="第六章Redux进阶"></a>第六章Redux进阶</h2><h3 id="UI组件与容器组件的拆分"><a href="#UI组件与容器组件的拆分" class="headerlink" title="UI组件与容器组件的拆分"></a>UI组件与容器组件的拆分</h3><ol><li>UI组件也叫<code>傻瓜组件</code></li><li>容器组件也叫<code>聪明组件</code></li></ol><h4 id="UI组件负责页面的渲染，容器组件负责页面的逻辑"><a href="#UI组件负责页面的渲染，容器组件负责页面的逻辑" class="headerlink" title="UI组件负责页面的渲染，容器组件负责页面的逻辑"></a>UI组件负责页面的渲染，容器组件负责页面的逻辑</h4><ol><li><p>UI组件-TodoListUI</p><pre><code class="react">     import React,{ Component } from &#39;react&#39;;
+     import { Input ,Button, List } from &#39;antd&#39;;
+
+     import &#39;../node_modules/antd/dist/antd.css&#39;;
+
+     class TodoListUI extends Component {
+         render() {
+             return(
+                 &lt;div style = {{margin: '10px 0px 0px 10px',width: "500px"}}&gt;
+                   &lt;div&gt;
+                   &lt;Input placeholder = &quot;请输入内容&quot; 
+                     value = {this.props.inputValue} 
+                     onChange = {this.props.handleChange}
+                     style = {{marginRight: '10px',width: "350px"}}
+                     /&gt;
+                   &lt;Button type = &quot;primary&quot; 
+                           style = {{width: "80px"}}
+                           onClick = {this.props.handleClick}
+                           &gt;提交
+                           &lt;/Button&gt;
+                     &lt;List
+                         bordered
+                         dataSource = {this.props.list}
+                         style = {{width: '350px',marginTop: '10px'}}
+                         renderItem = {(item, index) =&gt; (&lt;List.Item onClick = {(index) =&gt; {
+                             this.props.handleRemoveItem(index);
+                         }}&gt;{item}&lt;/List.Item&gt;)}
+                         /&gt;
+                   &lt;/div&gt;
+                 &lt;/div&gt;
+             )
+         }
+     }
+     export default TodoListUI;
+</code></pre></li><li><p>容器组件-TodoList</p><pre><code class="react">     import React,{ Component } from &#39;react&#39;;
+     import TodoListUI from &#39;./TodoListUI&#39;
+
+     //import store from &#39;./store/index.js&#39;
+     import store from &#39;./store&#39;;
+     // import {CHANGEINPUTVALUE,ADDLISTITEM,REMOVEITEM} from &#39;./store/actionTypes&#39;
+     import {getInputeChangeAction, addListItemAction, removeItemAction} from &#39;./store/actionCreators&#39;;
+
+     class TodoList extends Component {
+         constructor (props) {
+             super(props);
+             console.log(store.getState());
+             this.state = store.getState();
+
+             this.handleChange = this.handleChange.bind(this);
+             this.handleStoreChange = this.handleStoreChange.bind(this);
+             this.handleClick = this.handleClick.bind(this);
+             this.handleRemoveItem = this.handleRemoveItem.bind(this);
+
+             // 监听 store中的状态改变
+             store.subscribe(this.handleStoreChange);
+         }
+
+         render () {
+             return (
+                 &lt;TodoListUI 
+                     inputValue = {this.state.inputValue}
+                     handleChange = {this.handleChange}
+                     handleClick = {this.handleClick}
+                     handleRemoveItem = {this.handleRemoveItem}
+                 /&gt;
+             )
+         }
+
+         handleChange (e) {
+             const action = getInputeChangeAction(e.target.value)
+             store.dispatch(action);
+         }
+         handleStoreChange () {
+             this.setState(store.getState());
+         }
+         handleClick () {
+             const action = addListItemAction();
+             store.dispatch(action);
+         }
+         handleRemoveItem (index) {
+             const action = removeItemAction(index);
+             store.dispatch(action);
+         }
+     }
+
+     export default TodoList;
+</code></pre></li></ol><h3 id="React-中无状态组件"><a href="#React-中无状态组件" class="headerlink" title="React 中无状态组件"></a>React 中无状态组件</h3><ol><li>以函数定义的方式定义一个组件，可以传递一个props来获取传递过来的数据</li><li><p>当一个组件只有render函数的时候，这个时候就可以使用一个无状态的组件替换这个组件</p><pre><code class="react">     import React, { Component } from &#39;react&#39;;
+     import { Input, Button, List } from &#39;antd&#39;;
+
+     import &#39;../node_modules/antd/dist/antd.css&#39;;
+     // 无状态组件的写法
+     const TodoListUI2 = (props) =&gt; {
+         return(
+             &lt;div style = {{margin: '10px 0px 0px 10px',width: "500px"}}&gt;
+               &lt;div&gt;
+               &lt;Input placeholder = &quot;请输入内容&quot; 
+                 value = {props.inputValue} 
+                 onChange = {props.handleChange}
+                 style = {{marginRight: '10px', width: "350px"}}
+                 /&gt;
+               &lt;Button type = &quot;primary&quot; 
+                       style = {{width: "80px"}}
+                       onClick = {props.handleClick}
+                       &gt;提交&lt;/Button&gt;
+                 &lt;List
+                     bordered
+                     dataSource = {props.list}
+                     style = {{width: '350px', marginTop: '10px'}}
+                     renderItem = {
+                         (item,index) =&gt; (
+                         &lt;List.Item onClick = {() =&gt;{
+                            props.handleRemoveItem(index);
+                         }}&gt;{item}&lt;/List.Item&gt;)
+                     }
+                     /&gt;
+               &lt;/div&gt;
+             &lt;/div&gt;
+         )
+     }
+     export default TodoListUI2;
+</code></pre></li><li>无状态的组件性能比较高，<ol><li>因为它本身就是一个函数。</li><li>而有状态的组件继承自React.Component，</li><li>有一套生命周期，所以要去执行这一套生命周期，</li><li>所以性能肯定没有只需要执行一个函数的组件好。</li></ol></li><li>无状态组件一般用于UI组件中。</li></ol><h3 id="Redux-中发送异步请求获取数据"><a href="#Redux-中发送异步请求获取数据" class="headerlink" title="Redux 中发送异步请求获取数据"></a>Redux 中发送异步请求获取数据</h3><ol><li>在ComponentDidMount中发送axios异步请求，然后初始化状态。</li></ol><h3 id="使用-Redux-thunk-中间件进行ajax请求发送"><a href="#使用-Redux-thunk-中间件进行ajax请求发送" class="headerlink" title="使用 Redux-thunk 中间件进行ajax请求发送"></a>使用 Redux-thunk 中间件进行ajax请求发送</h3><ol><li>首先安装 Redux-thunk<ol><li>使用命令 <code>yarn add redux-thunk</code> 或者 <code>npm install --save redux-thunk</code></li></ol></li><li><p>引入 <code>redux</code> 的<code>createStore、applyMiddleware、compose</code> ，</p><ol><li>然后再引入 <code>redux-thunk</code> ,</li><li>最后创建<code>store</code>的时候将中转一下<code>thunk</code>后的<code>enhancer</code>作为第二个参数传递进去，</li><li><p>之所以使用这种方式，是为了可以<code>使用多</code>个<code>中间件</code></p><pre><code class="react"> import {createStore, applyMiddleware, compose} from &#39;redux&#39;;
+ import thunk from &#39;redux-thunk&#39;;
+ import reducer from &#39;/reducer.js&#39;;
+ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : conpose;
+ // 做一个中转
+ const enhancer = composeEnhancers(
+         applyMiddleware(...[thunk])
+     )
+
+ const store=createStore(reducer, enhancer)
+ export default store;
+</code></pre></li></ol></li><li>使用<code>redux-thunk</code><ol><li>可以让<code>store.dispatch</code>中可以<code>传递</code>一个<code>函数</code>而<code>不</code>是<code>仅仅</code>只能<code>是一个对象</code>，</li><li>所以说<code>redux-thunk</code>扩展了<code>store.dispatch</code>的功能，</li><li><code>redux-thunx</code>就是<code>rudux</code>的插件。</li></ol></li><li>使用<code>redux-thunk</code> 之后，<ol><li>你使用<code>store.dispatch</code>，</li><li>你如果传递一个函数进去，</li><li>那么它会调用这个函数，</li><li>并且把<code>store.dispatch</code>传递进去。</li><li>如果你传递的是一个对象，</li><li>那么它会去调用<code>reducer</code>这个函数，</li><li>也就是<code>reducer.js</code>导出的那个函数。</li><li>通过那个函数来进行<code>state</code>的处理和<code>newState</code>的返回，</li><li>最后通过<code>store</code>改变<code>state</code>。</li></ol></li><li>在使用<code>redux</code>创建<code>stor</code>e的时候会使用到中间件，这是redux的中间件。</li></ol><h3 id="到底什么是Redux中间件？"><a href="#到底什么是Redux中间件？" class="headerlink" title="到底什么是Redux中间件？"></a>到底什么是Redux中间件？</h3><ol><li>就是<code>对Redux</code>中<code>store的dispatch</code>方法<code>做</code>了一个<code>升级</code></li><li>如<code>redux-thunk</code>对<code>dispatch</code>方法<code>做</code>了一个<code>升级</code><ol><li><code>默认</code>的dispatch<code>只</code>能<code>传递</code>一个<code>对象</code>，</li><li>然后将这个对象和当前全局的<code>state</code>传递给<code>reducer</code>这个方法并<code>调用</code>，</li><li>最后获取<code>reducer</code>方法中的返回值来修改<code>state</code>。</li><li>升级后的<code>dispatch支持接收一个函数</code>，</li><li>这个<code>函数</code>会<code>在dispatch</code>方法体<code>中被执行</code>，</li><li>并且会在<code>执行</code>的<code>时</code>候<code>传递store.dispatch</code>进去，</li><li><code>直到</code>你<code>传递</code>的<code>是一个对象</code>，</li><li><code>之后</code>就<code>会像默认的dispatch</code>那样，</li><li>走完这套流程后<code>最终修改state</code>。</li></ol></li></ol><h4 id="除了redux-thunk这样的中间件之外还有其它的中间件"><a href="#除了redux-thunk这样的中间件之外还有其它的中间件" class="headerlink" title="除了redux-thunk这样的中间件之外还有其它的中间件"></a>除了redux-thunk这样的中间件之外还有其它的中间件</h4><ol><li>如 <code>redux-loger</code> :用来记录每次action的日志</li><li>如 <code>redux-saga</code>：<ol><li>它也是解决<code>Redux</code>中异步问题的中间件，</li><li>它不同于redux-thunk将异步请求放到action中进行，</li><li>它是把异步操作单独的放到一个文件中进行管理</li></ol></li></ol><h3 id="Redux-sage-中间件的使用"><a href="#Redux-sage-中间件的使用" class="headerlink" title="Redux-sage 中间件的使用"></a>Redux-sage 中间件的使用</h3><ol><li><code>Redux中间件</code>指的是 <code>action</code>和<code>store</code>的<code>中间</code>，<ol><li>也就是<code>dispatch</code>这个函数，对它进行<code>升级</code>，</li><li>只有<code>redux</code>中才有<code>action</code>和<code>store</code>的概念，</li><li>将异步代码放到<code>action</code>中去做，</li><li>有利于<code>自动化测试</code>，和<code>代码</code>的<code>拆分管理</code>。</li></ol></li><li>使用命令安装 Redux-saga：<ol><li><code>npm install redux-saga --save</code></li><li>或者<code>yarn add redux-saga</code></li></ol></li><li><p>使用<code>Redux-saga</code></p><ol><li>先从<code>Redux-saga</code>中引入 <code>createSagaMiddleware</code></li><li>执行<code>createSagaMiddleware()</code></li><li><p>之后传入 <code>saga</code> 中间件的的对象</p><pre><code class="react">     import {createStore, applyMiddleware, compose} from &#39;redux&#39;;
+     import createSagaMiddleware from &#39;redux-saga&#39;;
+     import reducer from &#39;/reducer.js&#39;;
+
+     const sagaMiddlware = createSagaMiddleware();
+     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : conpose;
+
+     // 做一个中转
+     const enhancer = composeEnhancers(
+             applyMiddleware(...[sagaMiddlware])
+     )
+
+     const store = createStore(reducer, enhancer)
+     export default store;
+</code></pre></li><li><code>compose</code> 的使用: 你可以在里面<code>传递很多</code>的<code>方法</code>，<code>传递的方法会依次被执行</code>。</li></ol></li><li><code>redux-saga</code> 在处理非常大型项目时优于<code>redux-thunk</code></li><li><code>redux-thunk</code>没有什么api，所以<code>很简单</code>，<code>redux-saga</code>有很多api所以<code>相对复杂一点</code>。</li></ol><h3 id="React-redux"><a href="#React-redux" class="headerlink" title="React-redux"></a>React-redux</h3><ol><li>是React第三方模块儿，可以更加方便的使用<code>redux</code></li><li>使用命令来进行安装：<code>yarn add react-redux</code></li><li><p><code>react-redux</code> 中提供的API</p><ol><li><p><code>Provider</code> 组件</p><pre><code class="react">     import { Provider } from &#39;react-redux&#39;;
+     import store from &#39;./store&#39;;
+     &lt;!-- Provider表示提供器，store = store表示连接store，
+          这样一来，里面的组件都可以直接使用连接的store了
+      --&gt;
+     const App=(
+         &lt;Provider store = {store}&gt;
+             &lt;TodoList /&gt;
+         &lt;/Provider&gt;
+     )
+
+     ReactDOM.render(App, document.getElementById(&quot;root&quot;));
+</code></pre></li><li><p><code>connect</code> 方法</p><pre><code class="react">     import {connect} from &#39;react-redux&#39;
+     class TodoList extends Component {
+
+     }
+
+     // 这个函数表示将store中state映射到当前的props中去
+     const mapStateToPorps = (state) =&gt; {
+         return {
+             inputValue:state.inputValue
+         }
+     }
+
+     // 表示将store.dispatch方法挂载到props中的函数成员中，
+     // 然后就可以直接在函数中调用dispatch了
+     const mapDispatchToProps = (dispatch) =&gt; {
+         return {
+             changeInputValue(e){
+                 const action = {
+                     type: &#39;changeInputValue&#39;,
+                     value: e.target.value
+                 }
+                 dispatch(action);
+             }
+         }
+     }
+
+     // connenct 表示连接Provider中的store
+     // mapStateToPorps 获取值 ，mapDispatchToProps 设置值，TodoList 被连接的组件
+
+     // 最终返回一个容器组件
+     export default connect(mapStateToPorps, mapDispatchToProps)(TodoList)
+</code></pre></li></ol></li></ol><h3 id="React-redux-的使用"><a href="#React-redux-的使用" class="headerlink" title="React-redux 的使用"></a>React-redux 的使用</h3><ul><li><p>connect方法返回的结果实际上是一个容器组件，因为它里面包含了 数据的传递和方法传递</p><pre><code class="react">      import React, { Component } from &#39;react&#39;
+      import {connect} from &#39;react-redux&#39;
+      import {inputChange, clickSubmit, clickRemoveItem} from &#39;./store/actionCreators.js&#39;
+
+      // 这是一个无状态的UI组件
+      const TodoList = (props) =&gt; {
+
+          const {handleInputChange, handleClickSubmit, handleClickRemoveItem, list, inputValue} = props;
+          return(
+              &lt;div&gt;
+                  &lt;input onChange = {handleInputChange.bind(this)} type = &quot;text&quot; value = {inputValue}/&gt; 
+                  &lt;button onClick = {handleClickSubmit.bind(this)}&gt;提交&lt;/button&gt;
+                  &lt;ul&gt;
+                  {
+                      list.map((item, index) =&gt; {
+                          return (
+                              &lt;li onClick = {handleClickRemoveItem.bind(this, index)} key = {index}&gt;{item}&lt;/li&gt;
+                              )
+                      })
+                  }
+                  &lt;/ul&gt;     
+              &lt;/div&gt;
+              )
+      }
+
+      // 将store.state映射到this.props中
+      const mapStateToPorps= (state) =&gt; {
+                              return {
+                                  inputValue: state.inputValue,
+                                  list: state.list
+                              }
+                          }
+      // 将store.dispatch 传递到 所有的props里的自定义函数中
+      const mapDispatchToProps = (dispatch) =&gt; {
+          return {
+              handleInputChange (e) {
+                  const action = inputChange(e.target.value);
+                  dispatch(action);
+              },
+              handleClickSubmit () {
+                  const action = clickSubmit();
+                  dispatch(action);
+              },
+              handleClickRemoveItem (index) {
+                  const action = clickRemoveItem(index);
+                  dispatch(action);
+              }
+          }
+      }
+
+      // 这里返回一个容器组件            
+      export default connect(mapStateToPorps, mapDispatchToProps)(TodoList)
+
+</code></pre></li></ul><h2 id="第七章-项目实战：Header组件开发"><a href="#第七章-项目实战：Header组件开发" class="headerlink" title="第七章 项目实战：Header组件开发"></a>第七章 项目实战：Header组件开发</h2><h3 id="项目目录搭建"><a href="#项目目录搭建" class="headerlink" title="项目目录搭建"></a>项目目录搭建</h3><ol><li>安装 <code>Create-React-App</code>：<code>npm install -g create-react-app</code></li><li>运行 <code>create-react-app</code> 命令 新建一个react项目</li><li>安装第三方模块儿 <code>Styled-Components</code> ：<code>yarn add styled-components</code></li></ol><h3 id="Styled-Components"><a href="#Styled-Components" class="headerlink" title="Styled-Components"></a>Styled-Components</h3><ol><li>在<code>react</code>中 你在一个地方<code>引入css</code> 就会在<code>全局使用</code></li><li>使用第三方模块儿<code>Styled-Components</code> 对组件中的<code>样式</code>进行<code>管理</code>，<ol><li>使得每一个组件的样式<code>只对自己生效</code></li></ol></li><li>最终会<code>返回</code>这个<code>样式的组件</code>给你，<ol><li>你可以<code>直接</code>使<code>用</code>这个<code>自定义样式</code>的<code>组件</code>。</li></ol></li></ol><h3 id="Styled-Components的使用"><a href="#Styled-Components的使用" class="headerlink" title="Styled-Components的使用"></a>Styled-Components的使用</h3><ol><li>将<code>css</code>文件<code>改为js</code>文件，并且<code>修改</code>用<code>引入</code>的<code>css为js</code></li><li><p>在<code>js</code>文件这样写</p><pre><code class="react">     /* injectGlobal 表示注入全局样式  */
+     import {injectGlobal} from &#39;styled-components&#39;
+
+     injectGlobal`
+         body {
+             margin: 0;
+             padding: 0;
+             font-family: sans-serif;
+             background: green;
+         }
+     `
+</code></pre></li><li><p>使用reset.css</p><ol><li>去官网下咋 reset.css :<code>https://meyerweb.com/eric/tools/css/reset/index.html</code></li><li>reset.css能够<code>清空</code>html标签在所有浏览器的<code>默认样式</code>了，也就是<code>默认样式归0</code>。</li></ol></li><li><p>给某一个组件单独设置样式：</p><ol><li><code>先写样式文件</code>，并且<code>导出样式对应的控件</code>，</li><li><p>最后你使<code>用</code>那个<code>控件包裹</code>你的<code>内容</code>即可</p><pre><code class="react"> import styled from &#39;styled-components&#39;;
+
+ export const HeaderWarpper = styled.div`
+     height: 58px;
+     background: #f0f0f0;
+     border-bottom: 1px solid #fff;
+ `;
+</code></pre><pre><code class="react"> import React, {Component} from &#39;react&#39;;
+ import { HeaderWarpper } from &#39;./style.js&#39;
+ class Header extends Component {
+     render (){
+         return (
+                 &lt;HeaderWarpper&gt;
+                     Header
+                 &lt;/HeaderWarpper&gt;
+             )
+     }
+ }
+
+ export default Header;
+</code></pre></li></ol></li><li><p>模板标签以及模板字符串</p><pre><code class="react">     function tag (str) {
+         console.log(str);
+     }
+
+     tag`123456`//最后会输出[&quot;123456&quot;] 使用这种方式调用会将传递进去的参数包装成一个数组
+</code></pre></li></ol><h3 id="制作字体图标"><a href="#制作字体图标" class="headerlink" title="制作字体图标"></a>制作字体图标</h3><ol><li>iconfont.cn 可以用来制作自己需要的字体图标。</li></ol><h3 id="使用combineReducers完成对数据的拆分管理"><a href="#使用combineReducers完成对数据的拆分管理" class="headerlink" title="使用combineReducers完成对数据的拆分管理"></a>使用combineReducers完成对数据的拆分管理</h3><ol><li>一般情况下，<ol><li>一个文件的代码超过300行，</li><li>就说你的设计肯定是有问题的。</li></ol></li><li><p>reducer.js中如果存放过多的数据，</p><ol><li>就需要拆分了，</li><li>比如将不同组件需要使用的reducer放到不同组件下的store文件夹下，</li><li>然后使用combineReducers 整合一下，</li><li>给不同的reducer加一个别名，</li><li><p>使用的时候通过state.别名.value来用。</p><pre><code class="react"> /* 这个是根目录 store目录下的reducer ，用来整合其它的reducer */
+ import { combineReducers } from &#39;redux&#39;;
+ import headerReducer from &#39;../common/header/store/reducer&#39;;
+
+ // export default combineReducers({
+ //     header:headerReducer
+ // })
+ const reducer = combineReducers({
+     header: headerReducer
+ })
+ export default reducer;
+</code></pre><pre><code class="react"> /*  之前使用是直接state.focused，定义了别名后 可以这么用了*/
+ const mapStateToPorps = (state) =&gt; {
+     return {
+         focused: state.header.focused
+     }
+ }
+</code></pre></li></ol></li><li>按需引入时可以给引入的对象起一个别名，使用<code>as</code>关键字<pre><code class="react">     import {reducer as headerReducer} from &#39;../common/header/store&#39;;
+     const reducer = combineReducers({
+         header: headerReducer
+     })
+     export default reducer;
+</code></pre></li></ol><h3 id="actionCreators与constants的拆分"><a href="#actionCreators与constants的拆分" class="headerlink" title="actionCreators与constants的拆分"></a>actionCreators与constants的拆分</h3><ol><li><p>如果你引入的文件里是按需导出的，</p><ol><li>但是你又向一下子全部导入，</li><li>你可以使用通配符加as来进行全部导入，</li><li>不需要加花括号，</li><li><p>加花括号其实是通过解构的方式进行赋值。</p><pre><code class="react"> import * as actionCreators from &#39;./store/actionCreators&#39;;
+
+ //使用的时候就可以通过 actionCreators.成员的方式了。
+</code></pre></li></ol></li><li>如果你想一下子把某一个文件夹下的js文件全部导出，<ol><li>你可以在该文件夹下新建一个index.js文件，</li><li>然后在这个文件中引入当前文件夹下所有的js，</li><li>之后以整体导出的方式导出去，</li><li>最后你在别的地方可以直接导入这个文件夹，</li><li>你可以直接导入也可以按需（解构）的方式导入<pre><code class="react"> import reducer from &#39;./reducer&#39;;
+ import * as actionCreators from &#39;./actionCreators&#39;;
+ import * as constants from &#39;./constants&#39;;
+ /* 整体导出 */
+ export {reducer, actionCreators, constants}
+</code></pre><pre><code class="react"> /* 以解构的方式按需导入 */
+ import {actionCreators} from &#39;./store/&#39;;
+</code></pre></li></ol></li></ol><h3 id="使用Immutable-js-来管理store中的数据"><a href="#使用Immutable-js-来管理store中的数据" class="headerlink" title="使用Immutable.js 来管理store中的数据"></a>使用Immutable.js 来管理store中的数据</h3><ol><li><code>immutabel.js</code> 是facebook 花<code>三年</code>时间<code>开发</code>的一个<code>项目</code>，也是一个<code>第三方</code>的<code>模块儿</code>。</li><li>使用 <code>immutabel.js</code> 可以生成一个 <code>immutabel</code>的对象，<code>immutabel</code>表示不可改变</li><li>安装<code>immutabel</code>:<code>yarn add immutable</code></li><li><p><code>immutable</code> 库</p><ol><li>将一个js对象转换为一个<code>immutable</code>对象，</li><li>它的<code>底层</code>还是采用<code>虚拟dom</code>加<code>diff算法</code>，</li><li><p>这样改值得时候<code>性能特别好</code></p><pre><code class="react"> /*fromJS可以将一个js对象转换为一个immutable对象*/
+ import {fromJS} from &#39;immutable&#39;;
+
+ /* 这时候 defaultState是一个immutable对象*/
+ const defaultState = fromJS({
+     focused: false
+ });
+ export default (state = defaultState, action) =&gt; {
+     // 当state对象为一个普通的对象时可以这么做，
+     // 但是state对象已经是一个immutable对象了，所以不能返回一个普通对象
+     // if (action.type === constants.SERCH_FOCUS){
+     //     return {
+     //         focused: action.focused
+     //     }
+     // }
+
+     if (action.type === constants.SERCH_FOCUS){
+         /*只能够调用set方法了*/
+         /* immutable对象的set方法，会结合之前immutable对象的值
+             和设置的值，返回一个全新的immutable对象，也就是减少了你克隆state的那一步。
+          */
+         return state.set(&#39;focused&#39;, action.focused);
+     } 
+
+ }
+
+</code></pre><pre><code class="react"> // 这里面传递的是一个immutable对象而不是一个简单的{}，所以不能够直接.的方式取值了，要使用get的方式取值
+ const mapStateToPorps = (state) =&gt; {
+     return {
+         // focused:state.header.focused
+         focused: state.header.get(&#39;focused&#39;)
+     }
+ }
+</code></pre></li></ol></li></ol><h3 id="使用redux-immutable-统一数据的格式"><a href="#使用redux-immutable-统一数据的格式" class="headerlink" title="使用redux-immutable 统一数据的格式"></a>使用redux-immutable 统一数据的格式</h3><ol><li>安装<code>redux-immutable</code>：<code>yarn add redux-immutable</code></li><li><p>使用 <code>redux-immutable</code> 来整合所有的<code>reducer</code></p><pre><code class="react">     /* 之前整合所有的 reducer 是 引入redux中的 combineReducers*/
+     import { combineReducers } from &#39;redux&#39;;
+     import {reducer as headerReducer} from &#39;../common/header/store&#39;;
+
+     /* 现在改用 redux-immutable中的combineReducers*/
+     import { combineReducers } from &#39;redux-immutable&#39;;
+</code></pre><pre><code class="react">     /* 这里面的state不是一个immutable对象，而 header是一个immutable对象*/
+     const mapStateToPorps= (state) =&gt; {
+             return {
+                 // focused:state.header.focused
+                 focused: state.header.get(&#39;focused&#39;)
+             }
+      }
+
+      /*
+       现在改用 redux-immutable中的combineReducers之后 state也是一个immutable对象了 ,这样对数据的操作就统一了
+      */
+     const mapStateToPorps = (state) =&gt; {
+             return {
+                 // focused:state.header.focused
+                 // focused:state.header.get(&#39;focused&#39;)
+                 focused:state.get(&#39;header&#39;).get(&#39;focused&#39;)
+                 // 你也可以使用getIn这个方法，与上面等价
+                 focused:state.getIn([&#39;header&#39;,&#39;focused&#39;])
+             }
+      }
+</code></pre></li></ol><h3 id="使用ajax获取数据"><a href="#使用ajax获取数据" class="headerlink" title="使用ajax获取数据"></a>使用ajax获取数据</h3><ol><li>你可以将数据放到 <code>public</code>目录下的<code>api</code>文件夹，<ol><li>以<code>json</code>的格式存放。因为<code>底层</code>是一个<code>node服务器</code>，</li><li>它会以<code>public文件夹</code>为<code>网站根目录</code>。</li><li>这样一来你往<code>网站根目录中存放数据</code>，</li><li><code>请求</code>是<code>网站根目录</code>下的<code>资源</code>，就可以<code>获取对应的数据</code>。</li></ol></li><li>与后端开发的时候，先自己模拟数据，<ol><li>但是在这之前要和后端<code>约定</code>好，约定好返回的<code>数据格式</code>，</li><li>例如<code>{sucess:true,data:[]}</code>，这样的。</li><li>这样你才能够在模拟数据的时候写的ajax</li><li>与真正上线的时候请求后端的<code>接口统一</code>。</li></ol></li><li><code>immutable</code> 会将<code>state</code>中的数组成员转换为<code>immutable</code>类型的<code>数组</code>，<ol><li>所以当你<code>set</code>的时候，</li><li>如果是给一个数组成员<code>赋值</code>，</li><li>那么对应的值也得是<code>immutable</code>类型的数组，</li><li>不可以将普通数组赋值给<code>immutable</code>类型的数组成员。</li></ol></li><li><code>immutable</code>对象<code>转</code>换为一个<code>普通</code>的js对象：<code>list.toJS();</code></li><li><p>在使用immutable对象的set方法时，</p><ol><li>每次只能够改变一个值，</li><li><p>如果你想同时改变两个值，可以这样做</p><pre><code class="react"> state.merge(
+         {
+             list:action.data,
+             totalPage:action:totalPage
+         }
+     );
+
+ //上面的写法要比下面的好一些，性能更好
+ state.set(&quot;list&quot;,action.data).set(&quot;totalPage&quot;,action:totalPage)
+</code></pre></li></ol></li></ol><h2 id="第八章-项目实战：首页开发"><a href="#第八章-项目实战：首页开发" class="headerlink" title="第八章 项目实战：首页开发"></a>第八章 项目实战：首页开发</h2><h3 id="什么是路由，如何在React中使用路由功能"><a href="#什么是路由，如何在React中使用路由功能" class="headerlink" title="什么是路由，如何在React中使用路由功能"></a>什么是路由，如何在React中使用路由功能</h3><ol><li>安装react<code>路由</code>第三方模块儿：<code>react-router-dom</code><ul><li>安装命令：<code>yarn add react-router-dom</code></li></ul></li><li>引入路由： <code>Provider</code> 里面最好嵌套一个div，<ol><li>因为里面只准有<code>一个节点</code>，<code>BrowserRouter</code>也是<code>一样</code>。<pre><code class="react"> import { BrowserRouter,Route } from &#39;react-router-dom&#39;; 
+</code></pre></li></ol></li><li><p>简单使用<code>路由</code></p><pre><code class="react">     import React, { Component } from &#39;react&#39;;    
+     import Header from &#39;./components/header&#39;
+     import store from &#39;./store&#39;
+     import { Provider } from &#39;react-redux&#39;;
+     import { BrowserRouter, Route } from &#39;react-router-dom&#39;;
+
+     class App extends Component {
+         render(){
+             return (
+                 &lt;Provider store = {store}&gt;
+                 &lt;div&gt;
+                     &lt;Header/&gt;
+                         {/*定义路由作用区域*/}
+                     &lt;BrowserRouter&gt;
+                         &lt;div&gt;
+                             {/* exact 表示当你匹配的path完完全全与route中的path相等时才可以匹配成功 */}
+                             &lt;Route path = &#39;/&#39; exact render = {() =&gt; {return &lt;div&gt;home&lt;/div&gt;}}&gt;&lt;/Route&gt;
+                             {/*定义路由*/}
+                             &lt;Route path = &#39;/detail&#39; exact render = {() =&gt; {return &lt;div&gt;detail&lt;/div&gt;}}&gt;&lt;/Route&gt;
+                         &lt;/div&gt;
+                     &lt;/BrowserRouter&gt; 
+                  &lt;/div&gt;
+                 &lt;/Provider&gt;
+             )
+         }
+     }
+
+     export default App;
+</code></pre></li><li><p>通过路由返回 组件</p><pre><code class="react">     import React, { Component } from &#39;react&#39;;
+     import Header from &#39;./components/header&#39;
+     import store from &#39;./store&#39;
+     import { Provider } from &#39;react-redux&#39;;
+     import { BrowserRouter, Route } from &#39;react-router-dom&#39;;
+     import Home from &#39;./pages/home&#39;;
+     import Detail from &#39;./pages/detail&#39;;
+
+     class App extends Component {
+         render(){
+             return (
+                 &lt;Provider store = {store}&gt;
+                 &lt;div&gt;
+                     &lt;Header/&gt;
+                     &lt;BrowserRouter&gt;
+                         &lt;div&gt;
+                             {/* exact 表示当你匹配的path完完全全与route中的path相等时才可以匹配成功 */}
+                             &lt;Route path = &#39;/&#39; exact component = {Home}&gt;&lt;/Route&gt;
+                             &lt;Route path = &#39;/detail&#39; exact component = {Detail}&gt;&lt;/Route&gt;
+                         &lt;/div&gt;
+                     &lt;/BrowserRouter&gt; 
+                  &lt;/div&gt;
+                 &lt;/Provider&gt;
+             )
+         }
+     }
+     export default App;
+
+</code></pre></li></ol><h3 id="向-styled-components组件中传值"><a href="#向-styled-components组件中传值" class="headerlink" title="向 styled-components组件中传值"></a>向 styled-components组件中传值</h3><ol><li><code>styled-components</code>中页面向<code>style.js</code>中定义的样式组件<code>传值</code>，<ol><li>页面直接给对应的组件添加<code>属性</code>，</li><li><code>style.js</code>的组件里，</li><li>可以通过<code>${(props)=&gt;(props.imgUrl)}</code>的方式</li><li>获取到页面传递过来的值。</li></ol></li></ol><h3 id="immutable中的fromJS与List方法"><a href="#immutable中的fromJS与List方法" class="headerlink" title="immutable中的fromJS与List方法"></a>immutable中的fromJS与List方法</h3><ol><li><code>immutable</code>中除了<code>fromJS</code>可以将一个数组转换为一个<code>immutable</code>对象外，<ol><li>还有一个<code>List</code>方法也能够将<code>数组</code>转换为一个<code>immutable</code>对象，</li><li>但是这个<code>list</code>方法只能够把数组的<code>外层</code>变成<code>immutable</code>对象，</li><li>不能<code>递归</code>将数组内的对象也变成<code>immutable</code>对象。</li></ol></li></ol><h3 id="不必拘于形式"><a href="#不必拘于形式" class="headerlink" title="不必拘于形式"></a>不必拘于形式</h3><ol><li><code>UI</code> 组件中<code>允许</code>存在<code>少量</code>的<code>逻辑</code>，<ol><li>并不是什么JS都不能放在里面。</li></ol></li></ol><h3 id="页面性能优化及路由跳转"><a href="#页面性能优化及路由跳转" class="headerlink" title="页面性能优化及路由跳转"></a>页面性能优化及路由跳转</h3><h4 id="页面性能优化"><a href="#页面性能优化" class="headerlink" title="页面性能优化"></a>页面性能优化</h4><ol><li>之前使用 <code>shouldComponentUpdate</code> 来<ol><li><code>检查</code>是否与当前页面<code>状态</code>有关</li><li>来决定是否<code>重新渲</code>染当前<code>组件</code>，</li><li><code>return true</code>表示<code>重绘</code>否则就<code>不重绘</code>。</li></ol></li><li><code>react</code>中有一个<code>PureComponent</code>，<ol><li>它与<code>Component</code>的区别是</li><li>它<code>内部</code>自动<code>实现</code>了<code>shouldComponentUpdate</code>这个生命周期内<code>检查</code>功能，</li><li>所以你只需要把所有的<code>Component替换成PureComponent</code></li><li>就可以<code>减少</code>每一个<code>组件内</code>都写<code>shouldComponentUpdate</code>来<code>检查</code>了。</li></ol></li><li>之所以可以使用<code>PureComponent</code>来大大的<code>提升性能</code>，<ol><li>因为<code>框架</code>中的<code>数据格式</code>都是<code>统一</code>的，</li><li>都是<code>immutable</code>对象，</li><li>就是因为这样所以使用<code>PureComponent</code>才一点问题都没有。</li><li>如果<code>数据格式不统一</code>那么你会遇到<code>坑</code>。</li><li>所以使用<code>immutable很重要</code>。</li></ol></li><li>如果你不使用immutable，<ol><li>那么你就是用<code>Component</code>然后自己写<code>shouldComponentUpdate</code>吧。</li></ol></li></ol><h4 id="路由跳转"><a href="#路由跳转" class="headerlink" title="路由跳转"></a>路由跳转</h4><ol><li><code>单页应用</code>就是只会加载一次html，<ol><li>整个页面都是<code>路由js</code>文件来<code>控制</code>的。</li><li>重新加载html是比较<code>耗性能</code>的。</li></ol></li><li><p>如果你想使用a标签来进行页面跳转，</p><ol><li>请不要那样做，</li><li>最好使用 <code>react-route-dom</code>中的<code>Link</code> 来替换<code>a</code>标签的<code>跳转</code>功能，</li><li>它会<code>跳转</code>到真正的<code>路由</code>中去，</li><li><p>而不会先去重新加载html再跳转到真正的路由中去。</p><pre><code class="react"> import {Link} from &#39;react-route-dom&#39;;
+
+ /* 不要使用a标签来进行页面跳转 */
+ &lt;a href=&#39;/detail&#39;&gt;
+     ...
+ &lt;/a&gt;
+ /* 将上面的写法 改成这样的 */
+ &lt;Link key = {index} to = &#39;/detail&#39;&gt;
+     ...
+ &lt;/Link&gt;
+
+</code></pre></li></ol></li></ol><h2 id="第九章-项目实战：详情页和登陆功能开发"><a href="#第九章-项目实战：详情页和登陆功能开发" class="headerlink" title="第九章 项目实战：详情页和登陆功能开发"></a>第九章 项目实战：详情页和登陆功能开发</h2><h3 id="页面路由参数的传递"><a href="#页面路由参数的传递" class="headerlink" title="页面路由参数的传递"></a>页面路由参数的传递</h3><ol><li><p><code>动态路由</code></p><pre><code class="react">     import {Link} from &#39;react-route-dom&#39;;
+
+     /* 跳转到详情页的时候 直接传递id过去 */
+     &lt;Link key = {index} to = &#39;/detail/&#39;+&quot;5&quot;&gt;
+             ...
+     &lt;/Link&gt;
+</code></pre><pre><code class="react">     /* 这种写法要改成下面这种写法了 */
+     &lt;Route path = &#39;/detail&#39; exact component = {Detail} &gt;&lt;/Route&gt;
+     /* 传递参数就需要 设置一个占位 :id  不然匹配不到，因为这个是完全匹配 */
+     &lt;Route path = &#39;/detail/:id&#39; exact component = {Detail} &gt;&lt;/Route&gt;
+</code></pre><pre><code class="react">     /* 页面中可以通过 match.params.id 来进行获取 */
+     console.log(this.props.match.params.id);//5
+</code></pre></li><li><p><code>queryString</code>的方式传递数据</p><pre><code class="react">     import {Link} from &#39;react-route-dom&#39;;
+
+     /* 跳转到详情页的时候 直接传递?id=xx过去 */
+     &lt;Link key = {index} to = &#39;/detail?id=&#39;+&quot;5&quot;&gt;
+             ...
+     &lt;/Link&gt;
+</code></pre><pre><code class="react">     /* 还是这种写法，依然可以进行匹配 */
+     &lt;Route path = &#39;/detail&#39; exact component = {Detail} &gt;&lt;/Route&gt;
+</code></pre><pre><code class="react">     /* 页面中可以通过 location.search 来进行获取，但是需要你自己来解析一下 */
+     console.log(this.props.location.search);//?id=5
+</code></pre></li></ol><h3 id="获取styled-Components中的dom"><a href="#获取styled-Components中的dom" class="headerlink" title="获取styled.Components中的dom"></a>获取styled.Components中的dom</h3><ol><li><p><code>styled.Components</code>中的<code>dom</code>对<code>原生dom</code>进行了<code>包裹</code>，</p><ol><li><p>所以不再使用<code>ref</code> 而是使用 <code>innerRef</code>。</p><pre><code class="react"> /* 可以获取 styled.Components组件中包裹的input标签内的真实dom*/
+ &lt;Input placeholder = &quot;账号&quot; innerRef = {(input) =&gt; {this.account = input}} 
+
+ /* 打印真实的账号文本框中的值 */
+ console.log(this.account.value);
+</code></pre></li></ol></li></ol><h3 id="路由跳转-Redirect"><a href="#路由跳转-Redirect" class="headerlink" title="路由跳转 Redirect"></a>路由跳转 Redirect</h3><ol><li><p>在组件中 直接进行路由跳转</p><pre><code class="react"> import {Redirect} from &#39;react-router-dom&#39;;
+
+ render(){
+    return &lt;Redirect to = &quot;/&quot; /&gt;
+ }
+</code></pre></li></ol><h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><ol><li>合适的行间距，</li><li>代码尾部加分号，</li><li><code>switch</code>中代码过多，</li><li>就写一个方法，</li><li>把代码放到方法中，</li><li>然后再switch的case中调用方法即可。</li></ol><h3 id="异步组件以及witchRouter路由方法的使用"><a href="#异步组件以及witchRouter路由方法的使用" class="headerlink" title="异步组件以及witchRouter路由方法的使用"></a>异步组件以及witchRouter路由方法的使用</h3><ol><li>页面中所有的js代码都在 <code>bundle.js</code>中，<ol><li>这会造成这个<code>js</code>文件<code>异常的大</code>，</li><li>所以需要使用第三方的<code>异步组件</code>。</li></ol></li><li>安装第三方异步组件 <code>react-loadable</code>：<code>yarn add react-loadable</code></li><li><p>使用<code>react-loadable</code></p><pre><code class="react">     /* 该组件目录下新建一个 loadble.js */ 
+
+     import Loadable from &#39;react-loadable&#39;;
+     import React from &#39;react&#39;;
+
+     const LoadableComponent = Loadable({
+         /* 要异步加载的 组件 ./ 表示当前目录下的 ./index.js 文件 */
+       loader: () =&gt; import(&#39;./&#39;),
+       loading () { /* 异步加载时的 动画页面 */
+          return (&lt;div&gt;正在加载...&lt;/div&gt;)
+       },
+     });
+
+     /* 将这个组件返回回去 */
+     export default class App extends React.Component {
+       render() {
+         return &lt;LoadableComponent/&gt;;
+       }
+     }
+
+     /* 你也可以返回一个无状态的组件回去 */
+     export default () =&gt; &lt;LoadableComponent /&gt;
+</code></pre><pre><code class="react">     /* 原本是这样的 */
+     import Detail from &#39;./pages/detail&#39;
+
+     &lt;Route path = &#39;/detail/:id&#39; exact component = {Detail} /&gt;
+</code></pre><pre><code class="react">     /*现在改为 在App.js 文件中将引入的组件 改为引入这个异步组件 */
+     /*loadable 将原本引入的组件包装成了异步的组件 */
+
+     import Detail from &#39;./pages/detail/loadble.js&#39;
+
+     &lt;Route path=&#39;/detail/:id&#39; exact component = {Detail} /&gt;
+</code></pre></li><li><p>使用了<code>react-loadable</code>之后就<code>不能</code>够<code>直接获取路由传递</code>过来<code>的参数</code>了，</p><ol><li><p>这时候就需要使用<code>react-router-dom</code> 中的 <code>withRouter</code>方法</p><pre><code class="react"> import {withRouter} from &#39;react-router-dom&#39;;
+
+ /* 原来是这样的 */
+ export connect(mapStateToPoprs, mapDispatchToPorps)(Detail);
+
+ /* 改为这样 让生成的容器组件 有能力获取传递过来的参数 */
+ export connect(mapStateToPoprs,mapDispatchToPorps)(withRouter(Detail));
+</code></pre></li></ol></li><li>使用<code>react-loadable</code> 会当对应的组件代码与<code>bundle.js</code>分离，<ol start="2"><li>这样就能够<code>大大减少bundle.js</code>中的代码了。</li></ol></li></ol><h2 id="第十章-课程总结"><a href="#第十章-课程总结" class="headerlink" title="第十章 课程总结"></a>第十章 课程总结</h2><h3 id="项目上线流程"><a href="#项目上线流程" class="headerlink" title="项目上线流程"></a>项目上线流程</h3><ol><li>后端和前端定了一些接口之后，<ol><li>前端同学去写前端的代码，</li><li>后端去写后端接口</li></ol></li><li>后端的开发目录一般在<code>htdocs</code>下，<ol><li>接口在htdocs的api目录下，</li><li>这里写各种各样的php代码去调用数据库</li></ol></li><li>前端可以将模拟的<code>api</code>文件夹下的数据删除掉了，<ol><li>因为后端同学已经把接口写好了</li></ol></li><li>前端同学 使用<code>npm run build</code>命令，<ol><li>打包所有的文件到一个<code>build</code>目录下，</li><li>这时候前端的任务已经完成了。</li></ol></li><li>后端的同学 就会把<code>build</code>目录的文件全部粘贴到htdocs目录下，<ol><li>这时候前端的代码就已经放到后端的项目中了，</li><li>这个时候就完成了项目的上线。</li></ol></li><li>当前端的项目放到了后端的项目里面，<ol><li>这时候就应该去访问后端的项目了</li></ol></li><li>后端开启服务器，你去访问，<ol><li>成功访问，</li><li>因为你之前弄的api目录和后端的api目录一致，</li><li>所以就可以直接运行了。</li></ol></li></ol><h3 id="版本升级说明"><a href="#版本升级说明" class="headerlink" title="版本升级说明"></a>版本升级说明</h3><ol><li>16.4版本只是对16.3做了一些微调，<ol><li>比如废除了一些生命周期函数</li><li>比如<code>componentWillUpdate</code>、<code>componentWillReceiveProps</code>这样的生命周期函数，</li><li>是因为开发之中不会使用这些生命周期函数，</li><li>所以没有任何影响。</li></ol></li><li>在16版本上面不会做一些大的改动</li></ol></div><div><div class="my_post_copyright"><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><p><span>本文标题:</span><a href="/2018/09/10/React16-4/">React16_4</a></p><p><span>文章作者:</span><a href="/" title="访问 jwl 的个人博客">jwl</a></p><p><span>发布时间:</span>2018年09月10日 - 08:09</p><p><span>最后更新:</span>2018年09月10日 - 08:09</p><p><span>原始链接:</span><a href="/2018/09/10/React16-4/" title="React16_4">https://www.52jwl.com/2018/09/10/React16-4/</a> <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.52jwl.com/2018/09/10/React16-4/" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");$(".fa-clipboard").click(function(){clipboard.on("success",function(){swal({title:"",text:"亲！好了哦",icon:"success",showConfirmButton:!0,confirmButtonColor:"#ef4e7b"})})})</script></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" width="100" height="100" src="http://static.dramastyle.com/images/3/7/1301/My-NeighborTotoro__6.jpg" alt="jwl WeChat Pay"><p>龙猫打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" width="100" height="100" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535968240695&di=983c0ca46cee2ca40f9d6df3d33a95bd&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201506%2F13%2F20150613121207_AGkUF.jpeg" alt="jwl Alipay"><p>金鱼姬打赏</p></div></div></div></div><div><div><div style="text-align:center;color:#555;font-size:14px">--------------------i love jwl--------------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="./tags/react/"><i class="fa fa-tag"></i> react</a> <a href="./tags/create-react-app/"><i class="fa fa-tag"></i> create-react-app</a> <a href="./tags/JSX/"><i class="fa fa-tag"></i> JSX</a> <a href="./tags/Antd/"><i class="fa fa-tag"></i> Antd</a> <a href="./tags/redux/"><i class="fa fa-tag"></i> redux</a> <a href="./tags/react-transition-group/"><i class="fa fa-tag"></i> react-transition-group</a> <a href="./tags/redux-thunk/"><i class="fa fa-tag"></i> redux-thunk</a> <a href="./tags/redux-saga/"><i class="fa fa-tag"></i> redux-saga</a> <a href="./tags/Styled-components/"><i class="fa fa-tag"></i> Styled-components</a> <a href="./tags/immutabel/"><i class="fa fa-tag"></i> immutabel</a> <a href="./tags/redux-immutable/"><i class="fa fa-tag"></i> redux-immutable</a> <a href="./tags/react-redux/"><i class="fa fa-tag"></i> react-redux</a> <a href="./tags/react-loadable/"><i class="fa fa-tag"></i> react-loadable</a> <a href="./tags/react-router/"><i class="fa fa-tag"></i> react-router</a> <a href="./tags/axios/"><i class="fa fa-tag"></i> axios</a> <a href="./tags/组件化/"><i class="fa fa-tag"></i> 组件化</a> <a href="./tags/UI组件/"><i class="fa fa-tag"></i> UI组件</a> <a href="./tags/容器组件/"><i class="fa fa-tag"></i> 容器组件</a> <a href="./tags/无状态组件/"><i class="fa fa-tag"></i> 无状态组件</a> <a href="./tags/项目实战/"><i class="fa fa-tag"></i> 项目实战</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/09/10/常见设计模式基础/" rel="next" title="常见设计模式基础"><i class="fa fa-chevron-left"></i> 常见设计模式基础</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/09/10/Vue2-5/" rel="prev" title="Vue2_5">Vue2_5 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"><div class="addthis_inline_share_toolbox"><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b8917fd9ef2beb8" async></script></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQwOC8xNTkzNQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="jwl"><p class="site-author-name" itemprop="name">jwl</p><p class="site-description motion-element" itemprop="description">从喜欢到爱的一路前端风</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories"><span class="site-state-item-count">27</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">88</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/52jwl" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://www.freecodecamp.cn/52jwl" target="_blank" title="fcc"><i class="fa fa-fw fa-free-code-camp"></i> fcc </a></span><span class="links-of-author-item"><a href="https://www.jianshu.com/u/439a6eee60e1" target="_blank" title="简书"><i class="fa fa-fw fa-book"></i> 简书 </a></span><span class="links-of-author-item"><a href="http://blog.csdn.net/jwl_lwj" target="_blank" title="CSDN"><i class="fa fa-fw fa-rotate-right"></i> CSDN</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a></li><li class="links-of-blogroll-item"><a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a></li><li class="links-of-blogroll-item"><a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a></li><li class="links-of-blogroll-item"><a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a></li></ul></div><div id="days"></div><script>function show_date_time(){window.setTimeout("show_date_time()",1e3),BirthDay=new Date("01/10/2017 12:34:56"),today=new Date,timeold=today.getTime()-BirthDay.getTime(),sectimeold=timeold/1e3,secondsold=Math.floor(sectimeold),msPerDay=864e5,e_daysold=timeold/msPerDay,daysold=Math.floor(e_daysold),e_hrsold=24*(e_daysold-daysold),hrsold=setzero(Math.floor(e_hrsold)),e_minsold=60*(e_hrsold-hrsold),minsold=setzero(Math.floor(60*(e_hrsold-hrsold))),seconds=setzero(Math.floor(60*(e_minsold-minsold))),document.getElementById("days").innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"}function setzero(e){return e<10&&(e="0"+e),e}show_date_time()</script></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-16-4-开发简书项目"><span class="nav-number">1.</span> <span class="nav-text">React 16.4 开发简书项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#课程"><span class="nav-number">1.1.</span> <span class="nav-text">课程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章课程导学"><span class="nav-number">1.2.</span> <span class="nav-text">第一章课程导学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实战项目"><span class="nav-number">1.2.1.</span> <span class="nav-text">实战项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术点"><span class="nav-number">1.2.2.</span> <span class="nav-text">技术点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习前提"><span class="nav-number">1.2.3.</span> <span class="nav-text">学习前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲授方式"><span class="nav-number">1.2.4.</span> <span class="nav-text">讲授方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课程收获"><span class="nav-number">1.2.5.</span> <span class="nav-text">课程收获</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章React初探"><span class="nav-number">1.3.</span> <span class="nav-text">第二章React初探</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React-js简介"><span class="nav-number">1.3.1.</span> <span class="nav-text">React.js简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-js-与-Vue-js-对比"><span class="nav-number">1.3.2.</span> <span class="nav-text">React.js 与 Vue.js 对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发环境搭建"><span class="nav-number">1.3.3.</span> <span class="nav-text">开发环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工程目录简介"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">工程目录简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#public-文件夹"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">public 文件夹</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#src-文件夹"><span class="nav-number">1.3.3.2.2.</span> <span class="nav-text">src 文件夹</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React中的组件"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">React中的组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React中最基本的JSX语法"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">React中最基本的JSX语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章React基础精讲"><span class="nav-number">1.4.</span> <span class="nav-text">第三章React基础精讲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用React编写TodoList功能"><span class="nav-number">1.4.1.</span> <span class="nav-text">使用React编写TodoList功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React中的响应式设计思想和事件绑定"><span class="nav-number">1.4.2.</span> <span class="nav-text">React中的响应式设计思想和事件绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现TodoList-新增删删除功能"><span class="nav-number">1.4.3.</span> <span class="nav-text">实现TodoList 新增删删除功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX细节语法补充"><span class="nav-number">1.4.4.</span> <span class="nav-text">JSX细节语法补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX中不去转义-手动输入的Html标签"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">JSX中不去转义 手动输入的Html标签</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拆分组件与组件之间的传值"><span class="nav-number">1.4.5.</span> <span class="nav-text">拆分组件与组件之间的传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TodoList代码优化"><span class="nav-number">1.4.6.</span> <span class="nav-text">TodoList代码优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#围绕React衍生出的思考"><span class="nav-number">1.4.7.</span> <span class="nav-text">围绕React衍生出的思考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明式与命令式开发"><span class="nav-number">1.4.7.1.</span> <span class="nav-text">声明式与命令式开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以与其它框架并存"><span class="nav-number">1.4.7.2.</span> <span class="nav-text">可以与其它框架并存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件式的开发（组件化）"><span class="nav-number">1.4.7.3.</span> <span class="nav-text">组件式的开发（组件化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单向数据流"><span class="nav-number">1.4.7.4.</span> <span class="nav-text">单向数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#这是为了让测试起来和开发起来方便，不容易遇到坑。"><span class="nav-number">1.4.7.4.1.</span> <span class="nav-text">这是为了让测试起来和开发起来方便，不容易遇到坑。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图层的框架"><span class="nav-number">1.4.7.5.</span> <span class="nav-text">视图层的框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数式编程"><span class="nav-number">1.4.7.6.</span> <span class="nav-text">函数式编程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章React高级内容"><span class="nav-number">1.5.</span> <span class="nav-text">第四章React高级内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-React开发调试工具"><span class="nav-number">1.5.1.</span> <span class="nav-text">安装 React开发调试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-React开发调试工具"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">使用 React开发调试工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PropTypes与DefaultProps"><span class="nav-number">1.5.2.</span> <span class="nav-text">PropTypes与DefaultProps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Props-State与render函数"><span class="nav-number">1.5.3.</span> <span class="nav-text">Props,State与render函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是虚拟DOM"><span class="nav-number">1.5.4.</span> <span class="nav-text">什么是虚拟DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入了解虚拟DOM"><span class="nav-number">1.5.5.</span> <span class="nav-text">深入了解虚拟DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟DOM中的Diff算法"><span class="nav-number">1.5.6.</span> <span class="nav-text">虚拟DOM中的Diff算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#key属性的设置，就是给虚拟dom的节点设置名字"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">key属性的设置，就是给虚拟dom的节点设置名字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React中ref的使用"><span class="nav-number">1.5.7.</span> <span class="nav-text">React中ref的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React中的生命周期函数"><span class="nav-number">1.5.8.</span> <span class="nav-text">React中的生命周期函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Initialization-初始化"><span class="nav-number">1.5.8.1.</span> <span class="nav-text">Initialization 初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mounting-挂载"><span class="nav-number">1.5.8.2.</span> <span class="nav-text">Mounting 挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Updation-更新"><span class="nav-number">1.5.8.3.</span> <span class="nav-text">Updation 更新</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#props-发生变化"><span class="nav-number">1.5.8.3.1.</span> <span class="nav-text">props 发生变化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#states-发生变化"><span class="nav-number">1.5.8.3.2.</span> <span class="nav-text">states 发生变化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unmounting"><span class="nav-number">1.5.8.4.</span> <span class="nav-text">Unmounting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整个生命周期，每一个组件都可以有生命周期"><span class="nav-number">1.5.8.5.</span> <span class="nav-text">整个生命周期，每一个组件都可以有生命周期</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期函数的使用场景"><span class="nav-number">1.5.9.</span> <span class="nav-text">生命周期函数的使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Charles-进行接口数据模拟"><span class="nav-number">1.5.10.</span> <span class="nav-text">使用 Charles 进行接口数据模拟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-的CSS-过渡动画"><span class="nav-number">1.5.11.</span> <span class="nav-text">React 的CSS 过渡动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-react-transition-group-实现单个元素的动画"><span class="nav-number">1.5.12.</span> <span class="nav-text">使用 react-transition-group 实现单个元素的动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-react-transition-group中的CSSTransition有许多特性"><span class="nav-number">1.5.12.1.</span> <span class="nav-text">使用 react-transition-group中的CSSTransition有许多特性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-react-transition-group-实现多个元素间的动画"><span class="nav-number">1.5.13.</span> <span class="nav-text">使用 react-transition-group 实现多个元素间的动画</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五章Redux入门"><span class="nav-number">1.6.</span> <span class="nav-text">第五章Redux入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux-概念简述"><span class="nav-number">1.6.1.</span> <span class="nav-text">Redux 概念简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux的工作流程"><span class="nav-number">1.6.2.</span> <span class="nav-text">Redux的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用antd-编写-TodoList页面布局"><span class="nav-number">1.6.3.</span> <span class="nav-text">使用antd 编写 TodoList页面布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建redux中的store"><span class="nav-number">1.6.4.</span> <span class="nav-text">创建redux中的store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Action和Reducer-的编写"><span class="nav-number">1.6.5.</span> <span class="nav-text">Action和Reducer 的编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Redux完成TodoList删除功能"><span class="nav-number">1.6.6.</span> <span class="nav-text">使用Redux完成TodoList删除功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ActionTypes的拆分"><span class="nav-number">1.6.7.</span> <span class="nav-text">ActionTypes的拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-actionCreator-统一创建action"><span class="nav-number">1.6.8.</span> <span class="nav-text">使用 actionCreator 统一创建action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux知识点复习补充"><span class="nav-number">1.6.9.</span> <span class="nav-text">Redux知识点复习补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reducer必须是纯函数"><span class="nav-number">1.6.9.1.</span> <span class="nav-text">Reducer必须是纯函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux中核心的API"><span class="nav-number">1.6.9.2.</span> <span class="nav-text">Redux中核心的API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六章Redux进阶"><span class="nav-number">1.7.</span> <span class="nav-text">第六章Redux进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UI组件与容器组件的拆分"><span class="nav-number">1.7.1.</span> <span class="nav-text">UI组件与容器组件的拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UI组件负责页面的渲染，容器组件负责页面的逻辑"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">UI组件负责页面的渲染，容器组件负责页面的逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-中无状态组件"><span class="nav-number">1.7.2.</span> <span class="nav-text">React 中无状态组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux-中发送异步请求获取数据"><span class="nav-number">1.7.3.</span> <span class="nav-text">Redux 中发送异步请求获取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Redux-thunk-中间件进行ajax请求发送"><span class="nav-number">1.7.4.</span> <span class="nav-text">使用 Redux-thunk 中间件进行ajax请求发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#到底什么是Redux中间件？"><span class="nav-number">1.7.5.</span> <span class="nav-text">到底什么是Redux中间件？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#除了redux-thunk这样的中间件之外还有其它的中间件"><span class="nav-number">1.7.5.1.</span> <span class="nav-text">除了redux-thunk这样的中间件之外还有其它的中间件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux-sage-中间件的使用"><span class="nav-number">1.7.6.</span> <span class="nav-text">Redux-sage 中间件的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-redux"><span class="nav-number">1.7.7.</span> <span class="nav-text">React-redux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-redux-的使用"><span class="nav-number">1.7.8.</span> <span class="nav-text">React-redux 的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七章-项目实战：Header组件开发"><span class="nav-number">1.8.</span> <span class="nav-text">第七章 项目实战：Header组件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目目录搭建"><span class="nav-number">1.8.1.</span> <span class="nav-text">项目目录搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Styled-Components"><span class="nav-number">1.8.2.</span> <span class="nav-text">Styled-Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Styled-Components的使用"><span class="nav-number">1.8.3.</span> <span class="nav-text">Styled-Components的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#制作字体图标"><span class="nav-number">1.8.4.</span> <span class="nav-text">制作字体图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用combineReducers完成对数据的拆分管理"><span class="nav-number">1.8.5.</span> <span class="nav-text">使用combineReducers完成对数据的拆分管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#actionCreators与constants的拆分"><span class="nav-number">1.8.6.</span> <span class="nav-text">actionCreators与constants的拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Immutable-js-来管理store中的数据"><span class="nav-number">1.8.7.</span> <span class="nav-text">使用Immutable.js 来管理store中的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用redux-immutable-统一数据的格式"><span class="nav-number">1.8.8.</span> <span class="nav-text">使用redux-immutable 统一数据的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ajax获取数据"><span class="nav-number">1.8.9.</span> <span class="nav-text">使用ajax获取数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第八章-项目实战：首页开发"><span class="nav-number">1.9.</span> <span class="nav-text">第八章 项目实战：首页开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是路由，如何在React中使用路由功能"><span class="nav-number">1.9.1.</span> <span class="nav-text">什么是路由，如何在React中使用路由功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向-styled-components组件中传值"><span class="nav-number">1.9.2.</span> <span class="nav-text">向 styled-components组件中传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#immutable中的fromJS与List方法"><span class="nav-number">1.9.3.</span> <span class="nav-text">immutable中的fromJS与List方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不必拘于形式"><span class="nav-number">1.9.4.</span> <span class="nav-text">不必拘于形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面性能优化及路由跳转"><span class="nav-number">1.9.5.</span> <span class="nav-text">页面性能优化及路由跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面性能优化"><span class="nav-number">1.9.5.1.</span> <span class="nav-text">页面性能优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由跳转"><span class="nav-number">1.9.5.2.</span> <span class="nav-text">路由跳转</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第九章-项目实战：详情页和登陆功能开发"><span class="nav-number">1.10.</span> <span class="nav-text">第九章 项目实战：详情页和登陆功能开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面路由参数的传递"><span class="nav-number">1.10.1.</span> <span class="nav-text">页面路由参数的传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取styled-Components中的dom"><span class="nav-number">1.10.2.</span> <span class="nav-text">获取styled.Components中的dom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由跳转-Redirect"><span class="nav-number">1.10.3.</span> <span class="nav-text">路由跳转 Redirect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码优化"><span class="nav-number">1.10.4.</span> <span class="nav-text">代码优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步组件以及witchRouter路由方法的使用"><span class="nav-number">1.10.5.</span> <span class="nav-text">异步组件以及witchRouter路由方法的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十章-课程总结"><span class="nav-number">1.11.</span> <span class="nav-text">第十章 课程总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目上线流程"><span class="nav-number">1.11.1.</span> <span class="nav-text">项目上线流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本升级说明"><span class="nav-number">1.11.2.</span> <span class="nav-text">版本升级说明</span></a></li></ol></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright" style="text-align:center;line-height:50px;font-size:16px">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-snowflake-o"></i> </span><span class="author" itemprop="copyrightHolder">jwl</span><div class="powered-by">| <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"><a class="theme-link" href="https://www.52jwl.com">i love jwl：</a> <span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><span class="post-count">已统计字数:199.1k</span></div></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path;function proceedsearch(){$("body").append('<div class="local-search-pop-overlay">').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,c,s){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var t=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),a=document.getElementById(c),r=document.getElementById(s);a.addEventListener("input",function(){var u=0,d='<ul class="search-result-list">',f=this.value.trim().toLowerCase().split(/[\s\-]+/);r.innerHTML="",1<this.value.trim().length&&t.forEach(function(e){var a=!1,r=e.title.trim().toLowerCase(),c=e.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),t=decodeURIComponent(e.url),s=-1,n=-1,o=-1;if(""!=r&&f.forEach(function(e,t){s=r.indexOf(e),n=c.indexOf(e),(0<=s||0<=n)&&(a=!0,0==t&&(o=n))}),a){u+=1,d+="<li><a href='"+t+"' class='search-result-title'>"+r+"</a>";var i=e.content.trim().replace(/<[^>]+>/g,"");if(0<=o){var l=o-20,p=o+80;l<0&&(l=0),0==l&&(p=50),p>i.length&&(p=i.length);var h=i.substring(l,p);f.forEach(function(e){var t=new RegExp(e,"gi");h=h.replace(t,'<b class="search-keyword">'+e+"</b>")}),d+='<p class="search-result">'+h+"...</p>"}d+="</li>"}}),d+="</ul>",0==u&&(d='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==f&&(d='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),r.innerHTML=d}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/javascript" color="255,0,0" opacity="0.5" zindex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script><script type="text/javascript">var live2dIsExistsTimer=setInterval(function(){var e=document.getElementById("live2dcanvas");if(e){function t(e){e.style.right=document.body.offsetWidth/4+"px"}t(e),addEventListener("resize",function(){t(e)}),clearInterval(live2dIsExistsTimer)}else console.log(e,"获取失败")},500)</script><script type="text/javascript" src="/js/src/dynamicTitle.js"></script><script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js"></script><script>$(function(){$("pre").addClass("prettyprint linenums").attr("style","overflow:auto;"),prettyPrint()})</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":75,"height":150,"hOffset":320,"vOffset":-20},"log":false});</script></body></html>

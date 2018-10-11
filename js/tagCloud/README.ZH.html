@@ -1,0 +1,44 @@
+<h1 id="Hexo-Tag-Cloud"><a href="#Hexo-Tag-Cloud" class="headerlink" title="Hexo Tag Cloud"></a>Hexo Tag Cloud</h1><p><a href="https://badge.fury.io/js/hexo-tag-cloud"><img src="https://badge.fury.io/js/hexo-tag-cloud.svg" alt="npm version"></a><br><a href="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/build-status/master"><img src="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/badges/build.png?b=master" alt="Build Status"></a><br><a href="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/?branch=master"><img src="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a></p><p><a href="https://github.com/MikeCoder/hexo-tag-cloud/blob/master/README.md">English Version ReadMe</a></p><p>Hexo 标签云插件</p><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="./img/example.jpg" alt="TagCloud"></p><p>这里是<a href="https://mikecoder.github.io/oj-code/archives/">效果预览站点</a></p><h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul><li>进入到 hexo 的根目录，然后在 <code>package.json</code> 中添加依赖: <code>&quot;hexo-tag-cloud&quot;: &quot;2.0.*&quot;</code></li><li>然后执行 <code>npm install</code> 命令</li><li>然后需要你去修改主题的 tagcloud 的模板，这个依据你的主题而定。</li></ul><h4 id="对于-ejs-的用户"><a href="#对于-ejs-的用户" class="headerlink" title="对于 ejs 的用户"></a>对于 ejs 的用户</h4><ul><li>这里以默认主题 landscape 为例。</li><li>tagcloud 模板文件为 <code>hexo/themes/landscape/layout/_widget/tagcloud.ejs</code></li><li>将这个文件修改为如下内容：<pre><code>&lt;% if (site.tags.length) { %&gt;
+  &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcloud.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcanvas.js&quot;&gt;&lt;/script&gt;
+  &lt;div class=&quot;widget-wrap&quot;&gt;
+      &lt;h3 class=&quot;widget-title&quot;&gt;Tag Cloud&lt;/h3&gt;
+      &lt;div id=&quot;myCanvasContainer&quot; class=&quot;widget tagcloud&quot;&gt;
+          &lt;canvas width=&quot;250&quot; height=&quot;250&quot; id=&quot;resCanvas&quot; style=&quot;width=100%&quot;&gt;
+              &lt;%- tagcloud() %&gt;
+          &lt;/canvas&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;% } %&gt;
+</code></pre></li></ul><h4 id="对于-swig-用户"><a href="#对于-swig-用户" class="headerlink" title="对于 swig 用户"></a>对于 swig 用户</h4><ul><li>这里以 Next 主题为例。</li><li>找到文件 <code>next/layout/_macro/sidebar.swig</code>, 然后添加如下内容。<pre><code>{% if site.tags.length &gt; 1 %}
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcloud.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcanvas.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;widget-wrap&quot;&gt;
+  &lt;h3 class=&quot;widget-title&quot;&gt;Tag Cloud&lt;/h3&gt;
+  &lt;div id=&quot;myCanvasContainer&quot; class=&quot;widget tagcloud&quot;&gt;
+      &lt;canvas width=&quot;250&quot; height=&quot;250&quot; id=&quot;resCanvas&quot; style=&quot;width=100%&quot;&gt;
+          {{ list_tags() }}
+      &lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{% endif %}
+</code></pre></li></ul><h4 id="对于-jade-用户"><a href="#对于-jade-用户" class="headerlink" title="对于 jade 用户"></a>对于 jade 用户</h4><ul><li>这里以 Apollo 主题为例</li><li>找到 <code>apollo/layout/archive.jade</code> 文件，并且把 container 代码块修改为如下内容:<pre><code>...
+block container
+  include mixins/post
+  .archive
+      h2(class=&apos;archive-year&apos;)= &apos;Tag Cloud&apos;
+      script(type=&apos;text/javascript&apos;, charset=&apos;utf-8&apos;, src=&apos;/oj-code/js/tagcloud.js&apos;)
+      script(type=&apos;text/javascript&apos;, charset=&apos;utf-8&apos;, src=&apos;/oj-code/js/tagcanvas.js&apos;)
+      #myCanvasContainer.widget.tagcloud(align=&apos;center&apos;)
+          canvas#resCanvas(width=&apos;500&apos;, height=&apos;500&apos;, style=&apos;width=100%&apos;)
+              !=tagcloud()
+          !=tagcloud()
+  +postList()
+...
+</code></pre></li></ul><h4 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h4><ul><li>完成安装和显示，可以通过 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 来进行本地预览, hexo clean 为必须选项。</li><li><strong>PS:不要使用 <code>hexo g -d 或者 hexo d -g</code> 这类组合命令。</strong>详情见: <a href="https://github.com/MikeCoder/hexo-tag-cloud/issues/7">Issue 7</a></li></ul><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>看 <a href="./TODO.md">Todo.md</a></p><h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>提交 issue 和截图以及 log</p><h2 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h2><p>现在 hexo-tag-cloud 插件支持自定义啦。非常简单的步骤就可以改变你的标签云的字体和颜色，还有突出高亮。</p><ul><li>在你的博客根目录，找到 <em>_config.yml</em> 文件然后添加如下的配置项:<pre><code># hexo-tag-cloud
+tag_cloud:
+  textFont: Trebuchet MS, Helvetica
+  textColour: \#333
+  textHeight: 25
+  outlineColour: \#E2E1D1
+</code></pre></li><li>然后使用 <code>hexo c &amp;&amp; hexo g &amp;&amp; hexo s</code> 来享受属于你自己的独一无二的标签云吧。</li></ul><h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><ul><li><strong><a href="http://www.goat1000.com/tagcanvas.php">TagCanvas</a></strong></li></ul>

@@ -1,0 +1,2589 @@
+<!doctype html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/0f81ff2f.js","daovoice"),daovoice("init",{app_id:"493d9281"}),daovoice("update")</script><link href="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Microsoft YaHei UI Light:300,300italic,400,400italic,700,700italic|方正楷体:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STHeiti TC:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="JS设计模式,面向对象,设计模式详解,"><link rel="alternate" href="/atom.xml" title="ilovejwl" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="Javascript 设计模式系统讲解与应用第一章 课程导学课程概述做什么？讲解JS设计模式哪些部分？面向对象，设计原则，设计模式技术？面向对象，UML类图，ES6知识点介绍面向对象ES6 class语法三要素UML 类图设计原则何为设计？5 大设计原则从设计到模式设计模式分优先级讲解结合核心技术结合框架应用综合实例设计方案代码演示设计模式对应课程安排面向对象使用webpack 和babel 搭建"><meta name="keywords" content="JS设计模式,面向对象,设计模式详解"><meta property="og:type" content="article"><meta property="og:title" content="JS设计模式系统讲解与应用"><meta property="og:url" content="https://www.52jwl.com/2018/09/17/JS设计模式系统讲解与应用/index.html"><meta property="og:site_name" content="ilovejwl"><meta property="og:description" content="Javascript 设计模式系统讲解与应用第一章 课程导学课程概述做什么？讲解JS设计模式哪些部分？面向对象，设计原则，设计模式技术？面向对象，UML类图，ES6知识点介绍面向对象ES6 class语法三要素UML 类图设计原则何为设计？5 大设计原则从设计到模式设计模式分优先级讲解结合核心技术结合框架应用综合实例设计方案代码演示设计模式对应课程安排面向对象使用webpack 和babel 搭建"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-09-17T03:10:49.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JS设计模式系统讲解与应用"><meta name="twitter:description" content="Javascript 设计模式系统讲解与应用第一章 课程导学课程概述做什么？讲解JS设计模式哪些部分？面向对象，设计原则，设计模式技术？面向对象，UML类图，ES6知识点介绍面向对象ES6 class语法三要素UML 类图设计原则何为设计？5 大设计原则从设计到模式设计模式分优先级讲解结合核心技术结合框架应用综合实例设计方案代码演示设计模式对应课程安排面向对象使用webpack 和babel 搭建"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:"",labels:""}}</script><link rel="canonical" href="https://www.52jwl.com/2018/09/17/JS设计模式系统讲解与应用/"><script type="text/javascript">!function(){var o="";try{o=sessionStorage.password||"",sessionStorage.initState||"0"}catch(s){o="","0",console.log("sessionStorage 无法使用。")}if("jwl"!==o)if("jwl"!==(o=prompt("请输入文章密码")))alert("密码错误！"),1===history.length?location.replace("https://www.52jwl.com"):history.back();else try{sessionStorage.password=o,sessionStorage.initState="1"}catch(s){console.log("sessionStorage 无法使用。")}}()</script><title>JS设计模式系统讲解与应用 | ilovejwl</title><link href="https://cdn.staticfile.org/prettify/r298/prettify.min.css" rel="stylesheet"><style type="text/css">.prettyprint{background:#131513;font-family:Menlo,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,Consolas,monospace;border:0!important}.pln{color:#f4fbf4}ol.linenums{margin-top:0;margin-bottom:0;color:#687d68}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#131513;list-style-type:decimal}@media screen{.str{color:#29a329}.kwd{color:#ad2bee}.com{color:#687d68}.typ{color:#3d62f5}.lit{color:#87711d}.pun{color:#f4fbf4}.opn{color:#f4fbf4}.clo{color:#f4fbf4}.tag{color:#e6193c}.atn{color:#87711d}.atv{color:#1999b3}.dec{color:#87711d}.var{color:#e6193c}.fun{color:#3d62f5}}</style></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container one-collumn sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fd6c6c;color:#fff;position:absolute;top:0;border:0;right:0;z-index:1" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">ilovejwl</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">52jwl</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.52jwl.com/2018/09/17/JS设计模式系统讲解与应用/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="jwl"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="ilovejwl"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">JS设计模式系统讲解与应用</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T11:10:49+08:00">2018-09-17 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span> </a></span>， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span> </a></span></span><span class="post-meta-divider">|</span> <span class="page-pv"><i class="fa fa-file-o"></i> 本文热度 <span class="busuanzi-value" id="busuanzi_value_page_pv">1314520</span>°C</span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">16,048 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">72</span></div></div></header><div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Javascript-设计模式系统讲解与应用"><a href="#Javascript-设计模式系统讲解与应用" class="headerlink" title="Javascript 设计模式系统讲解与应用"></a>Javascript 设计模式系统讲解与应用</h1><h2 id="第一章-课程导学"><a href="#第一章-课程导学" class="headerlink" title="第一章 课程导学"></a>第一章 课程导学</h2><h3 id="课程概述"><a href="#课程概述" class="headerlink" title="课程概述"></a>课程概述</h3><ol><li>做什么？<ol><li>讲解JS设计模式</li></ol></li><li>哪些部分？<ol><li>面向对象，设计原则，设计模式</li></ol></li><li>技术？<ol><li>面向对象，UML类图，ES6</li></ol></li></ol><h3 id="知识点介绍"><a href="#知识点介绍" class="headerlink" title="知识点介绍"></a>知识点介绍</h3><h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><ol><li>ES6 class语法</li><li>三要素</li><li>UML 类图</li></ol><h4 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h4><ol><li>何为设计？</li><li>5 大设计原则</li><li>从设计到模式</li></ol><h4 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h4><ol><li>分优先级讲解</li><li>结合核心技术</li><li>结合框架应用</li></ol><h4 id="综合实例"><a href="#综合实例" class="headerlink" title="综合实例"></a>综合实例</h4><ol><li>设计方案</li><li>代码演示</li><li>设计模式对应</li></ol><h3 id="课程安排"><a href="#课程安排" class="headerlink" title="课程安排"></a>课程安排</h3><h4 id="面向对象-1"><a href="#面向对象-1" class="headerlink" title="面向对象"></a>面向对象</h4><ol><li>使用webpack 和babel 搭建ES6 编译环境</li><li>ES6 class 面向对象的语法</li><li>面向对象三要素：继承 封装 多态</li></ol><h4 id="设计原则-1"><a href="#设计原则-1" class="headerlink" title="设计原则"></a>设计原则</h4><ol><li>通过 《LINUX/UNIX设计哲学》 理解何为设计</li><li>5 大设计原则分析和理解，以及代码演示</li><li>“设计模式” ——&gt; 从“设计” 到 “模式”</li></ol><h4 id="设计模式-1"><a href="#设计模式-1" class="headerlink" title="设计模式"></a>设计模式</h4><ol><li>概述：创建型、结构型、行为型</li><li>常用设计模式，详细讲解，结合经典使用场景</li><li>非常用设计模式，理解概念，示例演示</li><li>有主有次，掌握重点</li></ol><h4 id="综合示例"><a href="#综合示例" class="headerlink" title="综合示例"></a>综合示例</h4><ol><li>用jQuery 实现一个简单的购物车</li><li>设计分析，画UML类图</li><li>代码演示</li><li>总结使用的7种设计模式</li></ol><h3 id="讲授方式"><a href="#讲授方式" class="headerlink" title="讲授方式"></a>讲授方式</h3><ol><li>先基础后实践，先“设计” 后“模式”</li><li>重点、常用的设计模式，配合经典使用场景</li><li>综合示例，延伸设计模式如何使用</li><li>用JS的方式讲解面向对象和设计模式</li></ol><h3 id="课程收获"><a href="#课程收获" class="headerlink" title="课程收获"></a>课程收获</h3><ol><li>面向对象思想，UML类图</li><li>5大设计原则，23种设计模式</li><li>能应对前端面试中相关的面试题</li><li>提升个人设计能力</li></ol><h3 id="学习前提"><a href="#学习前提" class="headerlink" title="学习前提"></a>学习前提</h3><ol><li>了解面向对象，能熟练使用jQuery或类似工具库</li><li>有ES6 语法基础，用过nodejs和npm环境</li><li>了解vue和React（至少看过文档，做过demo）</li></ol><h3 id="重点提示"><a href="#重点提示" class="headerlink" title="重点提示"></a>重点提示</h3><ol><li>本课程讲解设计模式，不是实战项目也不是源码分析</li><li>23种设计模式不是都常用，分清主次</li><li>设计模式在JS和Java中的讲解方式有区别</li></ol><h2 id="第二章-面向对象"><a href="#第二章-面向对象" class="headerlink" title="第二章 面向对象"></a>第二章 面向对象</h2><ol><li>搭建开发环境</li><li>什么是面向对象</li><li>UML类图</li><li>总结</li></ol><h3 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h3><ol><li>初始化 npm环境</li><li>安装webpack</li><li>安装webpack-dev-server</li><li>安装babel</li></ol><h4 id="初始化-npm环境"><a href="#初始化-npm环境" class="headerlink" title="初始化 npm环境"></a>初始化 npm环境</h4><ol><li>安装nodejs</li><li>使用node -v 和 npm -v</li></ol><h4 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h4><ol><li>npm install <a href="mailto:webpack@4.9.1" target="_blank" rel="noopener">webpack@4.9.1</a> –save-dev</li><li>npm install <a href="mailto:webapck-cli@2.1.4" target="_blank" rel="noopener">webapck-cli@2.1.4</a> –save-dev</li><li>新建webpack.dev.config.js，新建src/index.js<pre><code class="js"> // webpack.dev.config.js
+ module.exports = {
+   entry: &#39;./src/index.js&#39;,
+   output: {
+     path: __dirname,
+     filename: &#39;./build/bundle.js&#39;
+   }
+ }
+</code></pre><pre><code class="js"> // src/index.js
+ alert(&quot;ok&quot;)
+</code></pre></li><li>在package.json 文件中添加命令<pre><code class="json"> &quot;scripts&quot;: {
+   // 表示使用 webpack命令 使用的配置文件 xx.js       使用的模式 开发者模式
+   &quot;dev&quot;: &quot;webpack --config ./webpack.dev.config.js --mode development&quot;
+ }
+</code></pre></li><li>通过命令使用启用webpack<ol><li>npm run dev</li></ol></li></ol><h4 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装webpack-dev-server</h4><ol><li>npm install <a href="mailto:webpack-dev-server@3.1.4" target="_blank" rel="noopener">webpack-dev-server@3.1.4</a> –save-dev</li><li>npm install <a href="mailto:html-webpack-plugin@3.2.0" target="_blank" rel="noopener">html-webpack-plugin@3.2.0</a> –save-dev</li><li>修改原来的webpack 配置文件<pre><code class="js"> const path = require(&#39;path&#39;)
+ const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;)
+ module.exports = {
+   entry: &#39;./src/index.js&#39;,
+   output: {
+     path: __dirname,
+     filename: &#39;./build/bundle.js&#39;
+   },
+   plugins: [
+     // 读取一个模板
+     new HtmlWebpackPlugin({
+       template: &#39;./index.html&#39;
+     })
+   ],
+   devServer: {
+     // 根目录
+     contentBase: path.join(__dirname, &#39;./release&#39;),
+     // 浏览器是否自动打开
+     open: true,
+     // 端口号
+     port: 9000 
+   }
+ }
+</code></pre></li><li>新建一个普通的 index.html</li><li>在package.json 文件中修改命令<pre><code class="json"> &quot;scripts&quot;: {
+   // 表示使用 webpack命令 使用的配置文件 xx.js       使用的模式 开发者模式
+   &quot;dev&quot;: &quot;webpack-dev-server --config ./webpack.dev.config.js --mode development&quot;
+ }
+</code></pre></li><li>通过命令使用启用webpack-dev-server<ol><li>npm run dev</li></ol></li></ol><h4 id="安装babel"><a href="#安装babel" class="headerlink" title="安装babel"></a>安装babel</h4><ol><li>npm install babel-core –save-dev</li><li>npm install babel-loader –save-dev</li><li>npm install babel-polyfill –save-dev</li><li>npm install babel-preset-es2015 –save-dev</li><li>npm install babel-preset-latest –save-dev</li><li>新建文件<code>.babelrc</code><pre><code class="json"> {
+   &quot;presets&quot;: [&quot;es2015&quot;, &quot;latest&quot;],
+   &quot;plugins&quot;: []
+ }
+</code></pre></li><li>继续修改原来的webpack 配置文件<pre><code class="js"> const path = require(&#39;path&#39;)
+ const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;)
+ module.exports = {
+   entry: &#39;./src/index.js&#39;,
+   output: {
+     path: __dirname,
+     filename: &#39;./build/bundle.js&#39;
+   },
+   plugins: [
+     // 读取一个模板
+     new HtmlWebpackPlugin({
+       template: &#39;./index.html&#39;
+     })
+   ],
+   devServer: {
+     // 根目录
+     contentBase: path.join(__dirname, &#39;./release&#39;),
+     // 浏览器是否自动打开
+     open: true,
+     // 端口号
+     port: 9000 
+   },
+   module: {
+     rules: [
+       {
+         // 检验
+         test: /\.js?$/,
+         /*排除node_modules文件夹*/
+         exclude: /(node_modules)/,
+         /* 将es6 转换为 es5 */
+         loader: &#39;babel-loader&#39;
+       }
+     ]
+   }
+ }
+</code></pre></li><li><p>修改 index.js</p><pre><code class="js">   // es6 语法
+   class Person {
+     constructor (name) {
+       this.name = name
+     }
+     getName () {
+       return this.name
+     }
+   }
+
+   let p = new Person(&#39;name&#39;)
+   alert(p.getName())
+</code></pre></li><li>通过命令再次启用webpack-dev-server<ol><li>npm run dev</li></ol></li></ol><h3 id="什么是面向对象"><a href="#什么是面向对象" class="headerlink" title="什么是面向对象"></a>什么是面向对象</h3><ol><li>概念</li><li>三要素：继承 封装 多态</li><li>JS的应用举例</li><li>面向对象的意义</li></ol><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ol><li>类<pre><code class="js"> // 类 即模板
+ class People { // 人
+   constructor (name, age) {
+     this.name = name
+     this.age = age
+   }
+   eat () { //吃
+     alert(`${this.name} eat something`)
+   }
+   speak () { // 说
+     alert(`My name is ${this.name}, age ${this.age}`)
+   }
+ }
+</code></pre></li><li><p>对象</p><pre><code class="js"> // 对象 即 实例
+ let zhang = new People(&#39;zhang&#39;, 20)
+ zhang.eat()
+ zhang.speak()
+
+ let wang = new People(&#39;wang&#39;, 21)
+ wang.eat()
+ wang.speak()
+</code></pre></li></ol><h4 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h4><h5 id="继承，子类继承父类"><a href="#继承，子类继承父类" class="headerlink" title="继承，子类继承父类"></a>继承，子类继承父类</h5><ol><li>People 是父类，公共的，不仅仅服务于Student</li><li>继承可将功能方法抽离出来，提高复用，减少冗余</li><li><p>代码演示</p><pre><code class="js"> // 父类
+ class People {
+   constructor (name, age) {
+     this.name = name
+     this.age = age
+   }
+   eat () {
+     alert(`${this.name} eat something`)
+   }
+   speak () {
+     alert(`My name is ${this.name}, age ${this.age}`)
+   }
+ }
+
+ // 子类 继承 父类
+ class Student extends People {
+   constructor (name, age, id) {
+     super(name, age)
+     this.id = id
+   }
+   study () {
+     alert(`${this.name} study`)
+   }
+ }
+
+ let xiaoming = new Student(&#39;xiaoming&#39;, 10, &#39;A1&#39;)
+ xiaoming.eat()
+ xiaoming.study()
+ alert(xiaoming.id)
+ let xiaohong = new Student(&#39;xiaohong&#39;, 11, &#39;A2&#39;)
+ xiaohong.speak()
+</code></pre></li></ol><h5 id="封装，数据的权限和保密"><a href="#封装，数据的权限和保密" class="headerlink" title="封装，数据的权限和保密"></a>封装，数据的权限和保密</h5><ol><li>public 完全开放</li><li>protected 对子类开放</li><li>private 对自己开放</li><li>ES6 尚不支持，可以用typescript来演示</li><li>typescript在线编译：<ol><li><code>http://www.typescriptlang.org/play/</code></li></ol></li><li><p>代码演示</p><pre><code class="js"> // 父类
+ class People {
+   name // 默认 public
+   age // 默认 public
+   protected weight // 定义 protected 属性
+   constructor (name, age) {
+     this.name = name
+     this.age = age
+     this.weight = 120
+   }
+   eat () {
+     alert(`${this.name} eat something`)
+   }
+   speak () {
+     alert(`My name is ${this.name}, age ${this.age}`)
+   }
+ }
+
+ // 子类 继承 父类
+ class Student extends People {
+   id //默认 public
+   private girlfriend // 定义private 属性
+   constructor (name, age, id) {
+     super(name, age)
+     this.id = id
+     this.girlfriend = &#39;xiaoli&#39;
+   }
+   study () { //学习
+     alert(`${this.name} study`)
+   }
+   getWeight () { // 获取体重
+     alert(`${this.weight}`)
+   }
+ }
+ // 实例
+ let xiaoming = new Student(&#39;xiaoming&#39;, 10, &#39;A1&#39;)
+ xiaoming.getWeight()
+ // 以下编译时会报错，不允许在外面访问私有的属性，
+ // 就像除了自己外其它人不能知道我女朋友
+ console.log(xiaoming.girlfriend)
+ // 就像外人不能知道我的体重
+ console.log(xiaoming.weight)
+</code></pre></li><li>减少耦合，不该外露的不外露</li><li>利于数据、接口的权限管理</li><li>ES6 目前不支持，<ol><li>一般认为_开头的属性是private</li></ol></li></ol><h5 id="多态，同一接口不同实现"><a href="#多态，同一接口不同实现" class="headerlink" title="多态，同一接口不同实现"></a>多态，同一接口不同实现</h5><ol><li>同一个接口，不同表现</li><li>JS 应用极少</li><li>需要结合java等语言的接口、重写、重载等功能</li><li><p>简单JS代码演示</p><pre><code class="js"> class People {
+   constructor (name) {
+     this.name = name
+   }
+   saySomething () {
+
+   }
+ }
+ class A extends People {
+   constructor (name) {
+     super(name)
+   }
+   saySomething () {
+     alert(&#39;I am A&#39;)
+   }
+ }
+ class B extends People {
+   constructor (name) {
+     super(name)
+   }
+   saySomething () {
+     alert(&#39;I am B&#39;)
+   }
+ }
+ let a = new A(&#39;a&#39;)
+ a.saySomething()
+ let b = new B(&#39;b&#39;)
+ b.saySomething()
+</code></pre></li><li>保持子类的开放性和灵活性</li><li>面向接口编程</li><li>JS 应用极少，了解即可</li></ol><h4 id="JS-应用举例"><a href="#JS-应用举例" class="headerlink" title="JS 应用举例"></a>JS 应用举例</h4><ol><li>jQuery是一个class，也是一个类库</li><li>$(‘p’)是jQuery的一个实例</li><li><p>代码演示</p><pre><code class="js"> // 父类
+ class jQuery {
+   constructor (selector) {
+     return this.init (selector)
+   }
+
+   init (selector) {
+      // 子对象会成为 父类实例的一个成员
+     let slice = Array.prototype.slice
+     let dom = slice.call(document.querySelectorAll(selector))
+     let len = dom ? dom.length : 0
+     for (let i = 0; i &lt; len; i++) {
+         this[i] = dom[i]
+     }
+     this.length = len
+     this.selector = selector || &#39;&#39;
+   }
+   append(node) {
+
+   }
+   addClass(name) {
+
+   }
+   html(data) {
+
+   }
+     // 此处省略若干 API
+ }
+
+ window.$ = function (selector) {
+     // 工厂函数
+     return new jQuery(selector)
+ }
+</code></pre></li></ol><h4 id="三要素总结-一"><a href="#三要素总结-一" class="headerlink" title="三要素总结 一"></a>三要素总结 一</h4><ol><li>程序执行：顺序、判断、循环 ——&gt; 结构化</li><li>go-to 虽然效率高，但是会导致程序结构化的混乱</li><li>面向对象 的意义就是 数据结构化</li><li>对于计算机，结构化的才是最简单的</li><li>编程应该 简单&amp;抽象</li></ol><h4 id="三要素总结-二"><a href="#三要素总结-二" class="headerlink" title="三要素总结 二"></a>三要素总结 二</h4><ol><li>概念及Demo</li><li>三要素：继承 封装 多态，以及演示</li><li>jQuery 的应用示例</li><li>意义：数据结构化</li></ol><h3 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h3><ol><li>Unified Modeling Language 统一建模语言</li><li>类图，UML包含很多种图，和本课程相关的是类图</li><li>关系，主要讲泛化（类之间的继承）和关联（类之间的组合）</li><li>演示，代码和类图结合</li></ol><h4 id="画图工具"><a href="#画图工具" class="headerlink" title="画图工具"></a>画图工具</h4><ol><li>MS Office visio</li><li><a href="https://www.processon.com/" target="_blank" rel="noopener">https://www.processon.com/</a></li></ol><h4 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h4><h5 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h5><ol><li><code>+</code> 表示 public</li><li><code>#</code> 表示 protected</li><li><code>-</code> 表示 private</li></ol><h5 id="属性和方法"><a href="#属性和方法" class="headerlink" title="属性和方法"></a>属性和方法</h5><ol><li>类名</li><li><code>+</code> public属性名A: 类型</li><li><code>+</code> public方法名(参数1, 参数2): 返回值类型</li></ol><h5 id="代码与类图-一"><a href="#代码与类图-一" class="headerlink" title="代码与类图 一"></a>代码与类图 一</h5><ol><li>类图<pre><code class="UML"> -----------------------
+ |      People         |
+ -----------------------
+ |  + name: String     |
+ |  + age: Number      |
+ -----------------------
+ |  + eat(): void      |
+ |  + speak(): void    |
+ -----------------------
+</code></pre></li><li>代码<pre><code class="js"> class People {
+   constructor (name, age) {
+     this.name = name
+     this.age = age
+   }
+   eat () {
+     alert(`${this.name} eat something`)
+   }
+   speak () {
+     alert(`My name is ${this.name}, age ${this.age}`)
+   }
+ }
+</code></pre></li></ol><h5 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h5><ol><li>泛化，表示继承 （空心箭头）</li><li>关联，表示引用 （实心箭头）</li></ol><h5 id="代码与类图-二"><a href="#代码与类图-二" class="headerlink" title="代码与类图 二"></a>代码与类图 二</h5><ol><li>类图<pre><code class="UML">                               ---------------------------
+                               |             A           |
+                               ---------------------------
+                               |                         |
+                               ---------------------------
+                               |  + saySomething(): void |   
+                               --------------------------- 
+ ---------------------------                 |
+ |         People          |                 |
+ ---------------------------                 |
+ |     + name: String      |◁----------------
+ |     + house: House      |◁----------------
+ ---------------------------                 |
+ |  + saySomething(): void |                 |
+ ---------------------------                 |
+             |                   ---------------------------
+             ▼                   |            B            |
+ ---------------------------     ---------------------------
+ |         House           |     |                         |
+ ---------------------------     ---------------------------
+ |  + city: String         |     |  + saySomething(): void |
+ ---------------------------     ---------------------------
+ |  + showCity(): void     |
+ ---------------------------  
+</code></pre></li><li><p>代码</p><pre><code class="js"> // 父类
+ class People {
+   constructor(name, house) {
+       this.name = name
+       this.house = house
+   }
+   saySomething () {
+
+   }
+ }
+ // 子类 A
+ class A extends People {
+     constructor (name, house) {
+       super(name, house)
+     }
+     saySomething () {
+       alert(&#39;I am A&#39;)
+     }
+ }
+ // 子类 B
+ class B extends People {
+     constructor (name, house) {
+       super(name, house)
+     }
+     saySomething () {
+       alert(&#39;I am B&#39;)
+     }
+ }
+ // 房子
+ class House {
+   constructor (city) {
+     this.city = city   
+   }
+   showCity () {
+     alert(`house in ${this.city}`)
+   }
+ }
+
+ // 测试
+ let aHouse = new House(&#39;北京&#39;)
+ let a = new A(&#39;aaa&#39;, aHouse)
+ console.log(a) // a 有房子
+ let b = new B(&#39;bbb&#39;)
+ console.log(b) // b 无房子
+</code></pre></li></ol><h4 id="UML类图总结"><a href="#UML类图总结" class="headerlink" title="UML类图总结"></a>UML类图总结</h4><ol><li>一列三行的表格<ol><li>第一行 类名</li><li>第二行 属性</li><li>第三行 方法</li></ol></li><li>关系<ol><li>泛化（继承）空心箭头</li><li>关联（组合）实心箭头</li></ol></li><li>示例演示</li><li>后面学习设计模式，会继续画UML类图</li></ol><h3 id="本章总结"><a href="#本章总结" class="headerlink" title="本章总结"></a>本章总结</h3><ol><li>搭建开发环境：<ol><li>npm init、webpack、babel</li></ol></li><li>面向对象：<ol><li>概念、三要素、应用举例、意义</li></ol></li><li>UML 类图：<ol><li>类图、关系、示例</li></ol></li></ol><h2 id="第三章-设计原则"><a href="#第三章-设计原则" class="headerlink" title="第三章 设计原则"></a>第三章 设计原则</h2><ol><li>设计模式的<strong>设计</strong>就是设计原则</li><li>何为设计？</li><li>五大设计原则</li><li>从设计到模式</li><li>介绍23种设计模式</li></ol><h3 id="何为设计？"><a href="#何为设计？" class="headerlink" title="何为设计？"></a>何为设计？</h3><ol><li>描述</li><li>结合《UNIX/LINUX设计哲学》</li></ol><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><ol><li>即按照哪一种思路或者标准来实现功能</li><li>功能相同，可以有不同设计方案来实现</li><li>伴随着需求增加，设计的作用才能体现出来</li></ol><h4 id="《UNIX-LINUX设计哲学》"><a href="#《UNIX-LINUX设计哲学》" class="headerlink" title="《UNIX/LINUX设计哲学》"></a>《UNIX/LINUX设计哲学》</h4><ol><li>准则1：小即是美 (高内聚)<ol><li>小而精</li></ol></li><li>准则2：让每个程序只做好一件事 ★（模块儿化、组件化）<ol><li>然后让所有程序凑一块儿就成了一个大程序</li></ol></li><li>准则3：快速建立原型 ★（渐进增强）<ol><li>先能满足最基本的需求</li><li>然后再慢慢的升级</li></ol></li><li>准则4：舍弃高效率而取可移植性 ★（可维护性要好）<ol><li>代码的可复用性比高效率要重要。</li><li>但是低效率要被硬件方面升级所抹平</li></ol></li><li>准则5：采用纯文本来存储数据 ★（json、yml）<ol><li>可读性要好</li></ol></li><li>准则6：充分利用软件的杠杆效应 ★（软件复用）<ol><li>准则4 里面的</li><li>能抽象的就抽象，能提取就提取，能复用就复用</li><li>★ 别人写好的代码你直接拿来用</li></ol></li><li>准则7：使用shell脚本来提高杠杆效应和可移植性<ol><li>这和准则6一个意思，只不过说的是一种解决方案</li><li>★（利用操作系统自带的功能）</li></ol></li><li>准则8：避免强制性的用户界面<ol><li>用户界面应该作为一个单独的软件</li><li>命令行很高效，不要强制绑定用户界面</li></ol></li><li>准则9：让每个程序都成为过滤器<ol><li>让每个程序都可热插拔</li><li>插上去可以添加新功能</li></ol></li></ol><p>#####　小准则<br>1.　允许用户定制环境，<br>1.　不要限制死<br>2.　尽量使操作系统内核小而轻量化</p><ol><li>内核是内核</li><li>工具是工具</li><li>插件是插件</li><li>要分开，不要杂而全<ol start="3"><li>使用小写字母并尽量简短</li></ol></li><li>例如 list 可以简写为ls<ol start="4"><li>沉默是金</li></ol></li><li>如果输入的数据格式不对</li><li>那么就不输出或者输出该数据格式的默认值<ol start="5"><li>各部分之和大于整体</li></ol></li><li>一开始就把各部分混在一块儿</li><li>那么改变的时候就会带来很高的复杂度<ol start="6"><li>寻求90%的解决方案</li></ol></li><li>不可能满足全部的需求</li><li>可以寻求满足90%的需求的解决方案</li><li>例如二八定律，</li><li>花百分之二十的成本解决百分之八十的需求</li><li>剩下的百分之二十的需求需要花很大成本来搞定</li><li>所以不要把所有事情做到完美</li><li>你不是搞艺术不是搞创作做不到想的完美</li><li>那些在发布会上号称自己是完美的都是骗人的</li><li>因为他们的解决方案不可能是完美的</li></ol><h5 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h5><ol><li>沉默是金 + 让每个程序成为过滤器<pre><code class="shell">// 输出所有的文件
+ls 
+// 输出 所有的 .json后缀的文件
+ls | grep *.json
+// 输出 package.json
+ls | grep *.json | grep &#39;package&#39;
+// 什么都没有输出
+ls | grep *.json | grep &#39;package1&#39;
+// 输出 0
+ls | grep *.json | grep &#39;package1&#39; | wc -l
+</code></pre></li></ol><h4 id="何为设计总结"><a href="#何为设计总结" class="headerlink" title="何为设计总结"></a>何为设计总结</h4><ol><li>设计的作用</li><li>《UNIX/LINUX设计哲学》原则</li></ol><h3 id="S-O-L-I-D-五大设计原则"><a href="#S-O-L-I-D-五大设计原则" class="headerlink" title="S O L I D 五大设计原则"></a>S O L I D 五大设计原则</h3><ol><li>S - 单一职责原则</li><li>O - 开放封闭原则</li><li>L - 里氏替换原则</li><li>I - 接口独立原则</li><li>D - 依赖倒置原则</li></ol><h4 id="S-单一职责原则"><a href="#S-单一职责原则" class="headerlink" title="S - 单一职责原则"></a>S - 单一职责原则</h4><ol><li>一个程序只做好一件事</li><li>如果功能过于复杂就拆分开，每个部分保持独立</li></ol><h4 id="O-开放封闭原则"><a href="#O-开放封闭原则" class="headerlink" title="O - 开放封闭原则"></a>O - 开放封闭原则</h4><ol><li>对扩展开放，对修改封闭</li><li>增加需求时，扩展新代码，而非修改已有代码</li><li>这是软件设计的终级目标</li></ol><h4 id="L-里氏替换原则"><a href="#L-里氏替换原则" class="headerlink" title="L - 里氏替换原则"></a>L - 里氏替换原则</h4><ol><li>子类能覆盖父类</li><li>父类出现的地方子类就能出现</li><li>JS 中使用较少（弱类型&amp;继承使用较少）</li></ol><h4 id="I-接口独立原则"><a href="#I-接口独立原则" class="headerlink" title="I - 接口独立原则"></a>I - 接口独立原则</h4><ol><li>保持接口的单一独立，避免出现“胖接口”</li><li>JS 中没有接口（typescript例外），使用较少</li><li>类似于单一职责原则，这里更关注接口</li></ol><h4 id="D-依赖倒置原则"><a href="#D-依赖倒置原则" class="headerlink" title="D - 依赖倒置原则"></a>D - 依赖倒置原则</h4><ol><li>面向接口编程，依赖于抽象而不依赖于具体</li><li>使用方只关注接口而不关注具体类的实现 ★（比如画UML类图）</li><li>JS中使用较少（没有接口&amp;弱类型）</li></ol><h4 id="设计原则总结"><a href="#设计原则总结" class="headerlink" title="设计原则总结"></a>设计原则总结</h4><ol><li>S O 体现较多，详细介绍</li><li>L I D 体现较少，但是要了解其用意</li></ol><h5 id="用-Promise-来说明-S-O"><a href="#用-Promise-来说明-S-O" class="headerlink" title="用 Promise 来说明 S O"></a>用 Promise 来说明 S O</h5><ol><li>单一职责原则： 每个then中的逻辑只做好一件事</li><li>开放封闭原则：如果有新增需求，扩展then</li><li>对扩展开放，对修改封闭</li><li><p>代码演示</p><pre><code class="js"> function loadImg (src) {
+   const promise=new Promise(function (resolve,reject) {
+     let img = document.createElement(&#39;img&#39;);
+
+     img.onload = function () {
+       resolve(img);
+     }
+     img.onerror = function () {
+       reject();
+     }
+
+     img.src = src;
+   });
+
+   return promise;
+ }
+
+ let src = &#39;http://www.baidu.com/img1.png&#39;;
+ let result = loadImg(src);
+ result.then(function (img) {
+     // part 1
+     // 
+     console.log(img.width);
+     //因为下方的链式then的参数里需要这个img
+     //如果不链式的then则不需要return img
+     return img;
+ }).then(function (img) {
+     // part 2
+     // 
+     console.log(img.height);
+     return img;
+ }).then(function (img) {
+     // part 3
+     alert(img.src)
+ }).catch(function (ex) {
+
+     // 最后统一 catch
+     console.log(ex);
+ })
+</code></pre></li></ol><h3 id="从设计到模式"><a href="#从设计到模式" class="headerlink" title="从设计到模式"></a>从设计到模式</h3><ol><li>设计：一种思想</li><li>模式：根据思想而产生的模板</li><li>分开：设计与模式要分开</li><li>“从设计到模式”</li></ol><h4 id="介绍23种设计模式"><a href="#介绍23种设计模式" class="headerlink" title="介绍23种设计模式"></a>介绍23种设计模式</h4><ol><li>创建型：对象怎么创建</li><li>结构型：对象与类以什么样的形式组合</li><li>行为型：日常开发中一些常用、特殊的行为</li></ol><h5 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h5><ol><li>工厂模式（工厂方法模式，抽象工厂模式，建造者模式）</li><li>单例模式</li><li>原型模式</li></ol><h5 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h5><ol><li>适配器模式</li><li>装饰器模式</li><li>代理模式</li><li>外观模式</li><li>桥接模式</li><li>组合模式</li><li>享元模式</li></ol><h5 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h5><ol><li>策略模式</li><li>模板方法模式</li><li>观察者模式</li><li>迭代器模式</li><li>职责链模式</li><li>命令模式</li><li>备忘录模式</li><li>状态模式</li><li>访问者模式</li><li>中介者模式</li><li>解释器模式</li></ol><h5 id="分优先级"><a href="#分优先级" class="headerlink" title="分优先级"></a>分优先级</h5><ol><li>前端常用设计模式，详讲</li><li>前端非常用设计模式，略讲</li><li>前端少用设计模式，介绍</li></ol><h5 id="如何讲解设计模式？"><a href="#如何讲解设计模式？" class="headerlink" title="如何讲解设计模式？"></a>如何讲解设计模式？</h5><ol><li>介绍和举例（生活中易理解的示例）</li><li>画UML类图写demo代码</li><li>结合经典应用场景，讲解该设计模式如何被使用</li></ol><h5 id="该如何学习设计模式？"><a href="#该如何学习设计模式？" class="headerlink" title="该如何学习设计模式？"></a>该如何学习设计模式？</h5><ol><li>明白每个设计的道理和用意</li><li>通过经典应用场景，体会它的真正使用场景</li><li>自己编码时多思考，尽量模仿</li></ol><h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ol><li>创建型，结构型，行为型</li><li>如何学习设计模式</li></ol><p>###　面试题示例</p><ol><li>面试题 1　，面试题 2</li><li>从朋友那里得到的真实面试题</li><li>第一题是某打车公司一面</li><li>第二题是某短视频公司三面</li><li>考察面向对象和设计能力</li><li>面试有可能遇到，也有可能遇不到（不同时间，不同部门）</li></ol><h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><ol><li>打车时，可以打专车或者快车。任何车都有车牌号和名称</li><li>不同车价格不同，快车每公里1元，专车每公里2元</li><li>行程开始时，显示车辆信息</li><li>形成结束时，显示打车金额（假定行程就5公里）</li><li>画出UML类图</li><li>用ES6语法写出该示例</li></ol><h5 id="类图与代码"><a href="#类图与代码" class="headerlink" title="类图与代码"></a>类图与代码</h5><ol><li>类图<pre><code class="UML">                               ---------------------------
+                               |         Kuaiche         |
+                               ---------------------------
+                               |      + price: Number    |
+                               ---------------------------
+                               |                         |   
+                               --------------------------- 
+ ---------------------------                 |
+ |          Car            |                 |
+ ---------------------------                 |
+ |     + no: Number        |◁----------------
+ |     + name: String      |◁----------------
+ ---------------------------                 |
+ |                         |                 |
+ ---------------------------                 |
+             ▲                   ---------------------------
+             |                   |         Zhuanche        |
+ ---------------------------     ---------------------------
+ |         Trip            |     |      + price: Number    |
+ ---------------------------     ---------------------------
+ |      + car: Car         |     |                         |
+ ---------------------------     ---------------------------
+ |  - showCarInfo(): void  |
+ |  + start(): void        |
+ |  - clacAction(): void   |
+ |  + end(): void          |
+ ---------------------------  
+</code></pre></li><li><p>代码</p><pre><code class="js"> // 车
+ class Car {
+     constructor (no, name) {
+         this.no = no
+         this.name = name
+     }
+ }
+ // 快车
+ class Kuaiche extends Car {
+     constructor (no, name) {
+         super(no, name)
+         this.price = 1
+     }
+ }
+ // 专车
+ class Zhuanche extends Car {
+     constructor (no, name) {
+         super(no, name)
+         this.price = 2
+     }
+ }
+
+ // 行程
+ class Trip {
+     constructor (car) {
+         this.car = car
+     }
+     _showCarInfo () {
+       alert(`显示车辆，名称: ${this.car.name}, 车牌号: ${this.car.price}`)
+     }
+     start () {
+         alert(&#39;行程开始&#39;)
+         this._showCarInfo()
+     }
+     _clacAction () {
+       alert(`计算本次行程收费，价格:  ${this.car.price * 5}`)
+     }
+     end () {
+         alert(&#39;行程结束&#39;)
+         this._clacAction()
+     }
+ }
+
+ let car = new Kuaiche(100, &#39;桑塔纳&#39;)
+ let trip = new Trip(car)
+ trip.start()
+ trip.end()
+</code></pre></li></ol><h4 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h4><ol><li>某停车场，分3层，每层100车位</li><li>每个车位都能监控到车辆的驶入和离开</li><li>车辆进入前，显示每层的空余车位数量</li><li>车辆进入时，摄像头可识别车牌号和时间</li><li>车辆出来时，出口显示器显示车牌号和停车时长</li><li>画出UML类图<ol><li>下面是我画的UML类图</li><li><a href="http://on-img.com/chart_image/5b9a4c55e4b0d4d65c0503ce.png" target="_blank" rel="noopener">http://on-img.com/chart_image/5b9a4c55e4b0d4d65c0503ce.png</a></li></ol></li><li><p>用ES6语法写出该示例</p><pre><code class="js"> //摄像头
+ class Camera {
+   constructor () {}
+   watch (car, layerIndex, placeIndex) {
+     const parkingInfo = new ParkingInfo(car, layerIndex, placeIndex);
+     return parkingInfo;
+   }
+ }
+
+ // 停车场
+ class Park {
+   constructor (layers, parkingInfos) {
+     this.layers = layers || [];
+     this.parkingInfos = parkingInfos || [];
+     this.camera = new Camera();
+     this.screen = new Screen();
+   }
+   showEmpty () {
+     this.layers.forEach((item) =&gt; {
+       console.log(`第${item.id}层空车位:${item.emptyPlacesNum()}个`);
+     })
+   }
+   in (car) {
+     // 随机哪一层
+     let layerIndex = parseInt(Math.random() * 3 % 3);
+     let layer = this.layers[layerIndex];
+
+     // 随机哪一个车位
+     let placeIndex = parseInt(Math.random() * 100 % 100);
+     let place = layer.places[placeIndex];
+
+     // 车辆进入前
+     this.showEmpty();
+     // 停车
+     place.in();
+     // 车辆进入时 识别车牌号和时间
+     let parkingInfo = this.camera.watch(car, layerIndex, placeIndex);
+     this.parkingInfos.push(parkingInfo);
+   }
+   out (car) {
+     // 获取某一条停车信息
+     let parkingInfo = null;
+     let parkingInfoIndex = null;
+     this.parkingInfos.forEach((item, index) =&gt; {
+       if (item.carNo === car.no) {
+         parkingInfo = item;
+         parkingInfoIndex = index;
+       }
+     })
+     // 在屏幕上显示
+     this.screen.show(parkingInfo)
+
+     // 获取该车辆的层数
+     let layerIndex = parkingInfo.layerIndex;
+     let layer = this.layers[layerIndex];
+     // 获取该车辆的 车位号
+     let placeIndex = parkingInfo.placeIndex;
+     let place = layer.places[placeIndex];
+     // 出车
+     place.out();
+
+     // 清空这辆车的停车信息
+     delete this.parkingInfos.splice(parkingInfoIndex, 1)
+     console.log(this.parkingInfos)
+   }
+ }
+
+ // 停车场信息
+ class ParkingInfo {
+   constructor (car, layerIndex, placeIndex) {
+     this.car = car;
+     this.carNo = car.no;
+     this.inTime = Date.now();
+     this.outTime = 0;
+     this.layerIndex = layerIndex || 0;
+     this.placeIndex = placeIndex || 0;
+   }
+   calcParkingTime () {
+     return this.outTime - this.inTime;
+   }
+ }
+
+ // 显示器屏幕
+ class Screen {
+   show (parkingInfo) {
+     parkingInfo.outTime = Date.now();
+     console.log(`车牌号码：${parkingInfo.carNo},停车时长：${parkingInfo.calcParkingTime()}`)
+   }
+ }
+
+ // 层
+ class Layer {
+   constructor (id, places) {
+     this.id = id;
+     this.places = places;
+   }
+   emptyPlacesNum () {
+     let number = 0;
+     this.places.forEach((place) =&gt; {
+       if (place.isEmpty) {
+         number++;
+       }
+     });
+     return number;
+   }
+ }
+
+ // 车位
+ class Place {
+   constructor () {
+     this.isEmpty = true;
+   }
+   in () {
+     this.isEmpty = false;
+   }
+   out () {
+     this.isEmpty = true;
+   }
+ }
+
+ // 车
+ class Car {
+   constructor (no) {
+     this.no = no;//&quot;贾8008880&quot;;
+   }
+ }
+
+ // 测试代码------------------------------
+ // 初始化停车场
+ const layers = []
+ for (let i = 0; i &lt; 3; i++) {
+     const places = []
+     for (let j = 0; j &lt; 100; j++) {
+         places[j] = new Place()
+     }
+     layers[i] = new Layer(i + 1, places)
+ }
+ const park = new Park(layers)
+
+ // 初始化车辆
+ const car1 = new Car(&#39;贾8008880&#39;)
+ const car2 = new Car(&#39;文8008880&#39;)
+ const car3 = new Car(&#39;利8008880&#39;)
+
+ console.log(&#39;第一辆车进入&#39;)
+ park.in(car1)
+ console.log(&#39;第二辆车进入&#39;)
+ park.in(car2)
+ console.log(&#39;第一辆车离开&#39;)
+ park.out(car1)
+ console.log(&#39;第二辆车离开&#39;)
+ park.out(car2)
+
+ console.log(&#39;第三辆车进入&#39;)
+ park.in(car3)
+ console.log(&#39;第三辆车离开&#39;)
+ park.out(car3)
+</code></pre></li></ol><p>###　设计原则　－　总结</p><ol><li>何为设计？ 《UNIX/LINUX设计哲学》</li><li>SOLID 五大原则</li><li>从设计到模式</li><li>介绍23种设计模式</li></ol><h2 id="第四章-工厂模式"><a href="#第四章-工厂模式" class="headerlink" title="第四章 工厂模式"></a>第四章 工厂模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ol><li>将new 操作单独封装</li><li>遇到new 时，就要考虑是否该使用工厂模式</li></ol><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><ol><li>你去购买汉堡，直接点餐、取餐，不会自己亲手做</li><li>商店要 “封装” 做汉堡的工作，做好直接给买者</li></ol><h3 id="演示-1"><a href="#演示-1" class="headerlink" title="演示"></a>演示</h3><h4 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h4><pre><code class="UML">      ---------------------------                                    
+      |         Creator         |
+      ---------------------------
+      |                         |
+      ---------------------------
+      | + create(name): Product |
+      ---------------------------
+
+      ---------------------------                                    
+      |         Product         |
+      ---------------------------
+      |  + name: String         |
+      ---------------------------
+      |  + init(): void         |
+      |  + fn(): void           |
+      ---------------------------
+</code></pre><h4 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">    class Creator {
+      create (name) {
+        return new Product(name)
+      }
+    }
+
+    class Product {
+      constructor (name) {
+        this.name = name;
+      }
+
+      init () {
+        alert(&#39;init&#39;)
+      }
+      fn () {
+        alert(this.name)
+      }
+    }
+
+    var creator = new Creator();
+    var p = creator.create(&#39;p1&#39;);
+    p.init();
+    p.fn();
+</code></pre><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ol><li><code>jQuery - $(&#39;div&#39;)</code></li><li>React.createElement</li><li>vue 异步组件</li></ol><h4 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h4><ol><li><code>$(&#39;div&#39;)</code> 和 <code>new $(&#39;div&#39;)</code>有何区别？</li><li>第一：书写麻烦，jQuery的链式操作将成为噩梦</li><li>第二：一旦jQuery名字变化，将是灾难性的</li><li><p>代码演示：</p><pre><code class="js"> // 父类
+ class jQuery {
+   constructor (selector) {
+     return this.init (selector)
+   }
+
+   init (selector) {
+      // 子对象会成为 父类实例的一个成员
+     let slice = Array.prototype.slice
+     let dom = slice.call(document.querySelectorAll(selector))
+     let len = dom ? dom.length : 0
+     for (let i = 0; i &lt; len; i++) {
+         this[i] = dom[i]
+     }
+     this.length = len
+     this.selector = selector || &#39;&#39;
+   }
+   append(node) {
+
+   }
+   addClass(name) {
+
+   }
+   html(data) {
+
+   }
+     // 此处省略若干 API
+ }
+
+ window.$ = function (selector) {
+     // 工厂函数
+     return new jQuery(selector)
+ }
+</code></pre></li><li>jQuery 插两句题外话<ol><li>聊一聊阅读经典lib源码的意义</li><li>聊一聊创新和拿来主义</li></ol></li></ol><p>####　React.createElement</p><pre><code class="react">  var profile = (
+    &lt;div&gt;
+      &lt;img src=&quot;avatar.png&quot; className=&quot;profile&quot; /&gt;
+      &lt;h3&gt;{[user.firstName, user.lastName].join(&#39; &#39;)}&lt;/h3&gt;
+    &lt;/div&gt;
+  );
+</code></pre><pre><code class="js">  // 以上代码编译完成之后
+  var profile = React.createElement(&quot;div&quot;, null ,
+    React.createElement(&quot;img&quot;, {src: &quot;avatar.png&quot;, className: &quot;profile&quot;}),
+    React.createElement(&quot;h3&quot;, null, [user.firstName, user.lastName].join(&quot; &quot;))
+  );
+</code></pre><pre><code class="js">  // 原理代码 此处只是代码演示，不要纠结细节
+  class Vnode(tag, attrs, children) {
+    // ... 省略若干代码
+  }
+  // 工厂函数  
+  React.createElement = function (tag, attrs, children) {
+    return new Vnode(tag, attrs, children);
+  }
+</code></pre><h4 id="vue-异步组件"><a href="#vue-异步组件" class="headerlink" title="vue 异步组件"></a>vue 异步组件</h4><ol><li>代码示例<pre><code class="vue"> Vue.component(&#39;async-example&#39;, function (resolve, reject) {
+   setTimeout(function () {
+     resolve({
+       template: &#39;&lt;div&gt;i am async!&lt;/div&gt;&#39;
+     });
+   }, 1000);
+ });
+</code></pre></li></ol><h4 id="设计原则验证"><a href="#设计原则验证" class="headerlink" title="设计原则验证"></a>设计原则验证</h4><ol><li>构造函数和创建者分离</li><li>符合开放封闭原则<ol><li>把一个一个分开，别混在一块儿</li></ol></li></ol><h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和示例</li><li>UML类图和演示</li><li>经典实用场景</li></ol><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><ol><li>系统中被唯一使用</li><li>一个类只有一个实例</li></ol><h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><ol><li>登陆框</li><li>购物车</li></ol><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><ol><li>单例模式需要用到java的特性（private）</li><li>ES6中没有（typescript 除外）</li><li>只能用java 代码来演示UML图的内容</li></ol><h3 id="演示-2"><a href="#演示-2" class="headerlink" title="演示"></a>演示</h3><ol><li><p>java代码演示</p><pre><code class="java"> // 单例类
+ public class SingleObject {
+   // 私有构造函数 只能内部new
+   private SingleObject() {
+
+   }
+
+   // 唯一被 new 出来的对象
+   private SingleObject instance = null;
+
+   // 获取对象的唯一接口
+   public SingleObject getInstance() {
+     if (instance == null) {
+       // 只new 1次
+       instance = new SingleObject();
+     }
+     return instance;
+   }
+
+   // 对象的方法
+   public void login(username, password) {
+     System.out.println(&quot;login...&quot;)
+   }
+ }
+
+ // 主入口类
+ public class SingletonPatternDemo {
+   public static void main (String[] args) {
+     // 不合法的构造函数
+     // 编译时错误：构造函数 SingleObject() 是不可见~~~
+     // SingleObject object = new SingleObject();
+
+     // 获取唯一可用的对象
+     SingleObject object = SingleObject.getInstance();
+     object.login();
+   }
+ }
+</code></pre></li><li><p>JS 代码演示<br><code>`</code> js<br>class SingleObject {<br>login () {</p><pre><code> console.log(&#39;login...&#39;);
+</code></pre><p>}<br>}</p><p>SingleObject.getInstance = (function () {<br>let instance;<br>return function () {</p><pre><code> if (!instance) {
+   instance = new SingleObject();
+ }
+ return instance;
+</code></pre><p>}<br>})();</p><p>// 测试：<br>// 这里只能使用静态函数 getInstance<br>let obj1 = SingleObject.getInstance();<br>obj1.login();<br>let obj2 = SingleObject.getInstance();<br>obj2.login();<br>console.log(obj1 === obj2) //两者完全相等</p></li></ol><pre><code>// 不能new SingleObject() 无法完全控制
+let obj3 = new SingleObject()
+obj3.login();
+console.log(obj1 === obj3) //两者不完全相等
+</code></pre><pre><code>
+### 场景
+1. jQuery 只有一个 `$`
+2. 模拟登陆框
+3. 其他
+
+#### jQuery
+``` js
+  // 这里是打比方，其实jQuery内部不是这样的，
+  // 内部是直接挂载到$上的，是一个添加或者覆盖的操作
+  // 但是这样也很不错
+  if (window.jQuery != null) {
+    return window.jQuery
+  } else {
+    // 初始化
+  }
+</code></pre><h4 id="模拟登陆框"><a href="#模拟登陆框" class="headerlink" title="模拟登陆框"></a>模拟登陆框</h4><pre><code class="js">
+  class LoginForm {
+    constructor () {
+      this.state = &#39;hide&#39;
+    }
+    show () {
+      if (this.state === &#39;show&#39;) {
+        alert(&#39;已经显示&#39;)
+        return
+      }
+      this.state = &#39;show&#39;
+      console.log(&#39;登录框已显示&#39;)
+    }
+    hide () {
+      if (this.state === &#39;hide&#39;) {
+        alert(&#39;已经隐藏&#39;)
+        return
+      }
+      this.state = &#39;hide&#39;
+      console.log(&#39;登录框已隐藏&#39;)
+    }
+  }
+  LoginForm.getInstance = (function () {
+    let instance
+    return function () {
+      if (!instance) {
+          instance = new LoginForm();
+      }
+      return instance
+    }
+  })()
+
+  // 一个页面中调用登录框
+  let login1 = LoginForm.getInstance()
+  login1.show()
+  // login1.hide()
+
+  // 另一个页面中调用登录框
+  let login2 = LoginForm.getInstance()
+  login2.show()
+
+  // 两者是否相等
+  console.log(&#39;login1 === login2&#39;, login1 === login2)
+
+</code></pre><h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ol><li>购物车（和登陆框类似）</li><li>vuex 和 redux中的store</li></ol><p>####　设计原则验证</p><ol><li>符合单一职责原则，只能实例化唯一的对象</li><li>没法具体体现开放封闭原则，但是绝对不违反开放封闭原则</li></ol><h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和示例</li><li>UML类图和演示</li><li>经典实用场景</li></ol><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><ol><li>介绍</li><li>演示</li><li>使用场景</li><li>总结</li></ol><h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><ol><li>旧接口格式和使用者不兼容</li><li>中间加一个适配转换接口</li></ol><h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><ol><li>如 手机电源，原电源电压过高</li><li>需要使用电源适配器来进行转换</li><li>原来的手机充电器不能直接给手机充电</li><li>需要借助 新的电源适配器来给手机充电</li></ol><h3 id="演示-3"><a href="#演示-3" class="headerlink" title="演示"></a>演示</h3><ol><li>类图</li><li>代码演示</li></ol><h4 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h4><pre><code class="UML">      ---------------------------                                    
+      |         Clent           |
+      ---------------------------
+      |  + target: Target       |
+      ---------------------------
+      |  + main(): void         |
+      ---------------------------
+                  |
+                  ▼
+      ---------------------------                                    
+      |         Target          |
+      ---------------------------
+      |  + adaptee: Adaptee     |
+      ---------------------------
+      |  + request(): void      |
+      ---------------------------
+                  |
+                  ▼
+      ---------------------------                                    
+      |         Adaptee         |
+      ---------------------------
+      |                         |
+      ---------------------------
+      |+ speciflcRequest():void |
+      ---------------------------
+</code></pre><h4 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">  // Adaptee 原来的接口
+  class Adaptee {
+    speciflcRequest () {
+      return &quot;德国标准电源&quot;
+    }
+  }
+
+  // 适配器
+  class Target {
+    constructor () {
+      this.adaptee = new Adaptee();
+    }
+    request () {
+      return `${this.adaptee.speciflcRequest ()} 转换为 中国标准电源`
+    }
+  }
+
+  let target = new Target();
+  console.log(target.request());
+
+</code></pre><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol><li>封装旧接口</li><li>vue computed</li></ol><h4 id="封装旧接口"><a href="#封装旧接口" class="headerlink" title="封装旧接口"></a>封装旧接口</h4><pre><code class="js">  // 开始使用自己封装的 ajax，使用方式如下：
+  ajax({
+    url:  &#39;/getData&#39;,
+    type: &#39;Post&#39;,
+    dataType: &#39;json&#39;,
+    data: {
+      id: &#39;123&#39;
+    }
+  }).done(function () {
+
+  })
+
+  // 但是因为历史原因，原来代码中全都是：
+  // $.ajax({...})
+
+  // 自己做一层适配器，这样原来的代码还是可以使用
+  var $ = {
+    ajax: function (options) {
+      return ajax(options);
+    }
+  }
+</code></pre><h4 id="vue-computed"><a href="#vue-computed" class="headerlink" title="vue computed"></a>vue computed</h4><ol><li>代码示例<pre><code class="vue"> &lt;template&gt;
+ &lt;div id=&quot;example&quot;&gt;
+   &lt;p&gt;Original 顺序 message: &quot;{{message}}&quot;&lt;/p&gt;
+   &lt;p&gt;Computed 倒序 message: &quot;{{reversedMessage}}&quot;&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;/template&gt;
+ &lt;script&gt;
+   var vm = new Vue({
+     el: &#39;#example&#39;,
+     data: {
+       message: &#39;Hello&#39;
+     },
+     computed: {
+       // 计算属性的 getter
+       reversedMessage: function () {
+         // this 指向 vm 实例
+         return this.message.split(&#39;&#39;).reverse().join(&#39;&#39;);
+       }
+     }
+   })
+ &lt;/script&gt;
+ &lt;style&gt;
+ &lt;/style&gt;
+</code></pre></li><li>安装 http-server<ol><li><code>npm install http-server -g</code></li></ol></li></ol><h4 id="设计原则验证-1"><a href="#设计原则验证-1" class="headerlink" title="设计原则验证"></a>设计原则验证</h4><ol><li>将旧接口和使用者进行分离</li><li>符合开放封闭原则</li></ol><h3 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和示例</li><li>UML类图和演示</li><li>经典使用场景</li></ol><h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍-3"><a href="#介绍-3" class="headerlink" title="介绍"></a>介绍</h3><ol><li>为对象添加新功能</li><li>不改变其原有的结构和功能</li><li>适配器模式是原来的接口<code>不可以</code>继续用，<ol><li>需要重新增加一个新接口来适配老接口</li><li>然后让用户去用新接口</li></ol></li><li>装饰器模式是原来的接口<code>可以</code>继续用，<ol><li>但是还要新增一些装饰性的东西</li></ol></li></ol><h4 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h4><ol><li>手机壳 对于手机</li><li>手机屏幕 对于手机</li><li>手机环 对于手机</li></ol><h3 id="演示-4"><a href="#演示-4" class="headerlink" title="演示"></a>演示</h3><ol><li>UML 类图</li><li>代码演示</li></ol><h4 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h4><pre><code class="UML">      ---------------------------                                    
+      |         Clent           |
+      ---------------------------
+      |  + cricle: Cricle       |
+      |  + dec: Decorator       |
+      ---------------------------
+      | + main(): void          |
+      ---------------------------
+                  |
+                  ▼
+      ---------------------------                                    
+      |         Decorator       |
+      ---------------------------
+      |  + cricle: Cricle       |
+      ---------------------------
+      | + draw(): void          |
+      | + setRedBorder(): void  |
+      ---------------------------
+                  |
+                  ▼
+      ---------------------------                                    
+      |         Cricle          |
+      ---------------------------
+      |                         |
+      ---------------------------
+      | + draw():void           |
+      ---------------------------
+</code></pre><h4 id="代码演示-2"><a href="#代码演示-2" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">  class Cricle {
+    draw () {
+      console.log(&#39;画一个圆&#39;);
+    }
+  }
+
+  class Decorator {
+    constructor (cricle) {
+      this.cricle = cricle;
+    }
+    draw () {
+      this.cricle.draw()
+      this.setRedBorder();
+    }
+    setRedBorder () {
+      console.log(&#39;给圆加一个红色边框&#39;);
+    }
+  }
+
+  // 测试代码
+  let cricle = new Cricle();
+  cricle.draw();
+
+  let dec = new Decorator(cricle);
+  dec.draw();
+</code></pre><h3 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h3><ol><li>ES7 装饰器</li><li>core-decorators 第三方装饰器的库</li></ol><h4 id="ES7-装饰器"><a href="#ES7-装饰器" class="headerlink" title="ES7 装饰器"></a>ES7 装饰器</h4><ol><li>配置环境</li><li>装饰类</li><li>装饰方法</li></ol><h5 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h5><ol><li><code>npm install babel-plugin-transform-decorators-legacy -save-dev</code></li><li>修改 .babelrc<pre><code class="json"> {
+   &quot;presets&quot;: [&quot;es2015&quot;, &quot;latest&quot;],
+   &quot;plugins&quot;: [&quot;transform-decorators-legacy&quot;]
+ }
+</code></pre></li><li><p>验证环境</p><pre><code class="js"> @testDec
+ class Demo {}
+
+ function testDec(target) {
+   target.isDec = true;
+ }
+ alert(Demo.isDec)// true
+</code></pre></li></ol><h5 id="装饰类"><a href="#装饰类" class="headerlink" title="装饰类"></a>装饰类</h5><ol><li>@方法名 表示给某一个类进行一个装饰，<ol><li>装饰的行为都在方法体中</li><li>方法参数 target 表示要被装饰的类</li><li>方法体中对这个类进行装饰</li></ol></li><li><p>代码示例</p><pre><code class="js"> @testDec
+ class Demo {}
+
+ function testDec(target) {
+   target.isDec = true;
+ }
+ alert(Demo.isDec)// true
+</code></pre><pre><code class="js"> // 带参数
+ @testDec(false)
+ class Demo {}
+
+ function testDec(isDec) {
+   return function (target) {
+     target.isDec = isDec;
+   }
+ }
+ alert(Demo.isDec)// false
+</code></pre><pre><code class="js"> function mixins (...list) {
+   return function (target) {
+     // 给 类的原型 添加多个成员 // 也就是浅克隆  深克隆是 Object.create()
+     Object.assign(target.prototype, ...list)
+   }
+ }
+
+ const Foo = {
+   foo () { alert(&#39;foo&#39;) }
+   foo2 () { alert(&#39;foo2&#39;) }
+ }
+
+ @mixins(Foo)
+ class MyClass {}
+
+ let obj = new MyClass();
+ obj.foo() // &#39;foo&#39;
+ obj.foo2() // &#39;foo2&#39;
+</code></pre></li><li><p>原理</p><pre><code class="js"> // 装饰器的原理
+ @decorator
+ class A {}
+
+ // 等同于
+ class A {}
+ A = decorator(A) || A;
+</code></pre></li></ol><h5 id="装饰方法"><a href="#装饰方法" class="headerlink" title="装饰方法"></a>装饰方法</h5><ol><li><p>代码演示</p><pre><code class="js"> function readonly (target, name, descriptor){
+   // descriptor对象原来的值如下
+   // {
+   //   value: specifiedFunction,
+   //   enumerable: false,
+   //   configurable: true,
+   //   writable: true
+   // };
+   descriptor.writable = false;
+   return descriptor;
+ }
+
+ class Person {
+   constructor () {
+       this.first = &#39;A&#39;
+       this.last = &#39;B&#39;
+   }
+
+   @readonly
+   name() { return `${this.first} ${this.last}` }
+ }
+
+ var p = new Person()
+ console.log(p.name())
+ p.name = function () {} // 这里会报错，因为 name 是只读属性
+
+</code></pre><pre><code class="js"> function log (target, name, descriptor) {
+   var oldValue = descriptor.value;
+
+   descriptor.value = function () {
+     console.log(`Calling ${name} with`, arguments);
+     return oldValue.apply(this, arguments);
+   };
+
+   return descriptor;
+ }
+
+ class Math {
+   @log
+   add (a, b) {
+     return a + b;
+   }
+ }
+
+ const math = new Math();
+ const result = math.add(2, 4);
+ console.log(&#39;result&#39;, result);
+</code></pre></li></ol><h4 id="core-decorators-第三方装饰器的库"><a href="#core-decorators-第三方装饰器的库" class="headerlink" title="core-decorators 第三方装饰器的库"></a>core-decorators 第三方装饰器的库</h4><ol><li>第三方开源 lib</li><li>提供常用的装饰器</li><li>查阅文档： github.com/jayphelps/core-decorators</li><li>安装： <code>npm i core-decorators --save</code></li><li><p>简单示例</p><pre><code class="js"> // 首先安装 npm i core-decorators --save
+
+ // 开始编码：
+ import { readonly } from &#39;core-decorators&#39;
+
+ class Person {
+   @readonly
+   name() {
+     return &#39;zhang&#39;
+   }
+ }
+
+ let p = new Person()
+ console.log(p.name())
+ p.name = function () {} // 这里会报错，因为 name 是只读属性
+</code></pre><pre><code class="js"> // 告诉用户 当前自己写的类里 哪些api已经被弃用了，
+ // 让用户不要再使用了，也就是以警告的方式提示
+
+ import { deprecate } from &#39;core-decorators&#39;;
+
+ class Person {
+   // 只输出警告标志
+   @deprecate
+   name () {}
+
+   // 输出警告标志加信息
+   @deprecate(&#39;即将被废用&#39;)
+   eat () {}
+
+   // 输出警告标志加信息，并且输出详细信息链接
+   @deprecate (&#39;即将被废用&#39;, { url: &#39;http://knowyourmeme.com/memes/facepalm&#39; })
+   sayHi() {}
+ }
+
+ let person = new Person();
+ person.facepalm();// 警告
+ person.facepalmHard(); // 警告+信息
+ person.facepalmHarder();// 警告+信息+详情url
+</code></pre></li><li>如果自己做的类库或者框架，<ol><li>使用了deprecate这样的装饰器</li><li>那么在做升级的时候，就比较友好了</li><li>这样也是一种对用户负责的体现</li></ol></li></ol><p>####　设计原则验证</p><ol><li>将现有对象和装饰器进行分离，两者独立存在<ol><li>新的装饰是新的，原有的对象还是原有的。</li></ol></li><li>符合开放封闭原则<ol><li>装饰的时候并没有去改原有对象</li><li>在原有的基础上加一些功能</li></ol></li></ol><h3 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和示例</li><li>UML类图和演示</li><li>经典使用场景</li></ol><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍-4"><a href="#介绍-4" class="headerlink" title="介绍"></a>介绍</h3><ol><li>使用者无权访问目标对象</li><li>中间加代理，通过代理做授权和控制</li></ol><h4 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h4><ol><li>科学上网，访问 github.com</li><li>明星经纪人</li></ol><h3 id="演示-5"><a href="#演示-5" class="headerlink" title="演示"></a>演示</h3><h4 id="UML-类图-1"><a href="#UML-类图-1" class="headerlink" title="UML 类图"></a>UML 类图</h4><pre><code class="UML">      ---------------------------                                    
+      |         Clent           |
+      ---------------------------
+      | + proxyImg: ProxyImg    |
+      ---------------------------
+      | + main(): void          |
+      ---------------------------
+                  |
+                  ▼
+      ---------------------------                                    
+      |         ProxyImg        |
+      ---------------------------
+      | + realImg: RealImg      |
+      ---------------------------
+      | + display(): void       |
+      ---------------------------
+                  |
+                  ▼
+      ---------------------------                                    
+      |         RealImg         |
+      ---------------------------
+      | + fileName: String      |
+      ---------------------------
+      | + display():void        |
+      | + loadFromDisk(): void  |
+      ---------------------------
+</code></pre><h4 id="代码演示-3"><a href="#代码演示-3" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">  class RealImg {
+
+    constructor (fileName) {
+      this.fileName = fileName
+      this.loadFromDisk()
+    }
+
+    display () {
+      console.log(&quot;显示:&quot;+this.fileName)
+    }
+
+    loadFromDisk () {
+      console.log(&quot;加载...&quot;+this.fileName)
+    }
+
+  }
+
+  class ProxyImg {
+
+    constructor (fileName) {
+      this.realImg = new RealImg(fileName)
+    }
+
+    display () {
+      this.realImg.display()
+    }
+
+  }
+
+  let proxy = new ProxyImg(&#39;./img.png&#39;)
+  proxy.display()
+</code></pre><h3 id="场景-2"><a href="#场景-2" class="headerlink" title="场景"></a>场景</h3><ol><li>网页事件代理</li><li>jQuery的 <code>$.proxy</code></li><li>ES6 Proxy</li></ol><h4 id="网页事件代理"><a href="#网页事件代理" class="headerlink" title="网页事件代理"></a>网页事件代理</h4><ol><li>代码演示<pre><code class="html"> &lt;div id=&quot;div1&quot;&gt;
+   &lt;a href=&quot;#&quot;&gt;a1&lt;/a&gt;
+   &lt;a href=&quot;#&quot;&gt;a2&lt;/a&gt;
+   &lt;a href=&quot;#&quot;&gt;a3&lt;/a&gt;
+   &lt;a href=&quot;#&quot;&gt;a4&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;button&gt;点击增加一个 a 标签&lt;/button&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+   var div1 = document.getElementById(&#39;div1&#39;)
+   // 以事件委托的方式 就是代理
+   div1.addEventListener(&#39;click&#39;, function () {
+     var target = e.target
+     if (e.nodeName === &#39;A&#39;) {
+       alert(target.innerHTML)
+     }
+   })
+ &lt;/script&gt;
+</code></pre></li></ol><h4 id="jQuery的-proxy"><a href="#jQuery的-proxy" class="headerlink" title="jQuery的$.proxy"></a>jQuery的$.proxy</h4><ol><li>代码演示<pre><code class="js"> $(&#39;#div1&#39;).click(function () {
+   // this 符合期望
+   $(this).addClass(&#39;red&#39;)
+ })
+ $(&#39;#div1&#39;).click(function () {
+   setTimeout(function () {
+     // this 不符合期望
+     $(this).addClass(&#39;red&#39;)
+   }, 1000)
+ })
+ // 可以用这种方式解决
+ $(&#39;#div1&#39;).click(function () {
+   var _this = this
+   setTimeout(function () {
+     // _this 符合期望
+     $(_this).addClass(&#39;red&#39;)
+   }, 1000)
+ })
+ // 推荐使用 $.proxy 解决，这样就少定义一个变量
+ $(&#39;#div1&#39;).click(function () {
+   setTimeout($.proxy(function () {
+     // this 符合期望
+     $(this).addClass(&#39;red&#39;)
+   }, this), 1000)
+ })
+</code></pre></li></ol><h4 id="ES6-Proxy"><a href="#ES6-Proxy" class="headerlink" title="ES6 Proxy"></a>ES6 Proxy</h4><ol><li><p>代码演示</p><pre><code class="js"> // 明星
+ let star = {
+   name: &#39;张XX&#39;,
+   age: 25,
+   phone: &#39;star：13910733521&#39;
+ }
+
+ // 经纪人
+ let agent = new Proxy(star, {
+   get: function (target, key) {
+     if (key === &#39;phone&#39;) {
+       // 返回经纪人自己的手机号
+       return &#39;agent：18611112222&#39;
+     }
+     if (key === &#39;price&#39;) {
+       // 明星不报价，经纪人报价
+       return 120000
+     }
+     return target[key]
+   },
+   set: function (target, key, val) {
+     if (key === &#39;customPrice&#39;) {
+       if (val &lt; 100000) {
+         // 最低 10w
+         throw new Error(&#39;价格太低&#39;)
+       } else {
+         target[key] = val
+         return true
+       }
+     }
+   }
+ })
+
+ // 主办方
+ console.log(agent.name)
+ console.log(agent.age)
+ console.log(agent.phone)
+ console.log(agent.price)
+
+ // 想自己提供报价（砍价，或者高价争抢）
+ agent.customPrice = 150000
+ // agent.customPrice = 90000  // 报错：价格太低
+ console.log(&#39;customPrice&#39;, agent.customPrice)
+</code></pre></li></ol><h4 id="设计原则验证-2"><a href="#设计原则验证-2" class="headerlink" title="设计原则验证"></a>设计原则验证</h4><ol><li>代理类和目标类分离，隔离开目标类和使用者</li><li>符合开放封闭原则</li></ol><h3 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和实例</li><li>UML类图和演示</li><li>经典使用场景</li></ol><h3 id="三种模式对比"><a href="#三种模式对比" class="headerlink" title="三种模式对比"></a>三种模式对比</h3><h4 id="代理模式-vs-适配器模式"><a href="#代理模式-vs-适配器模式" class="headerlink" title="代理模式 vs 适配器模式"></a>代理模式 vs 适配器模式</h4><ol><li>适配器模式：提供一个不同的接口（如不同版本的插头）<ol><li>你可以使用原目标类，</li><li>但是你没法用原目标类，</li><li>你只能使用新的适配类</li></ol></li><li>代理模式：提供一模一样的接口<ol><li>你无权使用原目标类，</li><li>通过代理类，</li><li>让你感觉有权使用</li></ol></li></ol><h4 id="代理模式-vs-装饰器模式"><a href="#代理模式-vs-装饰器模式" class="headerlink" title="代理模式 vs 装饰器模式"></a>代理模式 vs 装饰器模式</h4><ol><li>装饰器模式：扩展功能，原有功能不变且可直接使用</li><li>代理模式：显示原有功能，但是经过限制或者阉割之后的</li></ol><h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><h3 id="介绍-5"><a href="#介绍-5" class="headerlink" title="介绍"></a>介绍</h3><ol><li>为子系统中的一组接口提供了一个高层接口</li><li>使用者使用了这个高层接口</li></ol><h3 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h3><ol><li>去医院看病，接待员去挂号、门诊、划价、取药</li></ol><h3 id="场景-3"><a href="#场景-3" class="headerlink" title="场景"></a>场景</h3><ol><li><p>代码示例</p><pre><code class="js"> function bindEvent (elem, type, selector, fn) {
+   if (fn == null) {
+     fn = selector
+     selector = null
+   }
+   // ....
+ }
+
+ // 调用
+ bindEvent(elem, &#39;click&#39;, &#39;#div1&#39;, fn)
+ bindEvent(elem, &#39;click&#39;, fn)
+</code></pre></li></ol><h3 id="设计原则验证-3"><a href="#设计原则验证-3" class="headerlink" title="设计原则验证"></a>设计原则验证</h3><ol><li>不符合单一职责原则和开放封闭原则，<ol><li>因此谨慎使用，不可滥用</li><li>不要为了设计而设计，</li><li>应该为了使用而设计</li></ol></li></ol><h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍-6"><a href="#介绍-6" class="headerlink" title="介绍"></a>介绍</h3><ol><li>发布 &amp; 订阅</li><li>一对多</li></ol><h4 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h4><ol><li>点咖啡，点好之后坐等被叫</li></ol><h3 id="演示-6"><a href="#演示-6" class="headerlink" title="演示"></a>演示</h3><ol><li>UML 类图</li><li>代码演示</li></ol><h4 id="UML-类图-2"><a href="#UML-类图-2" class="headerlink" title="UML 类图"></a>UML 类图</h4><pre><code class="UML">      ---------------------------                                    
+      |         Observer        |
+      ---------------------------
+      | + name: String          |
+      | + subject: Subject      |
+      ---------------------------
+      | + update(): void        |
+      ---------------------------
+                  |
+                  ▼
+      --------------------------------
+      |         Subject              |
+      --------------------------------
+      | - observers: Array           |
+      | - state: init                |
+      --------------------------------
+      | + getState(): init           |
+      | + setState(state): void      |
+      | + attach(observer): void     |
+      | + notifyAllObservers(): void |
+      --------------------------------
+</code></pre><h4 id="代码演示-4"><a href="#代码演示-4" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">  // 主题，接收状态变化，触发每个观察者
+  class Subject {
+    constructor () {
+      this.state = 0
+      this.observers = []
+    }
+    getState () {
+      return this.state
+    }
+    setState (state) {
+      this.state = state
+      this.notifyAllObservers()
+    }
+    attach (observer) {
+      this.observers.push(observer)
+    }
+    notifyAllObservers () {
+      this.observers.forEach(observer =&gt; {
+        observer.update()
+      })
+    }
+  }
+
+  // 观察者，等待被触发
+  class Observer {
+    constructor (name, subject) {
+      this.name = name
+      this.subject = subject
+      this.subject.attach(this)
+    }
+    update () {
+      console.log(`${this.name} update, state: ${this.subject.getState()}`)
+    }
+  }
+
+  // 测试代码
+  let s = new Subject()
+  let o1 = new Observer(&#39;o1&#39;, s)
+  let o2 = new Observer(&#39;o2&#39;, s)
+  let o3 = new Observer(&#39;o3&#39;, s)
+
+  s.setState(1)
+  s.setState(2)
+  s.setState(3)
+
+</code></pre><h3 id="场景-4"><a href="#场景-4" class="headerlink" title="场景"></a>场景</h3><ol><li>网页事件绑定</li><li>Promise</li><li>jQuery callbacks</li><li>nodejs 自定义事件</li></ol><h4 id="网页事件绑定"><a href="#网页事件绑定" class="headerlink" title="网页事件绑定"></a>网页事件绑定</h4><ol><li>所有的事件监听都是观察者模式</li><li><p>代码演示</p><pre><code class="html"> &lt;button id=&quot;btn1&quot;&gt;btn&lt;/button&gt;
+
+ &lt;script type=&quot;text/javascript&quot;&gt;
+   $(&#39;#btn1&#39;).click(function () {
+     console.log(1)
+   })
+
+   $(&#39;#btn1&#39;).click(function () {
+     console.log(2)
+   })
+
+   $(&#39;#btn1&#39;).click(function () {
+     console.log(3)
+   })
+ &lt;/script&gt;
+
+</code></pre></li></ol><h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><ol><li>根据状态变化触发 then 或者 catch</li><li><p>代码演示</p><pre><code class="js"> function loadImg (src) {
+   const promise=new Promise(function (resolve,reject) {
+     let img = document.createElement(&#39;img&#39;);
+
+     img.onload = function () {
+       resolve(img);
+     }
+     img.onerror = function () {
+       reject(&#39;图片加载失败&#39;);
+     }
+
+     img.src = src;
+   });
+
+   return promise;
+ }
+
+ let src = &#39;http://www.baidu.com/img1.png&#39;;
+ let result = loadImg(src);
+ result.then(function (img) {
+   console.log(img.width);
+   return img;
+ }).then(function (img) {
+   console.log(img.height);
+   return img;
+ }).catch(function (err) {
+   console.log(err)
+ })
+</code></pre></li></ol><h4 id="jQuery-Callbacks"><a href="#jQuery-Callbacks" class="headerlink" title="jQuery Callbacks"></a>jQuery Callbacks</h4><ol><li>jQuery 中使用观察者模式非常广泛，<ol><li>所以单独封装了一个Callbacks</li></ol></li><li><p>代码演示</p><pre><code class="js"> var callbacks = $.Callbacks(); //注意大小写
+ callbacks.add(function (info) {
+   console.log(&#39;fn1&#39;, info)
+ })
+
+ callbacks.add(function (info) {
+   console.log(&#39;fn2&#39;, info)
+ })
+
+ callbacks.add(function (info) {
+   console.log(&#39;fn3&#39;, info)
+ })
+
+ callbacks.fire(&#39;gogogogo&#39;)
+ callbacks.fire(&#39;fire&#39;)
+
+</code></pre></li></ol><h4 id="nodejs-自定义事件"><a href="#nodejs-自定义事件" class="headerlink" title="nodejs 自定义事件"></a>nodejs 自定义事件</h4><ol><li><p>代码演示</p><pre><code class="js"> const EventEmitter = require(&#39;events&#39;).EventEmitter
+
+ const emitter1 = new EventEmitter()
+ emitter1.on(&#39;some&#39;, () =&gt; {
+   // 监听 some事件
+   console.log(&#39;some event 第二次&#39;)
+ })
+ emitter1.on(&#39;some&#39;, () =&gt; {
+   // 监听 some事件
+   console.log(&#39;some event 第二次&#39;)
+ })
+ // 触发 some事件
+ emitter1.emit(&#39;some&#39;)
+</code></pre><pre><code class="js"> const EventEmitter = require(&#39;events&#39;).EventEmitter
+ const emitter = new EventEmitter()
+ emitter.on(&#39;sbowName&#39;, name =&gt; {
+   console.log(&#39;some event 第二次&#39;, name)
+ })
+ // emit 的时候可以传递参数进去
+ emitter.emit(&#39;sbowName&#39;, &#39;zhangsan&#39;)
+</code></pre><pre><code class="js"> const EventEmitter = require(&#39;events&#39;).EventEmitter
+
+ // 任何构造函数都可以继承 EventEmitter 的方法 on emit
+ class Dog extends EventEmitter {
+   constructor (name) {
+     super()
+     this.name = name
+   }
+ }
+
+ var simon = new Dog(&#39;simon&#39;) 
+ simon.on(&#39;bark&#39;, function() {
+   console.log(this.name, &#39;barked&#39;)
+ })
+
+ setInterval(() =&gt; {
+   simon.emit(&#39;bark&#39;)
+ }, 500)
+</code></pre><pre><code class="js"> // Stream 用到了自定义事件
+ var fs = require(&#39;fs&#39;)
+ // 读取文件的 Stream
+ var readStream = fs.createReadStream(&#39;./data/file1.txt&#39;)
+
+ var length = 0
+ // 监听一段一段的数据
+ readStream.on(&#39;data&#39;, function (chunk) {
+   length += chunk.toString().length
+ })
+ readStream.on(&#39;end&#39;, function () {
+   console.log(length)
+ })
+</code></pre><pre><code class="js"> // readline 用到了自定义事件
+ var readline = require(&#39;readline&#39;);
+ var fs = require(&#39;fs&#39;)
+
+ var rl = readline.createInterface({
+   input: fs.createReadStream(&#39;./data/file1.txt&#39;)
+ })
+
+ var lineNum = 0
+ // 监听一行一行的数据
+ rl.on(&#39;line&#39;, function (line) {
+   lineNum ++
+ })
+ readStream.on(&#39;close&#39;, function () {
+   console.log(&#39;lineNum&#39;, lineNum)
+ })
+</code></pre></li></ol><h3 id="其它场景"><a href="#其它场景" class="headerlink" title="其它场景"></a>其它场景</h3><ol><li>nodejs中：处理http请求，多进程通讯</li><li>vue和react组件生命周期触发</li><li>vue的watch</li><li>vue的 bus总线 传值</li></ol><h4 id="nodejs-处理http请求"><a href="#nodejs-处理http请求" class="headerlink" title="nodejs 处理http请求"></a>nodejs 处理http请求</h4><pre><code class="js">  // 网络通信
+  function serverCallback(req, res) {
+    var method = req.method.toLowerCase() // 获取请求的方法
+    if (method === &#39;get&#39;) {
+      // 省略 3 行，上文代码示例中处理 GET 请求的代码
+    }
+    if (method === &#39;post&#39;) {
+      // 接收 post 请求的内容
+      var data = &#39;&#39;
+      req.on(&#39;data&#39;, function (chunk) {
+        // 一点一点 接收内容
+        data += chunk.toString()
+      })
+      req.on(&#39;end&#39;, function () {
+        // 接收完毕，将内容输出
+        res.writeHead(200, {&#39;Content-type&#39;: &#39;text/html&#39;})
+        res.write(data)
+        res.end()
+      })
+    }
+  }
+</code></pre><pre><code class="js">  // 多进程通信
+  // parent.js
+  var cp = require(&#39;child_process&#39;)
+  var n = cp.for(&#39;./sub.js&#39;)
+  n.on(&#39;message&#39;, function (m) {
+    console.log(&#39;parent got message&#39; + m)
+  })
+  n.send({helle: &#39;workd&#39;})
+
+  // sub.js
+  process.on(&#39;message&#39;, function (m) {
+    console.log(&#39;child got message:&#39; + m)
+  })
+  process.send({foo: &#39;bar&#39;})
+
+</code></pre><pre><code class="react">  // 生命周期
+  class Login extends React.Component {
+    constructor (props, context) {
+      super(props, context);
+      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+      this.state = {
+        checking: true
+      }
+    }
+    render () {
+      return (
+        &lt;div&gt;
+          &lt;Header title=&quot;登陆&quot; history= {this.props.history} /&gt;
+        &lt;/div&gt;
+      )
+    }
+    componentDidMount() {
+      // 判断是否已经登陆
+      this.doCheck()
+    }
+  }
+</code></pre><pre><code class="vue">  // vue 的whtach
+  var vm = new Vue({
+    el: &#39;#demo&#39;,
+    data: {
+      firstName: &#39;Foo&#39;,
+      lastName: &#39;Bar&#39;,
+      fullName: &#39;Foo Bar&#39;
+    },
+    watch: {
+      firstName: function (val) {
+        this.fullName = val + &#39; &#39; + this.lastName
+      },
+      lastName: function (val) {
+        this.fullName = this.firstName + &#39; &#39; + val
+      }
+    }
+  })
+</code></pre><h4 id="设计原则验证-4"><a href="#设计原则验证-4" class="headerlink" title="设计原则验证"></a>设计原则验证</h4><ol><li>主题和观察者分离，不是主动触发而是被动监听，两者解耦<ol><li>你叫一杯咖啡，你不主动去等，</li><li>你可以去看个电视看本书，咖啡来了就可以喝了。</li></ol></li><li>符合开放封闭原则</li></ol><h3 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和示例</li><li>UML类图和演示</li><li>经典实用场景</li></ol><h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍-7"><a href="#介绍-7" class="headerlink" title="介绍"></a>介绍</h3><ol><li>顺序访问一个集合</li><li>使用者无需知道集合的内部结构（封装）</li></ol><h4 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h4><ol><li>没有合适的示例，用常用的jQuery 演示一下</li><li><p>代码演示</p><pre><code class="html"> &lt;p&gt;jquery each&lt;/p&gt;
+ &lt;p&gt;jquery each&lt;/p&gt;
+ &lt;p&gt;jquery each&lt;/p&gt;
+
+ &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.js&quot;&gt;&lt;/script&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+   var arr = [1, 2, 3]
+   var nodeList = document.getElementsByTagName(&#39;p&#39;)
+   var $p = $(&#39;p&#39;)
+
+   // 要对这三个变量进行遍历，需要写三个遍历方法
+
+   // 第一
+   arr.forEach(function (item) {
+     console.log(item)
+   })
+
+   // 第二
+   var i, length = nodeList.length
+   for (var i = 0; i &lt; length; i++) {
+     console.log(nodeList[i])
+   }
+
+   // 第三
+   $p.each(function (key, p) {
+     console.log(key, p)
+   })
+ &lt;/script&gt;
+
+</code></pre><pre><code class="html"> &lt;p&gt;jquery each&lt;/p&gt;
+ &lt;p&gt;jquery each&lt;/p&gt;
+ &lt;p&gt;jquery each&lt;/p&gt;
+
+ &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.js&quot;&gt;&lt;/script&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+   var arr = [1, 2, 3]
+   var nodeList = document.getElementsByTagName(&#39;p&#39;)
+   var $p = $(&#39;p&#39;)
+
+   // 要对这三个变量进行遍历，写一个统一的遍历方法
+   function each (data, fn) {
+     var $data = $(data) // 生成迭代器
+     $data.each(fn);
+   }
+   // 顺序遍历有序集合
+   // 使用者不必知道集合的内部结构
+
+   each(arr, function (key, item) {
+     console.log(key, item)
+   })
+
+   each(nodeList, function (key, item) {
+     console.log(key, item)
+   })
+
+   each($p, function (key, item) {
+     console.log(key, item)
+   })
+
+ &lt;/script&gt;
+
+</code></pre></li></ol><h3 id="演示-7"><a href="#演示-7" class="headerlink" title="演示"></a>演示</h3><ol><li>UML 类图</li><li>代码演示</li></ol><h4 id="UML-类图-3"><a href="#UML-类图-3" class="headerlink" title="UML 类图"></a>UML 类图</h4><pre><code class="UML">      -----------------------------
+      |         Container         |
+      -----------------------------
+      | + list: Array             |
+      -----------------------------
+      | + getIterator(): Iterator |
+      -----------------------------
+                  |
+                  ▼
+      ---------------------------                               
+      |         Iterator        |
+      ---------------------------
+      | - list: Array           |
+      | - index: int            |
+      ---------------------------
+      | + next(): Object        |
+      | + hasNext(): boolean    |
+      ---------------------------
+
+</code></pre><h4 id="代码演示-5"><a href="#代码演示-5" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">
+  class Container {
+    constructor (list) {
+      this.list = list
+    }
+
+    // 生成遍历器
+    getIterator () {
+      return new Iterator(this)
+    }
+  }
+
+  class Iterator {
+    constructor (container) {
+      this.list = container.list
+      this.index = 0
+    }
+    next () {
+      if (this.hasNext()) {
+        return this.list[this.index++]
+      } else {
+        return null
+      }
+    }
+    hasNext () {
+      if (this.index &gt;= this.list.length) {
+        return false
+      } else {
+        return true
+      }
+    }
+  }
+
+  // 测试
+  let arr = [1, 2, 3, 4, 5, 6]
+  let container = new Container(arr)
+  let iterator = container.getIterator()
+  while(iterator.hasNext()) {
+    console.log(iterator.next())
+  }
+
+</code></pre><h3 id="场景-5"><a href="#场景-5" class="headerlink" title="场景"></a>场景</h3><ol><li>jQuery each</li><li>ES6 iterator</li></ol><h4 id="jQuery-each"><a href="#jQuery-each" class="headerlink" title="jQuery each"></a>jQuery each</h4><pre><code class="js">
+  var arr = [1, 2, 3]
+  var nodeList = document.getElementsByTagName(&#39;p&#39;)
+  var $p = $(&#39;p&#39;)
+
+  // 要对这三个变量进行遍历，写一个统一的遍历方法
+  function each (data, fn) {
+    var $data = $(data) // 生成迭代器
+    $data.each(fn);
+  }
+  // 顺序遍历有序集合
+  // 使用者不必知道集合的内部结构
+
+  each(arr, function (key, item) {
+    console.log(key, item)
+  })
+
+  each(nodeList, function (key, item) {
+    console.log(key, item)
+  })
+
+  each($p, function (key, item) {
+    console.log(key, item)
+  })
+
+</code></pre><h4 id="ES6-iterator"><a href="#ES6-iterator" class="headerlink" title="ES6 iterator"></a>ES6 iterator</h4><h5 id="ES6-iterator-为何存在？"><a href="#ES6-iterator-为何存在？" class="headerlink" title="ES6 iterator 为何存在？"></a>ES6 iterator 为何存在？</h5><ol><li>ES6 语法中，有序集合的数据类型已经有很多</li><li>Array Map Set String TypedArray arguments NodeList</li><li>需要有一个统一的遍历接口来遍历所有数据类型</li><li>(注意，object 不是有序集合，可以用Map代替)</li></ol><h5 id="ES6-Iterator-是什么？"><a href="#ES6-Iterator-是什么？" class="headerlink" title="ES6 Iterator 是什么？"></a>ES6 Iterator 是什么？</h5><ol><li>有序集合的数据类型，都有<code>[Symbol.iterator]</code>属性</li><li>属性值是函数，执行函数返回一个迭代器</li><li>这个迭代器就有 next方法可顺序迭代子元素</li><li>可运行 <code>Array.prototype[Symbol.iterator]</code> 来测试<pre><code class="js"> Array.prototype[Symbol.iterator]
+ //输出： f values() {native code}
+ Array.prototype[Symbol.iterator]()
+ //输出：&gt;Array Iterator {}
+ Array.prototype[Symbol.iterator]().next()
+ //输出：&gt; {value: undefined, done: true}
+</code></pre></li></ol><h5 id="ES6-Iterator-示例"><a href="#ES6-Iterator-示例" class="headerlink" title="ES6 Iterator 示例"></a>ES6 Iterator 示例</h5><pre><code class="js">  let arr = [1, 2, 3, 4]
+  let nodeList = document.getElementsByTagName(&#39;p&#39;)
+  let m = new Map()
+  m.set(&#39;a&#39;, 100)
+  m.set(&#39;b&#39;, 200)
+
+  each(arr)
+  each(nodeList)
+  each(m)
+
+  function each (data) {
+    // 生成遍历器
+    let iterator = data[Symbol.iterator]()
+
+    // console.log(iterator.next())  // 有数据时返回 {value: 1, done: false}
+    // console.log(iterator.next())
+    // console.log(iterator.next())
+    // console.log(iterator.next())
+    // console.log(iterator.next())  // 没有数据时返回 {value: undefined, done: true}
+
+    // 这个部分是自己封装的
+    let item = {done: false}
+    while (!item.done) {
+      item = iterator.next()
+      if (!item.done) {
+        console.log(item.value)
+      }
+    }
+  }
+</code></pre><pre><code class="js">  let arr = [1, 2, 3, 4]
+  let nodeList = document.getElementsByTagName(&#39;p&#39;)
+  let m = new Map()
+  m.set(&#39;a&#39;, 100)
+  m.set(&#39;b&#39;, 200)
+
+  // `Symbol.iterator` 并不是人人都知道
+  // 也不是每个人都需要封装一个 each 方法
+  // 因此有了 `for...of` 语法
+  function each (data) {
+    // 这个地方是 浏览器自带的
+    // data 必须具备 Symbol.iterator这个属性
+    // 不然无法使用 of 
+    // of 专门用来遍历 带有迭代器特性的对象
+    // 带有迭代器特性的对象：[Symbol.iterator]属性值不为空
+    for (let item of data) {
+      console.log(item)
+    }
+  }
+
+  each(arr)
+  each(nodeList)
+  each(m)
+
+</code></pre><h5 id="ES6-Iterator-与-Generator"><a href="#ES6-Iterator-与-Generator" class="headerlink" title="ES6 Iterator 与 Generator"></a>ES6 Iterator 与 Generator</h5><ol><li>Iterator 的价值不限于 有序集合的数据类型的 遍历</li><li>还有 Generator 函数的使用</li><li>只要返回的数据符合 Iterator 接口的要求<ol><li><code>[Symbol.iterator]</code>属性值不为空</li><li>也就是带有迭代器特性的对象</li></ol></li><li>可使用Iterator 语法，这就是迭代器模式</li><li><p>代码示例</p><pre><code class="js"> function* helloWorldGenerator () {
+   yield &#39;hello&#39;;
+   yield &#39;world&#39;;
+   return &#39;ending&#39;;
+ }
+ var hw = helloWorldGenerator();
+ console.log(hw[Symbol.iterator])
+ //输出： f values() {native code}
+ //可以看出，Generator 函数返回的结果，实现了Iterator 接口
+
+</code></pre><pre><code class="js"> function* foo () {
+   yield 1;
+   yield 2;
+   yield 3;
+   yield 4;
+   return 5;
+ }
+
+ // 使用 for ... of
+ // 但是 最后 return 的结果不会被遍历出来
+ // 因为内部做了判断 如果 done值为true 就不会输出了 
+ for (let v of foo()) {
+   console.log(v)
+ }
+</code></pre></li></ol><h4 id="设计原则验证-5"><a href="#设计原则验证-5" class="headerlink" title="设计原则验证"></a>设计原则验证</h4><ol><li>迭代器对象和目标对象分离<ol><li>目标对象被封装了</li><li>通过getIterator()返回一个迭代器</li><li>这样 迭代器对象与目标对象表面上就分离了</li></ol></li><li>迭代器将使用者与目标对象隔离开<ol><li>使用者不需要了解 目标对象的长度和数据结构</li></ol></li><li>符合开放封闭原则</li></ol><h3 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和示例</li><li>UML类图和演示</li><li>经典使用场景</li></ol><h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><ol><li>介绍</li><li>演示</li><li>场景</li><li>总结</li></ol><h3 id="介绍-8"><a href="#介绍-8" class="headerlink" title="介绍"></a>介绍</h3><ol><li>一个对象有状态变化</li><li>每次状态变化都会触发一个逻辑</li><li>不能总是用if…else 来控制</li></ol><h4 id="示例-8"><a href="#示例-8" class="headerlink" title="示例"></a>示例</h4><ol><li>交通信号灯不同颜色的变化</li></ol><h3 id="演示-8"><a href="#演示-8" class="headerlink" title="演示"></a>演示</h3><ol><li>UML类图</li><li>代码演示</li></ol><h4 id="UML类图-1"><a href="#UML类图-1" class="headerlink" title="UML类图"></a>UML类图</h4><pre><code class="UML">      -----------------------------
+      |         Context           |
+      -----------------------------
+      | - state: State            |
+      -----------------------------
+      | + getState(): State       |
+      | + setState(state): void   |
+      -----------------------------
+                  |
+                  ▼
+      ---------------------------                               
+      |         State           |
+      ---------------------------
+      | - color: String         |
+      ---------------------------
+      | + handle(context): void |
+      ---------------------------
+
+</code></pre><h4 id="代码演示-6"><a href="#代码演示-6" class="headerlink" title="代码演示"></a>代码演示</h4><pre><code class="js">  class State {
+    constructor(color) {
+      this.color = color
+    }
+    handle (context) {
+      console.log(`切换到 ${this.color} 灯`)
+      context.setState(this)
+    }
+  }
+
+  class Context {
+    constructor () {
+      this.state = null
+    }
+    setState (state) {
+      this.state = state
+    }
+    getState () {
+      return this.state
+    }
+  }
+
+  // 测试代码
+  let context = new Context()
+
+  let gree = new State(&#39;gree&#39;)
+  let yellow = new State(&#39;yellow&#39;)
+  let red = new State(&#39;red&#39;)
+
+  // 绿灯亮了
+  gree.handle(context)
+  console.log(context.getState()) // 打印状态
+  // 黄灯亮了
+  yellow.handle(context)
+  console.log(context.getState()) // 打印状态
+  // 红灯亮了
+  red.handle(context)
+  console.log(context.getState()) // 打印状态
+
+</code></pre><h3 id="场景-6"><a href="#场景-6" class="headerlink" title="场景"></a>场景</h3><ol><li>有限状态机（有限状态下 切换 的一个机制）</li><li>写一个简单的 Promise</li></ol><h4 id="有限状态机"><a href="#有限状态机" class="headerlink" title="有限状态机"></a>有限状态机</h4><ol><li>有限个状态、以及在这些状态之间的变化</li><li>如交通信号灯</li><li>使用开源 lib：javascript-state-machine<ol><li>安装： npm i javascript-state-machine –save</li></ol></li><li><code>https://github.com/jakesgordon/javascript-state-machine</code></li><li><p>代码示例</p><pre><code class="html"> &lt;p&gt;有限状态机&lt;/p&gt;
+ &lt;button id=&quot;btn&quot;&gt;&lt;/button&gt;
+
+ &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;./03-javascript-state-machine.js&quot;&gt;&lt;/script&gt;
+ &lt;script&gt;
+     // 状态机模型
+     var fsm = new StateMachine({
+         init: &#39;收藏&#39;,  // 初始状态，待收藏
+         transitions: [
+           {
+             name: &#39;doStore&#39;, 
+             from: &#39;收藏&#39;,
+             to: &#39;取消收藏&#39;
+           },
+           {
+             name: &#39;deleteStore&#39;,
+             from: &#39;取消收藏&#39;,
+             to: &#39;收藏&#39;
+           }
+         ],
+         methods: {
+           // 执行收藏 
+           // 与transitions 中的name对应，但是转换过来是驼峰命名法
+           onDoStore: function () {
+             alert(&#39;收藏成功&#39;)
+             updateText()
+           },
+           // 取消收藏
+           onDeleteStore: function () {
+             alert(&#39;已取消收藏&#39;)
+             updateText()
+           }
+         }
+     })
+
+     var $btn = $(&#39;#btn&#39;)
+
+     // 点击事件
+     $btn.click(function () {
+       if (fsm.is(&#39;收藏&#39;)) {
+         fsm.doStore()
+       } else {
+         fsm.deleteStore()
+       }
+     })
+
+     // 更新文案
+     function updateText() {
+       $btn.text(fsm.state)
+     }
+
+     // 初始化文案
+     updateText()
+ &lt;/script&gt;
+</code></pre><pre><code class="js"> // webpack打包的方式写
+ import StateMachine from &#39;javascript-state-machine&#39;
+ import $ from &#39;jquery&#39;
+
+ // 状态机模型
+ let fsm = new StateMachine({
+     init: &#39;收藏&#39;,  // 初始状态，待收藏
+     transitions: [
+       {
+         name: &#39;doStore&#39;, 
+         from: &#39;收藏&#39;,
+         to: &#39;取消收藏&#39;
+       },
+       {
+         name: &#39;deleteStore&#39;,
+         from: &#39;取消收藏&#39;,
+         to: &#39;收藏&#39;
+       }
+     ],
+     methods: {
+       // 执行收藏 
+       // 与transitions 中的name对应，但是转换过来是驼峰命名法
+       onDoStore: function () {
+         alert(&#39;收藏成功&#39;)
+         updateText()
+       },
+       // 取消收藏
+       onDeleteStore: function () {
+         alert(&#39;已取消收藏&#39;)
+         updateText()
+       }
+     }
+ })
+
+ let $btn = $(&#39;#btn&#39;)
+
+ // 点击事件
+ $btn.click(function () {
+   if (fsm.is(&#39;收藏&#39;)) {
+     fsm.doStore(1)
+   } else {
+     fsm.deleteStore()
+   }
+ })
+
+ // 更新文案
+ function updateText() {
+   $btn.text(fsm.state)
+ }
+
+ // 初始化文案
+ updateText()
+</code></pre></li></ol><h4 id="简单的-Promise"><a href="#简单的-Promise" class="headerlink" title="简单的 Promise"></a>简单的 Promise</h4><ol><li>回顾Promise的语法</li><li>分析：Promise 就是一个有限状态机</li><li>写代码</li><li>测试</li><li><p>代码示例</p><pre><code class="html"> &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;./03-javascript-state-machine.js&quot;&gt;&lt;/script&gt;
+ &lt;script&gt;
+     // 模型
+     var fsm = new StateMachine({
+       init: &#39;pending&#39;,
+       transitions: [
+         {
+           name: &#39;resolve&#39;,
+           from: &#39;pending&#39;,
+           to: &#39;fullfilled&#39;
+         },
+         {
+           name: &#39;reject&#39;,
+           from: &#39;pending&#39;,
+           to: &#39;rejected&#39;
+         }
+       ],
+       methods: {
+         // 成功
+         onResolve: function (state, data) {
+           // 参数：state - 当前状态示例; data - fsm.resolve(xxx) 执行时传递过来的参数
+           data.successList.forEach(fn =&gt; fn())
+         },
+         // 失败
+         onReject: function (state, data) {
+           // 参数：state - 当前状态示例; data - fsm.reject(xxx) 执行时传递过来的参数
+           data.failList.forEach(fn =&gt; fn())
+         }
+       }
+     })
+
+     // 定义 Promise
+     class MyPromise {
+       constructor (fn) {
+         this.successList = []
+         this.failList = []
+
+         fn(() =&gt; {
+           // resolve 函数
+           fsm.resolve(this)
+         }, () =&gt; {
+           // reject 函数
+           fsm.reject(this)
+         })
+       }
+       then (successFn, failFn) {
+         this.successList.push(successFn)
+         this.failList.push(failFn)
+       }
+     }
+
+     // 测试代码
+     function loadImg (src) {
+       const promise = new MyPromise(function (resolve, reject) {
+         var img = document.createElement(&#39;img&#39;)
+         img.onload = function () {
+             resolve(img)
+         }
+         img.onerror = function () {
+             reject()
+         }
+         img.src = src
+       })
+       return promise
+     }
+     var src = &#39;http://www.imooc.com/static/img/index/logo_new.png&#39;
+     var result = loadImg(src)
+     console.log(result)
+
+     result.then (function (img) {
+       console.log(&#39;success 1&#39;)
+     }, function () {    
+       console.log(&#39;failed 1&#39;)
+     })
+     result.then (function (img) {
+       console.log(&#39;success 2&#39;)
+     }, function () {    
+       console.log(&#39;failed 2&#39;)
+     })
+
+ &lt;/script&gt;
+</code></pre></li></ol><h4 id="设计原则验证-6"><a href="#设计原则验证-6" class="headerlink" title="设计原则验证"></a>设计原则验证</h4><ol><li>将状态对象和主题对象分离，状态的变化逻辑单独处理<ol><li>state 和 context要分离</li><li>如果不分离，状态变化肯定是混到一块儿的</li></ol></li><li>符合开放封闭原则</li></ol><h3 id="总结-8"><a href="#总结-8" class="headerlink" title="总结"></a>总结</h3><ol><li>介绍和实例</li><li>UML类图和演示</li><li>经典使用场景</li></ol><h2 id="其它设计模式"><a href="#其它设计模式" class="headerlink" title="其它设计模式"></a>其它设计模式</h2><ol><li>优先级划分依据</li><li>讲解方式</li><li>有哪些设计模式</li></ol><h3 id="优先级划分依据"><a href="#优先级划分依据" class="headerlink" title="优先级划分依据"></a>优先级划分依据</h3><ol><li>不常用</li><li>对应不到经典的应用场景</li></ol><h3 id="讲解方式"><a href="#讲解方式" class="headerlink" title="讲解方式"></a>讲解方式</h3><ol><li>代码演示，说明该设计模式的目的和用意</li><li>不再画 UML类图（此前画过N次了）</li></ol><h3 id="有哪些设计模式"><a href="#有哪些设计模式" class="headerlink" title="有哪些设计模式"></a>有哪些设计模式</h3><ol><li>创建型<ol><li>原型模式</li></ol></li><li>结构型<ol><li>桥接模式</li><li>组合模式</li><li>享元模式</li></ol></li><li>行为型<ol><li>策略模式</li><li>模板方法模式</li><li>职责链模式</li><li>命令模式</li><li>备忘录模式</li><li>中介者模式</li><li>访问者模式</li><li>解释器模式</li></ol></li></ol><h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><ol><li>clone 自己，生成以新对象</li><li>java 默认有clone接口，不用自己实现</li><li><code>JS 中的应用 - Object.create</code></li></ol><h5 id="对比JS中的原型-prototype"><a href="#对比JS中的原型-prototype" class="headerlink" title="对比JS中的原型 prototype"></a>对比JS中的原型 prototype</h5><ol><li>prototype 可以理解为 ES6 class的一种底层原理</li><li>而 class 是实现面向对象的基础，并不是服务于某个模式</li><li>若干年后 ES6全面普及，大家可能会忽略掉 prototype</li><li>但是 Object.create 却会长久存在</li></ol><h4 id="演示-9"><a href="#演示-9" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  // `Object.create` 用到了原型模式的思想
+  // （虽然不是 java 中 的clone）
+  // 基于原型创建 一个对象
+  var prototypeObj = {
+    getName: function () {
+      return this.first + &#39; &#39; + this.last
+    },
+    say: function () {
+      console.log(&#39;hello&#39;)
+    }
+  }
+
+  // 基于原型创建 x
+  var x = Object.create(prototypeObj)
+  x.first = &#39;A&#39;
+  x.last = &#39;B&#39;
+  console.log(x.getName())
+  x.say()
+
+  // 基于原型创建 y
+  var y = Object.create(prototypeObj)
+  y.first = &#39;C&#39;
+  y.last = &#39;D&#39;
+  console.log(y.getName())
+  y.say()
+
+</code></pre><h4 id="总结-9"><a href="#总结-9" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><ol><li>用于把抽象化与实现化解耦</li><li>使得二者可以独立变化</li><li>（未找到JS中的经典应用）</li><li>画图，颜色与形状混在一块儿了<pre><code class="mspaint">           画图
+         /     \
+     三角形     菱形    
+     /   \     /   \
+    ▲     △   ◇   ◆
+</code></pre></li><li><p>代码示例</p><pre><code class="js"> class ColorShape {
+   yellowCircle () {
+     console.log(&#39;yellow circle&#39;)
+   }
+
+   redCircle () {
+     console.log(&#39;red circle&#39;)
+   }
+
+   yellowTriangle () {
+     console.log(&#39;yellow triangle&#39;)
+   }
+
+   redTriangle () {
+     console.log(&#39;red circle&#39;)
+   }
+
+ }
+
+ // 测试
+ let cs = new ColorShape()
+ cs.yellowCircle()
+ cs.redCircle()
+ cs.yellowTriangle()
+ cs.redTriangle()
+
+</code></pre></li></ol><h4 id="演示-10"><a href="#演示-10" class="headerlink" title="演示"></a>演示</h4><ol><li>画图，颜色和形状分开<pre><code class="mspaint">      画图             颜色
+     /   \            /   \
+   △    ◇        红色   黄色
+    \     \        /     /
+       \    \     /  /
+           \  \ / /
+           颜色图形
+</code></pre></li><li><p>代码示例</p><pre><code class="js"> class Color {
+   constructor (name) {
+     this.name = name
+   }
+ }
+
+ class Shape {
+   constructor (name, color) {
+     this.name = name
+     this.color = color
+   }
+   draw () {
+     console.log(`${this.color.name}  ${this.name}`)
+   }
+ }
+
+ // 测试
+ let red = new Color(&#39;red&#39;)
+ let yellow = new Color(&#39;yellow&#39;)
+
+ let circle = new Shape(&#39;circle&#39;,red)    
+ circle.draw()
+
+ let triangle = new Shape(&#39;triangle&#39;,yellow)    
+ triangle.draw()
+
+</code></pre></li></ol><h5 id="设计原则验证-7"><a href="#设计原则验证-7" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>抽象和实现分离，解耦</li><li>符合开放封闭原则</li></ol><h4 id="总结-10"><a href="#总结-10" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h4><ol><li>生成树形结构，表示 “整体-部分” 关系</li><li>让整体和部分都具有一致的操作方式</li></ol><h5 id="示例-9"><a href="#示例-9" class="headerlink" title="示例"></a>示例</h5><ol><li>磁盘里的文件夹及文件</li></ol><h4 id="演示-11"><a href="#演示-11" class="headerlink" title="演示"></a>演示</h4><ol><li>JS 经典应用中，未找到这么复杂的数据类型</li><li>虚拟 DOM 中的 vnode 是这种形式，但数据类型简单</li><li>（用JS 实现一个菜单，不算经典应用，与业务相关）</li><li>代码演示<pre><code class="html"> &lt;div id=&quot;div1&quot; class=&quot;container&quot;&gt;
+   &lt;p&gt;123&lt;/p&gt;
+   &lt;p&gt;456&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+   var vnode = {
+     tag: &#39;div&#39;,
+     attr: {
+       id: &#39;div1&#39;,
+       className: &#39;container&#39;
+     },
+     children: [
+       {
+         tag: &#39;p&#39;,
+         attr: {},
+         children: [&#39;123&#39;]
+       },
+       {
+         tag: &#39;p&#39;,
+         attr: {},
+         children: [&#39;456&#39;]
+       }
+     ]
+   }
+ &lt;/script&gt;
+</code></pre></li><li>整体和单个节点的操作是一致的</li><li>整体和单个节点的数据结构也保持一致</li></ol><h5 id="设计原则验证-8"><a href="#设计原则验证-8" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>将整体和单个节点的操作抽象出来</li><li>符合开放封闭原则</li></ol><h4 id="总结-11"><a href="#总结-11" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h4><ol><li>共享内存（主要考虑内存，而非效率）</li><li>相同的数据，共享使用</li><li>（JS中未找到经典应用场景）</li></ol><h4 id="演示-12"><a href="#演示-12" class="headerlink" title="演示"></a>演示</h4><pre><code class="html">  &lt;!-- 无限下拉列表，将事件代理到高层节点上 --&gt;
+  &lt;!-- 如果都绑定到`&lt;a&gt;`标签，对内存开销太大 --&gt;
+  &lt;div id=&quot;div1&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;a1&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;a2&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;a3&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;a4&lt;/a&gt;
+    &lt;!-- 无限下拉列表 --&gt;
+  &lt;/div&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    div1.addEventListener(&#39;click&#39;, function () {
+        var target = e.target
+        if (e.nodeName === &#39;A&#39;) {
+          alert(target.innerHTML)
+        }
+      })
+  &lt;/script&gt;
+</code></pre><h5 id="设计原则验证-9"><a href="#设计原则验证-9" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>将相同的部分抽象出来</li><li>符合开放封闭原则</li></ol><h4 id="总结-12"><a href="#总结-12" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h4><ol><li>不同策略分开处理</li><li>避免出现大量 if…else 或者 switch…case</li><li>(JS 中未找到经典应用场景)</li></ol><h4 id="演示-13"><a href="#演示-13" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  class User {
+    constructor (type) {
+      this.type = type
+    }
+    buy () {
+      if (this.type === &#39;ordinary&#39;) {
+        console.log(&#39;普通用户购买&#39;)
+      } else if (this.type === &#39;member&#39;) {
+        console.log(&#39;会员用户购买&#39;)
+      } else if (this.type === &#39;vip&#39;) {
+        console.log(&#39; vip 用户购买&#39;)
+      }
+    }
+  }
+
+  // 测试代码
+  var u1 = new User(&#39;ordinary&#39;)
+  u1.buy()
+  var u2 = new User(&#39;member&#39;)
+  u2.buy()
+  var u3 = new User(&#39;vip&#39;)
+  u3.buy()
+
+</code></pre><pre><code class="js">  class OrdinaryUser {
+    buy () {
+      console.log(&#39;普通用户购买&#39;)
+    }
+  }
+  class MemberUser {
+    buy () {
+      console.log(&#39;会员用户购买&#39;)
+    }
+  }
+  class VipUser {
+    buy () {
+      console.log(&#39; vip 用户购买&#39;)
+    }
+  }
+
+  // 测试代码
+  var u1 = new OrdinaryUser()
+  u1.buy()
+  var u2 = new MemberUser()
+  u2.buy()
+  var u3 = new VipUser()
+  u3.buy()
+
+</code></pre><h5 id="设计原则验证-10"><a href="#设计原则验证-10" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>不同策略，分开处理，而不是混合在一起</li><li>符合开放封闭原则</li></ol><h4 id="总结-13"><a href="#总结-13" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><h4 id="演示-14"><a href="#演示-14" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  class Action {
+
+    handle () {
+      handle1()
+      handle2()
+      handle3()
+    }
+
+    handle1 () {
+      console.log(&#39;1&#39;)
+    }
+
+    handle2 () {
+      console.log(&#39;2&#39;)
+    }
+
+    handle3 () {
+      console.log(&#39;3&#39;)
+    }
+
+  }
+</code></pre><h3 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-6"><a href="#概念-6" class="headerlink" title="概念"></a>概念</h4><ol><li>一步操作可能分为多个职责角色来完成</li><li>把这些角色都分开，然后用一个链 <code>串起来</code></li><li>将发起者和各个处理者进行隔离</li><li>各个处理者之间也进行隔离</li></ol><h4 id="演示-15"><a href="#演示-15" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  // 请假审批，需要组长审批、经理审批、最后总监审批
+  class Action {
+    constructor (name) {
+      this.name = name
+      this.nextAction = null
+    }
+    setNextAction (action) {
+      this.nextAction = action
+    }
+    handle () {
+      console.log(`${this.name} 审批`)
+      if (this.nextAction != null) {
+        this.nextAction.handle()
+      }
+    }
+  }
+
+  let a1 = new Action(&#39;组长&#39;)
+  let a2 = new Action(&#39;经理&#39;)
+  let a3 = new Action(&#39;总监&#39;)
+  a1.setNextAction(a2)
+  a2.setNextAction(a3)
+  a1.handle()
+</code></pre><h5 id="JS-中的链式操作"><a href="#JS-中的链式操作" class="headerlink" title="JS 中的链式操作"></a>JS 中的链式操作</h5><ol><li>职责链模式和业务结合比较多，JS中能联想到链接操作</li><li>jQuery 的链式操作，Promise.then 的链式操作</li></ol><h5 id="设计原则验证-11"><a href="#设计原则验证-11" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>发起者与各个处理者进行隔离</li><li>符合开放封闭原则</li></ol><h4 id="总结-14"><a href="#总结-14" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS中的场景</li></ol><h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-7"><a href="#概念-7" class="headerlink" title="概念"></a>概念</h4><ol><li>执行命令时，发布者和执行者分开</li><li>中间加入命令对象，作为中转站</li><li>画图<pre><code class="mspaint">   发送者                                             接受者
+       ↓                                              ↑
+      发出命令，调用命令对象    接收命令，调用接受者对应接口
+                        ↓     ↑
+                        命令对象
+</code></pre></li></ol><h4 id="演示-16"><a href="#演示-16" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  class Receiver {
+    exec () {
+      console.log(&#39;执行&#39;)
+    }
+  }
+  class Command {
+    constructor (receiver) {
+      this.receiver = receiver
+    }
+    cmd () {
+      console.log(&#39;触发命令&#39;)
+      this.receiver.exec()
+    }
+  }
+  class Invoker {
+    constructor (command) {
+      this.command = command
+    }
+    invoker () {
+      console.log(&#39;开始&#39;)
+      this.command.cmd()
+    }
+  }
+
+  // 士兵
+  let soldier = new Receiver()
+  // 小号手
+  let trumpeter = new Command(soldier)
+  // 将军
+  let general = new Invoker(trumpeter)
+  general.invoker()
+
+</code></pre><h5 id="JS-中的应用"><a href="#JS-中的应用" class="headerlink" title="JS 中的应用"></a>JS 中的应用</h5><ol><li>网页富文本编辑器操作，浏览器封装了一个命令对象</li><li>document.execCommand(‘bold’)</li><li>document.execCommand(‘undo’)</li></ol><h5 id="设计原则验证-12"><a href="#设计原则验证-12" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>命令对象与执行对象分开，解耦</li><li>符合开放封闭原则</li></ol><h4 id="总结-15"><a href="#总结-15" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-8"><a href="#概念-8" class="headerlink" title="概念"></a>概念</h4><ol><li>随时记录一个对象的状态变化</li><li>随时可以恢复之前的某个状态（如撤销功能）</li><li>未找到 JS 中经典应用，除了一些工具（如编辑器）</li></ol><h4 id="演示-17"><a href="#演示-17" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  // 状态备忘
+  class Memento {
+    constructor (content) {
+      this.content = content
+    }
+    getContent () {
+      return this.content
+    }
+  }
+
+  // 备忘列表
+  class CareTaker {
+    constructor () {
+      this.list = []
+    }
+    add (memento) {
+      this.list.push(memento)
+    }
+    get (index) {
+      return this.list[index]
+    }
+  }
+
+  // 编辑器
+  class Editor {
+    constructor () {
+      this.content = null
+    }
+    setContent (content) {
+      this.content = content
+    }
+    getContent () {
+      return this.content
+    }
+    saveContentToMemento () {
+      return new Memento(this.content)
+    }
+    getContentFromMemento (memento) {
+      this.content = memento.getContent()
+    }
+  }
+
+  // 测试代码
+  let editor = new Editor()
+  let careTaker = new CareTaker()
+  editor.setContent(&#39;1111&#39;)
+  editor.setContent(&#39;2222&#39;)
+  careTaker.add(editor.saveContentToMemento())// 存储备忘
+  editor.setContent(&#39;3333&#39;)
+  careTaker.add(editor.saveContentToMemento())// 存储备忘
+  editor.setContent(&#39;4444&#39;)
+
+  console.log(editor.getContent()) // 4444
+  editor.getContentFromMemento(careTaker.get(1)) //撤销
+  console.log(editor.getContent()) // 3333
+  editor.getContentFromMemento(careTaker.get(0)) //撤销
+  console.log(editor.getContent()) // 2222
+</code></pre><h5 id="设计原则验证-13"><a href="#设计原则验证-13" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>状态对象与使用者分开，解耦</li><li>符合开放封闭原则</li></ol><h4 id="总结-16"><a href="#总结-16" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><ol><li>概念</li><li>演示</li><li>总结</li></ol><h4 id="概念-9"><a href="#概念-9" class="headerlink" title="概念"></a>概念</h4><ol><li>对象之间互相引用时，通过一个中间者来进行访问</li><li>让对象与对象之间解耦</li></ol><h4 id="演示-18"><a href="#演示-18" class="headerlink" title="演示"></a>演示</h4><pre><code class="js">  class Mediator {
+    constructor (a, b) {
+      this.a = a
+      this.b = b
+    }
+    setA () {
+      let number = this.b.number
+      this.a.setNumber(number * 100)
+    }
+    setB () {
+      let number = this.a.number
+      this.b.setNumber(number / 100)
+    }
+  }
+  class A {
+    constructor () {
+      this.number = 0
+    }
+    setNumber (num, m) {
+      this.number = num
+      if (m) {
+        m.setB()
+      }
+    }
+  }
+  class B {
+    constructor () {
+      this.number = 0
+    }
+    setNumber (num, m) {
+      this.number = num
+      if (m) {
+        m.setA()
+      }
+    }
+  }
+
+  // 测试
+  let a = new A()
+  let b = new B()
+  let m = new Mediator(a, b)
+  a.setNumber(100, m)
+  console.log(a.number, b.number)
+  b.setNumber(100, m)
+  console.log(a.number, b.number)
+
+</code></pre><h5 id="设计原则验证-14"><a href="#设计原则验证-14" class="headerlink" title="设计原则验证"></a>设计原则验证</h5><ol><li>将各个关联对象通过中介者隔离</li><li>符合开放封闭原则</li></ol><h4 id="总结-17"><a href="#总结-17" class="headerlink" title="总结"></a>总结</h4><ol><li>概念和用意</li><li>实现方式</li><li>JS 中的场景</li></ol><h3 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h3><ol><li>概念</li></ol><h4 id="概念-10"><a href="#概念-10" class="headerlink" title="概念"></a>概念</h4><ol><li>将数据操作和数据结构分离</li><li>使用场景不多</li></ol><h3 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h3><ol><li>概念</li></ol><h4 id="概念-11"><a href="#概念-11" class="headerlink" title="概念"></a>概念</h4><ol><li>描述语言语法如何定义，如何解释和编译</li><li>用于专业场景</li><li>babel 解析es6 语法</li><li>通过 sass、less、stytuls 解析成css</li><li>一些模板生成字符串</li></ol><h3 id="关于面试"><a href="#关于面试" class="headerlink" title="关于面试"></a>关于面试</h3><ol><li>能说出课程重点讲解的设计模式即可</li></ol><h3 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h3><ol><li>重点讲解的设计模式，要强制自己模仿、掌握</li><li>非常用的设计模式，视业务场景选择性使用<ol><li>不要为了设计而设计</li><li>对应的上才去用</li><li>设计的目的是为了简单</li><li>是可扩展、可开放</li><li>并不是为了设计而设计</li></ol></li></ol><h2 id="综合应用"><a href="#综合应用" class="headerlink" title="综合应用"></a>综合应用</h2><ol><li>介绍和演示</li><li>用到哪些设计模式</li><li>UML 类图</li><li>代码演示</li></ol><h3 id="介绍-9"><a href="#介绍-9" class="headerlink" title="介绍"></a>介绍</h3><ol><li>使用jQuery 做一个模拟购物车的示例</li><li>包括：显示购物车列表、加入购物车、从购物车删除</li></ol><h3 id="用到的设计模式"><a href="#用到的设计模式" class="headerlink" title="用到的设计模式"></a>用到的设计模式</h3><ol><li>工厂模式 单例模式</li><li>装饰器模式 观察者模式</li><li>状态模式 模板方法模式 代理模式</li></ol><h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><ol><li>很难用一个示例演示完所有的设计模式</li></ol><h3 id="UML-类图-4"><a href="#UML-类图-4" class="headerlink" title="UML 类图"></a>UML 类图</h3><ol><li><a href="http://on-img.com/chart_image/5b9a6e6fe4b0534c9bda3548.png" target="_blank" rel="noopener">http://on-img.com/chart_image/5b9a6e6fe4b0534c9bda3548.png</a></li></ol><h3 id="代码演示-7"><a href="#代码演示-7" class="headerlink" title="代码演示"></a>代码演示</h3><h4 id="代码基础环境"><a href="#代码基础环境" class="headerlink" title="代码基础环境"></a>代码基础环境</h4><ol><li>在根目录初始化项目<ol><li>npm init -y</li></ol></li><li>安装依赖<ol><li>直接修改 修改package.json文件也行<pre><code class="json">{
+  &quot;name&quot;: &quot;shopcart&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;购物车-设计模式&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;webpack-dev-server --host 0.0.0.0 --config ./webpack.dev.config.js --mode development&quot;
+  },
+  &quot;author&quot;: &quot;jwl&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.26.3&quot;,
+    &quot;babel-loader&quot;: &quot;^7.1.4&quot;,
+    &quot;babel-plugin-transform-decorators-legacy&quot;: &quot;^1.3.4&quot;,
+    &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.24.1&quot;,
+    &quot;babel-preset-latest&quot;: &quot;^6.24.1&quot;,
+    &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,
+    &quot;webpack&quot;: &quot;^4.8.3&quot;,
+    &quot;webpack-cli&quot;: &quot;^2.1.3&quot;,
+    &quot;webpack-dev-server&quot;: &quot;^3.1.4&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;javascript-state-machine&quot;: &quot;^3.0.1&quot;,
+    &quot;jquery&quot;: &quot;^3.3.1&quot;
+  }
+} 
+</code></pre></li><li>新建 .babelrc文件<pre><code class="json">{
+  &quot;presets&quot;: [&quot;es2015&quot;, &quot;latest&quot;],
+  &quot;plugins&quot;: [&quot;transform-decorators-legacy&quot;]
+}
+</code></pre></li><li>新建 index.html文件<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;购物车-设计模式&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></li></ol></li><li>添加webpack.dev.config.js里面的配置<pre><code class="js"> const path = require(&#39;path&#39;)
+ const HtmlWebpackPlugin = require(&quot;html-webpack-plugin&quot;)
+ module.exports = {
+   entry: &#39;./src/index.js&#39;,
+   output: {
+     path: __dirname,
+     filename: &#39;./build/bundle.js&#39;
+   },
+   plugins: [
+     // 读取一个模板
+     new HtmlWebpackPlugin({
+       template: &#39;./index.html&#39;
+     })
+   ],
+   devServer: {
+     // 根目录
+     contentBase: path.join(__dirname, &#39;./release&#39;),
+     // 浏览器是否自动打开
+     open: true,
+     // 端口号
+     port: 9000,
+     // 添加代理 这样就可以访问了 8880 端口，这样一来就不存在跨域了
+     proxy: {
+       &#39;/api*&#39;: {
+         target: &#39;http://localhost:8880&#39;
+       }
+     }
+   },
+   module: {
+     rules: [
+       {
+         // 检验
+         test: /\.js?$/,
+         /*排除node_modules文件夹*/
+         exclude: /(node_modules)/,
+         /* 将es6 转换为 es5 */
+         loader: &#39;babel-loader&#39;
+       }
+     ]
+   }
+ }
+</code></pre></li><li>在根目录下新增src目录<ol><li>在src目录下新建demo目录</li><li>在demo目录下新建api目录</li><li>在api目录下新建list.json</li><li>然后进入demo目录</li><li>之后 使用<code>hs -p 8880</code></li><li>最后就配置好了自定义的代理服务器</li><li>通过 localhost:9000/api/list.json</li><li>就可以访问代理服务器根目录下的/api/list.json</li></ol></li></ol><h4 id="实现List组件"><a href="#实现List组件" class="headerlink" title="实现List组件"></a>实现List组件</h4><ol><li>使用fetch来进行promise方式的ajax获取数据<ol><li>低版本需要兼容，高版本浏览器已经支持</li></ol></li><li>安装fatch：<code>https://github.com/github/fetch</code></li><li><p>使用fetch</p><ol><li>可以直接使用，也可以将ajax的url统一的进行管理</li><li><p>代码示例</p><pre><code class="js">const GET_LIST = &#39;/api/list.json&#39;
+// fetch 方法返回的是一个promise对象
+const obj = fetch(GET_LIST).then(result =&gt; {
+  // 返回 结果中的json结构 这种方式是一个标准
+  return result.json();
+})
+// 你可以继续.then
+obj.then(data =&gt; {
+  // 打印结果
+  console.log(data)
+}).then(() =&gt; {
+  alert(&#39;获取数据完毕。&#39;)
+})
+
+</code></pre></li></ol></li><li><p>代码演示</p><ol><li><p>List.js<br><code>`</code> js<br>import $ from ‘jquery’<br>import { GET_JSON } from ‘../config/config.js’<br>// import Item from ‘../Item/Item.js’<br>import createItem from ‘../Item/CreateItem.js’</p><p>export default class List {<br>constructor (app) {<br>this.$el = $(‘</p><div></div>‘);<br>this.app = app;<br>}<p></p><p>init () {<br>this.loadData().then(data =&gt; {</p><pre><code>this.initItemList(data)
+</code></pre><p>}).then(() =&gt; {</p><pre><code>this.render()
+</code></pre><p>})</p><p>}</p><p>// 加载数据<br>loadData () {<br>// 返回一个 promise<br>return fetch(GET_JSON).then(result =&gt; {</p><pre><code>  return result.json();
+})
+</code></pre><p>}</p><p>initItemList (data) {<br>data.forEach(item =&gt; {</p><pre><code>let obj = createItem(this.$el, item)
+obj.init()
+</code></pre><p>})<br>}</p><p>render () {<br>this.app.append(this.$el);<br>}</p><p>}</p></li></ol><p><code>`</code></p></li></ol><h4 id="实现Item组件"><a href="#实现Item组件" class="headerlink" title="实现Item组件"></a>实现Item组件</h4><ol><li><p>Item组件</p><ol><li><p>Item.js<br><code>`</code> js<br>import $ from ‘jquery’<br>import getCart from ‘../Cart/Cart.js’<br>import StateMachine from ‘javascript-state-machine’<br>import { log } from ‘../Util/log.js’</p><p>class Item {<br>constructor (list, data) {<br>this.$el = $(‘</p><div></div>‘).css(<p></p><pre><code>{
+  borderBottom: &#39;1px solid #ccc&#39;,
+  backgroundColor:&#39;#ff6&#39;,
+  padding: &#39;10px 0 20px 0&#39;
+}
+</code></pre><p>);<br>this.list = list;<br>this.data = data;<br>this.cart = getCart()<br>}</p><p>init () {<br>this.initContent()<br>this.initBtn()<br>this.render()<br>}</p><p>initContent () {<br>this.$el.append(`</p><pre><code>&lt;div&gt;
+  课程：${this.data.name}
+&lt;/div&gt;
+&lt;div&gt;
+  价格：${this.data.price}
+&lt;/div&gt;
+</code></pre><p>`)<br>}</p><p>initBtn () {<br>let $btn = $(‘<button></button>‘);</p><p>let fsm = new StateMachine({</p><pre><code>init: &#39;加入购物车&#39;, // 初始化状态
+transitions: [
+  {
+    name: &#39;addCart&#39;,
+    from: &#39;加入购物车&#39;,
+    to: &#39;从购物车移除&#39;
+  },
+  {
+    name: &#39;removeCart&#39;,
+    from: &#39;从购物车移除&#39;,
+    to: &#39;加入购物车&#39;
+  }
+],
+methods: {
+  onAddCart: () =&gt; {
+      updateText()
+      this.addToCartHandle()
+  },
+  onRemoveCart: () =&gt; {
+      updateText()
+      this.deleteFromCartHandle()
+  }
+}
+</code></pre><p>})</p><p>function updateText () {</p><pre><code>  $btn.text(fsm.state)
+</code></pre><p>}</p><p>updateText();</p><p>$btn.click(function () {</p><pre><code>if (fsm.is(&#39;加入购物车&#39;)) {
+  fsm.addCart();
+}else {
+  fsm.removeCart()
+}
+</code></pre><p>})</p><p>this.$el.append($btn);<br>}</p><p>@log(‘add添加操作’)<br>addToCartHandle () {<br>this.cart.add(this.data)<br>}</p><p>@log(‘remove移除操作’)<br>deleteFromCartHandle () {<br>this.cart.del(this.data.id)<br>}</p><p>render () {<br>this.list.append(this.$el)<br>}<br>}</p><p>export default Item;</p></li></ol><p><code>`</code></p></li><li><p>工厂方法和代理模式创建Item实例</p><ol><li><p>CreateItem.js<br><code>`</code> js<br>import Item from ‘./Item.js’</p><p>function createDesCount (item) {<br>return new Proxy(item, {<br>get: function (target, key) {</p><pre><code>if (key === &#39;name&#39;) {
+  return `${item.name} 【折扣优惠】`
+}
+if (key === &#39;price&#39;) {
+  return target[key] * 0.8
+}
+return target[key];
+</code></pre><p>}<br>})<br>}</p><p>export default function (list, item) {<br>if(item.discount == ‘1’) {<br>item = createDesCount(item);<br>}<br>return new Item(list, item)<br>}</p></li></ol><p><code>`</code></p></li></ol><h4 id="实现Cart组件"><a href="#实现Cart组件" class="headerlink" title="实现Cart组件"></a>实现Cart组件</h4><ol><li><p>Cart组件 单例模式</p><ol><li><p>Cart.js</p><pre><code class="js">class Cart {
+constructor () {
+  this.list = []
+}
+
+add (data) {
+  this.list.push(data)
+}
+
+del (id) {
+  this.list = this.list.filter( (item) =&gt; {
+    if (item.id === id) {
+      return false;
+    }else {
+      return true;
+    }
+  })
+}
+
+getList () {
+  return this.list.map(item =&gt; item.name).join(&#39;\n&#39;);
+}
+
+}
+
+let getCart = (function () {
+let cart = null
+return function () {
+  if (cart === null) {
+    cart = new Cart();
+  }
+  return cart;
+}
+})()
+
+export default getCart
+</code></pre></li></ol></li><li><p>ShoppingCart 组件</p><ol><li><p>ShoppingCart.js<br><code>`</code> js<br>import $ from ‘jquery’<br>import getCart from ‘./Cart.js’</p><p>export default class ShoppingCart {<br>constructor (app) {<br>this.$el = $(‘</p><div></div>‘).css({padding: ‘20px 0’, backgroundColor: ‘#6f0’})<br>this.app = app;<br>this.cart = getCart();<br>}<p></p><p>init () {<br>this.initBtn();<br>this.render();<br>}<br>initBtn () {<br>let $btn = $(`</p><pre><code>&lt;button&gt;
+  显示购物车信息
+&lt;/button&gt;
+</code></pre><p>`)<br>$btn.click(() =&gt; {</p><pre><code>this.showCart()
+</code></pre><p>});<br>this.$el.append($btn);</p><p>}</p><p>showCart () {<br>alert(this.cart.getList());<br>}</p><p>render () {<br>this.app.append(this.$el)<br>}</p><p>}</p></li></ol><p><code>`</code></p></li></ol><h4 id="其它-1"><a href="#其它-1" class="headerlink" title="其它"></a>其它</h4><ol><li><p>ajax的请求url统一管理</p><ol><li>config.js<br><code>`</code> js<br>export const GET_JSON = ‘/api/list.json’</li></ol><p><code>`</code></p></li><li><p>日志记录，装饰器模式</p><pre><code class="js"> export function log (type) {
+   return function (target, name, descriptor) {
+     let oldValue = descriptor.value;
+
+     descriptor.value = function () {
+       console.log(`日志上报:${type}`);
+       oldValue.apply(this, arguments)
+     }
+   }
+ }
+
+</code></pre></li><li><p>请求的api数据</p><ol><li>list.json<br><code>`</code> json<br>[<br>{<br>“id”: 1,<br>“name”: “《JS 基础面试题》”,<br>“price”: 149,<br>“discount”: 1<br>},<br>{<br>“id”: 2,<br>“name”: “《JS 高级面试题》”,<br>“price”: 366,<br>“discount”: 1<br>},<br>{<br>“id”: 3,<br>“name”: “《React 模拟大众点评 webapp》”,<br>“price”: 248,<br>“discount”: 0<br>},<br>{<br>“id”: 4,<br>“name”: “《zepto 设计与源码解读》”,<br>“price”: 0,<br>“discount”: 0<br>}<br>]</li></ol><p><code>`</code></p></li><li>根组件<ol><li>App.js<br><code>`</code> js<br>import $ from ‘jquery’<br>import List from ‘./List/List.js’<br>import ShoppingCart from ‘./Cart/ShoppingCart.js’</li></ol></li></ol><pre><code>class App {
+  constructor (id) {
+    this.$el = $(&#39;#&#39; + id);
+  }
+
+  init () {
+    this.initShoppingCart()
+    this.initList()
+  }
+
+  initShoppingCart () {
+    let shoppingCart = new ShoppingCart(this.$el);
+    shoppingCart.init();
+  }
+
+  initList () {
+    let list = new List(this.$el);
+    list.init()
+  }
+
+}
+
+export default App;
+</code></pre><pre><code>5. 主入口文件
+  1. index.js
+  ``` js
+    import App from &#39;./demo/App.js&#39;
+
+    let app = new App(&#39;app&#39;);
+    app.init();
+
+</code></pre><h3 id="总结用到的设计模式"><a href="#总结用到的设计模式" class="headerlink" title="总结用到的设计模式"></a>总结用到的设计模式</h3><ol><li>工厂模式： $(‘xxx’)，创建商品</li><li>单例模式：购物车</li><li>装饰器模式：打点统计（日志功能）</li><li>观察者模式：网页事件，Promise（fetach）</li><li>状态模式：添加到购物车和从购物车删除</li><li>模板方法模式：渲染有统一的方法，内部包含了各模块儿的渲染</li><li>代理模式：打折商品信息处理</li></ol><h2 id="课程总结"><a href="#课程总结" class="headerlink" title="课程总结"></a>课程总结</h2><ol><li>基础知识准备</li><li>设计模式-part1(常用设计模式)</li><li>设计模式-part2(不是很常用设计模式)</li><li>综合示例演示</li></ol><h3 id="基础知识准备"><a href="#基础知识准备" class="headerlink" title="基础知识准备"></a>基础知识准备</h3><ol><li>面向对象和UML类图</li><li>5大设计原则，从设计到模式</li></ol><h3 id="设计模式-part1"><a href="#设计模式-part1" class="headerlink" title="设计模式-part1"></a>设计模式-part1</h3><ol><li>工厂模式、单例模式、适配器模式</li><li>代理模式、外观模式、观察者模式</li><li>状态模式、迭代器模式</li></ol><h3 id="设计模式-part2"><a href="#设计模式-part2" class="headerlink" title="设计模式-part2"></a>设计模式-part2</h3><ol><li>原型模式、桥接模式、组合模式、享元模式</li><li>策略模式、模板方法模式、职责链模式、命令模式</li><li>备忘录模式、中介者模式、访问者模式、解释器模式</li></ol><h3 id="综合示例演示"><a href="#综合示例演示" class="headerlink" title="综合示例演示"></a>综合示例演示</h3><ol><li>用jQuery 演示一个简单的购物车</li><li>面向对象思想，UML 类图设计</li><li>用到的各个设计模式和代码的对应关系</li></ol><h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><ol><li>写好代码的同时，也做好设计</li></ol></div><div><div class="my_post_copyright"><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><p><span>本文标题:</span><a href="/2018/09/17/JS设计模式系统讲解与应用/">JS设计模式系统讲解与应用</a></p><p><span>文章作者:</span><a href="/" title="访问 jwl 的个人博客">jwl</a></p><p><span>发布时间:</span>2018年09月17日 - 11:09</p><p><span>最后更新:</span>2018年09月17日 - 11:09</p><p><span>原始链接:</span><a href="/2018/09/17/JS设计模式系统讲解与应用/" title="JS设计模式系统讲解与应用">https://www.52jwl.com/2018/09/17/JS设计模式系统讲解与应用/</a> <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.52jwl.com/2018/09/17/JS设计模式系统讲解与应用/" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");$(".fa-clipboard").click(function(){clipboard.on("success",function(){swal({title:"",text:"亲！好了哦",icon:"success",showConfirmButton:!0,confirmButtonColor:"#ef4e7b"})})})</script></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" width="100" height="100" src="http://static.dramastyle.com/images/3/7/1301/My-NeighborTotoro__6.jpg" alt="jwl WeChat Pay"><p>龙猫打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" width="100" height="100" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535968240695&di=983c0ca46cee2ca40f9d6df3d33a95bd&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201506%2F13%2F20150613121207_AGkUF.jpeg" alt="jwl Alipay"><p>金鱼姬打赏</p></div></div></div></div><div><div><div style="text-align:center;color:#555;font-size:14px">--------------------i love jwl--------------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="./tags/JS设计模式/"><i class="fa fa-tag"></i> JS设计模式</a> <a href="./tags/面向对象/"><i class="fa fa-tag"></i> 面向对象</a> <a href="./tags/设计模式详解/"><i class="fa fa-tag"></i> 设计模式详解</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/09/10/Vue2-5/" rel="next" title="Vue2_5"><i class="fa fa-chevron-left"></i> Vue2_5</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/09/25/前端面试必备技巧与知识/" rel="prev" title="前端面试必备技巧与知识">前端面试必备技巧与知识 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"><div class="addthis_inline_share_toolbox"><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b8917fd9ef2beb8" async></script></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQwOC8xNTkzNQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="jwl"><p class="site-author-name" itemprop="name">jwl</p><p class="site-description motion-element" itemprop="description">从喜欢到爱的一路前端风</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories"><span class="site-state-item-count">27</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">88</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/52jwl" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://www.freecodecamp.cn/52jwl" target="_blank" title="fcc"><i class="fa fa-fw fa-free-code-camp"></i> fcc </a></span><span class="links-of-author-item"><a href="https://www.jianshu.com/u/439a6eee60e1" target="_blank" title="简书"><i class="fa fa-fw fa-book"></i> 简书 </a></span><span class="links-of-author-item"><a href="http://blog.csdn.net/jwl_lwj" target="_blank" title="CSDN"><i class="fa fa-fw fa-rotate-right"></i> CSDN</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a></li><li class="links-of-blogroll-item"><a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a></li><li class="links-of-blogroll-item"><a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a></li><li class="links-of-blogroll-item"><a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a></li></ul></div><div id="days"></div><script>function show_date_time(){window.setTimeout("show_date_time()",1e3),BirthDay=new Date("01/10/2017 12:34:56"),today=new Date,timeold=today.getTime()-BirthDay.getTime(),sectimeold=timeold/1e3,secondsold=Math.floor(sectimeold),msPerDay=864e5,e_daysold=timeold/msPerDay,daysold=Math.floor(e_daysold),e_hrsold=24*(e_daysold-daysold),hrsold=setzero(Math.floor(e_hrsold)),e_minsold=60*(e_hrsold-hrsold),minsold=setzero(Math.floor(60*(e_hrsold-hrsold))),seconds=setzero(Math.floor(60*(e_minsold-minsold))),document.getElementById("days").innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"}function setzero(e){return e<10&&(e="0"+e),e}show_date_time()</script></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript-设计模式系统讲解与应用"><span class="nav-number">1.</span> <span class="nav-text">Javascript 设计模式系统讲解与应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-课程导学"><span class="nav-number">1.1.</span> <span class="nav-text">第一章 课程导学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#课程概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">课程概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点介绍"><span class="nav-number">1.1.2.</span> <span class="nav-text">知识点介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计模式"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合实例"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">综合实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课程安排"><span class="nav-number">1.1.3.</span> <span class="nav-text">课程安排</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象-1"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则-1"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计模式-1"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合示例"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">综合示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲授方式"><span class="nav-number">1.1.4.</span> <span class="nav-text">讲授方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课程收获"><span class="nav-number">1.1.5.</span> <span class="nav-text">课程收获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习前提"><span class="nav-number">1.1.6.</span> <span class="nav-text">学习前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重点提示"><span class="nav-number">1.1.7.</span> <span class="nav-text">重点提示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-面向对象"><span class="nav-number">1.2.</span> <span class="nav-text">第二章 面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建开发环境"><span class="nav-number">1.2.1.</span> <span class="nav-text">搭建开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化-npm环境"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">初始化 npm环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装webpack"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">安装webpack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装webpack-dev-server"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">安装webpack-dev-server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装babel"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">安装babel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是面向对象"><span class="nav-number">1.2.2.</span> <span class="nav-text">什么是面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三要素"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#继承，子类继承父类"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">继承，子类继承父类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#封装，数据的权限和保密"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">封装，数据的权限和保密</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多态，同一接口不同实现"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">多态，同一接口不同实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS-应用举例"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">JS 应用举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三要素总结-一"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">三要素总结 一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三要素总结-二"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">三要素总结 二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML类图"><span class="nav-number">1.2.3.</span> <span class="nav-text">UML类图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#画图工具"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">画图工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类图"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">类图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#访问修饰符"><span class="nav-number">1.2.3.2.1.</span> <span class="nav-text">访问修饰符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性和方法"><span class="nav-number">1.2.3.2.2.</span> <span class="nav-text">属性和方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码与类图-一"><span class="nav-number">1.2.3.2.3.</span> <span class="nav-text">代码与类图 一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系"><span class="nav-number">1.2.3.2.4.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码与类图-二"><span class="nav-number">1.2.3.2.5.</span> <span class="nav-text">代码与类图 二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UML类图总结"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">UML类图总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本章总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">本章总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-设计原则"><span class="nav-number">1.3.</span> <span class="nav-text">第三章 设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#何为设计？"><span class="nav-number">1.3.1.</span> <span class="nav-text">何为设计？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#描述"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#《UNIX-LINUX设计哲学》"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">《UNIX/LINUX设计哲学》</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#演示"><span class="nav-number">1.3.1.2.1.</span> <span class="nav-text">演示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#何为设计总结"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">何为设计总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#S-O-L-I-D-五大设计原则"><span class="nav-number">1.3.2.</span> <span class="nav-text">S O L I D 五大设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#S-单一职责原则"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">S - 单一职责原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#O-开放封闭原则"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">O - 开放封闭原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#L-里氏替换原则"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">L - 里氏替换原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-接口独立原则"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">I - 接口独立原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-依赖倒置原则"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">D - 依赖倒置原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则总结"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">设计原则总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用-Promise-来说明-S-O"><span class="nav-number">1.3.2.6.1.</span> <span class="nav-text">用 Promise 来说明 S O</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从设计到模式"><span class="nav-number">1.3.3.</span> <span class="nav-text">从设计到模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍23种设计模式"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">介绍23种设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建型"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">创建型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结构型"><span class="nav-number">1.3.3.1.2.</span> <span class="nav-text">结构型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#行为型模式"><span class="nav-number">1.3.3.1.3.</span> <span class="nav-text">行为型模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分优先级"><span class="nav-number">1.3.3.1.4.</span> <span class="nav-text">分优先级</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何讲解设计模式？"><span class="nav-number">1.3.3.1.5.</span> <span class="nav-text">如何讲解设计模式？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#该如何学习设计模式？"><span class="nav-number">1.3.3.1.6.</span> <span class="nav-text">该如何学习设计模式？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">1.3.3.1.7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一题"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">第一题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类图与代码"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">类图与代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二题"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">第二题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四章-工厂模式"><span class="nav-number">1.4.</span> <span class="nav-text">第四章 工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.4.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#画图"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">画图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">1.4.3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">jQuery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-异步组件"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">vue 异步组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则验证"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">1.4.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">1.5.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-1"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟登陆框"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">模拟登陆框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-number">1.5.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">1.6.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-2"><span class="nav-number">1.6.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-2"><span class="nav-number">1.6.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-3"><span class="nav-number">1.6.3.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类图-1"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示-1"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">1.6.4.</span> <span class="nav-text">使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装旧接口"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">封装旧接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-computed"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">vue computed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则验证-1"><span class="nav-number">1.6.4.3.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-3"><span class="nav-number">1.6.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器模式"><span class="nav-number">1.7.</span> <span class="nav-text">装饰器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-3"><span class="nav-number">1.7.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-3"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-4"><span class="nav-number">1.7.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML-类图"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">UML 类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示-2"><span class="nav-number">1.7.2.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景-1"><span class="nav-number">1.7.3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ES7-装饰器"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">ES7 装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置环境"><span class="nav-number">1.7.3.1.1.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#装饰类"><span class="nav-number">1.7.3.1.2.</span> <span class="nav-text">装饰类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#装饰方法"><span class="nav-number">1.7.3.1.3.</span> <span class="nav-text">装饰方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#core-decorators-第三方装饰器的库"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">core-decorators 第三方装饰器的库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-4"><span class="nav-number">1.7.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">1.8.</span> <span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-4"><span class="nav-number">1.8.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-4"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-5"><span class="nav-number">1.8.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML-类图-1"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">UML 类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示-3"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景-2"><span class="nav-number">1.8.3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网页事件代理"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">网页事件代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery的-proxy"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">jQuery的$.proxy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-Proxy"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">ES6 Proxy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则验证-2"><span class="nav-number">1.8.3.4.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-5"><span class="nav-number">1.8.4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种模式对比"><span class="nav-number">1.8.5.</span> <span class="nav-text">三种模式对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代理模式-vs-适配器模式"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">代理模式 vs 适配器模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理模式-vs-装饰器模式"><span class="nav-number">1.8.5.2.</span> <span class="nav-text">代理模式 vs 装饰器模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外观模式"><span class="nav-number">1.9.</span> <span class="nav-text">外观模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-5"><span class="nav-number">1.9.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-5"><span class="nav-number">1.9.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景-3"><span class="nav-number">1.9.3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则验证-3"><span class="nav-number">1.9.4.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-number">1.10.</span> <span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-6"><span class="nav-number">1.10.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-6"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-6"><span class="nav-number">1.10.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML-类图-2"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">UML 类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示-4"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景-4"><span class="nav-number">1.10.3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网页事件绑定"><span class="nav-number">1.10.3.1.</span> <span class="nav-text">网页事件绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise"><span class="nav-number">1.10.3.2.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery-Callbacks"><span class="nav-number">1.10.3.3.</span> <span class="nav-text">jQuery Callbacks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodejs-自定义事件"><span class="nav-number">1.10.3.4.</span> <span class="nav-text">nodejs 自定义事件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它场景"><span class="nav-number">1.10.4.</span> <span class="nav-text">其它场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nodejs-处理http请求"><span class="nav-number">1.10.4.1.</span> <span class="nav-text">nodejs 处理http请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则验证-4"><span class="nav-number">1.10.4.2.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-6"><span class="nav-number">1.10.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器模式"><span class="nav-number">1.11.</span> <span class="nav-text">迭代器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-7"><span class="nav-number">1.11.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-7"><span class="nav-number">1.11.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-7"><span class="nav-number">1.11.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML-类图-3"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">UML 类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示-5"><span class="nav-number">1.11.2.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景-5"><span class="nav-number">1.11.3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery-each"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">jQuery each</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-iterator"><span class="nav-number">1.11.3.2.</span> <span class="nav-text">ES6 iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ES6-iterator-为何存在？"><span class="nav-number">1.11.3.2.1.</span> <span class="nav-text">ES6 iterator 为何存在？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ES6-Iterator-是什么？"><span class="nav-number">1.11.3.2.2.</span> <span class="nav-text">ES6 Iterator 是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ES6-Iterator-示例"><span class="nav-number">1.11.3.2.3.</span> <span class="nav-text">ES6 Iterator 示例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ES6-Iterator-与-Generator"><span class="nav-number">1.11.3.2.4.</span> <span class="nav-text">ES6 Iterator 与 Generator</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则验证-5"><span class="nav-number">1.11.3.3.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-7"><span class="nav-number">1.11.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式"><span class="nav-number">1.12.</span> <span class="nav-text">状态模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-8"><span class="nav-number">1.12.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#示例-8"><span class="nav-number">1.12.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示-8"><span class="nav-number">1.12.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML类图-1"><span class="nav-number">1.12.2.1.</span> <span class="nav-text">UML类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码演示-6"><span class="nav-number">1.12.2.2.</span> <span class="nav-text">代码演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景-6"><span class="nav-number">1.12.3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有限状态机"><span class="nav-number">1.12.3.1.</span> <span class="nav-text">有限状态机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的-Promise"><span class="nav-number">1.12.3.2.</span> <span class="nav-text">简单的 Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计原则验证-6"><span class="nav-number">1.12.3.3.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-8"><span class="nav-number">1.12.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它设计模式"><span class="nav-number">1.13.</span> <span class="nav-text">其它设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优先级划分依据"><span class="nav-number">1.13.1.</span> <span class="nav-text">优先级划分依据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲解方式"><span class="nav-number">1.13.2.</span> <span class="nav-text">讲解方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有哪些设计模式"><span class="nav-number">1.13.3.</span> <span class="nav-text">有哪些设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型模式"><span class="nav-number">1.13.4.</span> <span class="nav-text">原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-1"><span class="nav-number">1.13.4.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对比JS中的原型-prototype"><span class="nav-number">1.13.4.1.1.</span> <span class="nav-text">对比JS中的原型 prototype</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-9"><span class="nav-number">1.13.4.2.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-9"><span class="nav-number">1.13.4.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式"><span class="nav-number">1.13.5.</span> <span class="nav-text">桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-2"><span class="nav-number">1.13.5.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-10"><span class="nav-number">1.13.5.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-7"><span class="nav-number">1.13.5.2.1.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-10"><span class="nav-number">1.13.5.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合模式"><span class="nav-number">1.13.6.</span> <span class="nav-text">组合模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-3"><span class="nav-number">1.13.6.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例-9"><span class="nav-number">1.13.6.1.1.</span> <span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-11"><span class="nav-number">1.13.6.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-8"><span class="nav-number">1.13.6.2.1.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-11"><span class="nav-number">1.13.6.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#享元模式"><span class="nav-number">1.13.7.</span> <span class="nav-text">享元模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-4"><span class="nav-number">1.13.7.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-12"><span class="nav-number">1.13.7.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-9"><span class="nav-number">1.13.7.2.1.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-12"><span class="nav-number">1.13.7.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">1.13.8.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-5"><span class="nav-number">1.13.8.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-13"><span class="nav-number">1.13.8.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-10"><span class="nav-number">1.13.8.2.1.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-13"><span class="nav-number">1.13.8.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板方法模式"><span class="nav-number">1.13.9.</span> <span class="nav-text">模板方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-14"><span class="nav-number">1.13.9.1.</span> <span class="nav-text">演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#职责链模式"><span class="nav-number">1.13.10.</span> <span class="nav-text">职责链模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-6"><span class="nav-number">1.13.10.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-15"><span class="nav-number">1.13.10.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JS-中的链式操作"><span class="nav-number">1.13.10.2.1.</span> <span class="nav-text">JS 中的链式操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-11"><span class="nav-number">1.13.10.2.2.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-14"><span class="nav-number">1.13.10.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式"><span class="nav-number">1.13.11.</span> <span class="nav-text">命令模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-7"><span class="nav-number">1.13.11.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-16"><span class="nav-number">1.13.11.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JS-中的应用"><span class="nav-number">1.13.11.2.1.</span> <span class="nav-text">JS 中的应用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-12"><span class="nav-number">1.13.11.2.2.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-15"><span class="nav-number">1.13.11.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备忘录模式"><span class="nav-number">1.13.12.</span> <span class="nav-text">备忘录模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-8"><span class="nav-number">1.13.12.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-17"><span class="nav-number">1.13.12.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-13"><span class="nav-number">1.13.12.2.1.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-16"><span class="nav-number">1.13.12.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中介者模式"><span class="nav-number">1.13.13.</span> <span class="nav-text">中介者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-9"><span class="nav-number">1.13.13.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示-18"><span class="nav-number">1.13.13.2.</span> <span class="nav-text">演示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计原则验证-14"><span class="nav-number">1.13.13.2.1.</span> <span class="nav-text">设计原则验证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结-17"><span class="nav-number">1.13.13.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问者模式"><span class="nav-number">1.13.14.</span> <span class="nav-text">访问者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-10"><span class="nav-number">1.13.14.1.</span> <span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释器模式"><span class="nav-number">1.13.15.</span> <span class="nav-text">解释器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-11"><span class="nav-number">1.13.15.1.</span> <span class="nav-text">概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于面试"><span class="nav-number">1.13.16.</span> <span class="nav-text">关于面试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日常使用"><span class="nav-number">1.13.17.</span> <span class="nav-text">日常使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合应用"><span class="nav-number">1.14.</span> <span class="nav-text">综合应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-9"><span class="nav-number">1.14.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用到的设计模式"><span class="nav-number">1.14.2.</span> <span class="nav-text">用到的设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说明-1"><span class="nav-number">1.14.3.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML-类图-4"><span class="nav-number">1.14.4.</span> <span class="nav-text">UML 类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码演示-7"><span class="nav-number">1.14.5.</span> <span class="nav-text">代码演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码基础环境"><span class="nav-number">1.14.5.1.</span> <span class="nav-text">代码基础环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现List组件"><span class="nav-number">1.14.5.2.</span> <span class="nav-text">实现List组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现Item组件"><span class="nav-number">1.14.5.3.</span> <span class="nav-text">实现Item组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现Cart组件"><span class="nav-number">1.14.5.4.</span> <span class="nav-text">实现Cart组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它-1"><span class="nav-number">1.14.5.5.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结用到的设计模式"><span class="nav-number">1.14.6.</span> <span class="nav-text">总结用到的设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程总结"><span class="nav-number">1.15.</span> <span class="nav-text">课程总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识准备"><span class="nav-number">1.15.1.</span> <span class="nav-text">基础知识准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式-part1"><span class="nav-number">1.15.2.</span> <span class="nav-text">设计模式-part1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式-part2"><span class="nav-number">1.15.3.</span> <span class="nav-text">设计模式-part2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合示例演示"><span class="nav-number">1.15.4.</span> <span class="nav-text">综合示例演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束语"><span class="nav-number">1.15.5.</span> <span class="nav-text">结束语</span></a></li></ol></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright" style="text-align:center;line-height:50px;font-size:16px">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-snowflake-o"></i> </span><span class="author" itemprop="copyrightHolder">jwl</span><div class="powered-by">| <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"><a class="theme-link" href="https://www.52jwl.com">i love jwl：</a> <span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><span class="post-count">已统计字数:199.1k</span></div></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path;function proceedsearch(){$("body").append('<div class="local-search-pop-overlay">').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,c,s){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var t=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),a=document.getElementById(c),r=document.getElementById(s);a.addEventListener("input",function(){var u=0,d='<ul class="search-result-list">',f=this.value.trim().toLowerCase().split(/[\s\-]+/);r.innerHTML="",1<this.value.trim().length&&t.forEach(function(e){var a=!1,r=e.title.trim().toLowerCase(),c=e.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),t=decodeURIComponent(e.url),s=-1,n=-1,o=-1;if(""!=r&&f.forEach(function(e,t){s=r.indexOf(e),n=c.indexOf(e),(0<=s||0<=n)&&(a=!0,0==t&&(o=n))}),a){u+=1,d+="<li><a href='"+t+"' class='search-result-title'>"+r+"</a>";var i=e.content.trim().replace(/<[^>]+>/g,"");if(0<=o){var l=o-20,p=o+80;l<0&&(l=0),0==l&&(p=50),p>i.length&&(p=i.length);var h=i.substring(l,p);f.forEach(function(e){var t=new RegExp(e,"gi");h=h.replace(t,'<b class="search-keyword">'+e+"</b>")}),d+='<p class="search-result">'+h+"...</p>"}d+="</li>"}}),d+="</ul>",0==u&&(d='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==f&&(d='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),r.innerHTML=d}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/javascript" color="255,0,0" opacity="0.5" zindex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script><script type="text/javascript">var live2dIsExistsTimer=setInterval(function(){var e=document.getElementById("live2dcanvas");if(e){function t(e){e.style.right=document.body.offsetWidth/4+"px"}t(e),addEventListener("resize",function(){t(e)}),clearInterval(live2dIsExistsTimer)}else console.log(e,"获取失败")},500)</script><script type="text/javascript" src="/js/src/dynamicTitle.js"></script><script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js"></script><script>$(function(){$("pre").addClass("prettyprint linenums").attr("style","overflow:auto;"),prettyPrint()})</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":75,"height":150,"hOffset":320,"vOffset":-20},"log":false});</script></body></html>

@@ -1,0 +1,467 @@
+<!doctype html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/0f81ff2f.js","daovoice"),daovoice("init",{app_id:"493d9281"}),daovoice("update")</script><link href="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Microsoft YaHei UI Light:300,300italic,400,400italic,700,700italic|方正楷体:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STHeiti TC:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="JS 模块儿化,JS 数据推送,JS 惰性函数,JS 函数柯里化,JS 级联函数,JS 高级技巧,JS AOP,JS 多线程,"><link rel="alternate" href="/atom.xml" title="ilovejwl" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="前端常用库及实用技术JavaScript 模块儿化模块儿化的概念解读模块儿化起源与NodeJS，但是这是后端的，后来在前端也出现了两个模块儿化的JS国外的ReqiureJS、CommonJS和国内的SeajsAMD 是RequireJS 在推广过程中对模块儿定义的规范化产出异步加载模块儿，依赖前置，提前执行。Define定义模块儿 define([&amp;#39;require&amp;#39;,&amp;#39;fo"><meta name="keywords" content="JS 模块儿化,JS 数据推送,JS 惰性函数,JS 函数柯里化,JS 级联函数,JS 高级技巧,JS AOP,JS 多线程"><meta property="og:type" content="article"><meta property="og:title" content="前端常用库及实用技术"><meta property="og:url" content="https://www.52jwl.com/2018/09/07/前端常用库及实用技术/index.html"><meta property="og:site_name" content="ilovejwl"><meta property="og:description" content="前端常用库及实用技术JavaScript 模块儿化模块儿化的概念解读模块儿化起源与NodeJS，但是这是后端的，后来在前端也出现了两个模块儿化的JS国外的ReqiureJS、CommonJS和国内的SeajsAMD 是RequireJS 在推广过程中对模块儿定义的规范化产出异步加载模块儿，依赖前置，提前执行。Define定义模块儿 define([&amp;#39;require&amp;#39;,&amp;#39;fo"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-09-07T13:19:43.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="前端常用库及实用技术"><meta name="twitter:description" content="前端常用库及实用技术JavaScript 模块儿化模块儿化的概念解读模块儿化起源与NodeJS，但是这是后端的，后来在前端也出现了两个模块儿化的JS国外的ReqiureJS、CommonJS和国内的SeajsAMD 是RequireJS 在推广过程中对模块儿定义的规范化产出异步加载模块儿，依赖前置，提前执行。Define定义模块儿 define([&amp;#39;require&amp;#39;,&amp;#39;fo"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:"",labels:""}}</script><link rel="canonical" href="https://www.52jwl.com/2018/09/07/前端常用库及实用技术/"><script type="text/javascript">!function(){var o="";try{o=sessionStorage.password||"",sessionStorage.initState||"0"}catch(s){o="","0",console.log("sessionStorage 无法使用。")}if("jwl"!==o)if("jwl"!==(o=prompt("请输入文章密码")))alert("密码错误！"),1===history.length?location.replace("https://www.52jwl.com"):history.back();else try{sessionStorage.password=o,sessionStorage.initState="1"}catch(s){console.log("sessionStorage 无法使用。")}}()</script><title>前端常用库及实用技术 | ilovejwl</title><link href="https://cdn.staticfile.org/prettify/r298/prettify.min.css" rel="stylesheet"><style type="text/css">.prettyprint{background:#131513;font-family:Menlo,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,Consolas,monospace;border:0!important}.pln{color:#f4fbf4}ol.linenums{margin-top:0;margin-bottom:0;color:#687d68}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#131513;list-style-type:decimal}@media screen{.str{color:#29a329}.kwd{color:#ad2bee}.com{color:#687d68}.typ{color:#3d62f5}.lit{color:#87711d}.pun{color:#f4fbf4}.opn{color:#f4fbf4}.clo{color:#f4fbf4}.tag{color:#e6193c}.atn{color:#87711d}.atv{color:#1999b3}.dec{color:#87711d}.var{color:#e6193c}.fun{color:#3d62f5}}</style></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container one-collumn sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fd6c6c;color:#fff;position:absolute;top:0;border:0;right:0;z-index:1" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">ilovejwl</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">52jwl</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.52jwl.com/2018/09/07/前端常用库及实用技术/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="jwl"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="ilovejwl"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">前端常用库及实用技术</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-07T21:19:43+08:00">2018-09-07 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span> </a></span>， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS/常用库及实用技术/" itemprop="url" rel="index"><span itemprop="name">常用库及实用技术</span> </a></span></span><span class="post-meta-divider">|</span> <span class="page-pv"><i class="fa fa-file-o"></i> 本文热度 <span class="busuanzi-value" id="busuanzi_value_page_pv">1314520</span>°C</span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">3,832 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">16</span></div></div></header><div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="前端常用库及实用技术"><a href="#前端常用库及实用技术" class="headerlink" title="前端常用库及实用技术"></a>前端常用库及实用技术</h1><h2 id="JavaScript-模块儿化"><a href="#JavaScript-模块儿化" class="headerlink" title="JavaScript 模块儿化"></a>JavaScript 模块儿化</h2><h3 id="模块儿化的概念解读"><a href="#模块儿化的概念解读" class="headerlink" title="模块儿化的概念解读"></a>模块儿化的概念解读</h3><ol><li>模块儿化起源与NodeJS，但是这是后端的，<ol><li>后来在前端也出现了两个模块儿化的JS</li><li>国外的ReqiureJS、CommonJS和国内的Seajs</li></ol></li><li>AMD 是RequireJS 在推广过程中对模块儿定义的规范化产出<ol><li>异步加载模块儿，依赖前置，提前执行。</li><li>Define定义模块儿<pre><code class="js"> define([&#39;require&#39;,&#39;foo&#39;],function(){return});
+</code></pre></li><li>Require加载模块儿（依赖前置）<pre><code class="js"> require([&#39;foo&#39;,&#39;bar&#39;],function(foo,bar){});
+</code></pre></li></ol></li><li>CMD 是SeaJS在推广过程中对模块儿定义的规范产出。<ol><li>Define定义 exports导出,module上存储了当前模块儿上的一些对象。<pre><code class="js"> define(function(require,exports,module){});
+</code></pre></li><li>require(./a)直接引入。Require.async支持异步引入。</li></ol></li><li>同步加载，依赖就近，延迟执行。<ol><li>类似的还有CommonJS Modules/2.0规范。</li></ol></li><li>AMD 是预加载，CMD 是懒加载</li></ol><h3 id="Seajs的应用"><a href="#Seajs的应用" class="headerlink" title="Seajs的应用"></a>Seajs的应用</h3><h4 id="官网："><a href="#官网：" class="headerlink" title="官网："></a>官网：</h4><ol><li>官方文档：<code>https://seajs.github.io/seajs/</code></li><li>入门网站：<code>https://seajs.github.io/seajs/docs/#quick-start</code></li><li>github里的 seajs库： <code>https://github.com/seajs/seajs</code></li><li>github里的 例子：<code>https://github.com/seajs/examples</code></li></ol><h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ol><li>参照nodejs的思想</li><li>首先 <code>define(function(require,exports,module){})</code><ol><li>require可以像nodejs一样引入其它模块儿，</li><li>同步引入使用require，</li><li>异步引入使用<code>require.async(&#39;模块儿名&#39;,function(obj){...})</code></li></ol></li><li>exports 可以通过 exports.成员名 的方式单个单个导出成员</li><li>module 可以通过 module.exports={key:value,key2:value2} 的方式多导出成员</li><li><p>页面引入seajs之后，你可以通过</p><pre><code class="js"> &lt;script type=&quot;text/javascript&quot;&gt;
+     // seajs 的简单配置
+     //调用配置的方法
+     seajs.config({
+         //根目录
+       base: &quot;./js/&quot;,
+       //起一个别名
+       alias: {
+         key : value
+         &quot;jquery&quot;: &quot;jquery-debug.js&quot;
+       }
+     })
+
+     // 加载入口模块 main.js后面的.js会自动添加,这个main.js是根目录下的
+     seajs.use(&quot;main&quot;)
+ &lt;/script&gt;
+</code></pre></li></ol><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ol><li>通过script标签的src属性 去引入，</li><li>然后获取每一个js里面的内容，</li><li>然后解析内容字符串，</li><li>生成新的script，</li><li>嵌入到页面中，然后调用执行。</li></ol><h3 id="RequireJS的应用"><a href="#RequireJS的应用" class="headerlink" title="RequireJS的应用"></a>RequireJS的应用</h3><h4 id="官网：-1"><a href="#官网：-1" class="headerlink" title="官网："></a>官网：</h4><ol><li>中文网站：<a href="http://www.requirejs.cn/" target="_blank" rel="noopener">http://www.requirejs.cn/</a></li><li>英文网站：<a href="https://requirejs.org/" target="_blank" rel="noopener">https://requirejs.org/</a></li></ol><h4 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h4><ol><li>参照AngularJs 1.x版本的思想 依赖注入</li><li>首先在页面加载 requirejs，<ol><li>然后在同一个script标签内嵌入 data-main=”main.js” 主入口文件</li></ol></li><li>在main.js文件中使用 Angularjs中的依赖注入，<ol><li><code>define([&#39;require&#39;,&#39;foo&#39;],function(){});</code>，</li><li>依赖谁就在<code>[]</code>中传递谁。</li></ol></li><li>如果想对别的模块儿在引入时进行传递数据，<ol><li>可以在<code>function(){}</code>中 <code>return {}</code>,<code>{}</code>写你要传递的数据。</li></ol></li><li><p>代码示例</p><pre><code class="js"> //main.js\\
+ define([&#39;./require&#39;, &#39;./index&#39;], function(require, index) {
+     index.sayhi();
+ })
+
+ // index.js \\
+ define([&#39;require&#39;],function(require){
+     return {
+         sayhi:function(){
+             console.log(&quot;index&quot;);
+         }
+     }
+ })
+
+ // test.js \\
+ define([&#39;./require&#39;],function(require){
+     return {
+         sayhi:function(){
+             console.log(&#39;test&#39;);
+         }
+     }
+ })
+
+ // require.js 自己去下载 文件80+kb 它是依赖文件 页面中也会引入 \\
+</code></pre></li></ol><h2 id="Javscript数据推送"><a href="#Javscript数据推送" class="headerlink" title="Javscript数据推送"></a>Javscript数据推送</h2><h3 id="Comet：基于HTTP长连接的服务器推送技术"><a href="#Comet：基于HTTP长连接的服务器推送技术" class="headerlink" title="Comet：基于HTTP长连接的服务器推送技术"></a>Comet：基于HTTP长连接的服务器推送技术</h3><ol><li>前端使用递归的方式发送请求，<ol><li>获取响应之后继续发送请求，</li><li>后端使用线程休眠的方式减少请求的回应时间，</li><li>这样就能够使得HTTP长连接，</li><li>当然你要把缓存过期时间设置为0。</li></ol></li><li>后端使用死循环，<ol><li>循环一次，就往前端吐一次数据，</li><li>前端使用原生ajax，</li><li>在readyState==3&amp;&amp;status==200的时候就进行输出。</li></ol></li><li>这是一个轮询的方式。</li></ol><h3 id="基于WebSocket的推送方案"><a href="#基于WebSocket的推送方案" class="headerlink" title="基于WebSocket的推送方案"></a>基于WebSocket的推送方案</h3><ol><li>npm install socket.io -D</li><li>浏览器与服务器之间双向通信</li></ol><h3 id="SSE（Server-Send-Event）：服务器推送数据的新方式"><a href="#SSE（Server-Send-Event）：服务器推送数据的新方式" class="headerlink" title="SSE（Server-Send Event）：服务器推送数据的新方式"></a>SSE（Server-Send Event）：服务器推送数据的新方式</h3><ol><li>后端设置响应头<ol><li>Content-Type:text/event-stream;charset=utf-8</li><li>Access-Control-Allow-Origin:<code>http://127.0.0.1/</code></li><li>数据输出的格式是，data:现在时间是北京时间</li></ol></li><li><p>前端编写代码</p><pre><code class="js"> var source;
+ function init(argument) {
+     //创建一个对象
+     source=new EventSource(&#39;http://localhost/sse/data.php&#39;);
+     //开启连接
+     source.onopen=function(){
+         console.log(&quot;连接已经建立&quot;,this.readyState);
+     }
+     //获取消息
+     source.onmessage=function(event){
+         console.log(&quot;从服务器实时获取数据&quot;,event.data);
+     }
+     //错误时触发
+     source.onerror=function(){
+
+     }
+ }
+</code></pre></li></ol><h2 id="Javascript高级函数"><a href="#Javascript高级函数" class="headerlink" title="Javascript高级函数"></a>Javascript高级函数</h2><h3 id="惰性载入函数"><a href="#惰性载入函数" class="headerlink" title="惰性载入函数"></a>惰性载入函数</h3><ol><li>第一次正常执行，并且判断当前系统环境，然后改变函数引用。</li><li>第二次执行时，就会直接执行你根据系统环境改变后的函数。</li><li>以创建ajax对象为例</li><li><p>非惰性函数的方式</p><pre><code class="js"> function createXHR(){
+     var xhr=null;
+     try{
+         // Firefox,Opera 8.0+ Safari, IE7+
+         xhr=new XMLHttpRequest();
+     }catch(e){
+         handleErr(e)
+         // Internet Explorer
+         try{
+             xhr=new ActiveXobject(&quot;Msxml2.XMLHTTP&quot;);
+         }catch(e){
+             try{
+             xhr=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)
+             }catch(e){
+                 xhr=null;
+             }
+         }
+     }
+     //最后必须返回这个xhr
+     return xhr;
+ }
+
+ function handleErr(err) {
+     var errXHR=err;
+ }
+</code></pre></li><li>惰性函数的方式<pre><code class="js"> function createXHR2(){
+     var xhr=null;
+     if(typeof XMLHttpRequest!=&quot;undefined&quot;) {
+         xhr=new XMLHttpRequest();
+         //修改函数
+         createXHR2=function(){
+             return new XMLHttpRequest();
+         }
+     }else {
+         try{
+             xhr=new ActiveXObject(&#39;Msxml2.XMLHTTP&#39;);
+             //修改函数
+             createXHR2=function(){
+                 return new ActiveXObject(&#39;Msxml2.XMLHTTP&#39;);
+             }
+         }catch(e){
+             handleErr(e);
+             try{
+                 xhr=new ActiveXObject(&#39;Microsoft.XMLHTTP&#39;);
+                 //修改函数
+                 createXHR2=function(){
+                     return new ActiveXObject(&#39;Microsoft.XMLHTTP&#39;);
+                 }
+             }catch(e){
+                 // xhr=null;
+                 createXHR2=function(){
+                     return null;
+                 }
+             }
+         }
+     }
+     return xhr;
+ }
+</code></pre></li></ol><h3 id="函数柯里化（curry）"><a href="#函数柯里化（curry）" class="headerlink" title="函数柯里化（curry）"></a>函数柯里化（curry）</h3><ol><li>柯里化，把接收多个参数的函数变换成接收一个单一的函数。<ol><li>合并参数，第一个函数的参数合并成整体的，传递给统一的函数。</li></ol></li><li>function是js中的王者。</li><li><p>函数柯里化代码</p><pre><code class="js"> //创建柯里化函数
+ function curry(fn){
+     //获取函数以外的其它参数
+     var args=Array.prototype.slice.call(arguments,1);
+     //返回一个函数
+     retrun function(){
+         //获取所有参数
+         var innerArgs=Array.prototype.slice.call(arguments);
+         //拼接参数
+         var finalArgs=args.concat(innerArgs);
+         // 返回执行结果
+         retrun fn.apply(this,finalArgs);
+     }
+ }
+
+ //创建 最后执行的函数
+ function add(num1,num2,num3) {
+     retrun num1+num2+num3;
+ } 
+ // 利用了函数作用域链和闭包
+ var t=curry(add,50)(1,2);
+
+ alert(t);
+</code></pre></li></ol><h3 id="级联函数"><a href="#级联函数" class="headerlink" title="级联函数"></a>级联函数</h3><ol><li>级联函数也叫链式调用</li><li>相当于Jquery的链式编程，但是是把相关的属性串联起来，<ol><li>通过行为来串联，每一个行为最后return this,最后一步不用return this。</li></ol></li><li><p>级联函数代码</p><pre><code class="js"> function ClassA() {
+     this.lian=&quot;&quot;;//脸
+     this.zui=&quot;&quot;;//嘴
+     this.tui=&quot;&quot;;//腿
+ }
+
+ //重写原型
+ ClassA.prototype={
+     //构造函数必写
+     constructor:ClassA,
+     setLian(){
+         //会返回最后一个参数 
+         return (this.lian=&quot;大脸&quot;),this;
+
+     },
+     setZui(){
+         //会返回最后一个参数 
+         return (this.zui=&quot;大嘴&quot;),this;
+     },
+     setTui(){
+         //返回 大腿
+         return (this.tui=&quot;大腿&quot;);
+     }
+ }
+ //实例化对象
+ var a=new ClassA();
+ //相关的属性联系起来，很像是职责链
+ a.setLian().setZui().setTui();
+ console.log(a);
+ console.log(this);
+</code></pre></li></ol><h2 id="JavaScript高级技巧"><a href="#JavaScript高级技巧" class="headerlink" title="JavaScript高级技巧"></a>JavaScript高级技巧</h2><h3 id="变量作用域和闭包"><a href="#变量作用域和闭包" class="headerlink" title="变量作用域和闭包"></a>变量作用域和闭包</h3><ol><li>js是函数级别作用域，<ol><li>在内部的变量，</li><li>内部都可以访问，</li><li>外部的不能访问内部的，</li><li>内部可以访问外部。</li></ol></li><li>变量提升、函数提升，<ol><li>先变量提升，然后再函数提升。</li></ol></li><li>闭包就是拿到本不该拿的东西，<ol><li>容易操成内存泄漏，你使用闭包之后，</li><li>系统不知道你什么时候用，所以不会轻易地给你清除掉。</li></ol></li><li>Javascript在前端的内存泄漏不是很严重，<ol><li>但是到了后端这个内存泄漏会凸显出来。</li></ol></li></ol><h3 id="This指针和使用"><a href="#This指针和使用" class="headerlink" title="This指针和使用"></a>This指针和使用</h3><ol><li>正常情况下，谁调就会指向谁。</li><li>如果你使用了有关于bind函数，<ol><li>那么你绑定谁，this就指向谁</li></ol></li><li>找成员先找自身的，然后再去找原型中的</li></ol><h3 id="按值传递和按引用传递"><a href="#按值传递和按引用传递" class="headerlink" title="按值传递和按引用传递"></a>按值传递和按引用传递</h3><ol><li>值应用传递值</li><li>引用传递传递引用。</li></ol><h2 id="JavaScript面向切面编程"><a href="#JavaScript面向切面编程" class="headerlink" title="JavaScript面向切面编程"></a>JavaScript面向切面编程</h2><h3 id="面向切面的概念解读"><a href="#面向切面的概念解读" class="headerlink" title="面向切面的概念解读"></a>面向切面的概念解读</h3><ol><li>JavaScript的最大的优点，<ol><li>是没有任何束缚没有任何约定，</li><li>只需要按照编程的思想，</li><li>就能够实现所需要的东西。</li></ol></li><li>使用随意的语法然后引用function，<ol><li>就可以组装面向切面编程的方法。</li></ol></li><li>Aspect Oriented Programming(AOP),<ol><li>面向切面编程，是一个比较热门的话题。</li></ol></li><li>AOP主要实现的目的是针对业务处理过程中的切面进行提取，<ol><li>它所面对的是处理过程中某个步骤或者阶段，</li><li>以获得逻辑过程中各部分之间低耦合性的隔离效果。</li></ol></li><li>AOP 最大的优点是 可以对业务进行无侵入的干扰。</li></ol><h3 id="面向切换的代码实战"><a href="#面向切换的代码实战" class="headerlink" title="面向切换的代码实战"></a>面向切换的代码实战</h3><h4 id="不使用面向切面，乱插代码"><a href="#不使用面向切面，乱插代码" class="headerlink" title="不使用面向切面，乱插代码"></a>不使用面向切面，乱插代码</h4><pre><code class="js">    //需求1 ：统计当前所有的函数 中 谁耗时最长
+
+    // 实现 1
+    function test () {
+      var start = Date();
+      alert(1);
+      var end =Date();
+      console.log(end - start);
+    }
+    test();
+    // 结论： 太麻烦了，并且这么做存在变量污染和重名的危险
+</code></pre><h4 id="使用面向切面，进入无侵入的实现"><a href="#使用面向切面，进入无侵入的实现" class="headerlink" title="使用面向切面，进入无侵入的实现"></a>使用面向切面，进入无侵入的实现</h4><pre><code class="js">    // 使用 aop 来进行无侵入的实现
+
+    function test () {
+      alert(1);
+    }
+
+    // 给所有的函数扩展原型 before
+    Function.prototype.before = function (fn) {
+      // 记录自己
+      var __self = this;
+      // 先调用回调
+      fn();
+      // 然后调用自己 
+      __self.apply(this,arguments);
+
+    }
+
+    // 给所有的函数扩展原型 after
+    Function.prototype.after = function (fn) {
+      var __self = this;
+      // 先调用自己
+      __self.apply(this, arguments);
+      // 然后调用回调
+      fn();
+
+    }
+
+    test.before(function () {
+      alert(0);
+
+    })
+
+    test.after(function () {
+      alert(2);
+
+    })
+
+    // 结论  默认函数 被执行了 两次 before 和 after 各执行一次
+</code></pre><h4 id="使用面向切换，优化代码"><a href="#使用面向切换，优化代码" class="headerlink" title="使用面向切换，优化代码"></a>使用面向切换，优化代码</h4><pre><code class="js">    // 使用 aop 来进行无侵入的实现 改进
+    // 将 before回调  和 before 一起送到 after中
+    // 将 after 回调 和test 一起送到before中
+    // 挂载 slef ==&gt; test 执行before 回调 执行 self after 自己执行回调用
+    function test () {
+      alert(1);
+    }
+
+    // 给所有的函数扩展原型 before
+    Function.prototype.before = function (fn) {
+      // 记录自己
+      var __self = this;
+
+      // 
+      return function () {
+          // 先调用回调
+        fn.apply(__self, arguments);
+        // 然后调用自己  传递的都是默认函数中的this
+        __self.apply(__self, arguments);
+      }
+    }
+
+    // 给所有的函数扩展原型 after
+    Function.prototype.after = function (fn) {
+      var __self = this;
+
+      return function () {
+          // 先调用自己
+        __self.apply(__self, arguments);
+        // 然后调用回调 传递的都是默认函数中的this
+        fn.apply(__self, arguments);
+      }
+
+    }
+
+    test.before(function () {
+      alert(0);
+
+    }).after(function () {
+      alert(2);
+
+    })()
+    // 结论： 功能已经实现ok ，接下载做权限验证
+</code></pre><h4 id="使用面向切换，优化代码，增加权限验证，并且获取-原函数的返回值"><a href="#使用面向切换，优化代码，增加权限验证，并且获取-原函数的返回值" class="headerlink" title="使用面向切换，优化代码，增加权限验证，并且获取 原函数的返回值"></a>使用面向切换，优化代码，增加权限验证，并且获取 原函数的返回值</h4><pre><code class="js">    function test () {
+      alert(1);
+      // 传递返回值
+      return &#39;test&#39;
+    }
+
+    // 给所有的函数扩展原型 before
+    Function.prototype.before = function (fn) {
+      // 记录自己
+      var __self = this;
+
+      // 
+      return (function () {
+        // 在这里做 权限验证
+        if (fn.apply(__self, arguments) === false) {
+          return false;
+        }
+
+       return  __self.apply(__self, arguments);
+      })
+    }
+
+    // 给所有的函数扩展原型 after
+    Function.prototype.after = function (fn) {
+      var __self = this;
+
+      return (function () {
+          // 先调用自己
+        var result = __self.apply(__self, arguments);
+        // 判断是否有问题
+        if (result === false) {
+          return false
+        }
+        // 然后调用回调 传递的都是默认函数中的this
+        fn.apply(__self, arguments);
+        return result;
+      })
+    }
+
+    var returnValue = test.before(function () {
+      alert(0);
+      // ... 各种逻辑代码 最后返回false
+      // return false
+    }).after(function () {
+      alert(2);
+      console.log(this)
+    })()
+
+    console.log(returnValue)
+
+    // 结论： 无论顺序怎么样，结果都一样，完美。
+</code></pre><h2 id="JavaScript多线程"><a href="#JavaScript多线程" class="headerlink" title="JavaScript多线程"></a>JavaScript多线程</h2><h3 id="多线程概念介绍"><a href="#多线程概念介绍" class="headerlink" title="多线程概念介绍"></a>多线程概念介绍</h3><ol><li>多线程，<ol><li>是指从软件或者硬件上实现多个线程并发执行的技术。</li></ol></li><li>具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程（台湾译作执行绪），<ol><li>进而提升整体处理性能。</li></ol></li><li>具有这种能力的系统包括对称多处理机、<ol><li>多核心处理器以及芯片级多处理或同事多线程处理器。</li></ol></li><li>在一个程序中，<ol><li>这些独立运行的程序片段叫 线程(Tread)，</li><li>利用它编程的概念就叫做 多线程处理（Multithreading）。</li></ol></li><li>js是单线程的，<ol><li>但是分同步代码和异步代码，</li><li>异步代码会放到异步队列中去，</li><li>当同步代码执行完毕之后再去执行异步队列中的代码</li></ol></li><li>js中的异步代码有 事件、定时器、异步请求。</li></ol><h3 id="Concurrent-Thread-js"><a href="#Concurrent-Thread-js" class="headerlink" title="Concurrent.Thread.js"></a>Concurrent.Thread.js</h3><ol><li>下载网址：<ol><li><code>https://github.com/bringmehome/Concurrent.Thread.js</code></li></ol></li><li>资料网址：<ol><li><code>https://www.cnblogs.com/woodk/articles/5199536.html</code></li></ol></li><li>低版本模拟多线程</li><li>日本人开发的，这个库很伟大。</li><li>使用炸弹定时器和循环定时器</li><li>使用了大量的闭包，所以很容易操成内存泄漏</li><li><p>代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+     &lt;meta charset=&quot;UTF-8&quot;&gt;
+     &lt;title&gt;Concurrent.Thread&lt;/title&gt;
+     &lt;script type=&quot;text/javascript&quot; src=&quot;./Concurrent.Thread/Concurrent.Thread.js&quot;&gt;&lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.staticfile.org/jquery/1.9.1/jquery.js&quot;&gt;&lt;/script&gt;
+     &lt;style type=&quot;text/css&quot;&gt;
+         .box {
+             width: 200px;
+             height: 200px;
+             line-height: 200px;
+             background-color: #0f0;
+         }
+     &lt;/style&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;div class=&quot;box&quot;&gt;点击我&lt;/div&gt;
+ &lt;!-- 正常使用方式 先执行同步代码，然后再执行异步代码 --&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     // $(&#39;.box&#39;).click(function(){
+     //     alert(&#39;弹出&#39;);
+     // });
+
+     // for (var i = 0; i &lt; 9999; i++) {
+     //     console.log(i);
+     // }
+ &lt;/script&gt;
+ &lt;!-- 原理是通过setTimeOut和setInterval --&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     Concurrent.Thread.create(function() {
+          $(&#39;.box&#39;).click(function() {
+              alert(&quot;弹出&quot;);
+          });
+          /*下面有一段特别复杂的函数*/
+          for (var i = 0; i &lt; 10000; i++) {
+              console.log(i);
+          }
+      });
+ &lt;/script&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;    
+</code></pre></li></ol><h3 id="WebWork"><a href="#WebWork" class="headerlink" title="WebWork"></a>WebWork</h3><ol><li>html5 推出的标准</li><li>还是不允许操作dom</li><li>非常的牛！！！！</li></ol><h4 id="一些常用的属性"><a href="#一些常用的属性" class="headerlink" title="一些常用的属性"></a>一些常用的属性</h4><ol><li><code>postMessage(msg);</code>，<ol><li>向创建线程的源窗口发送消息</li></ol></li><li><code>onmessage</code>事件，<ol><li>获取接收消息的事件</li></ol></li><li><code>importScripts());</code>，<ol><li>导入其它js脚本，</li><li>参数为脚本文件的url，</li><li>可以导入多个脚本文件</li></ol></li><li><code>close()</code>，结束线程</li><li>如果close()没有用，<ol><li>那么你可以使用terminate()来终止线程</li></ol></li><li>线程中可以使用哪些对象<ol><li>navigator对象可以使用</li><li>可以在线程中使用localStorage和sessionStorage</li><li>XMLHttpRequest可以在线程中国内使用ajax</li><li>setTimeout、setInterval 定时器可以使用线程</li></ol></li></ol><h4 id="两种模式"><a href="#两种模式" class="headerlink" title="两种模式"></a>两种模式</h4><ol><li><p>普通页面的模式:Worker</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+     &lt;meta charset=&quot;UTF-8&quot;&gt;
+     &lt;title&gt;webWork&lt;/title&gt;
+     &lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.staticfile.org/jquery/1.9.1/jquery.js&quot;&gt;&lt;/script&gt;
+     &lt;style type=&quot;text/css&quot;&gt;
+         .box {
+             width: 200px;
+             height: 200px;
+             line-height: 200px;
+             background-color: #0f0;
+         }
+     &lt;/style&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;div class=&quot;box&quot;&gt;点击我&lt;/div&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+         //绑定单击事件
+         $(&#39;.box&#39;).click(function() {
+              alert(&quot;弹出&quot;);
+          });
+
+         //创建对象，指定要执行的js 也就是开启一个后台线程去执行这个js
+         var work=new Worker(&#39;task.js&#39;);
+         //监听事件
+         work.onmessage=function(event){
+             //通过事件对象获取里面的data属性
+             alert(event.data);
+         }
+         //向那个后台线程发送数据
+         work.postMessage(10000);
+     &lt;/script&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> // task.js \\
+ &#39;use strict&#39;;
+ //监听消息，也就是前台页面发送过来的消息
+ onmessage = function(event) {
+     //从1加到num //获取传递过来的数据
+     var num = event.data;
+     var result = 0;
+     for (var i = 1; i &lt;= num; i++) {
+         result += i;
+         console.log(result);
+     }
+     //把消息发送到前台去，前台需要监听
+     postMessage(result);
+ }
+</code></pre></li><li><p>share 模式:SharedWorker</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+     &lt;head&gt;
+         &lt;meta charset=&quot;UTF-8&quot;&gt;
+         &lt;title&gt;sharedWorker&lt;/title&gt;
+     &lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.staticfile.org/jquery/1.9.1/jquery.js&quot;&gt;&lt;/script&gt;
+     &lt;!-- &lt;script type=&quot;text/javascript&quot; src=&quot;sharedworker.js&quot;&gt;&lt;/script&gt; --&gt;
+     &lt;style type=&quot;text/css&quot;&gt;
+         .box {
+             width: 200px;
+             height: 200px;
+             line-height: 200px;
+             background-color: #0f0;
+         }
+     &lt;/style&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;div class=&quot;box&quot;&gt;点击我&lt;/div&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+         //绑定单击事件
+         $(&#39;.box&#39;).click(function() {
+              alert(&quot;弹出&quot;);
+          });
+             //创建一个对象
+             var work=new SharedWorker(&quot;sharedworker.js?id=&quot;+(+new Date()));
+
+             //监听返回回来的数据
+             work.port.onmessage= function(e){
+                     console.log(e.data);
+             }
+             work.port.onmessageerror=function(e){
+                 console.log(e);
+             }
+
+             //开启线程
+             work.port.start();
+             //发送数据
+             work.port.postMessage(1000);
+         &lt;/script&gt;
+     &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> // sharedworker.js
+
+ onconnect = function(e) {
+     //获取连接的端口
+     var port = e.ports[0];
+     var num = 0;
+     var result = 0;
+     port.postMessage(&quot;连接成功！&quot;);
+     port.onmessage = function(e) {
+         num=e.data;
+         for (var i = 1; i &lt;= num; i++) {
+             result += i;
+             //这个console.log(result);无效。
+             // console.log(result);
+             // 不停的返回数据
+             port.postMessage(result);
+         }
+         port.postMessage(result);
+     }
+ }
+</code></pre></li><li>无论是创建 Worker还是 SharedWorker对象时传递的js，<ol><li>这个js内部的内容一定不能有错，</li><li>否则无法正确引入，</li><li>并且还不会报错。</li></ol></li></ol></div><div><div class="my_post_copyright"><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><p><span>本文标题:</span><a href="/2018/09/07/前端常用库及实用技术/">前端常用库及实用技术</a></p><p><span>文章作者:</span><a href="/" title="访问 jwl 的个人博客">jwl</a></p><p><span>发布时间:</span>2018年09月07日 - 21:09</p><p><span>最后更新:</span>2018年09月07日 - 21:09</p><p><span>原始链接:</span><a href="/2018/09/07/前端常用库及实用技术/" title="前端常用库及实用技术">https://www.52jwl.com/2018/09/07/前端常用库及实用技术/</a> <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.52jwl.com/2018/09/07/前端常用库及实用技术/" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");$(".fa-clipboard").click(function(){clipboard.on("success",function(){swal({title:"",text:"亲！好了哦",icon:"success",showConfirmButton:!0,confirmButtonColor:"#ef4e7b"})})})</script></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" width="100" height="100" src="http://static.dramastyle.com/images/3/7/1301/My-NeighborTotoro__6.jpg" alt="jwl WeChat Pay"><p>龙猫打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" width="100" height="100" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535968240695&di=983c0ca46cee2ca40f9d6df3d33a95bd&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201506%2F13%2F20150613121207_AGkUF.jpeg" alt="jwl Alipay"><p>金鱼姬打赏</p></div></div></div></div><div><div><div style="text-align:center;color:#555;font-size:14px">--------------------i love jwl--------------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="./tags/JS-模块儿化/"><i class="fa fa-tag"></i> JS 模块儿化</a> <a href="./tags/JS-数据推送/"><i class="fa fa-tag"></i> JS 数据推送</a> <a href="./tags/JS-惰性函数/"><i class="fa fa-tag"></i> JS 惰性函数</a> <a href="./tags/JS-函数柯里化/"><i class="fa fa-tag"></i> JS 函数柯里化</a> <a href="./tags/JS-级联函数/"><i class="fa fa-tag"></i> JS 级联函数</a> <a href="./tags/JS-高级技巧/"><i class="fa fa-tag"></i> JS 高级技巧</a> <a href="./tags/JS-AOP/"><i class="fa fa-tag"></i> JS AOP</a> <a href="./tags/JS-多线程/"><i class="fa fa-tag"></i> JS 多线程</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/09/07/CSS预处理器/" rel="next" title="CSS预处理器"><i class="fa fa-chevron-left"></i> CSS预处理器</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/09/08/前端JS高级知识/" rel="prev" title="前端JS高级知识">前端JS高级知识 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"><div class="addthis_inline_share_toolbox"><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b8917fd9ef2beb8" async></script></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQwOC8xNTkzNQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="jwl"><p class="site-author-name" itemprop="name">jwl</p><p class="site-description motion-element" itemprop="description">从喜欢到爱的一路前端风</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories"><span class="site-state-item-count">27</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">88</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/52jwl" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://www.freecodecamp.cn/52jwl" target="_blank" title="fcc"><i class="fa fa-fw fa-free-code-camp"></i> fcc </a></span><span class="links-of-author-item"><a href="https://www.jianshu.com/u/439a6eee60e1" target="_blank" title="简书"><i class="fa fa-fw fa-book"></i> 简书 </a></span><span class="links-of-author-item"><a href="http://blog.csdn.net/jwl_lwj" target="_blank" title="CSDN"><i class="fa fa-fw fa-rotate-right"></i> CSDN</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a></li><li class="links-of-blogroll-item"><a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a></li><li class="links-of-blogroll-item"><a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a></li><li class="links-of-blogroll-item"><a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a></li></ul></div><div id="days"></div><script>function show_date_time(){window.setTimeout("show_date_time()",1e3),BirthDay=new Date("01/10/2017 12:34:56"),today=new Date,timeold=today.getTime()-BirthDay.getTime(),sectimeold=timeold/1e3,secondsold=Math.floor(sectimeold),msPerDay=864e5,e_daysold=timeold/msPerDay,daysold=Math.floor(e_daysold),e_hrsold=24*(e_daysold-daysold),hrsold=setzero(Math.floor(e_hrsold)),e_minsold=60*(e_hrsold-hrsold),minsold=setzero(Math.floor(60*(e_hrsold-hrsold))),seconds=setzero(Math.floor(60*(e_minsold-minsold))),document.getElementById("days").innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"}function setzero(e){return e<10&&(e="0"+e),e}show_date_time()</script></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端常用库及实用技术"><span class="nav-number">1.</span> <span class="nav-text">前端常用库及实用技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-模块儿化"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript 模块儿化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块儿化的概念解读"><span class="nav-number">1.1.1.</span> <span class="nav-text">模块儿化的概念解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Seajs的应用"><span class="nav-number">1.1.2.</span> <span class="nav-text">Seajs的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官网："><span class="nav-number">1.1.2.1.</span> <span class="nav-text">官网：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用法"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequireJS的应用"><span class="nav-number">1.1.3.</span> <span class="nav-text">RequireJS的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官网：-1"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">官网：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用法："><span class="nav-number">1.1.3.2.</span> <span class="nav-text">用法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Javscript数据推送"><span class="nav-number">1.2.</span> <span class="nav-text">Javscript数据推送</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Comet：基于HTTP长连接的服务器推送技术"><span class="nav-number">1.2.1.</span> <span class="nav-text">Comet：基于HTTP长连接的服务器推送技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于WebSocket的推送方案"><span class="nav-number">1.2.2.</span> <span class="nav-text">基于WebSocket的推送方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSE（Server-Send-Event）：服务器推送数据的新方式"><span class="nav-number">1.2.3.</span> <span class="nav-text">SSE（Server-Send Event）：服务器推送数据的新方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Javascript高级函数"><span class="nav-number">1.3.</span> <span class="nav-text">Javascript高级函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#惰性载入函数"><span class="nav-number">1.3.1.</span> <span class="nav-text">惰性载入函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数柯里化（curry）"><span class="nav-number">1.3.2.</span> <span class="nav-text">函数柯里化（curry）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#级联函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">级联函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript高级技巧"><span class="nav-number">1.4.</span> <span class="nav-text">JavaScript高级技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域和闭包"><span class="nav-number">1.4.1.</span> <span class="nav-text">变量作用域和闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#This指针和使用"><span class="nav-number">1.4.2.</span> <span class="nav-text">This指针和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按值传递和按引用传递"><span class="nav-number">1.4.3.</span> <span class="nav-text">按值传递和按引用传递</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript面向切面编程"><span class="nav-number">1.5.</span> <span class="nav-text">JavaScript面向切面编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向切面的概念解读"><span class="nav-number">1.5.1.</span> <span class="nav-text">面向切面的概念解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向切换的代码实战"><span class="nav-number">1.5.2.</span> <span class="nav-text">面向切换的代码实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不使用面向切面，乱插代码"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">不使用面向切面，乱插代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用面向切面，进入无侵入的实现"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">使用面向切面，进入无侵入的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用面向切换，优化代码"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">使用面向切换，优化代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用面向切换，优化代码，增加权限验证，并且获取-原函数的返回值"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">使用面向切换，优化代码，增加权限验证，并且获取 原函数的返回值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript多线程"><span class="nav-number">1.6.</span> <span class="nav-text">JavaScript多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程概念介绍"><span class="nav-number">1.6.1.</span> <span class="nav-text">多线程概念介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concurrent-Thread-js"><span class="nav-number">1.6.2.</span> <span class="nav-text">Concurrent.Thread.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebWork"><span class="nav-number">1.6.3.</span> <span class="nav-text">WebWork</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些常用的属性"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">一些常用的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种模式"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">两种模式</span></a></li></ol></li></ol></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright" style="text-align:center;line-height:50px;font-size:16px">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-snowflake-o"></i> </span><span class="author" itemprop="copyrightHolder">jwl</span><div class="powered-by">| <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"><a class="theme-link" href="https://www.52jwl.com">i love jwl：</a> <span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><span class="post-count">已统计字数:199.1k</span></div></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path;function proceedsearch(){$("body").append('<div class="local-search-pop-overlay">').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,c,s){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var t=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),a=document.getElementById(c),r=document.getElementById(s);a.addEventListener("input",function(){var u=0,d='<ul class="search-result-list">',f=this.value.trim().toLowerCase().split(/[\s\-]+/);r.innerHTML="",1<this.value.trim().length&&t.forEach(function(e){var a=!1,r=e.title.trim().toLowerCase(),c=e.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),t=decodeURIComponent(e.url),s=-1,n=-1,o=-1;if(""!=r&&f.forEach(function(e,t){s=r.indexOf(e),n=c.indexOf(e),(0<=s||0<=n)&&(a=!0,0==t&&(o=n))}),a){u+=1,d+="<li><a href='"+t+"' class='search-result-title'>"+r+"</a>";var i=e.content.trim().replace(/<[^>]+>/g,"");if(0<=o){var l=o-20,p=o+80;l<0&&(l=0),0==l&&(p=50),p>i.length&&(p=i.length);var h=i.substring(l,p);f.forEach(function(e){var t=new RegExp(e,"gi");h=h.replace(t,'<b class="search-keyword">'+e+"</b>")}),d+='<p class="search-result">'+h+"...</p>"}d+="</li>"}}),d+="</ul>",0==u&&(d='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==f&&(d='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),r.innerHTML=d}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/javascript" color="255,0,0" opacity="0.5" zindex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script><script type="text/javascript">var live2dIsExistsTimer=setInterval(function(){var e=document.getElementById("live2dcanvas");if(e){function t(e){e.style.right=document.body.offsetWidth/4+"px"}t(e),addEventListener("resize",function(){t(e)}),clearInterval(live2dIsExistsTimer)}else console.log(e,"获取失败")},500)</script><script type="text/javascript" src="/js/src/dynamicTitle.js"></script><script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js"></script><script>$(function(){$("pre").addClass("prettyprint linenums").attr("style","overflow:auto;"),prettyPrint()})</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":75,"height":150,"hOffset":320,"vOffset":-20},"log":false});</script></body></html>

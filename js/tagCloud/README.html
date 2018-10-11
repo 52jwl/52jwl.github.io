@@ -1,0 +1,44 @@
+<h1 id="hexo-tag-cloud"><a href="#hexo-tag-cloud" class="headerlink" title="hexo-tag-cloud"></a>hexo-tag-cloud</h1><p><a href="https://badge.fury.io/js/hexo-tag-cloud"><img src="https://badge.fury.io/js/hexo-tag-cloud.svg" alt="npm version"></a><br><a href="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/build-status/master"><img src="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/badges/build.png?b=master" alt="Build Status"></a><br><a href="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/?branch=master"><img src="https://scrutinizer-ci.com/g/MikeCoder/hexo-tag-cloud/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a></p><p><a href="https://github.com/MikeCoder/hexo-tag-cloud/blob/master/README.ZH.md">中文说明版本</a></p><p>Yet, just another tag cloud plugin for hexo.</p><h2 id="How-it-looks-like"><a href="#How-it-looks-like" class="headerlink" title="How it looks like"></a>How it looks like</h2><p><img src="./img/example.jpg" alt="TagCloud"></p><p>And you can see online live demo by clicking <a href="https://mikecoder.github.io/oj-code/archives/">here</a></p><h2 id="How-to-Use"><a href="#How-to-Use" class="headerlink" title="How to Use"></a>How to Use</h2><h4 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h4><ul><li>go into your hexo system folder, and add depandence <code>&quot;hexo-tag-cloud&quot;: &quot;2.0.*&quot;</code> to <code>package.json</code></li><li>then do <em>npm install</em> command</li><li>then you need to change your theme layout file and add the following content to that file depended on your render system.</li></ul><h4 id="For-ejs-Users"><a href="#For-ejs-Users" class="headerlink" title="For ejs Users"></a>For ejs Users</h4><ul><li>For example, in its default theme landscape.</li><li>We should find <code>hexo/themes/landscape/layout/_widget/tagcloud.ejs</code> file and insert the following code.<pre><code>&lt;% if (site.tags.length) { %&gt;
+  &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcloud.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcanvas.js&quot;&gt;&lt;/script&gt;
+  &lt;div class=&quot;widget-wrap&quot;&gt;
+      &lt;h3 class=&quot;widget-title&quot;&gt;&lt;%= __(&apos;tagcloud&apos;) %&gt;&lt;/h3&gt;
+      &lt;div id=&quot;myCanvasContainer&quot; class=&quot;widget tagcloud&quot;&gt;
+          &lt;canvas width=&quot;250&quot; height=&quot;250&quot; id=&quot;resCanvas&quot; style=&quot;width=100%&quot;&gt;
+              &lt;%- tagcloud() %&gt;
+          &lt;/canvas&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;% } %&gt;
+</code></pre></li></ul><h4 id="For-swig-Users"><a href="#For-swig-Users" class="headerlink" title="For swig Users"></a>For swig Users</h4><ul><li>Here we use theme Next as an example.</li><li>You should insert the following code into <code>next/layout/_macro/sidebar.swig</code>.<pre><code>{% if site.tags.length &gt; 1 %}
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcloud.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/js/tagcanvas.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;widget-wrap&quot;&gt;
+  &lt;h3 class=&quot;widget-title&quot;&gt;Tag Cloud&lt;/h3&gt;
+  &lt;div id=&quot;myCanvasContainer&quot; class=&quot;widget tagcloud&quot;&gt;
+      &lt;canvas width=&quot;250&quot; height=&quot;250&quot; id=&quot;resCanvas&quot; style=&quot;width=100%&quot;&gt;
+          {{ list_tags() }}
+      &lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{% endif %}
+</code></pre>@See <a href="https://github.com/MikeCoder/hexo-tag-cloud/issues/6">Issue 6</a></li></ul><h4 id="For-jade-Users"><a href="#For-jade-Users" class="headerlink" title="For jade Users"></a>For jade Users</h4><ul><li>eg. theme Apollo.</li><li>You can add change the container block code to the following in <code>apollo/layout/archive.jade</code>.<pre><code>...
+block container
+  include mixins/post
+  .archive
+      h2(class=&apos;archive-year&apos;)= &apos;Tag Cloud&apos;
+      script(type=&apos;text/javascript&apos;, charset=&apos;utf-8&apos;, src=&apos;/oj-code/js/tagcloud.js&apos;)
+      script(type=&apos;text/javascript&apos;, charset=&apos;utf-8&apos;, src=&apos;/oj-code/js/tagcanvas.js&apos;)
+      #myCanvasContainer.widget.tagcloud(align=&apos;center&apos;)
+          canvas#resCanvas(width=&apos;500&apos;, height=&apos;500&apos;, style=&apos;width=100%&apos;)
+              !=tagcloud()
+          !=tagcloud()
+  +postList()
+...
+</code></pre></li></ul><h4 id="Last-step"><a href="#Last-step" class="headerlink" title="Last step"></a>Last step</h4><ul><li>use <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> to see the change. hexo clean must be done before use <code>hexo g</code>.</li><li><strong>PS: Don’t use the command <code>hexo g -d or hexo d -g</code></strong>, @See <a href="https://github.com/MikeCoder/hexo-tag-cloud/issues/7">Issue 7</a></li></ul><h2 id="Customize"><a href="#Customize" class="headerlink" title="Customize"></a>Customize</h2><p>Now the hexo-tag-cloud plugin support customize feature. It’s simple to change the color and the font for the tag cloud.</p><ul><li>Add these config below to your <em>_config.yml</em> file(which under your blog root directory)<pre><code># hexo-tag-cloud
+tag_cloud:
+  textFont: Trebuchet MS, Helvetica
+  textColour: \#333
+  textHeight: 25
+  outlineColour: \#E2E1D1
+</code></pre></li><li>then use <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> to enjoy your different tag cloud</li></ul><h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>Submit issue please</p><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>See <a href="./TODO.md">Todo.md</a></p><h1 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h1><ul><li><strong><a href="http://www.goat1000.com/tagcanvas.php">TagCanvas</a></strong></li></ul>

@@ -1,0 +1,748 @@
+<!doctype html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/0f81ff2f.js","daovoice"),daovoice("init",{app_id:"493d9281"}),daovoice("update")</script><link href="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Microsoft YaHei UI Light:300,300italic,400,400italic,700,700italic|方正楷体:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STHeiti TC:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="HTTP,HTTPS,HTTP2,Nginx,"><link rel="alternate" href="/atom.xml" title="ilovejwl" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="HTTP协议原理及实际应用 Web开发工程师必学课程导学很多WEB开发真的不理解HTTP很多后端开发人员只知道HTTP的method只有get和post只知道HTTP的StatusCode只有200和500、401、404很多前端工程师可能只知道缓存中的cache-control其实还有很多，如客户端缓存、代理服务器缓存、还有缓存如何去验证可用性，其实缓存是web服务中性能提升最大的一块儿对HTT"><meta name="keywords" content="HTTP,HTTPS,HTTP2,Nginx"><meta property="og:type" content="article"><meta property="og:title" content="HTTP协议原理及实际应用"><meta property="og:url" content="https://www.52jwl.com/2018/10/10/HTTP协议原理及实际应用/index.html"><meta property="og:site_name" content="ilovejwl"><meta property="og:description" content="HTTP协议原理及实际应用 Web开发工程师必学课程导学很多WEB开发真的不理解HTTP很多后端开发人员只知道HTTP的method只有get和post只知道HTTP的StatusCode只有200和500、401、404很多前端工程师可能只知道缓存中的cache-control其实还有很多，如客户端缓存、代理服务器缓存、还有缓存如何去验证可用性，其实缓存是web服务中性能提升最大的一块儿对HTT"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-10-10T12:17:33.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="HTTP协议原理及实际应用"><meta name="twitter:description" content="HTTP协议原理及实际应用 Web开发工程师必学课程导学很多WEB开发真的不理解HTTP很多后端开发人员只知道HTTP的method只有get和post只知道HTTP的StatusCode只有200和500、401、404很多前端工程师可能只知道缓存中的cache-control其实还有很多，如客户端缓存、代理服务器缓存、还有缓存如何去验证可用性，其实缓存是web服务中性能提升最大的一块儿对HTT"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:"",labels:""}}</script><link rel="canonical" href="https://www.52jwl.com/2018/10/10/HTTP协议原理及实际应用/"><script type="text/javascript">!function(){var o="";try{o=sessionStorage.password||"",sessionStorage.initState||"0"}catch(s){o="","0",console.log("sessionStorage 无法使用。")}if("jwl"!==o)if("jwl"!==(o=prompt("请输入文章密码")))alert("密码错误！"),1===history.length?location.replace("https://www.52jwl.com"):history.back();else try{sessionStorage.password=o,sessionStorage.initState="1"}catch(s){console.log("sessionStorage 无法使用。")}}()</script><title>HTTP协议原理及实际应用 | ilovejwl</title><link href="https://cdn.staticfile.org/prettify/r298/prettify.min.css" rel="stylesheet"><style type="text/css">.prettyprint{background:#131513;font-family:Menlo,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,Consolas,monospace;border:0!important}.pln{color:#f4fbf4}ol.linenums{margin-top:0;margin-bottom:0;color:#687d68}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#131513;list-style-type:decimal}@media screen{.str{color:#29a329}.kwd{color:#ad2bee}.com{color:#687d68}.typ{color:#3d62f5}.lit{color:#87711d}.pun{color:#f4fbf4}.opn{color:#f4fbf4}.clo{color:#f4fbf4}.tag{color:#e6193c}.atn{color:#87711d}.atv{color:#1999b3}.dec{color:#87711d}.var{color:#e6193c}.fun{color:#3d62f5}}</style></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container one-collumn sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fd6c6c;color:#fff;position:absolute;top:0;border:0;right:0;z-index:1" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">ilovejwl</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">52jwl</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.52jwl.com/2018/10/10/HTTP协议原理及实际应用/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="jwl"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="ilovejwl"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">HTTP协议原理及实际应用</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-10T20:17:33+08:00">2018-10-10 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTTP/" itemprop="url" rel="index"><span itemprop="name">HTTP</span> </a></span>， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HTTP/HTTPS、HTTP2、Nginx/" itemprop="url" rel="index"><span itemprop="name">HTTPS、HTTP2、Nginx</span> </a></span></span><span class="post-meta-divider">|</span> <span class="page-pv"><i class="fa fa-file-o"></i> 本文热度 <span class="busuanzi-value" id="busuanzi_value_page_pv">1314520</span>°C</span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">24,591 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">96</span></div></div></header><div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="HTTP协议原理及实际应用-Web开发工程师必学"><a href="#HTTP协议原理及实际应用-Web开发工程师必学" class="headerlink" title="HTTP协议原理及实际应用 Web开发工程师必学"></a>HTTP协议原理及实际应用 Web开发工程师必学</h1><h2 id="课程导学"><a href="#课程导学" class="headerlink" title="课程导学"></a>课程导学</h2><ol><li>很多WEB开发真的不理解HTTP</li><li>很多后端开发人员<ol><li>只知道HTTP的method只有get和post</li><li>只知道HTTP的StatusCode只有200和500、401、404</li></ol></li><li>很多前端工程师<ol><li>可能只知道缓存中的cache-control</li><li>其实还有很多，如客户端缓存、代理服务器缓存、</li><li>还有缓存如何去验证可用性，</li><li>其实缓存是web服务中性能提升最大的一块儿</li></ol></li><li>对HTTP协议理解不多<ol><li>可能入门的时候前端人员就是去写HTML、CSS、JS</li><li>又或者去使用一个类似框架之类的东西。</li><li>可能入门的时候后端人员就是去接触一些框架之类，</li><li>所以就更没有机会去接触http。</li><li>所以很多人就很自然的忽略掉了http。</li></ol></li><li>WHY<ol><li>很多WEB开发真的不理解HTTP</li><li>HTTP真的很重要</li><li>提升自身价值</li></ol></li><li>最简单和HTTP打交道的例子<ol><li>输入URL打开网页</li><li>AJAX获取数据</li><li>img标签加载图片</li></ol></li></ol><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><ol><li>Cache-Control: max-age=100</li><li>public、private<ol><li>用来控制是在客户端进行缓存</li><li>还是在代理服务器进行缓存</li></ol></li><li>must-revalidate<ol><li>在缓存过期之后必须要在服务端验证过</li><li>才能继续使用缓存</li></ol></li><li>no-cache、no-store<ol><li>可以控制是否去使用缓存</li></ol></li></ol><h4 id="缓存验证"><a href="#缓存验证" class="headerlink" title="缓存验证"></a>缓存验证</h4><ol><li>last-modified配合if-modified-since</li><li>etag配合if-none-match</li></ol><h3 id="更多有意义的头"><a href="#更多有意义的头" class="headerlink" title="更多有意义的头"></a>更多有意义的头</h3><ol><li>Content-Type、Content-Encoding等用来约束传输的数据类型</li><li>Cookie保持会话信息，如session的方案就是通过Cookie实现的</li><li>CORS实现跨域并保持安全性限制</li></ol><h3 id="深入TCP"><a href="#深入TCP" class="headerlink" title="深入TCP"></a>深入TCP</h3><ol><li>什么是三次握手</li><li>HTTPS链接的创建过程，以及为什么HTTPS就是安全的</li><li>什么是长链接，为什么需要长链接</li><li>HTTP2的信道复用又为什么能提高性能</li><li>浏览器输入URL后HTTP请求返回的完整过程.png<ol><li>当你深入的理解这图中的每一个节点之后，</li><li>知道每一个节点中做了哪些事情，</li><li>你可以在这些节点上做性能的优化</li></ol></li></ol><h3 id="讲课过程"><a href="#讲课过程" class="headerlink" title="讲课过程"></a>讲课过程</h3><ol><li>实例演示</li><li>图文配合</li><li>Nginx使用</li></ol><h3 id="这门课带来的好处"><a href="#这门课带来的好处" class="headerlink" title="这门课带来的好处"></a>这门课带来的好处</h3><ol><li>对于后端开发同学，<ol><li>你能够打造性能更好的HTTP服务</li></ol></li><li>对于前端开发同学，<ol><li>你能够更好的使用HTTP的特性来</li><li>帮助你进行开发</li></ol></li><li>能够帮助前后端更好的协作</li></ol><h3 id="学习这门课需要的基础"><a href="#学习这门课需要的基础" class="headerlink" title="学习这门课需要的基础"></a>学习这门课需要的基础</h3><ol><li>知道HTTP这个概念</li><li>你真的想深入学习HTTP</li></ol><h3 id="内容介绍"><a href="#内容介绍" class="headerlink" title="内容介绍"></a>内容介绍</h3><ol><li>浏览器输入URL后HTTP请求返回的完整过程.png</li><li>在浏览器的API中有一个Perfomance会记录<ol><li>这张图中所节点的时间点，</li><li>这样一来就可以记录每个节点所消耗的时间，</li><li>从而测试出一个页面的性能来，</li><li>当你知道某一个时间点消耗的时间特别长，</li><li>那么你就可以去优化它。</li></ol></li></ol><h4 id="浏览器输入URL后HTTP请求返回的完整过程"><a href="#浏览器输入URL后HTTP请求返回的完整过程" class="headerlink" title="浏览器输入URL后HTTP请求返回的完整过程"></a>浏览器输入URL后HTTP请求返回的完整过程</h4><ol><li>在浏览器输入URL按回车</li><li>最开始要去做一个redirect(跳转)<ol><li>因为浏览器可能记录你这个地址</li><li>已经永久跳转成一个新的地址，</li><li>所以浏览器一开始会先去判断一下</li><li>需不需要redirect以及</li><li>我要redirect到哪里。</li></ol></li><li>第二步要去看缓存<ol><li>因为你请求的这个资源可能已经缓存过了，</li><li>所以要去看Appcache(应用缓存)里面</li><li>去看这个缓存是否有，如果没有缓存，</li><li>那么这个时候就要去服务器那边请求资源，</li></ol></li><li>第三步进行DNS解析<ol><li>因为我们输入的是域名，</li><li>那么域名要对应成ip之后，</li><li>那么才能够真正的访问服务器，</li><li>这个时候要先去查找域名对应的ip地址，</li><li>这就叫DNS解析，也可以说是DNS查找，</li><li>查找到ip地址后开始创建TCP链接</li></ol></li><li>第四步 创建TCP链接<ol><li>经过一个tcp链接的三次握手之后，</li><li>才能真正的把连接创建起来，</li><li>如果这个请求使用的是https,</li><li>那么还要创建一个https的链接，</li><li>他和tcp的三次握手不一样，</li><li>因为他中间要有一个保证</li><li>安全的数据传输过程</li></ol></li><li>第五步：发送HTTP请求<ol><li>当TCP链接创建好了之后，</li><li>才真正开始发送HTTP请求的数据包</li></ol></li><li>第六步：接收响应<ol><li>请求的数据包发送完成之后，</li><li>服务器接收到这个数据并对数据进行操作，</li><li>然后返回这个请求想要的内容，</li><li>开始返回数据，返回数据完毕，</li><li>整个http请求结束。</li></ol></li></ol><h2 id="HTTP协议基础及发展历史"><a href="#HTTP协议基础及发展历史" class="headerlink" title="HTTP协议基础及发展历史"></a>HTTP协议基础及发展历史</h2><h3 id="网络协议分层"><a href="#网络协议分层" class="headerlink" title="网络协议分层"></a>网络协议分层</h3><ol><li>网络协议经典五层模型.png</li></ol><h4 id="低三层"><a href="#低三层" class="headerlink" title="低三层"></a>低三层</h4><ol><li>物理层主要作用是定义物理设备如何传输数据<ol><li>简单来说就是电脑硬件、网卡端口、网线、</li><li>以及网线连出去要有一条光缆来将数据</li><li>传输到互联网，可能经过好几千公里</li><li>才能将数据传递到对应的服务器上，</li><li>所以这些物理的内容必须要有的，</li><li>不然软件是没有办法去使用的，</li><li>所以物理层就是这些硬件设备相关的东西。</li></ol></li><li>数据链路层在通信的实体间建立数据链路的连接<ol><li>物理是可以连接在一起的，</li><li>比如把两台机器连接在一起，</li><li>那也是需要一个软件服务通过物理的设备，</li><li>帮我们去通过物理的设备去创建一个电路连接，</li><li>也就是说这两边可以去传输数据，</li><li>也就是最基础的 010101 的传输。</li></ol></li><li>网络层为数据在结点之间传输创建逻辑链路<ol><li>逻辑链路会包含一些 比如从我的电脑去</li><li>访问百度的服务器，我们如何去寻找百度</li><li>这台服务器他所在的地址，他就是一个逻</li><li>辑关系，这个关系是在网络层去创建的。</li></ol></li></ol><h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><ol><li>主要有两个协议<ol><li>TCP/IP协议</li><li>UDP 协议</li><li>在大多数场景下使用的是更可靠的TCP/IP协议</li></ol></li><li>传输层是向用户提供更可靠的端到端(End-to-End)服务<ol><li>比如我们建立起了我们的电脑</li><li>到百度的服务器之间的连接之后，</li><li>他们两端如何去传输这个数据以及</li><li>他们传输数据的方式都是在这一层进行定义的，</li><li>传输的数据有可能很小也有可能很大，</li><li>我们不能一次性把那么大的数据传输过去，</li><li>那么就需要分包需要分片，</li><li>分片之后将数据传输到那边，</li><li>那边就需要进行一个组装，</li><li>组装这个过程，就是这些协议的定义的，</li><li>如何去组装、如何去传输等等都是</li><li>在传输层进行定义的。</li></ol></li><li>传输层向高层屏蔽了下层数据通信的细节<ol><li>因为http协议是实现在tcp/ip协议的基础上的，</li><li>http协议传输一个数据，我们只需要非常简单的，</li><li>输入一个url然后自动去发送一个相关的一些数据</li><li>到服务器端，服务器端就能去解析这些数据，</li><li>最后返回给浏览器，然后把页面显示出来，</li><li>我们输入url的过程实际上涉及到了</li><li>一系列的数据拼装以及传输，</li><li>那么这个过程我们作为浏览器端作为用户</li><li>或者说我们作为网页的开发者不需要知道</li><li>它里面到底是怎么去分片、怎么去跟服务器创建</li><li>一个连接关系，这些内容我们是完全不需要知道的，</li><li>因为这个是传输层帮我们封装好的。</li><li>还有我们创建一个ajax请求，</li><li>ajax请求也是一个http请求，</li><li>例如我们是用ajax的post的方式去传输一些数据，</li><li>如果这个数据是非常大的时候，</li><li>那么也是一次性传输不完的，</li><li>那么他如何去进行一个传输</li><li>如何能够可靠的把我们想要的信息传输给服务器，</li><li>服务器返回的信息又如何可靠的被我们拿到，</li><li>这个过程也是传输层帮我去实现好的，</li><li>所以这是http协议层不需要关心的。</li><li>虽然说不需要关心，</li><li>但是如果你能更好的去理解传输层的一个过程，</li><li>那么对于在某一些细节上面去实现</li><li>一个性能更高的http协议的使用方式</li><li>可能会有非常大的帮助。</li></ol></li></ol><h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><ol><li>为应用软件提供了很多服务<ol><li>写网页的时候去使用http协议去发送请求，</li><li>非常的方便去把一个数据发送到服务端，</li><li>这是应用层在http协议上帮我们去实现的，</li><li>这样我只需要去使用http协议相关的一些工具，</li><li>就可以很方便的帮我们去传输一些数据。</li></ol></li><li>构建与TCP协议之上<ol><li>它的传输方式最终还是落实到TCP/IP协议上面</li></ol></li><li>屏蔽了网络传输相关细节<ol><li>和tcp/ip协议一样帮我们</li><li>屏蔽了http协议数据如何去发送的一些细节。</li><li>我们在使用http协议的时候，</li><li>具体的网络传输细节也是不需要深入的去理解的。</li></ol></li></ol><h3 id="http协议的发展历史"><a href="#http协议的发展历史" class="headerlink" title="http协议的发展历史"></a>http协议的发展历史</h3><h4 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h4><ol><li>最早的http协议版本是0.9版本<ol><li>协议中的内容非常非常的简单</li></ol></li><li>那时候只有一个命令GET<ol><li>如今经常用到的get请求、post请求</li><li>这些统称为http的命令或者方法</li></ol></li><li>那时候没有HEADER等描述数据的信息<ol><li>那个时候请求非常简单，</li><li>它需要达到的目的也是非常简单，</li><li>没有那么多不同的数据格式</li></ol></li><li>服务器发送完毕，就关闭TCP连接<ol><li>这里的连接与http的请求是不一样的，</li><li>如果做过web开发，</li><li>可能知道http请求的并发数等这样一些术语描述，</li><li>http请求和tcp连接不是一个概念，</li><li>在同一个tcp连接里面我们可以发送很多个http请求，</li><li>以前的协议版本是不能这么做，</li><li>但是现在http1.1里面是可以这么做的，</li><li>而且在http2里面可以更大的去优化相关的一些东西来</li><li>提高我们http协议传输的效率以及服务器的性能，</li><li>tcp连接对应的是多个http请求，</li><li>一个http请求肯定是某一个tcp连接里面去定义发送的。</li></ol></li></ol><h4 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h4><ol><li>增加了很多命令<ol><li>比如说 POST、PUT、HEADER等等</li></ol></li><li>增加status code 和 header<ol><li>status code是用来描述服务端处理某一个请求之后它的状态</li><li>header对应的是发送或者请求的相关数据，</li><li>以及描述了对这部分数据如何进行操作的方法，</li></ol></li><li>多字符集支持、多部分发送、权限、缓存等<ol><li>这些东西能够更好的有利于我们使用http请求去实现web服务。</li></ol></li></ol><h4 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h4><ol><li>这个版本是在http1.0上面增加了一些功能<ol><li>来优化整个网络链接的过程</li></ol></li><li>持久连接<ol><li>在http1.0版本里面，</li><li>发送一个http请求就会在客户端与服务器端之间</li><li>创建一个tcp连接，在服务端返回完内容之后，</li><li>就会关闭这个tcp连接，所以这个成本是相对比较高的，</li><li>在建立一个http连接的过程中会进行三次握手，</li><li>这一部分是在tcp协议里面去实现的，</li><li>在创建这个链接的过程当中这个消耗是比较高的，</li><li>延迟也会比较高，如果建立完了一个连接之后他不会直接去关闭，</li><li>然后之后的新的http请求可以一直在这个连接里面进行一个发送，</li><li>那么他的性能肯定会高很多，这个是在http/1.1里面去实现的。</li></ol></li><li>pipline<ol><li>可以在一次tcp连接里面进行多次http请求，</li><li>但是在服务端是会根据请求进来的顺序来进行返回，</li><li>所以如果前一个请求它的等待时间非常的长</li><li>而后一个请求的处理的比较快，</li><li>这个时候后一个请求的处理结果不能先返回，</li><li>他要等第一个请求处理结果返回之后才能进行返回，</li><li>这个时间就相当于一个串行和一个并行，</li><li>他里面的性能的差异就体现出来了，</li><li>这个在http2里面就会进行一个优化。</li></ol></li><li>增加了host和其他的一些命令<ol><li>有了host之后可以在同一台服务器，</li><li>这个服务器是物理服务器，</li><li>在这个物理服务器上可以跑多个不同的web服务，</li><li>比如一个nodejs的web服务、一个java的web服务，</li><li>通过host的这个字段来表示都是请求到这台物理服务器上，</li><li>但是我要请求的是里面哪一个软件服务比如node还是java，</li><li>这就是通过host来进行判断的，</li><li>他增加的好处就是在同一个物理服务器上或同一个集群里面</li><li>我们可以部署很多不同的web服务来进行一个使用，</li><li>这样就能提高我们物理服务的使用效率。</li></ol></li></ol><h4 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h4><ol><li>http2现在没有普及<ol><li>但是在未来肯定会普及，毫无疑问</li></ol></li><li>所有数据以二进制传输<ol><li>在http1.1里面大部分数据是通过字符串，</li><li>所以他的一个数据的分片方式是不太一样的，</li><li>在http2里面所有的数据都是以帧进行传输的。</li></ol></li><li>同一连接里面发送多个请求不再需要按照顺序来<ol><li>他可以同时返回第一个请求里面的数据，</li><li>在同时返回第二个请求里面的数据，</li><li>这样他就是一个并行的一个效率，</li><li>能够更大限度的让整个web应用传输效率有一个质的提升。</li></ol></li><li>头部信息压缩以及推送等提高效率的功能<ol><li>HTT2就是为了解决HTTP1.1里面一些性能低下的问题。</li><li>头部信息压缩是因为在HTTP1.1里面每一次</li><li>发送请求和返回响应时它的很多http头都是</li><li>必须要进行一个完整的发送和返回的，</li><li>其实这部分头信息里面很多的内容，</li><li>比如header的字段、content-type、accept、</li><li>cache-control等等，</li><li>这些都是以字符串的形式保存到头部，</li><li>所以他占用的带宽的量是比较大的，</li><li>在http2里面会对头信息进行压缩，</li><li>有效的减少也给带宽的使用。</li><li>推送的功能是指</li><li>http请求只能够由客户端发送请求然后服务端响应内容，</li><li>也就是说客户端永远是主动方，服务端永远是被动方，</li><li>于是在HTTP2里面有了一个推送的概念，</li><li>服务端是可以主动发起一些数据传输的，</li><li>例如当你请求一个html文档，里面有引入很多js和css的脚本，</li><li>如果是http2之前，那么就是有浏览器去解析js和css，</li><li>然后发送请求给服务器，服务器再按照顺序返回，</li><li>但是在http2里面，服务器会先返回html文档，</li><li>然后自动推送这个html文档中引入的众多css和js，</li><li>这样一来就减少了客户端向服务器端发送请求的次数，</li><li>这样的并行的操作让整体的传输效率和性能大大的提升了。</li><li>https协议实际上是安全版本的http，</li><li>他的实际使用内容与http1.1没有特别大的区别。</li></ol></li></ol><h3 id="HTTP三次握手"><a href="#HTTP三次握手" class="headerlink" title="HTTP三次握手"></a>HTTP三次握手</h3><ol><li>客户端与服务器进行一个http请求的发送和返回的过程当中<ol><li>需要创建一个TCP connection，</li><li>因为http不存在连接这样的概念，</li><li>只有请求和响应这么一个概念，</li><li>请求和响应都是数据包，</li><li>他们之间是需要经过一个传输的通道，</li><li>这个传输的通道就是在TCP里面创建一个</li><li>从客户端发起和服务端接收的一个连接，</li><li>这个连接时可以一直保持那边，</li><li>http请求是在这个连接的基础上去发送的，</li><li>这里面还有一个概念，在tcp连接上，</li><li>是可以发送多个http请求的，</li><li>在不同的版本里面这个模式也是不一样的。</li></ol></li><li>不同http协议版本的模式对比<ol><li>在http1.0里面是在一个http请求发送的时候，</li><li>他就会去创建这个tcp连接，然后连接创建完毕，</li><li>请求发送到服务器，之后服务器响应回来，tcp连接关闭。</li><li>在http1.1里面是通过某种方式去申明这个连接</li><li>是可以一直保持着，也就是第一个请求发送完成之后，</li><li>这个连接没有关，然后第二请求再继续发送的时候，</li><li>依然使用之前的连接，好处是减少频繁的三次握手带来的性能消耗。</li><li>在http2里面tcp连接上面的http请求是可以并发的，</li><li>这就导致在同一个用户对同一个服务器发起一个网页请求的时候，</li><li>它就是只需要一个tcp连接。</li></ol></li><li>三次握手<ol><li>表示三次网络传输，即客户端在真正发送请求到服务器上前，</li><li>会与服务器进行三次有来有回的三次通信，</li><li>这个时候才创建TCP连接，然后再去发送http请求，</li><li>所以把tcp连接保持在那边，那么第二次http请求</li><li>就没有三次握手的开销了。</li></ol></li><li>三次握手时序图<ol><li>三次握手时序图.png</li><li>第一次握手的标志位为SYN，第二次为SYN和ACK，第三次为ACK。</li><li>客户端发起一个我要创建tcp连接的一个数据包的请求，</li><li>这个请求会发送到服务端，这里面会有一个标志位，</li><li>叫做 SYN是一个标志位，表示这是一个创建请求的数据包，</li><li>Seq则表示一个数字，是客户端的。</li><li>服务端接收到这个数据包之后，</li><li>他就知道了有一个客户要跟他创建tcp连接，</li><li>然后他就会开启一个TCP的socket的一个端口，</li><li>端口开启完毕，他会返回给客户端一个数据包，</li><li>这里面也会有一个标志位，叫做 SYN是一个标志位，</li><li>并且还会返回ACK，也是一个标志位，</li><li>ACK表示就是第一个客户端返回的Seq中的值+1，</li><li>然后还有一个Seq，Seq则表示一个数字，是服务端的，</li><li>本次返回数据包就表示服务端已经允许你创建这个tcp连接了。</li><li>客户端创建这个TCP连接之后，还会继续向服务端发送一个数据包，</li><li>这里面会有一个ACK，是一个标志位，</li><li>ACK中的值为服务端返回的Seq中的值+1，并且还有一个新的Seq，</li><li>Seq表示一个数字，是客户端的。</li><li>这就是创建一个TCP连接的过程，</li><li>这个过程是为了防止服务端这边开启一些无用的连接，</li><li>因为网络传输是有延迟的，中间可能隔着非常远的距离，</li><li>要通过一个光纤还有各种中间的代理服务器，</li><li>来进行一个传输，那么传输的过程当中，</li><li>比如客户这边发起了一个数据包，</li><li>然后服务端这边直接开启了一个TCP的Socket端口，</li><li>并且服务端返回一个新的数据包，</li><li>但是由于距离太远等各种原因丢包了，</li><li>客户端一直没有收到这个数据包，</li><li>于是就过了请求的延时时间，</li><li>客户端就把本次创建连接的请求关闭了，</li><li>然后就会再发起一个新的创建连接的请求，</li><li>这个时候服务端是不知道的，如果没有第三次握手的话，</li><li>服务端是根本不知道客户端有没有接收到我返回的信息，</li><li>所以服务端根本就无法确认是继续开着还是关闭这个连接，</li><li>于是服务端这边就会一直等着客户端发送实际的请求数据过来，</li><li>这个时候服务端的这个开销就浪费掉了，</li><li>因为服务端不知道这个连接已经创建失败了，</li><li>那个客户端已经去创建新的连接去了，</li><li>所以才需要三次握手去确认这个过程，</li><li>能够让客户端与服务端能够及时的察觉到</li><li>因为网络原因的一些问题，</li><li>从而能够规避网络传输当中延时而导致的</li><li>一些服务器开销的问题。</li></ol></li></ol><h3 id="URI、URL、URN"><a href="#URI、URL、URN" class="headerlink" title="URI、URL、URN"></a>URI、URL、URN</h3><h4 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h4><ol><li>它是包含URL和URN的统一的一个定义，</li><li>Uniform Resource Identifier/统一资源标志符，</li><li>用来唯一标识互联网上的信息资源</li><li>他包含了URL和URN</li></ol><h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><ol><li>Uniform Resource Locator/统一资源定位器</li><li><code>http://user:pass@host.com:80/path?query=string#hash</code><ol><li><code>http://</code> 是scheme，是定义以什么样的方式、协议去访问资源</li><li>scheme也就是因特网服务类型，不光有http、https，</li><li>还有ftp、mailto，只不过不同的协议实现的方式会不一样，</li><li>通过不同的协议去访问这个服务，他的解析的方式就会不一样，</li><li>所以这就是协议的一个重要性，因为他定义了服务的数据传输及解析，</li><li><code>ftp://speedtest.tele2.net/</code>你可以通过这个网站来测试网速。</li><li><code>user:pass@</code>是代表我们访问了这个资源之后，</li><li>如果这个资源需要特定的身份才能去访问，</li><li>那么就可以在前面加入<code>user:pass@</code>来指定你是某个用户，</li><li>并且你的服务可以通过我这个用户名和密码来进行一个认证，</li><li>来表示我这个用户是一个真的用户而不是一个虚假的用户，</li><li>但是这种方式在现在的web开发中是不太用到的，</li><li>因为有更好的方式去做用户的认证，</li><li>而<code>user:pass@</code>是非常不安全的，因为他暴露到url上了。</li><li><code>host.com</code> 用来定位资源所在的服务器在互联网中的位置，</li><li>这里也可以写ip地址，那么直接通过ip去找到某台服务器，</li><li>如果写的是域名，那么就需要通过dns服务去解析成ip，</li><li>然后才能定位到那台服务器。</li><li><code>:80</code> 表示端口，因为每一台服务器都有非常非常多的端口，</li><li>每一台服务器上可以跑很多的web服务，</li><li>这些web服务可以监听很多不同的端口，</li><li>如果需要找到这台物理服务器上面的某一个web服务上的资源，</li><li>那么就要指定要找哪一个web服务，也就是指定端口，</li><li>所以端口就是host找到的那台物理服务器上面的某一个web服务，</li><li>因为整个http协议实际上就是用来定位的，</li><li>先要找到这台物理服务器，然后再根据端口找到某台web服务器，</li><li>然后再根据其它内容定位到该web服务器上的某个资源，</li><li>也就是从大的范围一点一点的精确的缩小范围，最终找到想要的，</li><li>不带端口的情况下，默认是访问的一个80端口，</li><li>因为端口是不方便用户去记忆的，</li><li>所以发布到互联网上的时候默认是不带端口的，</li><li>所以就可以直接通过域名去访问，就可以方便传播和记忆。</li><li><code>/path</code>，这个一般叫做路由，</li><li>因为web服务里面可能存放了非常多的内容，</li><li>如何准确的找到某个内容，可以通过路由来进行定位，</li><li>这个写法和linux文件路径中的写法是很像的，</li><li>比如<code>/</code>代表了根目录，</li><li>而路由对应的其实web服务中的目录结构下面。</li><li><code>?query=string</code> 这是一个搜索参数，</li><li>表示请求的资源如何进行一个搜索、查找、操作这样的方式。</li><li><code>#hash</code> 在http定义里面代表html文档里面某一个片段，</li><li>表示我要看这个html文档中的某一个片段，</li><li>但是在前端页面开发的时候，</li><li>经常是用hash作为一个锚点定位的一个工具。</li><li>这就是整个url中的一个格式，</li><li>里面每一部分都是有它特定的含义的。</li></ol></li><li>此类格式的都叫做URL，比如ftp协议等等其它协议都可以叫做url。</li></ol><h4 id="URN"><a href="#URN" class="headerlink" title="URN"></a>URN</h4><ol><li>现在使用的不多</li><li>永久统一资源定位符<ol><li>有时候你将某个资源文件位置进行了变更，</li><li>然后你就无法访问到这个资源了，</li><li>但是通过URN的方式，</li><li>无论你这个资源被搬到任何地方，</li><li>还是可以继续访问到这个资源。</li></ol></li><li>在资源移动之后还能被找到</li><li>目前还没有非常成熟的使用方案</li><li>在业界也没有一个非常好的使用场景</li></ol><h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3><ol><li>请求报文</li><li>响应报文</li><li>协议存在的意义<ol><li>按照协议来就比较规范，</li><li>否则就会发生莫名奇妙的事情，</li><li>但是你不一定要按照协议来，</li><li>所以主要看你是如何去实现的。</li></ol></li></ol><h4 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h4><ol><li>请求行：请求方法 url 协议及版本号</li><li>请求头</li><li>空行</li><li>请求体</li></ol><h4 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h4><ol><li>状态行：协议及版本号 响应状态码 响应状态信息</li><li>响应头</li><li>空行</li><li>响应体</li></ol><h4 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h4><ol><li>用来定义对于资源的操作<ol><li>get：获取数据</li><li>post：添加数据</li><li>put：修改数据</li><li>delete：删除数据</li><li>这些就是最简单的CURD操作</li></ol></li><li>常用的有GET、POST等</li><li>从定义上讲都有各自的语义<ol><li>如何实现，取决于你自己的操作。</li></ol></li></ol><h4 id="HTTP-CODE"><a href="#HTTP-CODE" class="headerlink" title="HTTP CODE"></a>HTTP CODE</h4><ol><li>定义服务器对请求的处理结果<ol><li>请求成功还是重新向或者服务器处理失败</li></ol></li><li>各个区间的CODE有各自的语义<ol><li>100-199 代表这个操作还需要持续进行。</li><li>200-299 代表这个操作是成功的。</li><li>300-399 代表这个操作是需要重定向的，</li><li>用别的方式去获取这个数据。</li><li>400-499 代表这个操作是因为发送的请求有问题，</li><li>如401，表示你发送这个请求没有通过认证，</li><li>你没有权限去获取你请求的这个资源的内容。</li><li>500-599 代表服务器出现了错误。</li></ol></li><li>一个好的HTTP服务可以通过CODE判断结果<ol><li>不因该只返回200或者500这样的响应状态码，</li><li>那样就不太符合 HTTP 协议的标准了，</li><li>虽然说具体看你怎么去实现，</li><li>但是尽量往标准上靠，</li><li>这样就能避免发生不必要的问题。</li></ol></li></ol><h3 id="最简单的web服务"><a href="#最简单的web服务" class="headerlink" title="最简单的web服务"></a>最简单的web服务</h3><ol><li><p>使用nodejs搭建最基本的服务</p><pre><code class="js"> const http = require(&#39;http&#39;);
+
+ http.createServer((request, response) =&gt; {
+   console.log(&#39;请求URL:&#39;, request.url);
+   response.end(&quot;123456&quot;);
+ }).listen(8888);
+
+ console.log(&#39;服务启动，8888端口开启。&#39;);
+ console.log(&#39;http://localhost:8888&#39;);
+</code></pre></li></ol><h2 id="HTTP各种特性一览"><a href="#HTTP各种特性一览" class="headerlink" title="HTTP各种特性一览"></a>HTTP各种特性一览</h2><h3 id="认识HTTP客户端"><a href="#认识HTTP客户端" class="headerlink" title="认识HTTP客户端"></a>认识HTTP客户端</h3><ol><li>HTTP客户端<ol><li>浏览器就是一个最常用的HTTP客户端</li><li>它还能够帮你处理HTTP报文的内容。</li><li>只要实现了一个请求请求发送与响应接收，</li><li>就算是一个HTTP客户端（HttpClient）。</li></ol></li><li>使用linux命令来实现HTTP客户端的效果<ol><li><code>curl www.baidu.com</code> 表示请求百度首页并显示返回内容。</li><li><code>curl -o responseBody.txt www.baidu.com</code></li><li>表示存储这个返回的内容到<code>responseBody.txt</code>中。</li><li><code>curl -I www.baidu.com &gt;&gt; responseHead.txt</code></li><li>表示存储返回的响应头部信息到<code>responseHead.txt</code>中。</li><li><code>curl -v www.baidu.com</code>表示请求及响应的全部内容，</li><li>这个非常的完整，也就是整个请求、响应报文。</li></ol></li></ol><h3 id="CORS跨域请求的限制与解决"><a href="#CORS跨域请求的限制与解决" class="headerlink" title="CORS跨域请求的限制与解决"></a>CORS跨域请求的限制与解决</h3><ol><li>也就是跨域如何去请求资源的问题。</li><li>跨域是存在于浏览器中的，<ol><li>当不在浏览器中时便不会存在跨域。</li></ol></li><li>在浏览器中进行跨域请求时，<ol><li>请求会发送出去，服务器也会进行处理，</li><li>但是浏览器在解析服务器返回的响应头中</li><li>没有发现<code>Access-Control-Allow-Origin</code></li><li>那么就会以报错的方式进行输出错误信息，</li><li>并且不会把服务器响应的内容解析和呈现，</li><li>这就是浏览器同域的一个限制。</li></ol></li><li>使用jsonp进行跨域<ol><li>由于浏览器允许html元素的src属性</li><li>和href属性进行跨域操作的，</li><li>浏览器并不会在这块儿做出同于的限制。</li></ol></li><li><p>代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;&lt;/body&gt;
+ &lt;!-- cors1 --&gt;
+ &lt;script&gt;
+   var xhr = new XMLHttpRequest()
+   xhr.open(&#39;GET&#39;, &#39;http://127.0.0.1:8887/&#39;)
+   xhr.send()
+ &lt;/script&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+   // 同步读取文件，以UTF8的格式输出
+   const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+   response.writeHead(200, {
+     &#39;Content-Type&#39;: &#39;text/html&#39;
+   })
+   response.end(html)
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+   // 这个头不能写多个，但是可以判断request.url
+   // 然后再决定输不输出这个头，
+   // 最后是浏览器那边会进行判断的。
+   response.writeHead(200, {
+     &#39;Access-Control-Allow-Origin&#39;: &#39;http://127.0.0.1:8888&#39;
+   })
+   response.end(&#39;123&#39;)
+ }).listen(8887)
+
+ console.log(&#39;server listening on 8887&#39;)
+</code></pre></li></ol><h3 id="CORS跨域限制以及预请求验证"><a href="#CORS跨域限制以及预请求验证" class="headerlink" title="CORS跨域限制以及预请求验证"></a>CORS跨域限制以及预请求验证</h3><ol><li>并不是所有的情况都可以使用以上跨域方式，<ol><li>其实浏览器跨域请求还有其它的限制。</li></ol></li><li>跨域限制是通过判断响应头部的信息来确认的。</li></ol><h4 id="CORS预请求"><a href="#CORS预请求" class="headerlink" title="CORS预请求"></a>CORS预请求</h4><ol><li>跨域时允许的方法只有<ol><li>GET</li><li>HEAD</li><li>POST</li></ol></li><li>跨域时默认不允许的方法<ol><li>PUT</li><li>DELETE</li></ol></li><li>跨域时允许的<code>Content-Type</code><ol><li><code>text/plain</code></li><li><code>multipart/form-data</code></li><li><code>application/x-www-form-urlencoded</code></li></ol></li><li>其它的<code>Content-Type</code>是需要通过预请求去验证的<ol><li>浏览器会发送请求，服务器也会对请求进行处理，</li><li>并且返回响应的内容，但是浏览器不会让你过关的，</li><li>会直接给你报出错误信息。</li></ol></li><li>预请求<ol><li>客户端会在发送某个跨域请求之前，</li><li>先去发送一个option的请求到达服务器，</li><li>如果服务器允许了，</li><li>那么客户端可以继续发送这个请求。</li></ol></li><li>允许自定义的跨域请求方式，这是服务端去做的<ol><li>允许跨域的url：<code>&#39;Access-Control-Allow-Origin&#39;: &#39;http://127.0.0.1:8888&#39;</code></li><li>允许跨域的自定义头：<code>&#39;Access-Control-Allow-Headers&#39;: &#39;X-Test-Cors&#39;</code></li><li>允许跨域的其它方法 :<code>&#39;Access-Control-Allow-Methods&#39;: &#39;POST, PUT, DELETE&#39;</code></li><li>允许跨域的最长时间，：<code>&#39;Access-Control-Max-Age&#39;: &#39;1000&#39;</code></li><li>表示多少毫秒内不需要再发送预请求来进行确认了，直接发送正式请求即可。</li><li>这些限制都是为了保证服务端的一个安全，不允许随随便便的跨域，</li><li>不希望某一个跨域请求导致服务器端的数据被篡改。</li></ol></li><li><p>代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;&lt;/body&gt;
+ &lt;!-- cors1 --&gt;
+ &lt;!-- &lt;script&gt;
+   var xhr = new XMLHttpRequest()
+   xhr.open(&#39;GET&#39;, &#39;http://127.0.0.1:8887/&#39;)
+   xhr.send()
+ &lt;/script&gt; --&gt;
+ &lt;script&gt;
+   fetch(&#39;http://localhost:8887&#39;, {
+     method: &#39;PUT&#39;,
+     headers: {
+       &#39;X-Test-Cors&#39;: &#39;123&#39;
+     }
+   })
+ &lt;/script&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+   // 同步读取文件，以UTF8的格式输出
+   const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+   response.writeHead(200, {
+     &#39;Content-Type&#39;: &#39;text/html&#39;
+   })
+   response.end(html)
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   response.writeHead(200, {
+     &#39;Access-Control-Allow-Origin&#39;: &#39;http://127.0.0.1:8888&#39;,
+     &#39;Access-Control-Allow-Headers&#39;: &#39;X-Test-Cors&#39;,
+     &#39;Access-Control-Allow-Methods&#39;: &#39;POST, PUT, DELETE&#39;,
+     &#39;Access-Control-Max-Age&#39;: &#39;1000&#39;
+   })
+   response.end(&#39;123&#39;)
+ }).listen(8887)
+
+ console.log(&#39;server listening on 8887&#39;)
+</code></pre></li></ol><h5 id="其它限制"><a href="#其它限制" class="headerlink" title="其它限制"></a>其它限制</h5><ol><li>请求头限制<ol><li>首先自定义的请求头默认是不允许的，其它的可以看下面的文章</li><li><code>https://fetch.spec.whatwg.org/#cors-safelisted-request-header</code></li></ol></li><li><code>XMLHttpRequestUpload</code> 对象均没有注册任何事件监听器（Ajax）</li><li>请求中没有使用 <code>ReadableStream</code> 对象（fetach）</li></ol><h3 id="缓存Cache-Control的含义和使用"><a href="#缓存Cache-Control的含义和使用" class="headerlink" title="缓存Cache-Control的含义和使用"></a>缓存Cache-Control的含义和使用</h3><h4 id="可缓存性"><a href="#可缓存性" class="headerlink" title="可缓存性"></a>可缓存性</h4><ol><li>public：<ol><li>也就是HTTP经过的任何地方都可以进行缓存，</li><li>如发起请求的浏览器、各个中间代理服务器等。</li></ol></li><li>private：<ol><li>只有发起请求的这个浏览器才可以进行缓存。</li></ol></li><li>no-cache：<ol><li>本地可以进行缓存，但是每次请求都需要验证，</li><li>相当于每次使用缓存中的数据，</li><li>都需要发送一个请求来验证，</li><li>如果验证成功了，就使用本地缓存中的内容，</li><li>如果验证失败，就获取新数据，</li><li>所以看起来很像是没有在进行缓存，</li><li>只不过它是根据情况来定的。</li></ol></li></ol><h4 id="到期"><a href="#到期" class="headerlink" title="到期"></a>到期</h4><ol><li><code>max-age=&lt;seconds&gt;</code>：<ol><li>最常用的这个，表示缓存多少毫秒</li></ol></li><li><code>s-maxage=&lt;seconds&gt;</code>：<ol><li>这是在代理服务器中去代替<code>max-age</code>的，</li><li>也就是说 <code>s-maxage</code>只在代理服务器中有效。</li></ol></li><li><code>max-stale=&lt;seconds&gt;</code>：<ol><li>在<code>max-age</code>过期之后，</li><li>如果还有 <code>max-stale</code>这个设置，</li><li>这个是发起请求方主动去带的一个头，</li><li>就算过了<code>max-age</code>中的时间，</li><li>如果没有过<code>max-stale</code>中的时间，</li><li>那么还是可以继续使用过期的缓存，</li><li>而不需要去服务器那边请求一个新的内容，</li><li>但是<code>max-stale</code>在浏览器中使用不到，</li><li>因为浏览器不会主动去设置这个请求头，</li><li>这个头只有在请求发起端设置才有用，</li><li>而在服务端返回中的内容去设置这个并没有用。</li></ol></li></ol><h4 id="重新验证"><a href="#重新验证" class="headerlink" title="重新验证"></a>重新验证</h4><ol><li><code>must-revalidate</code>：<ol><li>表示过了max-age中的时间后，</li><li>必须去原服务端发送请求来确认是否真的需要获取新的内容，</li><li>不可以不确认就直接使用过期的缓存。</li></ol></li><li><code>proxy-revalidate</code>：<ol><li>这个与<code>must-revalidate</code>类似，</li><li>只不过是用在缓存服务器中的，</li><li>也就是类似CDN的这种服务器，</li><li>也就是说缓存服务器中的缓存过期时间到了，</li><li>必须要到源服务器端去进行验证，</li><li>从而确认是否真的需要获取新的内容，</li><li>而不是不确认就继续使用过期的缓存。</li></ol></li></ol><h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ol><li><code>no-store</code>：<ol><li>这个是彻底的不允许使用缓存，</li><li>每次都要去服务器端获取新数据。</li></ol></li><li><code>no-transform</code>：<ol><li>这个是用于代理服务器那边，</li><li>是服务器告诉代理服务器，</li><li>你不要随便去改动我响应你的资源，</li><li>也就是不要动这些资源，</li><li>当别人请求你的时候，</li><li>你直接原封不动的把这些资源返回过去即可。</li></ol></li><li>这些头仅仅只是声明而已，<ol><li>并没有强制性的作用，</li><li>也就是说看你怎么去实现，</li><li>当然按照规范和标准来，</li><li>肯定是能够减少一些不必要的麻烦。</li></ol></li></ol><h4 id="浏览器端会常用到的"><a href="#浏览器端会常用到的" class="headerlink" title="浏览器端会常用到的"></a>浏览器端会常用到的</h4><ol><li>public</li><li>private</li><li>no-cache</li><li><code>max-age=&lt;seconds&gt;</code></li><li>浏览器可以通过开发人员工具对缓存进行屏蔽<ol><li>在开发人员工具的Network选项卡中，</li><li>菜单栏有一个Disable cache的复选框，</li><li>勾选这个复选框就可以达到屏蔽掉缓存的头，</li><li>这样每次都会重新进行新的请求，而不用缓存中的内容。</li></ol></li><li>缓存之后，如果没有到过期时间，但是有文件内容改变<ol><li>这时候就需要重新请求了，于是乎，</li><li>可以通过一些打包工具，动态计算文件内容的hash，</li><li>然后把hash作为该文件名的一部分，</li><li>并且修改html文档中的引用，</li><li>这部分完全可以由打包工具来实现，</li><li>这是目前业界最通用的一种解决方案。</li></ol></li><li><p>缓存设置代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;&lt;/body&gt;
+ &lt;script src=&quot;/script.js&quot;&gt;&lt;/script&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   if (request.url === &#39;/&#39;) {
+     const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/html&#39;
+     })
+     response.end(html)
+   }
+
+   if (request.url === &#39;/script.js&#39;) {
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/javascript&#39;,
+       &#39;Cache-Control&#39;: &#39;max-age=20&#39;
+     })
+     response.end(&#39;console.log(&quot;script loaded&quot;)&#39;)
+   }
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol><h3 id="缓存验证Last-Modified和Etag的使用"><a href="#缓存验证Last-Modified和Etag的使用" class="headerlink" title="缓存验证Last-Modified和Etag的使用"></a>缓存验证Last-Modified和Etag的使用</h3><h4 id="资源验证"><a href="#资源验证" class="headerlink" title="资源验证"></a>资源验证</h4><ol><li>在<code>Cache-Control</code>中设置<code>no-cache</code>之后<ol><li>每一次都会对服务器发送这个资源的验证请求，</li><li>如果确定了这个资源可以使用缓存，</li><li>那么才会去使用本地的缓存。</li></ol></li><li>缓存资源的验证.png<ol><li>浏览器创建请求，会先到本地缓存中查找，</li><li>找到了直接使用缓存，找不到就到代理服务器中查找，</li><li>找到了直接返回到本地缓存，然后直接使用本地缓存，</li><li>如果代理服务器中也找不到，那就会去源服务器中找，</li><li>和之前一样的步骤，最后使用缓存</li><li>或者直接使用服务器返回的资源。</li></ol></li></ol><h4 id="验证头"><a href="#验证头" class="headerlink" title="验证头"></a>验证头</h4><ol><li>在HTTP协议里面主要有两个验证头</li><li>Last-Modified：<ol><li>资源上次的修改时间。</li><li>主要配合If-Modified-Since或者</li><li>If-Unmodified-Since来使用，</li><li>前者常用，后者很少会被用到，</li><li>请求的时候前者或者后者的这个属性会被带到服务器，</li><li>服务器会读取这个<code>If-Modified-Since</code>属性值，</li><li>然后找到请求的这个资源的最后修改时间，</li><li>将二者进行对比，如果一模一样，</li><li>那么服务器就告诉浏览器，你还是用原来的缓存吧。</li><li>原理是：对比上次修改时间以验证资源是否需要更新。</li></ol></li><li>Etag：<ol><li>这是一个更加严格的验证方式，</li><li>主要是通过数据签名，也就是文件内容的hash码，</li><li>当然需要你对文件内容进行hash计算，只要文件内容发生了修改，</li><li>那么hash码就会改变，所以这种方式更加严格。</li><li>主要配合If-Match或者If-Non-Match使用。</li><li>原理是：对比资源的签名来判断是否继续使用缓存。</li></ol></li><li>如果服务器端验证成功，不需要重新获取新数据<ol><li>那么记得返回状态码 304 ，</li><li>这样浏览器就会继续读缓存中的内容了。</li></ol></li><li>在<code>Cache-Control</code>加了<code>no-cache</code><ol><li>就会每次读取缓存前都要发送求到服务器端验证，</li><li>如果不加<code>no-cache</code>，只会在缓存过期后，</li><li>才会发送验证的请求，然后服务器再进行验证的操作。</li></ol></li><li>在<code>Cache-Control</code>加了<code>no-store</code><ol><li>永远都不会去缓存服务器端返回的内容，</li><li>每次都会去重新请求服务器端，然后返回内容。</li></ol></li><li><p>代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;&lt;/body&gt;
+ &lt;script src=&quot;/script.js&quot;&gt;&lt;/script&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   if (request.url === &#39;/&#39;) {
+     const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/html&#39;
+     })
+     response.end(html)
+   }
+
+   if (request.url === &#39;/script.js&#39;) {
+
+     const etag = request.headers[&#39;if-none-match&#39;]
+     if (etag === &#39;777&#39;) {
+       response.writeHead(304, {
+         &#39;Content-Type&#39;: &#39;text/javascript&#39;,
+         &#39;Cache-Control&#39;: &#39;max-age=2000000, no-cache&#39;,
+         &#39;Last-Modified&#39;: &#39;123&#39;,
+         &#39;Etag&#39;: &#39;777&#39;
+       })
+       response.end()
+     } else {
+       response.writeHead(200, {
+         &#39;Content-Type&#39;: &#39;text/javascript&#39;,
+         &#39;Cache-Control&#39;: &#39;max-age=2000000, no-cache&#39;,
+         &#39;Last-Modified&#39;: &#39;123&#39;,
+         &#39;Etag&#39;: &#39;777&#39;
+       })
+       response.end(&#39;console.log(&quot;script loaded twice&quot;)&#39;)
+     }
+   }
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol><h3 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><ol><li>Cookie一般是在服务端返回Set-Cookie时设置的<ol><li>Set-Cookie属性中的值就会保存到浏览器中，</li><li>下一次在同域的请求当中，</li><li>会将这个Cookie携带在请求头中一同发送到服务器，</li><li>通过这种方式记录客户端与服务端本次会话的状态。</li></ol></li><li>下次请求会自动带上</li><li>键值对，可以设置多个</li></ol><h4 id="Cookie属性"><a href="#Cookie属性" class="headerlink" title="Cookie属性"></a>Cookie属性</h4><ol><li>使用max-age和expiress设置过期时间</li><li>Secure只有在https的请求时发送</li><li>设置了HttpOnly时无法通过document.cookie访问<ol><li>这么做是因为安全性，</li><li>因为互联网上会存在各种各样的攻击，</li><li>比如常用的CSRF跨站仿造请求的攻击，</li><li>这种攻击会通过在你的网页里面注入一些脚本</li><li>或者通过一些url来引导用户给攻击者的服务器</li><li>发送用户自己的当前网站设置在浏览中的cookie，</li><li>这样一来，攻击者就能拿到用户的登陆状态，</li><li>最后就能利用这个cookie来访问这个网站中保存的</li><li>用户的数据，所以要禁止重要的一些数据通过js</li><li>来进行访问，这也是保证用户安全的非常重要的一步。</li></ol></li><li>domain<ol><li>不同域名之间的cookie是不能进行共享的。</li><li>可以通过浏览器插件HostAdmin来进行域名映射。</li><li>一级域名下网站的cookie是可以被二级域名下的网站访问</li><li>然后你需要在访问一级域名网站的时候手动设置domain</li><li>为一级域名，如test.com，那么访问a.test.com和b.test.com时</li><li>都可以获取到一级域名网站下的cookie。</li><li>二级域名共享cookie的方式就是设置domain为一级域名。</li></ol></li><li><p>代码示例</p><pre><code class="hosts"> 127.0.0.1       test.com
+ 127.0.0.1       a.test.com
+ 127.0.0.1       b.test.com
+</code></pre><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;div&gt;Content&lt;/div&gt;
+ &lt;/body&gt;
+ &lt;script&gt;
+   console.log(document.cookie)
+ &lt;/script&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   if (request.url === &#39;test.com&#39;) {
+     const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/html&#39;,
+       &#39;Set-Cookie&#39;: [&#39;id=123; max-age=2&#39;, &#39;abc=456;domain=test.com&#39;]
+     })
+     response.end(html)
+   }
+
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol><h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><ol><li>是通过cookie实现的<ol><li>当客户端登陆后将用户名和密码发送到服务器，</li><li>服务器接收，将用户名和密码短时间存储到服务器上，</li><li>生成一个唯一hash值，以cookie的方式发送到客户端，</li><li>客户端存储这份cookie，每次发送请求的时候都会将</li><li>这份cookie发送到服务器来进行用户认证的完成。</li><li>session是通过cookie加上服务器端存储共同实现的。</li></ol></li></ol><h3 id="HTTP长连接"><a href="#HTTP长连接" class="headerlink" title="HTTP长连接"></a>HTTP长连接</h3><ol><li>发送请求时会先进行TCP连接，<ol><li>进行TCP连接会先进行三次握手，</li><li>如果每次发送请求都要重新建立TCP连接，</li><li>那么开销是很大的，</li><li>所以长连接可以减少这种开销，</li><li>一次请求处理响应后，</li><li>服务器端并不会直接关闭TCP连接，</li><li>而是开一会儿，这时候如果客户端再发送请求过来，</li><li>那么就继续使用这个连接通道，</li><li>知道过了这个长连接的延时关闭的时间，</li><li>服务器端就会关闭掉这个TCP连接，</li><li>也就是取消掉客户端与服务器端的连接。</li></ol></li><li>浏览器可以通过开发人员工具来判断是否是同一个连接<ol><li>打开控制面板，选择Network，</li><li>然后右键选择表格中的列标题，弹出右键菜单后，</li><li>选中Connection ID，之后就会新增新的列标题，</li><li>你刷新页面后，看到该列的ID如果是一致的并且不为0，</li><li>那么就是同一个连接。</li></ol></li><li>浏览器创建TCP连接后发送请求是按照顺序的<ol><li>一个TCP连接一次只能够接受一个请求，</li><li>处理完毕之后，才可以再发送下面的请求，</li><li>但是浏览器可以创建多个TCP连接，</li><li>那么一次就可以发送多个请求了，</li><li>创建多个TCP连接也叫做浏览器并发，</li><li>一般浏览器在同一个域名下的并发数为6-7个，</li><li>谷歌浏览器允许的并发数为6。</li><li>使用CND，不仅是为了更快的获取资源，</li><li>并且也是为了在不同的服务创建TCP连接，</li><li>这样就能够减少一台服务器处理多个请求的性能瓶颈了。</li></ol></li><li>通过客户端与服务器端协商<ol><li>在请求头与响应头中携带<code>Connection: keep-alive</code></li><li>来确认服务器是否支持长连接，</li><li>如果服务器不支持长连接，</li><li>客户端与服务器端无法进行HTTP长连接。</li></ol></li><li>长连接是为了复用每一次TCP连接<ol><li>但是也有那种技术，客户端一次性将所有的请求打包，</li><li>打包完成后一次性发送到服务器端，</li><li>整个过程只需要使用一个TCP连接，</li><li>服务器端会按照顺序将所有的请求进行处理，</li><li>处理完毕后，一次性将内容返回给浏览器，</li><li>整个过程是按照循序来的，</li><li>对服务器的要求要很高，</li><li>不仅网速要快，而且处理速度也要快，</li><li>不然浏览器可能会断开连接，</li><li>因为过了响应的延时时间。</li><li>这种技术在HTTP2中有明确定义，</li><li>叫做信道复用，</li><li>百度首页和谷歌首页已经实现了，</li><li>同一个域名下只需要使用一个TCP连接。</li></ol></li><li>Connection的属性<ol><li>keep-alive：长连接，复用TCP连接</li><li>close：一次性连接，不复用TCP连接</li></ol></li><li><p>代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;img src=&quot;/test1.jpg&quot; alt=&quot;1&quot;&gt;
+   &lt;img src=&quot;/test2.jpg&quot; alt=&quot;2&quot;&gt;
+   &lt;img src=&quot;/test3.jpg&quot; alt=&quot;3&quot;&gt;
+   &lt;img src=&quot;/test4.jpg&quot; alt=&quot;4&quot;&gt;
+   &lt;img src=&quot;/test5.jpg&quot; alt=&quot;5&quot;&gt;
+   &lt;img src=&quot;/test6.jpg&quot; alt=&quot;6&quot;&gt;
+   &lt;img src=&quot;/test7.jpg&quot; alt=&quot;7&quot;&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+   const img = fs.readFileSync(&#39;test.jpg&#39;)
+   if (request.url === &#39;/&#39;) {
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/html&#39;,
+     })
+     response.end(html)
+   } else {
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;image/jpg&#39;,
+       &#39;Connection&#39;: &#39;keep-alive&#39; // or close
+     })
+     response.end(img)
+   }
+
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol><h3 id="数据协商"><a href="#数据协商" class="headerlink" title="数据协商"></a>数据协商</h3><ol><li>在客户端给服务端发送一个请求的时候，<ol><li>客户端会声明我希望这个请求，</li><li>我拿到的数据格式以及数据相关</li><li>的一些限制都是怎么样的，</li><li>服务端会根据他的请求里面表示的</li><li>他想要拿到什么样的数据，</li><li>然后做出一个判断，</li><li>服务端可能会有很多不同类型的数据返回，</li><li>那么服务端就可以根据客户端发送过来的</li><li>头部信息来进行区分，从而确认到底要返回</li><li>什么样的数据过去。</li></ol></li></ol><h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ol><li>请求</li><li>返回</li></ol><h5 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h5><ol><li>Accept<ol><li>通过Accept来声明你想要什么样的数据</li><li>如<code>text/html,application/xhtml+xml,application/xml</code>等</li><li>主要是限制请求的资源的类型</li></ol></li><li>Accept-Encoding<ol><li>通过Accept-Encoding来声明请求的资源</li><li>以什么样的编码方式进行传输，</li><li>主要是限制服务端如何来进行数据的一个压缩，</li><li>因为数据压缩的算法有很多，如<code>gzip, deflate, br</code></li><li>br全名Brotli，是一个兴起的压缩算法。</li></ol></li><li>Accept-Language<ol><li>在全世界范围来讲，有非常多的不同语言，</li><li>不同的地方展示的服务也展示的语言也是不同的，</li><li>比如国内期望展示中文，美国期望展示英文，</li><li>如<code>zh-CN,zh;q=0.9</code>，前面是语言后面是权重，</li><li>权重越大则表示浏览器最需要这种语言，</li><li>可以通过这个头来声明页面展示的语言，</li><li>主要是限制请求的资源的语言，</li><li>浏览器会自动给你加的，</li><li>但是在Ajax请求的时候，</li><li>你可以自定义去添加Accept相关的东西，</li><li>根据你自己的需求去加即可。</li></ol></li><li>User-Agent<ol><li>用来表示当前浏览器相关的一些信息，</li><li>移动端的浏览器与PC端的浏览器的User-Agent不一样</li><li>所以服务器端可以通过这个来进行判断，从而给客户端发送不同的页面。</li><li>如PC端<code>Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36</code></li><li>移动端苹果的<code>Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1</code></li><li>移动端安卓的<code>Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30</code></li></ol></li></ol><h5 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h5><ol><li>Content-Type<ol><li>这个与请求的Accept对应，Accept中有很多种数据格式，</li><li>他从Accept选择了一种作为他真正返回的数据格式，</li><li>从而实际返回该数据格式的数据。</li></ol></li><li>Content-Encoding<ol><li>对应Accept-Encoding，</li><li>表示服务端具体使用的那种压缩方式，</li><li>比如<code>gzip, deflate, br</code>中的一种。</li><li>压缩只是让资源在传输过程中的size变小，</li><li>解压之后可以恢复原样的。</li></ol></li><li>Content-Language<ol><li>与Accept-Language对应，</li><li>表示服务端具体返回的资源是那种语言，</li><li>如<code>zh-CN</code>、<code>en-US</code>。</li></ol></li><li>X-Content-Type-Options<ol><li>一般只用到一个值，就是nosniff，</li><li>表示告诉浏览器不要对响应的内容进行预测，</li><li>在早期的浏览器中会对返回的内容进行预测，</li><li>从而导致安全性的问题发生，</li><li>如本应该显示纯文本的脚本代码，</li><li>直接给执行了，那么就会导致XSS攻击等问题。</li></ol></li><li><p>代码示例</p><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;!-- 上传文件的enctype 需要使用 multiplepart --&gt;
+   &lt;form action=&quot;/form&quot; id=&quot;form&quot; enctype=&quot;application/x-www-form-urlencoded&quot;&gt;
+     &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;
+     &lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;
+     &lt;input type=&quot;file&quot; name=&quot;file&quot;&gt;
+     &lt;input type=&quot;submit&quot;&gt;
+   &lt;/form&gt;
+   &lt;script&gt;
+     var form = document.getElementById(&#39;form&#39;)
+     form.addEventListener(&#39;submit&#39;, function (e) {
+       e.preventDefault()
+       var formData = new FormData(form)
+       fetch(&#39;/form&#39;, {
+         method: &#39;POST&#39;,
+         body: formData
+       })
+     })
+   &lt;/script&gt;
+   &lt;!-- 
+   上传文件时，会在请求报文体中文件这一块儿使用到 Content-Type
+   Content-Type 用来声明客户端与服务端的数据协商
+    --&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+ // 第三方库
+ const zlib = require(&#39;zlib&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   const html = fs.readFileSync(&#39;test.html&#39;)
+   response.writeHead(200, {
+     &#39;Content-Type&#39;: &#39;text/html&#39;,
+     // &#39;X-Content-Type-Options&#39;: &#39;nosniff&#39;
+     &#39;Content-Encoding&#39;: &#39;gzip&#39;
+   })
+   response.end(zlib.gzipSync(html))
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol><h3 id="Redirect"><a href="#Redirect" class="headerlink" title="Redirect"></a>Redirect</h3><ol><li>通过url请求一个资源的时候，<ol><li>那个资源已经转到别处了，不在这个位置了，</li><li>这个时候服务器要告诉浏览器</li><li>你请求的资源在另外一个位置，</li><li>让浏览器跳转到另一个地址去。</li></ol></li><li>服务器通过返回状态码和响应头头部信息来实现Redirect<ol><li>状态码为302，添加响应头部信息Location为新的url，</li><li>状态码很重要，如果这时候你返回的是200，</li><li>那么你添加了Location也没有用。</li></ol></li></ol><h4 id="状态码301与302的区别"><a href="#状态码301与302的区别" class="headerlink" title="状态码301与302的区别"></a>状态码301与302的区别</h4><ol><li>301 表示永久跳转，<ol><li>会在第一次响应信息里指定新的url，</li><li>然后告诉浏览器，下次再访问这个旧的地址时，</li><li>直接去访问这个新的url，因为旧的url已经被永久改变，</li><li>浏览器缓存里面会记录这个旧的url，</li><li>下次再访问旧的地址时，浏览器会直接向新的url发送请求，</li><li>并不会每次都向旧的url发送请求。</li></ol></li><li>302 表示临时跳转，<ol><li>会先返回响应信息，</li><li>在响应信息中指定新的url，</li><li>客户端每次都会先去访问旧的url，</li><li>然后再根据响应头部的Location，</li><li>来跳转至新的url。</li></ol></li><li>区别是301只需要请求一次旧的url<ol><li>而302是每次都需要请求旧的url，</li><li>因为301是永久的变更，</li><li>旧的url会被缓存到浏览器中，</li><li>302是临时的变更，</li><li>旧的url不会被缓存到浏览器中。</li></ol></li><li><p>代码演示</p><pre><code class="js"> const http = require(&#39;http&#39;)
+
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   if (request.url === &#39;/&#39;) {
+     response.writeHead(302, {  // or 301
+       &#39;Location&#39;: &#39;/new&#39;
+     })
+     response.end()
+   }
+   if (request.url === &#39;/new&#39;) {
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/html&#39;,
+     })
+     response.end(&#39;&lt;div&gt;this is content&lt;/div&gt;&#39;)
+   }
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol><h3 id="CSP-内容安全策略"><a href="#CSP-内容安全策略" class="headerlink" title="CSP(内容安全策略)"></a>CSP(内容安全策略)</h3><ol><li>Content-Security-Policy 全称 内容安全策略</li><li>限制资源获取<ol><li>限制网页中资源的获取，</li><li>从哪里获取，然后他的请求发到哪个地方，</li><li>这些都可以通过CSP去限制</li></ol></li><li>报告资源获取越权<ol><li>在网页当中获取了一些不应该获取的资源的时候，</li><li>给服务器进行一个报告操作，</li><li>让服务器知道网页出现了没有预及到的情况，</li><li>然后服务器这边可以做出一些调整。</li></ol></li></ol><h4 id="限制方式"><a href="#限制方式" class="headerlink" title="限制方式"></a>限制方式</h4><ol><li>通过default-src限制全局<ol><li>限制全局所有与链接相关的作用范围</li><li>如：整个页面中的脚本、样式表等执行</li><li>都必须通过http或https来进行外部资源的加载</li><li>然后再执行，</li><li>不允许直接在页面中嵌入脚本或样式表来执行，</li><li>通过在响应头部添加<code>Content-Security-Policy</code></li><li>值为<code>default-src http: https:</code>，</li><li>这样页面就不能执行嵌入的脚本或样式表了，</li><li>并且会报一个错误信息出来，这个限制是强制的，</li><li>但是是有浏览器端去实现的。</li></ol></li><li>制定资源类型<ol><li>可以根据特定的资源类型来进行</li><li>限制他的资源范围</li></ol></li></ol><h4 id="资源类型"><a href="#资源类型" class="headerlink" title="资源类型"></a>资源类型</h4><ol><li>connect-src：<ol><li>请求发向的目标范围</li></ol></li><li>img-src：<ol><li>图片可以在哪几个网址下面进行加载</li></ol></li><li>manifest-src</li><li>font-src</li><li>frame-src</li><li>script-src：<ol><li>脚本可以在哪几个网址下面进行加载</li></ol></li><li>media-src</li><li>style-src：<ol><li>样式表可以在哪几个网址下面进行加载</li></ol></li><li>…</li></ol><h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><ol><li>全局限制页面中内嵌的脚本、样式表、图片、音频等资源被执行<ol><li>这样页面就不能执行嵌入的脚本或样式表了，</li><li>但是可以执行通过http、https这样的方式</li><li>加载的外部资源。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy&#39;: &#39;default-src http: https:&#39;
+})
+</code></pre></li></ol></li><li>全局限制页面中内嵌的脚本、样式表、图片、音频等资源被执行<ol><li>这样页面就不能执行嵌入的脚本或样式表了，</li><li>只能够执行由 当前域的服务器下加载的外部资源，</li><li>如果是从其它域的服务器下加载的外部资源，</li><li>也是不能执行的，连加载都不行。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy&#39;: &#39;default-src \&#39;self\&#39;&#39;
+})
+</code></pre></li></ol></li><li>全局限制页面中内嵌的脚本、样式表、图片、音频等资源被执行<ol><li>这样页面就不能执行嵌入的脚本或样式表了，</li><li>只能够执行由 当前域的服务器以及指定域的服务器</li><li>下加载的外部资源，除此之外如果是从其它域的服务器</li><li>下加载的外部资源，还是不能执行的，连加载也不行。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy&#39;: &#39;default-src \&#39;self\&#39; https://cdn.bootcss.com/&#39;
+})
+</code></pre></li></ol></li><li>form表单的提交，无法使用default-src来进行限制，<ol><li>需要通过form-action来进行限制</li><li>如限制只能提交当前域下的服务器，</li><li>提交其它域下的服务器无效。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy&#39;: &#39;default-src \&#39;self\&#39;; form-action \&#39;self\&#39;&#39;
+})
+</code></pre></li></ol></li><li>以上都是全局限制，如果要单单限制某一个，<ol><li>如js脚本，那么可以这样做，这样一来，</li><li>只允许当前域下的外部脚本加载并执行，</li><li>内嵌的脚本不允许被执行。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy&#39;: &#39;script-src \&#39;self\&#39;; form-action \&#39;self\&#39;&#39;
+})
+</code></pre></li></ol></li><li>如果页面中内容资源越权了，就需要向服务器上报<ol><li>也就是报告资源获取越权了，</li><li>可以通过 report-uri 然后指定服务器路径，如/report</li><li>这样一来，只要资源获取越权了就会上报到/report中去，</li><li>发送的内容是一个标准的csp-report的内容，</li><li>信息非常的详细。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy&#39;: &#39;script-src \&#39;self\&#39;; form-action \&#39;self\&#39;; report-uri /report&#39;
+})
+</code></pre></li></ol></li><li>Content-Security-Policy表示强制性的，<ol><li>而Content-Security-Policy-Report-Only则表示不强制性，</li><li>但是会将每一个违反内容安全策略的操作提交到服务器去，</li><li>但是页面依然可以执行这些违反的操作。<pre><code class="js">response.writeHead(200, {
+&#39;Content-Type&#39;: &#39;text/html&#39;,
+&#39;Content-Security-Policy-Report-Only&#39;: &#39;script-src \&#39;self\&#39;; form-action \&#39;self\&#39;; report-uri /report&#39;
+})
+</code></pre></li></ol></li><li>不仅可以通过在响应头部添加头信息来声明，<ol><li>还可以通过直接在html文档中的meta标签来声明，</li><li>但是meta标签里面不允许写report-uri 及 服务器路径的，</li><li>因为这样可能会造成别人的服务器收到莫名其妙的提交信息。</li><li><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;script-src &#39;self&#39;; form-action &#39;self&#39;;&quot;&gt;</code>,</li><li>这样写也可以达到在响应头部添加头信息的效果是一样的。</li></ol></li><li>如果要限制ajax请求发向的目标范围，可以使用connect-src<ol><li>这样一来ajax只能发送到指定的域名下，</li><li><code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;connect-src &#39;self&#39;; form-action &#39;self&#39;;&quot;&gt;</code></li></ol></li><li>其它更详细的信息可以去MDN上查找CSP<ol><li><code>https://developer.mozilla.org/zh-CN/docs/Web/Security/CSP</code></li><li><code>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy__by_cnvoid</code></li></ol></li></ol><h2 id="Nginx代理以及面向未来的HTTP"><a href="#Nginx代理以及面向未来的HTTP" class="headerlink" title="Nginx代理以及面向未来的HTTP"></a>Nginx代理以及面向未来的HTTP</h2><ol><li>nginx官网：<code>http://nginx.org/</code></li><li>nginx是互联网界用的最多的一个web服务器</li><li>nginx是一份非常纯粹的做HTTP协议实现的一个服务<ol><li>他并没有一个工具来帮助他做业务逻辑的开发。</li><li>而Nodejs、java、python这些实现web服务，</li><li>更多是为了实现业务上的一个逻辑功能。</li><li>比如数据存储数据库、根据不同的api把数据返回</li><li>出去，然后用户去显示，或者动态生成html，</li><li>为不同的用户在不同的页面展示不同的内容，</li><li>这些需要语言上面去编程，</li><li>然后作为动态的一个内容去实现。</li><li>而nginx他是一个单纯的web服务器，</li><li>也就是http的服务器，</li><li>他主要实现的功能就是HTTP所有的功能的对应，</li><li>用来所有的互联网公司的作用更多的是HTTP的代理，</li><li>虽然他也有很多其他的功能也可以扩展功能，</li><li>但是他的出发点就是一个纯粹的服务器。</li></ol></li><li>下载与使用<ol><li>去官网下载，然后下载之后解压就可以使用了，非常简单。</li><li>如果你是mac系统，使用Homebrew，安装完成，</li><li>使用命令安装完成之后，会在<code>/usr/local/etc/nginx</code>。</li><li>通过命令行工具进入该目录然后，直接nginx.exe回车，</li><li>停住了就代表已经启动了，不要关闭命令行。</li></ol></li></ol><h3 id="Nginx安装和基础代理配置"><a href="#Nginx安装和基础代理配置" class="headerlink" title="Nginx安装和基础代理配置"></a>Nginx安装和基础代理配置</h3><ol><li>启动Nginx后如果发生端口占用的错误<ol><li>使用cmd命令 <code>netstat -aon | findstr :80</code></li><li>来查找端口占用的进程ID，</li><li>然后使用cmd命令 <code>tasklist|findstr &quot;进程ID&quot;</code></li><li>来查找进程所对应的服务名称，</li><li>然后使用cmd命令 <code>taskkill /in &quot;进程名&quot; /f</code></li><li>来关闭对应的进程，<code>taskkill /pid &quot;进程ID&quot; /f</code></li><li>也就可以关闭对应进程ID的进程，</li><li>你也可以使用win+r打开services.msc，</li><li>手动关闭该服务。</li><li>以上都不行，那么就修改nginx.conf，</li><li>修改里面的server里面的listen，</li><li>把80改为其它端口即可，如8888</li><li>访问<code>http://localhost:8888/</code>，</li><li>出现页面了，表示nginx启动成功。</li></ol></li><li>Nginx的服务能够代理到Nodejs的服务，<ol><li>Nginx有代理功能以及缓存功能，</li><li>这两块儿是现在互联网开发中，</li><li>非常重要的一部分，互联网中，</li><li>http的代理无处不在，</li><li>http的缓存在代理中也是可以做到的，</li><li>Nginx甚至可以篡改HTTP请求的内容。</li></ol></li><li>了解HTTP的代理，以及代理缓存如何工作的</li><li>80端口被占用的可能<ol><li>IIS占用了，你关闭IIS服务，</li><li>数据库报表服务占用了，你关闭数据库报表服务</li><li>其它占用，你关闭其他服务</li></ol></li><li>443端口被占用的可能<ol><li>虚拟机服务占用了，你关闭虚拟机服务。</li></ol></li><li>这些端口服务占用查找时的可能<ol><li>可能都说的System占用了，</li><li>其实是某个服务占用了，</li><li>记得在services.msc中进行关闭。</li></ol></li><li>如果无法解除占用，你可以指定其它端口，<ol><li>访问的时候带上<code>:端口号</code>即可</li></ol></li></ol><h4 id="HTTP的代理"><a href="#HTTP的代理" class="headerlink" title="HTTP的代理"></a>HTTP的代理</h4><ol><li>在nginx.conf文件中使用include<ol><li><code>include</code> 是nginx常用的一个指令，</li><li>用来导入一些其它的配置文件的配置，</li><li>当有新的站点创建的时候可以单独去建一个配置文件</li><li>这样的话就能够进行有一个更好的隔离</li><li>在nginx.conf文件中加入<code>include servers/*.conf</code></li><li>表示引入servers文件夹所有的以.conf结尾的配置文件。</li></ol></li><li><p>新建配置文件</p><ol><li>新建一个servers文件夹，</li><li>新建test.conf配置文件</li><li><p><code>test.conf</code></p><pre><code class="conf">server {
+# 监听的端口
+listen    28888;
+# 浏览器地址栏的域名
+server_name    test.com;
+
+# 所有的请求
+location / {
+  # 代理到哪里
+  proxy_pass http://127.0.0.1:8888;
+  # Host是可以经过代理的层级之后被修改
+  # 如果不加下面这句，那么Host就为 proxy_pass里的地址
+  # 下面这句代表了 Host 为请求发送过来的host
+  # $host 是nginx中的变量，值为请求头部携带的host
+  proxy_set_header Host $host;
+}
+}
+
+server {
+listen    28888;
+server_name    a.test.com;
+
+location / {
+  proxy_pass http://127.0.0.1:8888;
+  proxy_set_header Host $host;
+}
+}
+
+server {
+listen    28888;
+server_name    b.test.com;
+
+location / {
+  proxy_pass http://127.0.0.1:8888;
+  proxy_set_header Host $host;
+}
+}
+</code></pre></li></ol></li><li>Nginx代理的原理<ol><li>Nginx监听某个端口，当请求发过来之后，</li><li>Nginx对请求匹配，如果匹配成功了，</li><li>由Nginx发送一个请求到真正的服务器上，</li><li>之后Nginx获取到内容了，</li><li>再由Nginx对内容进行返回，</li><li>这个过程Nginx作为中间代理层。</li></ol></li><li>代理的其它例子<ol><li>当你用手机去访问网站的时候，</li><li>有时会会出现小广告，</li><li>这些广告其实并不是这个网站的，</li><li>而是你用流量时，</li><li>中国电信中国移动这样的代理服务商，</li><li>他们替你向服务器发送请求，</li><li>响应回来的内容被他们解析了，</li><li>然后在内容里面插入了一段广告代码，</li><li>最后返回给你，</li><li>所以你手机里面就看到了莫名的小广告了，</li><li>因为http是明文的，</li><li>如果是https的话就很难出现这种情况了，</li><li>https是整个传输过程都是经过加密的，</li><li>中间代理是没有办法解析的。</li></ol></li><li>Nginx中通过host来区分你访问的是哪个服务，<ol><li>因为Nginx只能监听一个端口，</li><li>所有的请求过来就是这个端口，</li><li>于是就要通过每次请求中的host来判断，</li><li>从而转发到对应的源服务器去，</li><li>不然没法判断。</li></ol></li><li>使用Nginx可以在代理过程中篡改<ol><li>请求头、请求体、状态行，</li><li>但是https不可以，</li><li>也可以说非常难，</li><li>所以http在代理过程中，</li><li>是非常不可靠的，</li><li>因为明文传输的内容都是可修改的。</li></ol></li></ol><h3 id="Nginx代理配置及代理缓存的用处"><a href="#Nginx代理配置及代理缓存的用处" class="headerlink" title="Nginx代理配置及代理缓存的用处"></a>Nginx代理配置及代理缓存的用处</h3><h4 id="配置Nginx缓存"><a href="#配置Nginx缓存" class="headerlink" title="配置Nginx缓存"></a>配置Nginx缓存</h4><ol><li><p>通过在配置文件中新增有注释的这一部分代码</p><pre><code class="conf"> # 设置缓存目录，并指定目录，设置子目录，声明一个内存空间来进行缓存并设置大小
+ proxy_cache_path cache levels=1:2 keys_zone=my_cache:10m;
+
+ server {
+   # 80 端口被占用了，只能监听其它端口了
+   listen    28888;
+   server_name    test.com;
+
+   location / {
+     # 这里声明的 就是上面定义的
+     proxy_cache my_cache;
+     proxy_pass http://127.0.0.1:8888;
+     proxy_set_header Host $host;
+   }
+ }
+</code></pre><pre><code class="html"> &lt;!DOCTYPE html&gt;
+ &lt;html lang=&quot;en&quot;&gt;
+ &lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+   &lt;title&gt;Document&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   &lt;div&gt;This is content, and data is: &lt;span id=&quot;data&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+ &lt;/body&gt;
+ &lt;script&gt;
+   var data = document.getElementById(&#39;data&#39;)
+   data.innerText = &#39;&#39;
+   fetch(&#39;/data&#39;).then(function (resp) {
+     return resp.text()
+   }).then(function (text) {
+     data.innerText = text
+   })
+ &lt;/script&gt;
+ &lt;/html&gt;
+</code></pre><pre><code class="js"> const http = require(&#39;http&#39;)
+ const fs = require(&#39;fs&#39;)
+
+ const wait = (seconds) =&gt; {
+   return new Promise((resolve) =&gt; {
+     setTimeout(resolve, seconds * 1000)
+   })
+ }
+ http.createServer(function (request, response) {
+   console.log(&#39;request come&#39;, request.url)
+
+   if (request.url === &#39;/&#39;) {
+     const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+     response.writeHead(200, {
+       &#39;Content-Type&#39;: &#39;text/html&#39;
+     })
+     response.end(html)
+   }
+
+   if (request.url === &#39;/data&#39;) {
+     response.writeHead(200, {
+       &#39;Cache-Control&#39;: &#39;max-age=20&#39;
+     })
+     wait(2).then(() =&gt; response.end(&#39;success&#39;))
+   }
+ }).listen(8888)
+
+ console.log(&#39;server listening on 8888&#39;)
+
+</code></pre></li><li><p>使用代理缓存的作用</p><ol><li>只要设置了代理缓存，第一个用户请求了之后，</li><li>之后的其他用户再发送请求都会使用缓存中的内容，</li><li>这样一来就非常的高效了。</li></ol></li><li><p>nginx代理缓存的注意点</p><ol><li>源服务器通过<code>max-age</code>来设置本地缓存时间，</li><li>如果没有设置代理服务器的缓存时间<code>s-maxage</code>，</li><li>那么默认为永久，一直到代理服务器关闭。</li><li>源服务器这边可以通过<code>s-maxage</code>来设置代理服务器缓存时间，</li><li>表示代理服务器可在多长时间内对源服务器的数据进行缓存。</li><li>源服务器端可以通过设置<code>private</code>来屏蔽掉代理服务器缓存的功能，</li><li>这样一来代理服务器就不能对源服务器的本次资源进行缓存了，</li><li>设置了<code>private</code>之后只有浏览器才能进行缓存，</li><li><p>如果设置<code>no-store</code>，那么浏览器和代理服务器都不能进行缓存。</p><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;This is content, and data is: &lt;span id=&quot;data&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+var data = document.getElementById(&#39;data&#39;)
+data.innerText = &#39;&#39;
+fetch(&#39;/data&#39;).then(function (resp) {
+  return resp.text()
+}).then(function (text) {
+  data.innerText = text
+})
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre><pre><code class="js">const http = require(&#39;http&#39;)
+const fs = require(&#39;fs&#39;)
+
+const wait = (seconds) =&gt; {
+return new Promise((resolve) =&gt; {
+  setTimeout(resolve, seconds * 1000)
+})
+}
+http.createServer(function (request, response) {
+console.log(&#39;request come&#39;, request.url)
+
+if (request.url === &#39;/&#39;) {
+  const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+  response.writeHead(200, {
+    &#39;Content-Type&#39;: &#39;text/html&#39;
+  })
+  response.end(html)
+}
+
+if (request.url === &#39;/data&#39;) {
+  response.writeHead(200, {
+    &#39;Cache-Control&#39;: &#39;max-age=2, s-maxage=20, private&#39; // no-store
+  })
+  wait(2).then(() =&gt; response.end(&#39;success&#39;))
+}
+}).listen(8888)
+
+console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol></li><li><p>使用Vary来根据头信息来进行缓存</p><ol><li>使用Vary后会对比自定义的头部信息，</li><li>如果自定义的头部信息值不相同就不使用缓存，</li><li>而是重新发送请求然后再进行缓存，再返回给浏览器，</li><li>如果自定义的头部信息值相同就使用代理服务器缓存</li><li>或者本地缓存。</li><li>使用场景例如，手机端需要的内容可能与pc端的内容不一样，</li><li>这个时候如果使用缓存的话，就可以通过Vary来进行区分，</li><li>从而有两份或者两份以上的不同缓存。</li><li>很多情况下不止是根据域名来进行缓存就够，</li><li><p>有时候也要根据其他信息来进行缓存。</p><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;This is content, and data is: &lt;span id=&quot;data&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;button id=&quot;button&quot;&gt;click me&lt;/button&gt;
+&lt;/body&gt;
+&lt;script&gt;
+var index = 0
+function doRequest () {
+ var data = document.getElementById(&#39;data&#39;)
+ data.innerText = &#39;&#39;
+ fetch(&#39;/data&#39;, {
+   headers: {
+     &#39;X-Test-Cache&#39;: index++
+   }
+ }).then(function (resp) {
+   return resp.text()
+ }).then(function (text) {
+   data.innerText = text
+ })
+}
+document.getElementById(&#39;button&#39;).addEventListener(&#39;click&#39;, doRequest)
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre><pre><code class="js">const http = require(&#39;http&#39;)
+const fs = require(&#39;fs&#39;)
+
+const wait = (seconds) =&gt; {
+return new Promise((resolve) =&gt; {
+ setTimeout(resolve, seconds * 1000)
+})
+}
+http.createServer(function (request, response) {
+console.log(&#39;request come&#39;, request.url)
+
+if (request.url === &#39;/&#39;) {
+ const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+ response.writeHead(200, {
+   &#39;Content-Type&#39;: &#39;text/html&#39;
+ })
+ response.end(html)
+}
+
+if (request.url === &#39;/data&#39;) {
+ response.writeHead(200, {
+   &#39;Cache-Control&#39;: &#39;max-age=20, s-maxage=20000&#39;,
+   &#39;Vary&#39;: &#39;X-Test-Cache&#39;
+ })
+ wait(2).then(() =&gt; response.end(&#39;success&#39;))
+}
+}).listen(8888)
+
+console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol></li><li>具体的Nginx缓存还有其他方面来提升功能的<ol><li>可以写一些脚本来让他的缓存来使用内存数据库，</li><li>那么他的搜索性能会更高，</li><li>因为默认情况下他的缓存是写在磁盘上面的，</li><li>那么读写磁盘的效率肯定会降低，</li></ol></li></ol><h3 id="HTTPS解析"><a href="#HTTPS解析" class="headerlink" title="HTTPS解析"></a>HTTPS解析</h3><ol><li>HTTPS就是HTTP加上Security，也就是安全的HTTPS<ol><li>HTTP 很不安全，因为他整个定义都是明文传输的，</li><li>在互联网中的每一层的数据包都是明文的，</li><li>如果有人在某一层对你的数据包进行拦截，</li><li>然后把数据包解析出来并读取里面的数据信息，</li><li>那么你发的这个请求中的任何数据都会被拦截的人知道，</li><li>HTTP包被截取了就相当于你是在裸奔，</li><li>别人把你什么东西都看透了。</li></ol></li><li>例如使用Wireshark截取数据包，<ol><li>你可以看到截取的HTTP数据包里面，</li><li>所有的信息都是明文的，甚至连cookie都有，</li><li>那么你登陆的信息也可以拿到了，</li><li>这样一来，别人就可以伪造这个信息来模拟你登陆，</li><li>无论是请求报文还是响应报文都可以拿到，</li><li>所以HTTP协议本身是没有安全属性的，</li><li>他是一个明文传输的过程，</li><li>所以重要的数据千万不要使用HTTP这种明文传输。</li></ol></li></ol><h4 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h4><ol><li>私钥<ol><li>服务器端才有，只有服务器才知道，</li><li>用于对那些使用公钥加密的数据进行解密的操作。</li></ol></li><li>公钥<ol><li>就是放到互联网上，</li><li>所有人都可以拿到的一串加密的字符串，</li><li>这个加密字符串是用来加密我们传输的信息，</li><li>使用公钥加密后的数据传输到服务器之后，</li><li>只有服务器通过私钥进行一个解密，</li><li>这样才能把加密过的数据返回原样，</li><li>中间任何人拿不到这个私钥，</li><li>因为私钥只放在服务器上而不会放到互联网上进行传输，</li><li>因为就算被截取了数据包也没有用，</li><li>因为无法解密这个包的数据的，</li><li>这样一来这个传输过程就是安全的。</li></ol></li><li>公钥和私钥主要是用在握手的时候进行一个传输的<ol><li>握手的时候公钥私钥传输的一个内容</li><li>就是后期数据传输过程中使用的加密字符串，</li><li>因为这个加密字符串是通过公钥私钥方式进行的加密传输，</li><li>所以中间人拿不到这个加密字符串，</li><li>所以在后续的数据传输过程中，</li><li>两边使用这个加密字符串进行一个加密的传输，</li><li>中间人无法拿到这个加密字符串，</li><li>只有客户端和服务端知道，</li><li>客户端和服务端都可以通过这个加密字符串进行解密。</li></ol></li></ol><h4 id="HTTPS原理"><a href="#HTTPS原理" class="headerlink" title="HTTPS原理"></a>HTTPS原理</h4><ol><li><code>HTTPS私钥公钥加密解密过程(握手过程).png</code></li><li>HTTPS握手过程相对于HTTP握手过程要复杂一点<ol><li>因为他需要有加密传输的一个过程，</li><li>并且要确定最后数据传输时用到的真正密钥。</li></ol></li><li>HTTPS解析<ol><li>传输的过程中客户端先生成一个随机数，</li><li>然后将这个随机数和客户端支持的加密套件传输到服务端，</li><li>这个加密套件就是很多种不同的加密方法，</li><li>服务端拿到这个客户端发送过来的随机数之后先存着，</li><li>这时候服务端也生成一个随机数，</li><li>然后服务端会将这个服务端的证书(公钥)和这个服务端</li><li>生成的随机数传输给客户端，</li><li>客户端拿到了服务端的随机数和证书之后</li><li>先将服务端发送过来的随机数先存着，</li><li>然后客户端会生成一个随机字符串(预主密钥)，</li><li>之后客户端用服务端传递过来公钥(证书)去</li><li>加密这个随机字符串从而生成加密过的预主密钥，</li><li>所以要知道一共有三次生成随机数或字符串的过程，</li><li>客户端之后会将加密后预主密钥传输给服务器，</li><li>以上的过程就是没有办法被中间人解析，</li><li>因为他使用的是公钥进行加密，</li><li>只有服务端这边可以使用私钥进行解密，</li><li>当加密后的预主密钥发送到服务端这边后，</li><li>服务端会使用私钥对加密后的预主密钥进行解密，</li><li>从而拿到真正的预主密钥(随机字符串)，</li><li>因为客户端和服务端都存有这三个随机数或字符串，</li><li>通过加密套件中某一个方法来对这三个随机数或字符串</li><li>进行加密等其它算法操作来生成一个主密钥，</li><li>这个主密钥是客户端和服务端共同有的，</li><li>之后的客户端与服务端数据传输全都通过这个主密钥</li><li>来进行加密和解密操作，</li><li>这个过程相对HTTP来说特别复杂，</li><li>所以相对HTTP明文传输，</li><li>HTTPS的安全性相对要好太多。</li><li>但是由于最后的这个随机数是客户端生成的，</li><li>所以也许可以在客户端这边生成时进行获取，</li><li>也可以将客户端的主密钥拿到，</li><li>那样也可以对截取到的数据进行分析解密，</li><li>又或者将服务器的私钥拿到，</li><li>那样也可以对截取到的数据进行分析解密。</li></ol></li><li>HTTPS原理解析<ol><li>HTTPS 实际上是在三次握手的时候，</li><li>第一次握手，</li><li>客户端这边生成一个随机数，</li><li>并且将支持的加密套件(加密算法)连同随机数一起发送到服务端，</li><li>服务端接收这个随机数和加密算法，</li><li>第二次握手，</li><li>服务端这边也生成一个随机数，</li><li>并且将服务端证书(公钥)连同随机数一起发送到客户端，</li><li>客户端接收这个随机数和服务端证书(公钥)，</li><li>第三次握手，</li><li>客户端这边生成一个随机字符串(随机数)，也可以叫预主密钥，</li><li>并且使用服务端证书(公钥)对这个随机字符串进行加密，</li><li>加密后的预主密钥会被发送到服务端。</li><li>第三次握手由于是通过服务端证书(公钥)来进行加密的，</li><li>而解密是通过服务端另一个证书(私钥)，</li><li>所以无论你怎么截取数据，都无法对数据进行解密操作。</li><li>第三次握手后，服务端会对加密后的预主密钥进行解密，</li><li>然后根据第一次握手时客户端发送过来的随机数、</li><li>第二次握手时服务端生成的随机数、</li><li>第三次握手时解密后的预主密钥(随机字符串)</li><li>进行各种算法操作生成最后的主密钥，</li><li>这个生成过程中也使用到了客户端发送过来的加密套件(加密算法)，</li><li>服务端这边生成了主密钥，客户端那边同样也生成了主密钥，</li><li>因为客户端这边也有这三个随机数或随机字符串，</li><li>加密套件本身就是客户端的，</li><li>在第二次握手时就已经协商好了使用加密套件中哪一个算法，</li><li>所以客户端也能生成主密钥了。</li><li>HTTPS服务端与客户端传输数据时都会使用主密钥来进行加密或解密，</li><li>由于主密钥并不会参与传输，所以这些加密后的数据很安全，</li><li>于是HTTPS就很安全。</li></ol></li></ol><h3 id="使用Nginx部署HTTPS服务"><a href="#使用Nginx部署HTTPS服务" class="headerlink" title="使用Nginx部署HTTPS服务"></a>使用Nginx部署HTTPS服务</h3><ol><li>使用Nginx部署HTTPS服务首先要生成公钥和私钥<ol><li>通过bash命令生成公钥和私钥</li><li><code>openssl req -x509 -newkey rsa:2048 -nodes -sha256 -keyout localhost-provakey.pem -out localhost-cert.pem</code></li><li>生成完毕之后，会在这个目录中出现两个文件，一个公钥一个私钥。</li></ol></li><li><p>配置文件中进行修改</p><pre><code class="conf">
+ # 设置缓存目录，并指定目录，设置子目录，声明一个内存空间来进行缓存并设置大小
+ proxy_cache_path cache levels=1:2 keys_zone=my_cache:10m;
+
+ server {
+   # HTTP服务的默认端口是80
+   # 因为HTTPS服务的默认端口是443
+   # 但是由于端口都被占用了，所以直接指定一个端口即可
+   # 如果没有被占用 就监听 443 即可
+   listen    28888;
+   server_name    test.com;
+
+   # 开启 https加密的算法
+   ssl  on;
+
+   ### 指定加密的证书 ###
+
+   # 指定私钥
+   ssl_certificate_key ../keys/localhost-provakey.pem;
+   # 指定公钥
+   ssl_certificate ../keys/localhost-cert.pem;
+
+   location / {
+     # 这里声明的 就是上面定义的缓存设置
+     proxy_cache my_cache;
+     proxy_pass http://127.0.0.1:8888;
+     proxy_set_header Host $host;
+   }
+ }
+</code></pre></li><li>配置Nginx的HTTPS服务之后<ol><li>你访问你配置的域名后，浏览器出现不安全的提示，</li><li>这是因为像谷歌浏览器这样的高级浏览器会对证书检测，</li><li>因为它们认为的安全证书是要通过一个有权威的机构签发的，</li><li>权威机构签发的证书会首先验证你的域名确定是你的，</li><li>一定要能够保证这个服务就是你来运行的，</li><li>这个时候他才会给你签发证书，</li><li>一般个人的证书是通过最简单的siteboot来签发。</li><li>你可点击继续去访问，然后就可以忽略掉了不安全的提示。</li></ol></li><li><p>配置Nginx的HTTP服务自动跳转到HTTPS服务</p><pre><code class="conf"> # 设置缓存目录，并指定目录，设置子目录，声明一个内存空间来进行缓存并设置大小
+ proxy_cache_path cache levels=1:2 keys_zone=my_cache:10m;
+
+ server {
+   # 监听80端口 表示这为默认服务
+   listen        80 default_server;
+   # [::]表示使用ip的情况下
+   listen        [::]:80 default_server;
+   # 设置要跳转的服务名
+   server_name   test.com;
+   # 表示返回302 并且指定 这个域名及域名下的路径
+   return 302 https://$server_name$request_uri;
+ }
+
+ server {
+   # HTTP服务的默认端口是80
+   # 因为HTTPS服务的默认端口是443
+   # 如果端口都被占用了，所以直接指定一个端口即可
+   listen    443;
+   # 服务名 指定为哪个 域名
+   server_name    test.com;
+
+   # 开启 https加密的算法
+   ssl  on;
+
+   ### 指定加密的证书 ###
+
+   # 指定私钥
+   ssl_certificate_key ../keys/localhost-provakey.pem;
+   # 指定公钥
+   ssl_certificate ../keys/localhost-cert.pem;
+
+   location / {
+     # 这里声明的 就是上面定义的缓存设置
+     proxy_cache my_cache;
+     proxy_pass http://127.0.0.1:8888;
+     proxy_set_header Host $host;
+   }
+ }
+</code></pre></li></ol><h3 id="HTTP2的优势及Nginx配置HTTP2的简单实用"><a href="#HTTP2的优势及Nginx配置HTTP2的简单实用" class="headerlink" title="HTTP2的优势及Nginx配置HTTP2的简单实用"></a>HTTP2的优势及Nginx配置HTTP2的简单实用</h3><h4 id="HTTP1-1的缺点"><a href="#HTTP1-1的缺点" class="headerlink" title="HTTP1.1的缺点"></a>HTTP1.1的缺点</h4><ol><li>浏览器并发数就是浏览器创建TCP连接的个数<ol><li>浏览器创建TCP连接在一个域名下通常为6-7个，</li><li>谷歌浏览器可创建的TCP连接数为6，</li><li>如果一次并发超过6个，那么剩下的请求就需要等待，</li><li>等待其它6个TCP连接中某一个TCP连接请求处理完成，</li><li>这是一个串行的操作，他的效率就不是特别高。</li></ol></li><li>串行的TCP连接需要多次的三次握手操作，<ol start="7"><li>比如你创建6次TCP连接，那么就会经过18次握手，</li><li>这样一来创建连接的开销是比较大的，</li><li>并且对于一个服务器来讲，</li><li>他去创建一个TCP连接的个数也是有上限的，</li><li>如果很多个用户同时访问网站都会去创建6个TCP连接，</li><li>那么服务器创建TCP连接需要的资源会很快就被消耗完，</li><li>所以在HTTP1.1里面HTTP的性能是受到很大的制约的，</li><li>串行的TCP连接效率是非常低的。</li></ol></li></ol><h4 id="HTTP2的优势"><a href="#HTTP2的优势" class="headerlink" title="HTTP2的优势"></a>HTTP2的优势</h4><ol><li>HTTP2相对于HTTP1.1来说具有这些优势<ol><li>信道复用</li><li>分帧传输</li><li>Server Push</li></ol></li><li>在HTTP2里面的信道复用和分帧传输<ol><li>每个用户只需要创建一个TCP连接，</li><li>在这个TCP连接上面以并发的方式</li><li>进行客户端发送请求和服务器响应请求，</li><li>没有一个阻塞的过程，</li><li>而且服务端可以根据需求主动的向用户推送内容。</li></ol></li></ol><h5 id="信道复用"><a href="#信道复用" class="headerlink" title="信道复用"></a>信道复用</h5><ol><li>只需要创建一个TCP连接，<ol><li>将所有的请求按照顺序封装成一个数据包，</li><li>一次性发送到服务器，</li><li>服务器处理完成之后，</li><li>将所有的响应封装成一个包，</li><li>一次性返回给浏览器。</li></ol></li></ol><h5 id="分帧传输"><a href="#分帧传输" class="headerlink" title="分帧传输"></a>分帧传输</h5><ol><li>数据的传输方式，<ol><li>分帧传输就是每一帧都一个上下文的联系，</li><li>也就是说传输的一个HTTP请求的数据并</li><li>不需要按照连续的顺序发送，</li><li>而是可以分成不同的帧然后一起进行发送，</li><li>如果中间的部分先到服务器也没有问题，</li><li>因为最后他会把数据接收完之后，</li><li>根据一个帧信息来进行先后顺序的组合，</li><li>之后拿到真正的数据，</li><li>这个分帧传输的功能可以在同一个HTTP2连接上面</li><li>并发的发送不同的请求。</li></ol></li></ol><h5 id="Server-Push"><a href="#Server-Push" class="headerlink" title="Server Push"></a>Server Push</h5><ol><li>在传统的HTTP1.1当中，<ol><li>HTTP协议是客户端主动而服务器端被动一个情况，</li><li>也就是客户端发送一个请求之后，</li><li>服务端才能对客户端进行一个响应，</li><li>服务端没有办法主动的向客户端去推送一些内容，</li><li>但是在HTTP2里面就有了Server Push的功能。</li></ol></li><li>HTT2中通过响应头部信息进行推送内容的设置<ol><li>Link：指定本次请求服务器想要推送的内容</li><li><code>&#39;Link&#39;: &#39;&lt;/test.jpg&gt;; as=image; rel=preload&#39;</code></li><li>尖括号里面内容的路径要写绝对路径，</li><li>就是和html文档中资源的路径是一样的，</li><li>as表示这个推送的资源的类型，</li><li>rel表示是否需要进行一个服务端的推送。</li></ol></li><li><p>配置Nginx来将HTTP2的请求转为HTTP1.1的请求</p><ol><li>因为服务器这边是一个HTTP1.1的服务，</li><li>所以需要转换，这样客户端这边就能够达到HTTP2的效果，</li><li>而且在Nginx里面开启一个HTTP2的服务是非常简单的，</li><li>只需要配置一下就可以了，如果要修改源服务器上的代码的话，</li><li>那么成本是相对比较高的，可能很多逻辑都需要进行修改，</li><li>所以可以一步一步的来，比如你后期需要很多定制的服务，</li><li>那么你也可以对源服务器上的代码进行修改，</li><li>这里只是看看HTTP2带来的哪些性能上的体验，</li><li>所以在Nginx里面配置一下就是最快的方式。</li><li>Nginx与Node服务之间发送HTTP1.1的请求，</li><li>并没有请求连接数的限制而且还可以很快的创建完毕，</li><li>使用完毕后也会很快的关掉，</li><li>因为目前模拟是在同一台服务器上，</li><li>所以没有网络传输的延迟，</li><li>于是模拟HTTP1.1就没有那么多性能问题，</li><li>使用HTTP2还是需要使用HTTPS，</li><li>因为只有在HTTPS的情况下才能开启HTTP2，</li><li>因为现在的浏览器实现都是要你在使用HTTPS的时候，</li><li>才会去支持HTTP2，虽然HTTP2协议本身的定义并没指定</li><li>一定要使用HTTPS，但是HTTP2使用由谷歌之前开发的一个</li><li>叫SPDY的协议演化而来的，而SPDY本身需要HTTPS才能使用，</li><li>所以演化过来之后目前只能在支持HTTPS的情况下可以使用，</li><li><p>在未来所有的网站都要使用HTTPS。</p><pre><code class="conf">server {
+# 监听80端口 表示这为默认服务
+listen        80 default_server;
+
+# [::]表示使用ip的情况下
+listen        [::]:80 default_server;
+
+# 设置要跳转的服务名
+server_name   test.com;
+
+# 表示返回302 并且指定 这个域名及域名下的路径
+return 302 https://$server_name$request_uri;
+}
+
+server {
+# HTTP服务的默认端口是80
+# 因为HTTPS服务的默认端口是443
+# 如果端口都被占用了，所以直接指定一个端口即可
+listen    443 http2; # 在后面加上http2 就开启了HTTP2
+
+# 服务名 指定为哪个 域名
+server_name    test.com;
+
+# 开启HTTP2推送功能  
+# 表示源服务器这边如果有Link 并且rel=preload
+# 那么Nginx就会去找Link中指定的资源推送到浏览器
+http2_push_preload on;
+
+# 开启 https加密的算法
+ssl  on;
+
+### 指定加密的证书 ###
+
+# 指定私钥
+ssl_certificate_key ../keys/localhost-provakey.pem;
+# 指定公钥
+ssl_certificate ../keys/localhost-cert.pem;
+
+location / {
+ # 这里声明的 就是上面定义的缓存设置
+ proxy_cache my_cache;
+ proxy_pass http://127.0.0.1:8888;
+ proxy_set_header Host $host;
+ # 添加传输头
+ add_header Strict-Transport-Security max-age=200;
+}
+}
+</code></pre><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;img src=&quot;/test1.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test2.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test3.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test4.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test5.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test6.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test7.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test8.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test9.png&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/test10.png&quot; alt=&quot;&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><pre><code class="js">const http = require(&#39;http&#39;)
+const fs = require(&#39;fs&#39;)
+
+http.createServer(function (request, response) {
+console.log(&#39;request come&#39;, request.url)
+
+const html = fs.readFileSync(&#39;test.html&#39;, &#39;utf8&#39;)
+const img = fs.readFileSync(&#39;test.jpg&#39;)
+if (request.url === &#39;/&#39;) {
+ response.writeHead(200, {
+   &#39;Content-Type&#39;: &#39;text/html&#39;,
+   &#39;Connection&#39;: &#39;keep-alive&#39;,
+   &#39;Link&#39;: &#39;&lt;/test.jpg&gt;; as=image; rel=preload&#39;
+ })
+ response.end(html)
+} else {
+ response.writeHead(200, {
+   &#39;Content-Type&#39;: &#39;image/jpg&#39;,
+   &#39;Connection&#39;: &#39;keep-alive&#39; // or close
+ })
+ response.end(img)
+}
+
+}).listen(8888)
+
+console.log(&#39;server listening on 8888&#39;)
+</code></pre></li></ol></li><li>像谷歌这样的高级浏览器拒绝<ol><li>接收不安全的HTTPS的服务推送的，</li><li>你可以通过在浏览器输入<code>chrome://net-internals</code></li><li>查看某一个HTTP2请求的信息，看Host与Pushed这一列，</li><li>你就可以看出来服务器有没有推送资源给你，</li><li>但是你还可以通过Pushed and claimed这一列，</li><li>看出浏览器是否接收了服务器推送过来的资源，</li><li>如果你的HTTPS证书被浏览器认为不安全，</li><li>那么这对应的值就为0。</li></ol></li></ol><h4 id="HTTP2性能示例"><a href="#HTTP2性能示例" class="headerlink" title="HTTP2性能示例"></a>HTTP2性能示例</h4><ol><li>网上的HTTP2的demo<ol><li><code>https://http2.akamai.com/demo/http2-lab.html</code></li><li>你可以点击里面的超链接查看到各个版本的协议性能对比。</li><li>HTTP2对比HTTP1.1的性能提升了非常多而且传输的数据也减少了很多，</li><li>HTTP2的服务端推送对比HTTP2也让性能提升了一点。</li><li>虽然HTTP对比HTTPS而言三次握手的性能要高，</li><li>而且HTTPS在三次握手之后服务器端还有一步操作，</li><li>就是生成主密钥的操作(客户端是在第二次握手前生成主密钥的)，</li><li>但是HTTP2让HTTPS的性能比HTTP1.1的HTTP与HTTP1.1的HTTPS</li><li>高很多，所以HTTP2非常强大。</li></ol></li><li>HTTP2整体提升性能方面是在信道复用与分帧传输上面，<ol><li>Server Push提升的性能并不高。</li></ol></li><li><p>不是所有浏览器都支持HTTP2</p><ol><li>可以使用Nginx来开启HTTP2，</li><li>Nginx可以帮我们做一个自动兼容，</li><li>这个兼容方案叫做ARPN，</li><li>也就是客户端会和服务端进行一个协商，</li><li>表示到底要使用哪个协议，</li><li>如果客户端这边只支持HTTP1.1，</li><li>那么服务端就使用HTTP1.1的数据传输方式，</li><li>我的bash客户端不支持http2所以一直都是http1.1，</li><li>但是我的谷歌浏览器是支持HTTP2的，所以一直都是HTTP2。</li><li>有了Nginx之后，使用HTTP2可以自动兼容HTTP1.1甚至更低，</li><li>对于开发的Node服务还是其他服务来说，只需要使用HTTP1.1就行了，</li><li>根本不需要考虑客户端这边发送过来的请求是什么协议，</li><li>因为源服务器接收到的请求都是来自Nginx的，</li><li>Nginx会先将这些请求转换为HTTP1.1的请求，然后发送给源服务器，</li><li>所以这就是代理服务器的好处，</li><li>他能够处理实际开发服务过程中要去考虑的的问题，</li><li>HTTP2的性能提升真的是非常高的。</li><li><p>可以通过bash命令测试</p><pre><code class="bash">// http 加上-v 就可以看到请求头和响应头等信息
+curl -v test.com
+
+// https 加上-k 就会使用主密匙对报文进行解密
+curl -v -k https://test.
+
+//https 加上 --协议及协议版本号 就会使用对应的协议去请求服务器
+curl -v -k --http1.1 https://test.com
+</code></pre></li></ol></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ol><li>HTTP原理<ol><li>如何去发送一个HTTP请求以及数据如何返回。</li><li>在TCP连接上进行数据传输。</li><li>创建TCP连接需要经过三次握手。</li><li>使用HTTPS的时候需要经过HTTPS的三次握手，</li><li>HTTPS的握手过程是一个加密数据传输的过程。</li><li>以及HTTP是否是一个长连接(keep-alive)，</li><li>可以为服务器的性能带来很大的好处。</li><li>HTTP2在长连接的基础上增加了信道复用、</li><li>分帧传输、服务推送这些性能提升非常大的功能。</li><li>知道这些原理之后，</li><li>你再去开发服务或者做前端的一些内容的时候，</li><li>都可以从这方面的角度出发去考虑整个应用的加载性能，</li><li>他如何进行一个提升，从而做细节方面的优化。</li></ol></li><li>HTTP技术点<ol><li>HTTP头相关的一些作用。</li><li>比如缓存使用cache-control去控制</li><li>浏览器或者代理服务器的缓存。</li><li>使用last-modified或者Etag去验证</li><li>缓存过期后是否可继续使用。</li><li>使用CSP去控制网页内容加载与执行的安全性。</li><li>使用CORS去创建一个可用性很高并且安全有保证的</li><li>可跨域的HTTP服务。</li></ol></li><li>Nginx实践、面向未来的HTTP<ol><li>使用Nginx作为一个代理服务器。</li><li>开启Nginx的代理缓存。</li><li>HTTP不安全，而HTTPS是一个安全的HTTP。</li><li>HTTPS安全是通过三次握手后生成的主密钥来保证的。</li><li>HTTP2对于HTTP1.1而言整个性能得到了质的提升。</li><li>使用Nginx部署HTTP2非常非常简单。</li></ol></li><li>浏览器输入URL后HTTP请求返回的完整过程<ol><li>输入url敲回车之后。</li><li>开始进行页面重定向的跳转(Redirect)操作</li><li>因为浏览器要去查找301这样的永久转移的url，</li><li>这是纯客户端的性能，与服务器无关，</li><li>所以第一步是进行Redirect。</li><li>第二步是去看缓存，浏览器会看缓存，</li><li>查看请求的这个资源是否有设置过cache-control，</li><li>然后判断这个缓存是否过期，</li><li>如果超时了浏览器会重新去请求这个数据，</li><li>至少也要进行缓存的验证操作，</li><li>这一步就是查看缓存的一个过程。</li><li>第三步是对域名解析成实际的服务器IP，</li><li>会先到本地磁盘里面一个专门存储域名映射IP</li><li>关系的一个文件中去找，如果没找到就去网络上</li><li>最近的DNS服务器上去查找，</li><li>这一步就是将域名解析成服务器IP地址。</li><li>第四步是根据IP地址来创建TCP连接，</li><li>首先客户端和服务器端要经过三次握手，</li><li>如果是HTTPS的三次握手，</li><li>客户端与服务端会有更多的加密措施，</li><li>这一步就是创建TCP连接。</li><li>第五步是TCP连接创建完毕后发送数据，</li><li>发送的过程有两种，</li><li>一种是直接到到达服务器，</li><li>一种是经过代理服务器，</li><li>然后代理服务器再向源服务器发送，</li><li>第二种是代理服务器充当中间者，</li><li>他可以对请求报文与响应报文进行篡改，</li><li>也可以对源服务器的内容进行缓存，</li><li>可以在代理服务器上面做优化的操作，</li><li>这一步主要是通过TCP连接发送请求。</li><li>第六步是服务器响应处理请求后的内容，</li><li>先对请求进行处理，处理后通过TCP连接，</li><li>响应返回内容，</li><li>这一步主要是响应请求的内容。</li></ol></li><li>其它<ol><li>在公司级企业级的网站开发里面几乎都会用到Nginx，</li><li>Nginx是互联网上使用的最多的一个代理服务器的功能，</li><li>Nginx非常的重要，无论是前端还是后端，</li><li>以上将Nginx的内容可以实现一般网站上百分之六七十</li><li>的需要，其实他还有很多很多很强大的功能可以去开发，</li><li>Nginx有深入学习的必要。</li><li>你可以试着给你公司的网站开启HTTP2，</li><li>Nginx部署HTTP2非常简单，</li><li>而且Nginx的兼容性方案ARPN可以做到向下兼容，</li><li>根本不用担心低版本浏览器无法访问你公司的网站，</li><li>HTTP2的性能相比于HTTP1.1而言是非常非常高的。</li></ol></li><li>将这些内容好好的去巩固，<ol><li>将这些内容变成真正属于你自己脑子里面</li><li>真正有用的知识点，然后你以后在你的实际开发当中，</li><li>能够运用这些知识，这个是真的真的非常的基础，</li><li>也非常非常的重要，web开发界的大牛。</li></ol></li></ol></div><div><div class="my_post_copyright"><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><p><span>本文标题:</span><a href="/2018/10/10/HTTP协议原理及实际应用/">HTTP协议原理及实际应用</a></p><p><span>文章作者:</span><a href="/" title="访问 jwl 的个人博客">jwl</a></p><p><span>发布时间:</span>2018年10月10日 - 20:10</p><p><span>最后更新:</span>2018年10月10日 - 20:10</p><p><span>原始链接:</span><a href="/2018/10/10/HTTP协议原理及实际应用/" title="HTTP协议原理及实际应用">https://www.52jwl.com/2018/10/10/HTTP协议原理及实际应用/</a> <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.52jwl.com/2018/10/10/HTTP协议原理及实际应用/" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");$(".fa-clipboard").click(function(){clipboard.on("success",function(){swal({title:"",text:"亲！好了哦",icon:"success",showConfirmButton:!0,confirmButtonColor:"#ef4e7b"})})})</script></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" width="100" height="100" src="http://static.dramastyle.com/images/3/7/1301/My-NeighborTotoro__6.jpg" alt="jwl WeChat Pay"><p>龙猫打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" width="100" height="100" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535968240695&di=983c0ca46cee2ca40f9d6df3d33a95bd&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201506%2F13%2F20150613121207_AGkUF.jpeg" alt="jwl Alipay"><p>金鱼姬打赏</p></div></div></div></div><div><div><div style="text-align:center;color:#555;font-size:14px">--------------------i love jwl--------------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="./tags/HTTP/"><i class="fa fa-tag"></i> HTTP</a> <a href="./tags/HTTPS/"><i class="fa fa-tag"></i> HTTPS</a> <a href="./tags/HTTP2/"><i class="fa fa-tag"></i> HTTP2</a> <a href="./tags/Nginx/"><i class="fa fa-tag"></i> Nginx</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/09/25/前端面试必备技巧与知识/" rel="next" title="前端面试必备技巧与知识"><i class="fa fa-chevron-left"></i> 前端面试必备技巧与知识</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"></div></div></footer></article><div class="post-spread"><div class="addthis_inline_share_toolbox"><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b8917fd9ef2beb8" async></script></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQwOC8xNTkzNQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="jwl"><p class="site-author-name" itemprop="name">jwl</p><p class="site-description motion-element" itemprop="description">从喜欢到爱的一路前端风</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories"><span class="site-state-item-count">27</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">88</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/52jwl" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://www.freecodecamp.cn/52jwl" target="_blank" title="fcc"><i class="fa fa-fw fa-free-code-camp"></i> fcc </a></span><span class="links-of-author-item"><a href="https://www.jianshu.com/u/439a6eee60e1" target="_blank" title="简书"><i class="fa fa-fw fa-book"></i> 简书 </a></span><span class="links-of-author-item"><a href="http://blog.csdn.net/jwl_lwj" target="_blank" title="CSDN"><i class="fa fa-fw fa-rotate-right"></i> CSDN</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a></li><li class="links-of-blogroll-item"><a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a></li><li class="links-of-blogroll-item"><a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a></li><li class="links-of-blogroll-item"><a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a></li></ul></div><div id="days"></div><script>function show_date_time(){window.setTimeout("show_date_time()",1e3),BirthDay=new Date("01/10/2017 12:34:56"),today=new Date,timeold=today.getTime()-BirthDay.getTime(),sectimeold=timeold/1e3,secondsold=Math.floor(sectimeold),msPerDay=864e5,e_daysold=timeold/msPerDay,daysold=Math.floor(e_daysold),e_hrsold=24*(e_daysold-daysold),hrsold=setzero(Math.floor(e_hrsold)),e_minsold=60*(e_hrsold-hrsold),minsold=setzero(Math.floor(60*(e_hrsold-hrsold))),seconds=setzero(Math.floor(60*(e_minsold-minsold))),document.getElementById("days").innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"}function setzero(e){return e<10&&(e="0"+e),e}show_date_time()</script></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP协议原理及实际应用-Web开发工程师必学"><span class="nav-number">1.</span> <span class="nav-text">HTTP协议原理及实际应用 Web开发工程师必学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#课程导学"><span class="nav-number">1.1.</span> <span class="nav-text">课程导学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cache-Control</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存验证"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">缓存验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多有意义的头"><span class="nav-number">1.1.2.</span> <span class="nav-text">更多有意义的头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入TCP"><span class="nav-number">1.1.3.</span> <span class="nav-text">深入TCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲课过程"><span class="nav-number">1.1.4.</span> <span class="nav-text">讲课过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这门课带来的好处"><span class="nav-number">1.1.5.</span> <span class="nav-text">这门课带来的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习这门课需要的基础"><span class="nav-number">1.1.6.</span> <span class="nav-text">学习这门课需要的基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容介绍"><span class="nav-number">1.1.7.</span> <span class="nav-text">内容介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器输入URL后HTTP请求返回的完整过程"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">浏览器输入URL后HTTP请求返回的完整过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP协议基础及发展历史"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP协议基础及发展历史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络协议分层"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络协议分层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#低三层"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">低三层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输层"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">应用层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http协议的发展历史"><span class="nav-number">1.2.2.</span> <span class="nav-text">http协议的发展历史</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-0-9"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">HTTP/0.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">HTTP/1.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">HTTP/1.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP2"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">HTTP2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP三次握手"><span class="nav-number">1.2.3.</span> <span class="nav-text">HTTP三次握手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URI、URL、URN"><span class="nav-number">1.2.4.</span> <span class="nav-text">URI、URL、URN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#URI"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">URI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URN"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">URN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP报文"><span class="nav-number">1.2.5.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求报文"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应报文"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">响应报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP方法"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">HTTP方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-CODE"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">HTTP CODE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最简单的web服务"><span class="nav-number">1.2.6.</span> <span class="nav-text">最简单的web服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP各种特性一览"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP各种特性一览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#认识HTTP客户端"><span class="nav-number">1.3.1.</span> <span class="nav-text">认识HTTP客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS跨域请求的限制与解决"><span class="nav-number">1.3.2.</span> <span class="nav-text">CORS跨域请求的限制与解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS跨域限制以及预请求验证"><span class="nav-number">1.3.3.</span> <span class="nav-text">CORS跨域限制以及预请求验证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS预请求"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">CORS预请求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#其它限制"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">其它限制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存Cache-Control的含义和使用"><span class="nav-number">1.3.4.</span> <span class="nav-text">缓存Cache-Control的含义和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可缓存性"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">可缓存性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#到期"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">到期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新验证"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">重新验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器端会常用到的"><span class="nav-number">1.3.4.5.</span> <span class="nav-text">浏览器端会常用到的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存验证Last-Modified和Etag的使用"><span class="nav-number">1.3.5.</span> <span class="nav-text">缓存验证Last-Modified和Etag的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源验证"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">资源验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证头"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">验证头</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie和Session"><span class="nav-number">1.3.6.</span> <span class="nav-text">Cookie和Session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie属性"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">Cookie属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session"><span class="nav-number">1.3.6.3.</span> <span class="nav-text">Session</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP长连接"><span class="nav-number">1.3.7.</span> <span class="nav-text">HTTP长连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据协商"><span class="nav-number">1.3.8.</span> <span class="nav-text">数据协商</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求"><span class="nav-number">1.3.8.1.1.</span> <span class="nav-text">请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回"><span class="nav-number">1.3.8.1.2.</span> <span class="nav-text">返回</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirect"><span class="nav-number">1.3.9.</span> <span class="nav-text">Redirect</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态码301与302的区别"><span class="nav-number">1.3.9.1.</span> <span class="nav-text">状态码301与302的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSP-内容安全策略"><span class="nav-number">1.3.10.</span> <span class="nav-text">CSP(内容安全策略)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#限制方式"><span class="nav-number">1.3.10.1.</span> <span class="nav-text">限制方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源类型"><span class="nav-number">1.3.10.2.</span> <span class="nav-text">资源类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例"><span class="nav-number">1.3.10.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx代理以及面向未来的HTTP"><span class="nav-number">1.4.</span> <span class="nav-text">Nginx代理以及面向未来的HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx安装和基础代理配置"><span class="nav-number">1.4.1.</span> <span class="nav-text">Nginx安装和基础代理配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP的代理"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">HTTP的代理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx代理配置及代理缓存的用处"><span class="nav-number">1.4.2.</span> <span class="nav-text">Nginx代理配置及代理缓存的用处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Nginx缓存"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">配置Nginx缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS解析"><span class="nav-number">1.4.3.</span> <span class="nav-text">HTTPS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加密"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS原理"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">HTTPS原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Nginx部署HTTPS服务"><span class="nav-number">1.4.4.</span> <span class="nav-text">使用Nginx部署HTTPS服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP2的优势及Nginx配置HTTP2的简单实用"><span class="nav-number">1.4.5.</span> <span class="nav-text">HTTP2的优势及Nginx配置HTTP2的简单实用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-1的缺点"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">HTTP1.1的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP2的优势"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">HTTP2的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#信道复用"><span class="nav-number">1.4.5.2.1.</span> <span class="nav-text">信道复用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分帧传输"><span class="nav-number">1.4.5.2.2.</span> <span class="nav-text">分帧传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Server-Push"><span class="nav-number">1.4.5.2.3.</span> <span class="nav-text">Server Push</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP2性能示例"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">HTTP2性能示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.4.6.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内容"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">内容</span></a></li></ol></li></ol></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright" style="text-align:center;line-height:50px;font-size:16px">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-snowflake-o"></i> </span><span class="author" itemprop="copyrightHolder">jwl</span><div class="powered-by">| <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"><a class="theme-link" href="https://www.52jwl.com">i love jwl：</a> <span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><span class="post-count">已统计字数:199.1k</span></div></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path;function proceedsearch(){$("body").append('<div class="local-search-pop-overlay">').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,c,s){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var t=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),a=document.getElementById(c),r=document.getElementById(s);a.addEventListener("input",function(){var u=0,d='<ul class="search-result-list">',f=this.value.trim().toLowerCase().split(/[\s\-]+/);r.innerHTML="",1<this.value.trim().length&&t.forEach(function(e){var a=!1,r=e.title.trim().toLowerCase(),c=e.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),t=decodeURIComponent(e.url),s=-1,n=-1,o=-1;if(""!=r&&f.forEach(function(e,t){s=r.indexOf(e),n=c.indexOf(e),(0<=s||0<=n)&&(a=!0,0==t&&(o=n))}),a){u+=1,d+="<li><a href='"+t+"' class='search-result-title'>"+r+"</a>";var i=e.content.trim().replace(/<[^>]+>/g,"");if(0<=o){var l=o-20,p=o+80;l<0&&(l=0),0==l&&(p=50),p>i.length&&(p=i.length);var h=i.substring(l,p);f.forEach(function(e){var t=new RegExp(e,"gi");h=h.replace(t,'<b class="search-keyword">'+e+"</b>")}),d+='<p class="search-result">'+h+"...</p>"}d+="</li>"}}),d+="</ul>",0==u&&(d='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==f&&(d='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),r.innerHTML=d}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/javascript" color="255,0,0" opacity="0.5" zindex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script><script type="text/javascript">var live2dIsExistsTimer=setInterval(function(){var e=document.getElementById("live2dcanvas");if(e){function t(e){e.style.right=document.body.offsetWidth/4+"px"}t(e),addEventListener("resize",function(){t(e)}),clearInterval(live2dIsExistsTimer)}else console.log(e,"获取失败")},500)</script><script type="text/javascript" src="/js/src/dynamicTitle.js"></script><script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js"></script><script>$(function(){$("pre").addClass("prettyprint linenums").attr("style","overflow:auto;"),prettyPrint()})</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":75,"height":150,"hOffset":320,"vOffset":-20},"log":false});</script></body></html>

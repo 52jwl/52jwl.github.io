@@ -1,0 +1,2343 @@
+<!doctype html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/0f81ff2f.js","daovoice"),daovoice("init",{app_id:"493d9281"}),daovoice("update")</script><link href="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Microsoft YaHei UI Light:300,300italic,400,400italic,700,700italic|方正楷体:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|STHeiti TC:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="react,JS,ES6,虚拟DOM,vue,hybrid,"><link rel="alternate" href="/atom.xml" title="ilovejwl" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="description" content="前端高级知识课程概述做什么？讲解前端JS高级面试题哪些部分？高级基础、框架原理、app混合开发技术？JS、ES6、虚拟DOM、vue、React、hybrid知识点介绍基础知识ES6 常用语法原型高级应用异步全面讲解框架原理虚拟DOMMVVM vue组件化 React混合开发hybridhybrid vd H5前端客户端通讯面试时如何讲述自己热爱编程读书 博客开源课程安排高级基础ES6 常用语法："><meta name="keywords" content="react,JS,ES6,虚拟DOM,vue,hybrid"><meta property="og:type" content="article"><meta property="og:title" content="前端JS高级知识"><meta property="og:url" content="https://www.52jwl.com/2018/09/08/前端JS高级知识/index.html"><meta property="og:site_name" content="ilovejwl"><meta property="og:description" content="前端高级知识课程概述做什么？讲解前端JS高级面试题哪些部分？高级基础、框架原理、app混合开发技术？JS、ES6、虚拟DOM、vue、React、hybrid知识点介绍基础知识ES6 常用语法原型高级应用异步全面讲解框架原理虚拟DOMMVVM vue组件化 React混合开发hybridhybrid vd H5前端客户端通讯面试时如何讲述自己热爱编程读书 博客开源课程安排高级基础ES6 常用语法："><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2018-09-08T05:41:00.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="前端JS高级知识"><meta name="twitter:description" content="前端高级知识课程概述做什么？讲解前端JS高级面试题哪些部分？高级基础、框架原理、app混合开发技术？JS、ES6、虚拟DOM、vue、React、hybrid知识点介绍基础知识ES6 常用语法原型高级应用异步全面讲解框架原理虚拟DOMMVVM vue组件化 React混合开发hybridhybrid vd H5前端客户端通讯面试时如何讲述自己热爱编程读书 博客开源课程安排高级基础ES6 常用语法："><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",sidebar:{position:"left",display:"post",offset:12,offset_float:0,b2t:!1,scrollpercent:!1},fancybox:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:"",labels:""}}</script><link rel="canonical" href="https://www.52jwl.com/2018/09/08/前端JS高级知识/"><script type="text/javascript">!function(){var o="";try{o=sessionStorage.password||"",sessionStorage.initState||"0"}catch(s){o="","0",console.log("sessionStorage 无法使用。")}if("jwl"!==o)if("jwl"!==(o=prompt("请输入文章密码")))alert("密码错误！"),1===history.length?location.replace("https://www.52jwl.com"):history.back();else try{sessionStorage.password=o,sessionStorage.initState="1"}catch(s){console.log("sessionStorage 无法使用。")}}()</script><title>前端JS高级知识 | ilovejwl</title><link href="https://cdn.staticfile.org/prettify/r298/prettify.min.css" rel="stylesheet"><style type="text/css">.prettyprint{background:#131513;font-family:Menlo,"Bitstream Vera Sans Mono","DejaVu Sans Mono",Monaco,Consolas,monospace;border:0!important}.pln{color:#f4fbf4}ol.linenums{margin-top:0;margin-bottom:0;color:#687d68}li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{padding-left:1em;background-color:#131513;list-style-type:decimal}@media screen{.str{color:#29a329}.kwd{color:#ad2bee}.com{color:#687d68}.typ{color:#3d62f5}.lit{color:#87711d}.pun{color:#f4fbf4}.opn{color:#f4fbf4}.clo{color:#f4fbf4}.tag{color:#e6193c}.atn{color:#87711d}.atv{color:#1999b3}.dec{color:#87711d}.var{color:#e6193c}.fun{color:#3d62f5}}</style></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container one-collumn sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fd6c6c;color:#fff;position:absolute;top:0;border:0;right:0;z-index:1" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">ilovejwl</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">52jwl</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.52jwl.com/2018/09/08/前端JS高级知识/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="jwl"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="ilovejwl"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">前端JS高级知识</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T13:41:00+08:00">2018-09-08 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span> </a></span>， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JS/高级基础、框架原理、app混合开发/" itemprop="url" rel="index"><span itemprop="name">高级基础、框架原理、app混合开发</span> </a></span></span><span class="post-meta-divider">|</span> <span class="page-pv"><i class="fa fa-file-o"></i> 本文热度 <span class="busuanzi-value" id="busuanzi_value_page_pv">1314520</span>°C</span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">22,620 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">97</span></div></div></header><div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="前端高级知识"><a href="#前端高级知识" class="headerlink" title="前端高级知识"></a>前端高级知识</h1><h2 id="课程概述"><a href="#课程概述" class="headerlink" title="课程概述"></a>课程概述</h2><h3 id="做什么？"><a href="#做什么？" class="headerlink" title="做什么？"></a>做什么？</h3><ol><li>讲解前端JS高级面试题</li></ol><h3 id="哪些部分？"><a href="#哪些部分？" class="headerlink" title="哪些部分？"></a>哪些部分？</h3><ol><li>高级基础、框架原理、app混合开发</li></ol><h3 id="技术？"><a href="#技术？" class="headerlink" title="技术？"></a>技术？</h3><ol><li>JS、ES6、虚拟DOM、vue、React、hybrid</li></ol><h2 id="知识点介绍"><a href="#知识点介绍" class="headerlink" title="知识点介绍"></a>知识点介绍</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ol><li>ES6 常用语法</li><li>原型高级应用</li><li>异步全面讲解</li></ol><h3 id="框架原理"><a href="#框架原理" class="headerlink" title="框架原理"></a>框架原理</h3><ol><li>虚拟DOM</li><li>MVVM vue</li><li>组件化 React</li></ol><h3 id="混合开发"><a href="#混合开发" class="headerlink" title="混合开发"></a>混合开发</h3><ol><li>hybrid</li><li>hybrid vd H5</li><li>前端客户端通讯</li></ol><h3 id="面试时如何讲述自己热爱编程"><a href="#面试时如何讲述自己热爱编程" class="headerlink" title="面试时如何讲述自己热爱编程"></a>面试时如何讲述自己热爱编程</h3><ol><li>读书 博客</li><li>开源</li></ol><h2 id="课程安排"><a href="#课程安排" class="headerlink" title="课程安排"></a>课程安排</h2><h3 id="高级基础"><a href="#高级基础" class="headerlink" title="高级基础"></a>高级基础</h3><ol><li>ES6 常用语法：Class Module Promise等</li><li>原型高级应用：结合jQuery 和 zepto 源码</li><li>异步全面讲解：从原理到 jQuery 再到 Promise</li></ol><h3 id="框架原理-1"><a href="#框架原理-1" class="headerlink" title="框架原理"></a>框架原理</h3><ol><li>虚拟DOM :存在价值，如何使用，diff算法</li><li>vue：MVVM，vue响应式、模板解析、渲染</li><li>React：组件化，JSX、vdom、setState</li><li>对比：有主见，自圆其说</li></ol><h3 id="App-混合开发"><a href="#App-混合开发" class="headerlink" title="App 混合开发"></a>App 混合开发</h3><ol><li>hybrid：基础、和h5对比，上线流程</li><li>通讯：通讯原理，JS1.Bridge 封装</li></ol><h3 id="热爱编程"><a href="#热爱编程" class="headerlink" title="热爱编程"></a>热爱编程</h3><ol><li>读书</li><li>博客</li><li>开源</li></ol><h3 id="讲授方式"><a href="#讲授方式" class="headerlink" title="讲授方式"></a>讲授方式</h3><ol><li>先出面试题，带领大家思考</li><li>通过题目引出知识点，扩充讲解知识体系</li><li>最后通过学到的知识点，解答题目</li><li>按照顺序观看视频</li></ol><h3 id="课程收获"><a href="#课程收获" class="headerlink" title="课程收获"></a>课程收获</h3><ol><li>应对JS高级面试题</li><li>从深度和广度都扩充了自己的知识体系</li><li>学会如何高效学习</li><li>深入理解常用框架的实现原理和hybrid应用</li></ol><h3 id="学习前提"><a href="#学习前提" class="headerlink" title="学习前提"></a>学习前提</h3><ol><li>有JavaScript基础</li><li>用过 nodejs和 npm开发环境</li><li>了解 vue和 React（至少看过文档，做过demo）</li><li>热爱前端开发，有学习的欲望</li></ol><h3 id="课程优势"><a href="#课程优势" class="headerlink" title="课程优势"></a>课程优势</h3><ol><li>针对高级JS面试中，面试官爱问 “源码” “实现”</li><li>介绍常用框架实现原理的视频，网上稀缺</li><li>会介绍 hybrid 原理和应用的视频，网上稀缺</li><li>全部由实际工作经验总结而来，书上看不到</li></ol><h2 id="面试题架构"><a href="#面试题架构" class="headerlink" title="面试题架构"></a>面试题架构</h2><h3 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h3><ol><li>模块儿化的使用和编译环境</li><li>Class 与JS构造函数的区别</li><li>Promise的用法</li><li>ES6 其它常用功能</li></ol><h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><ol><li>原型如何实际应用</li><li>原型如何满足扩展</li></ol><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><ol><li>什么是单线程，和异步有何关系</li><li>什么是 event1.loop</li><li>目前JS解决异步的方案有哪些</li><li>如果只用jquery如何解决异步</li><li>Promise的标准</li><li>async/await的作用</li></ol><h3 id="vdom"><a href="#vdom" class="headerlink" title="vdom"></a>vdom</h3><ol><li>什么是vdom，为何要用vdom</li><li>vdom如何使用，核心函数有哪些</li><li>了解 diff算法吗</li></ol><h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><ol><li>之前使用jquery和现在使用vue或React框架的区别</li><li>你如何理解MVVM</li><li>vue 如何实现响应式</li><li>vue 如何解析模板</li><li>介绍vue的实现流程</li></ol><h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><ol><li>对组件化的理解</li><li>JSX是什么？</li><li>JSX和vdom什么关系</li><li>简述React的setState</li><li>阐述自己如何比较React和vue</li></ol><h3 id="hybrid"><a href="#hybrid" class="headerlink" title="hybrid"></a>hybrid</h3><ol><li>hybrid 是什么，为何要用hybrid</li><li>bybrid 如何更新上线</li><li>hybrid 和h5 有何区别</li><li>JS如何与客户端通信</li></ol><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol><li>如何写博客</li><li>如何做开源</li></ol><h2 id="ES6-语法"><a href="#ES6-语法" class="headerlink" title="ES6 语法"></a>ES6 语法</h2><h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><ol><li>开发环境已经普及使用</li><li>浏览器环境却支持不好（需要开发环境编译）</li><li>内容很多，重点了解常用语法</li><li>面试： 开发环境的使用 + 重点语法的掌握</li></ol><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol><li>ES6 模块儿化如何使用，开发环境如何打包</li><li>Class 和普通构造函数有何区别</li><li>Promise 的基本使用和原理</li><li>总结一下ES6 其他常用功能</li></ol><h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a><strong>实践</strong></h3><h4 id="ES6-模块儿化如何使用，开发环境如何打包？"><a href="#ES6-模块儿化如何使用，开发环境如何打包？" class="headerlink" title="ES6 模块儿化如何使用，开发环境如何打包？"></a>ES6 模块儿化如何使用，开发环境如何打包？</h4><h5 id="模块化的基本语法"><a href="#模块化的基本语法" class="headerlink" title="模块化的基本语法"></a>模块化的基本语法</h5><h6 id="默认导出导入"><a href="#默认导出导入" class="headerlink" title="默认导出导入"></a>默认导出导入</h6><pre><code class="js">    /*util1.js*/
+    //默认导出
+    export default {
+        a :100
+    }
+    /*main.js*/
+    //默认导入
+    import obj from &#39;./util1.js&#39;;
+    console.log(obj);
+
+</code></pre><h6 id="按需导出导入"><a href="#按需导出导入" class="headerlink" title="按需导出导入"></a>按需导出导入</h6><pre><code class="js">    /*util2.js*/
+    //按需导出
+    export function fn1(){
+        alert(&#39;fn1&#39;);
+    }
+    export function fn2(){
+        alert(&#39;fn2&#39;);
+    }
+    /*main.js*/
+    //按需导入
+    import {fn1,fn2} from &#39;./util2.js&#39;;
+    fn1();
+    fn2();
+</code></pre><h5 id="开发环境配置"><a href="#开发环境配置" class="headerlink" title="开发环境配置"></a>开发环境配置</h5><h6 id="开发环境-babel"><a href="#开发环境-babel" class="headerlink" title="开发环境 babel"></a>开发环境 babel</h6><ol><li>安装 node环境，运行 <code>npm init -y</code></li><li><code>npm install --save-dev babel-core babel-preset-es2015 babel-preset-latest</code></li><li>创建 <code>.babelrc</code>文件</li><li>内容 <code>{ presets:[&#39;es2015&#39;,&#39;latest&#39;],plugins:[]}</code></li><li><code>npm install --global babel-cli</code></li><li>查看babel版本：<code>babel --version</code></li><li>创建<code>./src/index.js</code></li><li>内容：<code>[1,2,3].map(item=&gt;item+1)</code></li><li>运行:<code>babel ./src/index.js</code></li></ol><h6 id="开发环境-webpack"><a href="#开发环境-webpack" class="headerlink" title="开发环境 webpack"></a>开发环境 webpack</h6><ol><li><code>npm install webpack babel-loader --save-dev</code></li><li>配置 <code>webpack.config.js</code></li><li>内容<pre><code class="js">     module.exports={
+     entry:&#39;./src/index.js&#39;,
+     output:{
+         path:__dirname,
+         filename:&#39;./build/bundle.js&#39;
+     },
+     module:{
+         rules:[
+                 {
+                 test:/\.js?$/,
+                 /*排除node_modules*/
+                 exclude:/(node_modules)/,
+                 loader:&#39;babel-loader&#39;
+                 }
+             ]
+         }
+     }
+</code></pre></li><li>配置 <code>package.json</code>中的<code>scripts</code></li><li>内容<code>&quot;start&quot;:&quot;webpack&quot;</code></li><li>运行 <code>npm start</code></li></ol><h6 id="开发环境-rollup"><a href="#开发环境-rollup" class="headerlink" title="开发环境 rollup"></a>开发环境 rollup</h6><ol><li><code>npm init -y</code></li><li><code>npm install rollup rollup-plugin-node-resolve rollup-plugin-babel babel-core babel-plugin-external-helpers babel-preset-latest --save-dev</code></li><li>配置 <code>.babelrc</code><pre><code class="json"> {
+     &quot;presets&quot;:[
+         [&quot;latest&quot;,{
+             &quot;es2015&quot;:{
+                 /* 不关心第三方插件里的es6代码*/
+                 &quot;modules&quot;:false
+             }
+         }]
+     ],
+     &quot;plugins&quot;:[&quot;external-helpers&quot;]
+ }
+</code></pre></li><li><p>配置 <code>rollup.config.js</code></p><pre><code class="js">     import babel from &#39;rollup-plugin-babel&#39;
+     import resolve from &#39;rollup-plugin-node-resolve&#39;
+
+     export default {
+         entry:&#39;src/index.js&#39;,
+         format:&#39;umd&#39;, /*umd是一个兼容性的规范，兼容直接在页面script:src、也兼容AMD CMD都没有问题*/
+         plugins:[
+             /*调用一下方法*/
+             resolve(),
+             /*调用一下babel方法*/
+             babel({
+                 exclude:&#39;node_modules/**&#39;
+             })
+         ],
+         /*目的地*/
+         dest:&#39;build/bundle.js&#39;
+     }
+</code></pre></li><li>将<code>webpack</code> 环境的JS代码拷贝过来</li><li>修改 <code>package.json 的scripts</code></li><li>内容 <code>&quot;start&quot;:&quot;rollup -c rollup.config.js&quot;</code></li><li>运行 <code>npm start</code></li><li>rollp功能单一，就是用来打包模块儿化，没有模块儿化rollup就没有用了。webpack 功能强大，学习成本非常高。</li><li>参考设计原则和《Linux/Unix设计思想》</li><li>工具要尽量功能单一，可集成，可扩展</li><li>wangEditor 用的 gulp + rollup，这两个都是很简单的</li><li><strong>rollup打包出来的比webpack打包出来的代码要小一些，无论是否压缩，都是rollup要小一些。并且你的代码不会改，你的还是你的，不会有代码冗余，调试的时候非常方便</strong></li></ol><h5 id="关于JS众多模块儿化标准"><a href="#关于JS众多模块儿化标准" class="headerlink" title="关于JS众多模块儿化标准"></a>关于JS众多模块儿化标准</h5><ol><li>没有模块儿化。</li><li>AMD 成为标准，require.js（也有CMD）。</li><li>前端打包工具，使得 nodejs模块儿可以被使用。</li><li>ES6 出现，想统一现在所有的模块儿化标准</li><li>nodejs积极支持，浏览器尚未统一</li><li>你可以自造lib（类库），但是不要自造标准！！！</li></ol><h4 id="Class-和普通构造函数有何区别？"><a href="#Class-和普通构造函数有何区别？" class="headerlink" title="Class 和普通构造函数有何区别？"></a>Class 和普通构造函数有何区别？</h4><h5 id="JS-构造函数"><a href="#JS-构造函数" class="headerlink" title="JS 构造函数"></a>JS 构造函数</h5><pre><code class="js">    function MathHandle(x,y) {
+        this.x=x;
+        this.y=y;
+    }
+    MathHanle.prototype.add=function(){
+        return this.x+this.y;
+    }
+    var m=new MathHandle(1,2);
+    console.log(m.add());        
+</code></pre><h5 id="Class-基本语法"><a href="#Class-基本语法" class="headerlink" title="Class 基本语法"></a>Class 基本语法</h5><pre><code class="js">    class MathHandle {
+        constructor(x,y) {
+            this.x=x;
+            this.y=y;
+        }
+        add() {
+            return this.x+this.y;
+        }
+    }
+    const m=new MathHandle(1,2);
+    console.log(m.add());
+</code></pre><h5 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h5><ol><li>其实Class语法就是JS构造函数的语法糖<pre><code class="js">     class MathHandle {
+         //...
+     }
+     var m=new MathHandle;
+     typeof MathHandel // &quot;function&quot;
+     MathHandle===MathHandle.prototype.constructor;//true
+     m.__proto__===MathHandle.prototype;//true
+     // 这种语法糖形式，看起来和实际原理不一样的东西，不是很赞同
+     // 形式上强行模仿 java C# ,却失去了它的本性和个性
+</code></pre></li></ol><h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><ol><li>JS<pre><code class="js">     //动物
+     function Animal(){
+         this.eat=function(){
+             console.log(&#39;animal&#39;);
+         }
+     }
+     //狗
+     function Dog(){
+         this.bark=function(){
+             console.log(&#39;dog&#39;);
+         }
+     }
+     Dog.prototype=new Animal();
+     //哈士奇
+     var hashiqi=new Dog();
+</code></pre></li><li>Class<pre><code class="js">     //动物
+     class Animal {
+         constructor(name) {
+             this.name=name;
+         }
+         eat(){
+             console.log(`${this.name} eat`);
+         }
+     }
+     class Dog extends Animal {
+         constructor(name) {
+             super(name)
+             this.name=name;
+         }
+         say(){
+             console.log(`${this.name} say`);
+         }
+     }
+     const dog=new Dog(&#39;哈士奇&#39;)
+     dog.say();
+     dog.eat();
+</code></pre></li></ol><h4 id="Promise-的基本使用和原理？"><a href="#Promise-的基本使用和原理？" class="headerlink" title="Promise 的基本使用和原理？"></a>Promise 的基本使用和原理？</h4><h5 id="Callback-Hell"><a href="#Callback-Hell" class="headerlink" title="Callback Hell"></a>Callback Hell</h5><pre><code class="js">    function loadImg(src,callback,fail) {
+        var img=document.createElement(&#39;img&#39;);
+        img.onload=function(){
+            callback(img);
+        }
+        img.onerror=function(){
+            fail();
+        }
+        img.src=src;
+    }
+
+    var src=&quot;http://www.baidu.com&quot;;
+    loadImg(src,function(img){
+            console.log(img.width);
+        },function(){
+            console.log(&#39;failed&#39;);
+        });
+</code></pre><h5 id="Promise-语法"><a href="#Promise-语法" class="headerlink" title="Promise 语法"></a>Promise 语法</h5><pre><code class="js">    function loadImg(src) {
+        const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                reject();
+            }
+            img.src=src;
+        })
+        return promise;
+    }
+
+    var src=&quot;http://www.baidu.com&quot;;
+    var result=loadImg(src);
+    result.then(function(img){
+        console.log(img.width);
+    },function(){
+        console.log(&#39;failed&#39;);
+    })
+
+    result.then(function(img){
+        console.log(img.height);
+    })
+</code></pre><h4 id="总结一下ES6-其他常用功能？"><a href="#总结一下ES6-其他常用功能？" class="headerlink" title="总结一下ES6 其他常用功能？"></a>总结一下ES6 其他常用功能？</h4><ol><li><p>let/const</p><pre><code class="js">     //JS
+     var i=10;
+     i=100;
+     var j=20;
+     js=200;
+
+     //ES6
+     let i=10;
+     i=100; //正确
+     const j=20;
+     j=200; //错误
+</code></pre></li><li><p>多行字符串/模板变量</p><pre><code class="js">     //JS
+     var name=&quot;zhangsan&quot;,age=20,html=&#39;&#39;;
+     html+=&#39;&lt;div&gt;&#39;;
+     html+=&#39;&lt;p&gt;&#39;+name+&#39;&lt;/p&gt;&#39;;
+     html+=&#39;&lt;p&gt;&#39;+age+&#39;&lt;/p&gt;&#39;;
+     html+=&#39;&lt;/div&gt;&#39;;
+
+     //ES6 
+     const name=&#39;zhangsan&#39;,age=20;
+     const html=`&lt;div&gt;
+                     &lt;p&gt;${name}&lt;/p&gt;
+                     &lt;p&gt;${age}&lt;/p&gt;
+                 &lt;/div&gt;
+                 `;
+     console.log(html);
+</code></pre></li><li><p>解构赋值</p><pre><code class="js">     //JS
+     var obj={a:100,b:200};
+     var a=obj.a;
+     var b=obj.b;
+
+     var arr=[&#39;xxx&#39;,&#39;yyy&#39;,&#39;zzz&#39;];
+     var x=arr[0];
+
+     // ES6
+     const obj={a:10,b:20,c:30};
+     const {a,c}=obj;
+     console.log(a);
+     console.log(b);
+
+     const arr=[&#39;xxx&#39;,&#39;yyy&#39;,&#39;zzz&#39;];
+     const [x,y,z]=arr;
+     console.log(x);
+     console.log(y);
+     console.log(z);
+</code></pre></li><li><p>块儿级作用域</p><pre><code class="js">     //JS
+     var obj={a:100,b:200};
+     for(var item in obj){
+         console.log(item);
+     }
+     console.log(item); // &#39;b&#39;
+
+     //ES6
+     const obj={a:100,b:200};
+     for(let item in obj) {
+         console.log(item);
+     }
+     console.log(item); //undefined
+</code></pre></li><li><p>函数默认参数</p><pre><code class="js">     //JS
+     function (a,b) {
+         if(b==null) {
+             b=0;
+         }
+     }
+
+     //ES6
+     function (a,b=0) {
+     }
+</code></pre></li><li><p>箭头函数</p><pre><code class="js">     //JS
+     var arr=[1,2,3];
+     arr.map(function(item){
+             return item+1;
+     });
+
+     //ES6
+     const arr=[1,2,3];
+     arr.map(item=&gt;item+1);
+     arr.map((item,index)=&gt;{
+         console.log(index);
+         return item+1;
+     })
+
+     function fn() {
+         console.log(&#39;real&#39;,this); //{a:100}
+         var arr=[1,2,3];
+         // 普通 JS
+         arr.map(function(item){
+             console.log(&#39;js&#39;,this); //window
+             return item+1;
+         });
+         // 箭头函数
+         arr.map(item=&gt;{
+             console.log(&#39;es6&#39;,this); //{a:100}
+         });
+     }
+     fn.call({a:100});
+</code></pre></li></ol><h3 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h3><h4 id="ES6-模块儿化如何使用，开发环境如何打包"><a href="#ES6-模块儿化如何使用，开发环境如何打包" class="headerlink" title="ES6 模块儿化如何使用，开发环境如何打包"></a>ES6 模块儿化如何使用，开发环境如何打包</h4><ol><li>语法：import export （注意有无 default）</li><li>环境：babel 编译 ES6 语法，模块儿可用 webpack和rollup</li><li>扩展：说一下自己对模块儿标准统一的期望。</li></ol><h4 id="Class-和普通构造函数有何区别"><a href="#Class-和普通构造函数有何区别" class="headerlink" title="Class 和普通构造函数有何区别"></a>Class 和普通构造函数有何区别</h4><ol><li>Class 在语法上更加贴合面向对象的写法</li><li>Class 实现继承更加易读、易理解</li><li>更易于写java、c#等后台语言的使用</li><li>本质还是语法糖，使用的是prototype</li></ol><h4 id="Promise-的基本使用和原理"><a href="#Promise-的基本使用和原理" class="headerlink" title="Promise 的基本使用和原理"></a>Promise 的基本使用和原理</h4><ol><li>new Promise 实例，而且要return</li><li>new Promise 时要传入函数，函数有 resolve reject两个参数。</li><li>成功时执行 resolve() ，失败时执行 reject()</li><li>then 监听结果</li></ol><h4 id="总结一下ES6-其他常用功能"><a href="#总结一下ES6-其他常用功能" class="headerlink" title="总结一下ES6 其他常用功能"></a>总结一下ES6 其他常用功能</h4><ol><li>let/const</li><li>多行字符串/模板变量</li><li>解构赋值</li><li>块儿级作用域</li><li>函数默认参数</li><li>箭头函数</li></ol><h2 id="原型-1"><a href="#原型-1" class="headerlink" title="原型"></a>原型</h2><h3 id="简述-1"><a href="#简述-1" class="headerlink" title="简述"></a>简述</h3><ol><li>《前端js面试技巧》 已经讲过原型的基础知识</li><li>高级面试题，光会原型基础还不够，还要实际应用</li><li>zepto jquery 中如何用原型？</li><li>顺便也算是解读了 zepto 和jquery的部分源码</li></ol><h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><ol><li>说一个原型的实际应用</li><li>原型如何体现它的扩展性</li></ol><h3 id="实践-1"><a href="#实践-1" class="headerlink" title="实践"></a>实践</h3><h4 id="说一个原型的实际应用？"><a href="#说一个原型的实际应用？" class="headerlink" title="说一个原型的实际应用？"></a>说一个原型的实际应用？</h4><h5 id="jquery-和-zepto的简单使用"><a href="#jquery-和-zepto的简单使用" class="headerlink" title="jquery 和 zepto的简单使用"></a>jquery 和 zepto的简单使用</h5><ol><li><p>jquery简单使用</p><pre><code class="html">     &lt;p&gt;jquery test 1&lt;/p&gt;
+     &lt;p&gt;jquery test 2&lt;/p&gt;
+     &lt;p&gt;jquery test 3&lt;/p&gt;
+
+     &lt;div id=&quot;div1&quot;&gt;
+         &lt;p&gt;jquery test in div&lt;/p&gt;
+     &lt;/div&gt;
+
+     &lt;script type=&quot;text/javascript&quot; src=&quot;./my-jquery.js&quot;&gt;&lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+         var $p = $(&#39;p&#39;)
+         $p.css(&#39;font-size&#39;, &#39;40px&#39;) //css 是原型的方法
+         alert($p.html()) //html 是原型的方法
+
+         var $div1 = $(&#39;#div1&#39;)
+         $div1.css(&#39;color&#39;, &#39;blue&#39;)
+         alert($div1.html())
+     &lt;/script&gt;
+</code></pre></li><li><p>zepto 简单实用</p><pre><code class="html">     &lt;p&gt;zepto test 1&lt;/p&gt;
+     &lt;p&gt;zepto test 2&lt;/p&gt;
+     &lt;p&gt;zepto test 3&lt;/p&gt;
+
+     &lt;div id=&quot;div1&quot;&gt;
+         &lt;p&gt;zepto test in div&lt;/p&gt;
+     &lt;/div&gt;
+
+     &lt;script type=&quot;text/javascript&quot; src=&quot;./my-zepto.js&quot;&gt;&lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+         var $p = $(&#39;p&#39;)
+         $p.css(&#39;font-size&#39;, &#39;40px&#39;)
+         alert($p.html())
+
+         var $div1 = $(&#39;#div1&#39;)
+         $div1.css(&#39;color&#39;, &#39;blue&#39;)
+         alert($div1.html())
+     &lt;/script&gt;
+</code></pre></li></ol><h5 id="zepto-如何使用原型"><a href="#zepto-如何使用原型" class="headerlink" title="zepto 如何使用原型"></a>zepto 如何使用原型</h5><pre><code class="js">    var zepto={};
+    zepto.init=function(selector) {
+        // 源码中，这里的处理情况比较复杂。但因为本次只是针对原型，因此这里就弱化了
+        var slice=Array.prototype.slice;
+        var dom=slice.call(document.querySelectorAll(selector));
+        return zepto.Z(dom,selector);
+    }
+
+    // 及使用 zepto 时候的$
+    var $ function(selector) {
+        return zepto.init(selector);
+    }
+
+    // 这就是构造函数
+    function Z(dom,selector) {
+        var i,len=dom?dom.length:0;
+        for(i=0;i&lt;len;i++) {
+            this[i]=dom[i];
+        }
+        this.length=len;
+        this.selector=selector||&#39;&#39;;
+    }
+
+    zepto.Z=function(dom,selector) {
+        // 注意，出现了 new关键字
+        return new Z(dom,selector)
+    }
+
+    $.fn={
+        constructor:zepto.Z,
+        css:function(key,value){
+
+        },
+        html:function(value) {
+
+        }
+    }
+
+    zepto.Z.prototype=Z.prototype=$.fn;
+</code></pre><h5 id="jquery-如何使用原型"><a href="#jquery-如何使用原型" class="headerlink" title="jquery 如何使用原型"></a>jquery 如何使用原型</h5><pre><code class="js">    var jQuery=function (selector) {
+        // 注意 new关键字 ，第一步就找到了构造函数
+        return new jQuery.fn.init(selector);
+    }
+
+    //定义构造函数
+    var init =jQuery.fn.init=function(selector){
+        var slice=Array.prototype.slice;
+        var dom=slice.call(document.querySelectorAll(selector));
+
+        var i,len=dom?dom.length:0;
+        for (i=0;i&lt;len;i++){
+            this[i]=dom[i];
+            this.length=len;
+            this.selector=selector||&#39;&#39;;
+        }
+    }
+
+    //初始化 jQuery.fn
+    jQuery.fn=jQuery.prototype={
+        constructor:jQuery,
+        //其它函数
+        css:function(key,value) {
+        },
+        html:function(value){
+        }
+    }
+
+    // 定义原型
+    init.prototype=jQuery.fn;
+</code></pre><h4 id="原型如何体现它的扩展性？"><a href="#原型如何体现它的扩展性？" class="headerlink" title="原型如何体现它的扩展性？"></a>原型如何体现它的扩展性？</h4><h5 id="总结zepto-和jquery-原型的使用"><a href="#总结zepto-和jquery-原型的使用" class="headerlink" title="总结zepto 和jquery 原型的使用"></a>总结zepto 和jquery 原型的使用</h5><ol><li>为何要把原型方法放在$.fn上<pre><code class="js">     // 因为要扩展插件，做一个简单的插件的例子。
+     $.fn.getNodeName=function(){
+         return this[0].nodeName;
+     }
+</code></pre></li></ol><h5 id="插件机制"><a href="#插件机制" class="headerlink" title="插件机制"></a>插件机制</h5><ol><li><p>简单插件</p><pre><code class="html">     &lt;p&gt;jquery test 1&lt;/p&gt;
+     &lt;p&gt;jquery test 2&lt;/p&gt;
+     &lt;p&gt;jquery test 3&lt;/p&gt;
+
+     &lt;div id=&quot;div1&quot;&gt;
+         &lt;p&gt;jquery test in div&lt;/p&gt;
+     &lt;/div&gt;
+
+     &lt;script type=&quot;text/javascript&quot; src=&quot;./jquery-3.2.1.js&quot;&gt;&lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+         // 插件扩展
+         $.fn.getNodeName = function () {
+             // this
+             alert(this[0].nodeName)
+         }
+     &lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot;&gt;
+         // 验证
+         var $p = $(&#39;p&#39;)
+         $p.getNodeName()
+         var $div1 = $(&#39;#div1&#39;)
+         $div1.getNodeName()
+     &lt;/script&gt;
+</code></pre></li></ol><h3 id="问题解答-1"><a href="#问题解答-1" class="headerlink" title="问题解答"></a>问题解答</h3><h4 id="说一个原型的实际应用"><a href="#说一个原型的实际应用" class="headerlink" title="说一个原型的实际应用"></a>说一个原型的实际应用</h4><h5 id="描述一下jquery如何使用原型"><a href="#描述一下jquery如何使用原型" class="headerlink" title="描述一下jquery如何使用原型"></a>描述一下jquery如何使用原型</h5><ol><li>入口函数</li><li>构造函数</li><li>构造函数的原型</li></ol><h5 id="描述一下zepto如何使用原型"><a href="#描述一下zepto如何使用原型" class="headerlink" title="描述一下zepto如何使用原型"></a>描述一下zepto如何使用原型</h5><ol><li>入口函数</li><li>构造函数</li><li>构造函数的原型</li></ol><h5 id="再集合自己的项目经验，说一个自己开发的例子"><a href="#再集合自己的项目经验，说一个自己开发的例子" class="headerlink" title="再集合自己的项目经验，说一个自己开发的例子"></a>再集合自己的项目经验，说一个自己开发的例子</h5><ol><li>如公司自己开发一套产品，<ol><li>模板引擎，不使用jquery，</li><li>自己封装相应的代码，实现前端页面完全自动化，</li><li>直接生成操作dom的代码，你连操作dom的代码都不用写了。</li></ol></li><li>说一下jquery和zepot的插件机制</li><li>结合自己的开发经验，做过的基于原型的插件<ol><li>如模板引擎自动生成</li><li>旋转木马轮播图、</li><li>轮播图、滚动条、</li><li>放大镜等、</li><li>可移动的弹窗、导航条、</li><li>多级菜单、tab选项卡。</li></ol></li></ol><h4 id="如何体现原型的扩展性"><a href="#如何体现原型的扩展性" class="headerlink" title="如何体现原型的扩展性"></a>如何体现原型的扩展性</h4><h5 id="总结zepto-和jquery-原型的使用-1"><a href="#总结zepto-和jquery-原型的使用-1" class="headerlink" title="总结zepto 和jquery 原型的使用"></a>总结zepto 和jquery 原型的使用</h5><ol><li>说一下jquery 和 zepto 的插件机制</li><li>结合自己的开发经验，做过的基于原型的插件。</li></ol><h5 id="插件机制-1"><a href="#插件机制-1" class="headerlink" title="插件机制"></a>插件机制</h5><ol><li>为何要把原型方法放在$.fn上？</li></ol><h6 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h6><ol><li>只有$ 会暴露在window 全局变量中，减少全局变量污染</li><li>将插件扩展到统一到$.fn.xxx 这一个接口上，方便使用。</li></ol><h2 id="异步-1"><a href="#异步-1" class="headerlink" title="异步"></a>异步</h2><h3 id="简述-2"><a href="#简述-2" class="headerlink" title="简述"></a>简述</h3><ol><li>《前端JS面试技巧》 讲到异步的基础</li><li>高级面试会文档更多的内容</li><li>如 event-loop Promise Async/Await等</li></ol><h3 id="问题-2"><a href="#问题-2" class="headerlink" title="问题"></a>问题</h3><ol><li>什么是单线程，和异步有什么关系</li><li>什么是 event-loop</li><li>是否用过jQuery的 Deferred</li><li>Promise的基本使用和原理</li><li>介绍一下 async/await（和Promise的区别、联系）</li><li>总结一下当前JS解决异步的方案</li></ol><h3 id="实践-2"><a href="#实践-2" class="headerlink" title="实践"></a>实践</h3><h4 id="什么是单线程，和异步有什么关系？"><a href="#什么是单线程，和异步有什么关系？" class="headerlink" title="什么是单线程，和异步有什么关系？"></a>什么是单线程，和异步有什么关系？</h4><h5 id="单线程：只有一个线程，同一时间只能关注一件事情"><a href="#单线程：只有一个线程，同一时间只能关注一件事情" class="headerlink" title="单线程：只有一个线程，同一时间只能关注一件事情"></a>单线程：只有一个线程，同一时间只能关注一件事情</h5><pre><code class="js">    // 循环运行期间，JS执行和DOM渲染暂时卡顿
+    var i,sum=0;
+    for (i=0;i&lt;100000;i++) {
+        sum+=i;
+    }
+    console.log(sum);
+
+    // alert 不处理，JS执行和DOM渲染暂时卡顿
+    console.log(1);
+    alert(&#39;hello&#39;);
+    console.log(2);
+</code></pre><h5 id="原因：避免DOM渲染的冲突"><a href="#原因：避免DOM渲染的冲突" class="headerlink" title="原因：避免DOM渲染的冲突"></a>原因：避免DOM渲染的冲突</h5><ol><li>浏览器需要渲染DOM</li><li>JS 可以修改DOM结构</li><li>JS 执行的时候，浏览器DOM渲染会暂停</li><li>两段JS也不能同时执行（都修改DOM就冲突了）</li><li><p>HTML5中的webworker 支持多线程，但是不能访问DOM</p><h5 id="解决方案：异步"><a href="#解决方案：异步" class="headerlink" title="解决方案：异步"></a>解决方案：异步</h5></li><li>简单例子<pre><code class="js">     console.log(100);
+     setTimeout(function(){
+         console.log(200); // 反正1000ms 之后执行
+     },1000); //先不管它，先让其它JS 代码执行
+     console.log(300);
+     console.log(400);
+</code></pre></li><li>ajax例子<pre><code class="js">     console.log(100);
+     $.ajax({
+         url:&#39;./data.json&#39;,
+         success:function(result){ //ajax 加载完才执行
+             console.log(result); //先不管它，先让JS代码运行
+         }
+     });
+     console.log(300);
+     console.log(400);
+</code></pre></li><li>问题<ol><li>没有按照书写方式执行，可读性差。</li><li>callback 中不容易模块化</li></ol></li></ol><h4 id="什么是-event-loop？"><a href="#什么是-event-loop？" class="headerlink" title="什么是 event-loop？"></a>什么是 event-loop？</h4><h5 id="文字解释"><a href="#文字解释" class="headerlink" title="文字解释"></a>文字解释</h5><ol><li>事件轮询，JS 实现异步的具体解决方案。</li><li>同步代码，直接执行</li><li>异步函数先放在 异步队列中</li><li>待同步函数执行完毕，轮询执行 异步队列的函数。<ol><li>不停的监视异步队列，</li><li>不停的从异步队列中拿出函数到主线程中执行。</li></ol></li></ol><h5 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a>实例分析</h5><ol><li>实例-1<pre><code class="js">     //实际代码
+     setTimeout(function(){
+         console.log(100);
+     });
+     console.log(200);
+</code></pre><pre><code class="js">     //主进程代码
+     console.log(200);
+</code></pre><pre><code class="js">     // 异步队列代码
+     function(){
+         console.log(100);
+     }
+</code></pre></li><li><p>实例-2</p><pre><code class="js">     //实际代码
+     setTimeout(function(){
+         console.log(1);
+     },100);
+     setTimeout(function(){
+         console.log(2);
+     });
+     console.log(3);
+</code></pre><pre><code class="js">     //主进程代码
+     console.log(3);
+</code></pre><pre><code class="js">     // 异步队列代码
+
+     //立刻被放入 异步队列中
+     function() {
+         console.log(2);
+     }
+     // 100ms 之后被放入 异步队列中
+     function() {
+         console.log(1);
+     }
+</code></pre></li><li><p>实例-3</p><pre><code class="js">     //实际代码
+      $.ajax({
+          url:&#39;./data.json&#39;,
+          success:function(result) { 
+              console.log(a); 
+          }
+      });
+     setTimeout(function() {
+         console.log(&#39;b&#39;);
+     },100);
+     setTimeout(function() {
+         console.log(&#39;c&#39;);
+     });
+     console.log(&#39;d&#39;);
+</code></pre><pre><code class="js">     // 主线程
+     console.log(&#39;d&#39;);
+</code></pre><pre><code class="js">     // 异步队列
+
+     // 立刻被放入
+     function() {
+         console.log(&#39;c&#39;);
+     }
+
+     // 100ms 之后被放入
+     function() {
+         console.log(&#39;b&#39;);
+     }
+
+     // ajax 加载完成时放入
+     function() {
+         console.log(&#39;a&#39;);
+     }
+</code></pre></li></ol><h4 id="是否用过jQuery的-Deferred？"><a href="#是否用过jQuery的-Deferred？" class="headerlink" title="是否用过jQuery的 Deferred？"></a>是否用过jQuery的 Deferred？</h4><h5 id="jQuery1-5的变化"><a href="#jQuery1-5的变化" class="headerlink" title="jQuery1.5的变化"></a>jQuery1.5的变化</h5><ul><li>jQuery1.5 之前<pre><code class="js">  var ajax=$.ajax({
+      url:&#39;data.json&#39;,
+      success:function(){
+          console.log(&#39;sucess1&#39;);
+          console.log(&#39;sucess2&#39;);
+          console.log(&#39;sucess3&#39;);
+      },
+      error:function(){
+          console.log(&#39;error&#39;);
+      }
+  });
+  console.log(ajax); //返回一个XHR对象
+</code></pre></li><li>jQuery1.5 之后<pre><code class="js">  var ajax=$.ajax(&#39;data.json&#39;);
+  ajax.done(function(){
+      console.log(&#39;sucess1&#39;);
+  })
+  .fail(function(){
+      console.log(&#39;error&#39;);
+  })
+  .done(function(){
+      console.log(&#39;sucess2&#39;);
+  })
+  console.log(ajax); //返回一个deferred
+</code></pre><pre><code class="js">  //很像 Promise 的写法
+  var ajax=$.ajax(&#39;data.json&#39;);
+  ajax.then(function(){
+      console.log(&#39;sucess1&#39;);
+  },function(){
+      console.log(&#39;error1&#39;);
+  }).then(function(){
+      console.log(&#39;sucess2&#39;);
+  },function(){
+      console.log(&#39;error2&#39;);
+  });
+</code></pre></li><li>无法改变JS 异步和单线程的本质</li><li>只能从写法上杜绝callback这种形式</li><li>它是一种语法糖形式，但是解耦了代码</li></ul><h6 id="很好的体现了：开放封闭原则"><a href="#很好的体现了：开放封闭原则" class="headerlink" title="很好的体现了：开放封闭原则"></a>很好的体现了：开放封闭原则</h6><ol><li>如 在jQuery1.5之前，<ol><li>如果你想添加对请求成功后的处理，</li><li>必须得在success对应的回调函数中追加代码，</li><li>这样就破坏了开放封闭原则中的对修改封闭。</li></ol></li><li>在 jQuery1.5之后，<ol><li>如果你想添加对请求成功后的处理，</li><li>可以直接再<code>.done(function(){})</code>一下,</li><li>然后在新的回调函数中加代码。</li></ol></li><li>也可以再<code>.then(function(){},function(){})</code>一下，<ol><li>最后在新的回调函数中加代码,都一样，</li><li>都满足对扩展开放、对修改封闭的原则。</li></ol></li><li>对修改封闭对扩展开放可以让你的项目减少测试成本。<ol><li>如果所有人改这一坨代码，不分模块儿的话，</li><li>那么每个人都要去测试这一坨代码。</li><li>如果你只是扩展，那么就只需要测试你扩展的代码，</li><li>如此一来就大大的减少了回归测试的成本。</li></ol></li><li>做程序做设计尽量不要去修改一样东西，<ol><li>而是扩展新的东西，这样程序才易于维护，</li><li>大大减少回归测试的工作量，</li><li>之前的代码不用测试了，只用测试新扩展的代码。</li></ol></li></ol><h5 id="使用jQuery-Deferred"><a href="#使用jQuery-Deferred" class="headerlink" title="使用jQuery Deferred"></a>使用jQuery Deferred</h5><ul><li><p>实例分析 ，dtd 是创建的jQuery Deferred的实例对象</p><ul><li>不使用 jQuery Deferred 的dtd<pre><code class="js">  //给出一段非常简单的异步操作代码，使用setTimeout函数
+  var wait=function(){
+      var task=function(){
+          console.log(&#39;执行完成&#39;);
+      }
+      setTimeout(task,2000);
+  }
+  wait();
+  // 新增需求：要在执行完成之后进行某些特别复杂的操作，代码可能会很多，而且分好几个步骤。
+</code></pre></li><li><p>使用 jQuery Deferred 的dtd</p><pre><code class="js">  function waitHandle(){
+      var dtd=$.Deferred();//创建一个deferred 对象
+      var wait=function(dtd){//要求传入一个deferred对象
+          var task=function(){
+              console.log(&#39;执行完毕&#39;);
+              dtd.resolve();//表示异步任务已经完成
+              //dtd.reject();//表示异步代码任务失败或者出错
+          }
+          setTimeout(task,2000);
+          return dtd;//要求返回 deferred对象
+      }
+
+      //注意，这里一定要有返回值
+      return wait(dtd);
+  }
+</code></pre><pre><code class="js">  var w=waitHandle();
+  ///第一点\\\
+  // 当 waitHandle中使用了reject()
+  // 则会出现 err1 ok2 
+  // 解决办法是不要链式书写
+  // 每次都使用 w.then(...);w.then(...);
+
+  ///第二点\\\
+  // 手动触发 这样不好，会造成逻辑混乱
+  // 导致后面的监听成功和失败的代码无法继续按照顺序执行。
+  //w.reject();
+  w.then(function(){
+          console.log(&#39;ok 1&#39;);
+      },function(){
+          console.log(&#39;err 1&#39;);
+      })
+  .then(function(){
+          console.log(&#39;ok 2&#39;);
+      },function(){
+          console.log(&#39;err 2&#39;);
+      })
+
+  // 还有 w.done w.fail
+</code></pre></li></ul></li></ul><h5 id="总结，dtd的API可分成两类，用意不同"><a href="#总结，dtd的API可分成两类，用意不同" class="headerlink" title="总结，dtd的API可分成两类，用意不同"></a>总结，dtd的API可分成两类，用意不同</h5><ol><li>第一类：<code>dtd.resolve</code>、<code>dtd.reject</code>，负责触发的API<ol><li>resolve是成功时触发，reject是失败时触发</li></ol></li><li>第二类：<code>dtd.then</code>、<code>dtd.done</code>、<code>dtd.fail</code>，负责监听的API<ol><li>then方法第一个参数是监听成功时的回调函数</li><li>then方法第二个参数是监听失败时的回调函数</li><li>done中的参数是监听成功时的回调函数</li><li>fail中的参数是监听成功时的回调函数</li></ol></li><li>这两类的执行应该分开，<ol><li>否则后果很严重，</li><li>因为一下子就执行了成功时触发或者失败时触发的的所有回调函数，</li><li>会导致逻辑混乱。</li></ol></li><li>可以在上面代码最后执行的 <code>dtd.reject()</code> 试一下后果，<ol><li>后果是后面的监听API中的回调函数不能按照顺序继续执行</li></ol></li><li>解决办法是：使用 jQuery Deferred 的 <code>dtd.promise()</code></li></ol><h5 id="初步引入-Promise概念"><a href="#初步引入-Promise概念" class="headerlink" title="初步引入 Promise概念"></a>初步引入 Promise概念</h5><ul><li><p>使用 jQuery Deferred 的dtd.promise();</p><pre><code class="js">   function waitHandle(){
+      var dtd=$.Deferred();//创建一个deferred 对象
+      var wait=function(dtd){//要求传入一个deferred对象
+          var task=function(){
+              console.log(&#39;执行完毕&#39;);
+              dtd.resolve();//表示异步任务已经完成
+              //dtd.reject();//表示异步代码任务失败或者出错
+          }
+          setTimeout(task,2000);
+          return dtd.promise();//注意，这里返回的是promise，而不是直接返回 deferred对象
+      }
+
+      //注意，这里一定要有返回值
+      return wait(dtd);
+  }
+</code></pre><pre><code class="js">  var w=waitHandle();//经过上面的改动，w接收的就是一个promise对象
+
+  // w.reject()  //执行这句会直接报错，因为w的promise对象外部布不能使用reject()，这个方法只能在内部使用
+  $.when(w)
+  .then(function(){
+      console.log(&#39;ok 1&#39;);
+  })
+  .then(function(){
+      console.log(&#39;ok 2&#39;);
+  })
+</code></pre></li></ul><h5 id="不是异步所有的网站都是vue和React开发的"><a href="#不是异步所有的网站都是vue和React开发的" class="headerlink" title="不是异步所有的网站都是vue和React开发的"></a>不是异步所有的网站都是vue和React开发的</h5><ol><li>npm 上 jQuery的下载量比vue和React的下载量要大</li></ol><h4 id="Promise的基本使用和原理"><a href="#Promise的基本使用和原理" class="headerlink" title="Promise的基本使用和原理?"></a>Promise的基本使用和原理?</h4><h5 id="基础语法回顾"><a href="#基础语法回顾" class="headerlink" title="基础语法回顾"></a>基础语法回顾</h5><pre><code class="js">    function loadImg(src) {
+        const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                reject();
+            }
+            img.src=src;
+        })
+        return promise;
+    }
+
+    var src=&quot;http://www.baidu.com&quot;;
+    var result=loadImg(src);
+    result.then(function(img){
+        console.log(img.width);
+        //因为下方的链式then里需要这个img
+        //如果不链式的then则不需要return img
+        return img;
+    },function(){
+        console.log(&#39;failed&#39;);
+    }).then(function(img){
+        console.log(img.height);
+    })
+</code></pre><h5 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h5><pre><code class="js">    function loadImg(src) {
+        const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            //throw new Error(&#39;自定义错误&#39;);//catch会捕获到。
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                //同样也是通过catch来进行捕获。
+                reject(&quot;图片加载失败&quot;);
+            }
+            img.src=src;
+        })
+        return promise;
+    }
+
+    var src=&quot;http://www.baidu.com&quot;;
+    var result=loadImg(src);
+
+    //规定：异常捕获时，then 只接受一个参数，最后统一用 catch捕获
+    result.then(function(img){
+        console.log(img.width);
+        //因为下方的链式then里需要这个img
+        //如果不链式的then则不需要return img
+        return img;
+    }).then(function(img){
+        console.log(img.height);
+    }).catch(function(ex){
+        // 最后统一 catch
+        console.log(ex);
+    })
+</code></pre><h5 id="多个串联"><a href="#多个串联" class="headerlink" title="多个串联"></a>多个串联</h5><pre><code class="js">     function loadImg(src) {
+        const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            //throw new Error(&#39;自定义错误&#39;);//catch会捕获到。
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                //同样也是通过catch来进行捕获。
+                reject(&quot;图片加载失败&quot;);
+            }
+            img.src=src;
+        })
+        return promise;
+    }
+
+    var src1=&quot;http://www.baidu.com&quot;;
+    var result1=loadImg(src1);
+    var src2=&quot;http://www.baidu2.com&quot;;
+    var result2=loadImg(src2);
+
+    // 链式操作
+    result1.then(function(img1){
+        console.log(&quot;第一张图片加载完成&quot;,img1);
+        return result2;//这个非常重要，写了之后 下一个then就是相当于 result2.then了
+    }).then(function(img2){
+        console.log(&quot;第二张图片加载完成&quot;,img2);
+    }).catch(function(ex){
+        // 最后统一 catch
+        console.log(ex);
+    })
+</code></pre><h5 id="Promise-all和Promise-race"><a href="#Promise-all和Promise-race" class="headerlink" title="Promise.all和Promise.race"></a>Promise.all和Promise.race</h5><pre><code class="js">    function loadImg(src) {
+         const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            //throw new Error(&#39;自定义错误&#39;);//catch会捕获到。
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                //同样也是通过catch来进行捕获。
+                reject(&quot;图片加载失败&quot;);
+            }
+            img.src=src;
+        })
+        return promise;           
+    }
+
+    var src1=&quot;http://www.baidu.com&quot;;
+    var result1=loadImg(src1);
+    var src2=&quot;http://www.baidu2.com&quot;;
+    var result2=loadImg(src2);
+
+    // Promise.all 接收一个promise 对象的数组
+    // 待全部完成之后，统一执行 success
+    Promise.all([result1,result2]).then(datas=&gt;{
+        //接收到的 datas 是一个数组，依次包含了多个promise 返回的内容
+        console.log(&#39;all&#39;,datas[0]);
+        console.log(&#39;all&#39;,datas[1]);
+    })
+
+    // Promise.race 接收一个包含多个 promise 对象的数组
+    // 有一个完成之后，就执行 success
+    Promise.race([result1,result2]).then(data=&gt;{
+        // data 即最先执行完成的 promise 的返回值
+        console.log(&#39;race&#39;,data);
+    })
+</code></pre><h5 id="Promise标准"><a href="#Promise标准" class="headerlink" title="Promise标准"></a>Promise标准</h5><ol><li>高版本的浏览器已经支持了Promise，可以通过window.Promise来查看</li><li>如果低级版本的浏览器可以通过引入bluebird.js这个脚本来支持Promise</li><li>关于 “标准” 的闲谈<ol><li>任何技术推广使用都需要一套标准来支撑</li><li>如 http、ECMA、Promise、html、js、css等，无规矩不成方圆。</li><li>任何不符合标准的东西，终将会被用户抛弃</li><li>不要挑战标准，不要自造标准</li></ol></li><li>状态变化<ol><li>三种状态：pending（初始）、fulfilled（成功）、rejected（失败）</li><li>初始状态是 pending</li><li>pending 变为fulfilled，或者pending 变为rejected</li><li>状态变化不可逆，不能fulfilled变成pending或者rejected变成pending再或者fulfilled，也不能成功和失败交叉着变化。</li><li>执行了resolve()方法就代表pending变为了fulfilled</li><li>执行了reject()方法就代表pending变为了rejected</li></ol></li><li>then<ol><li>Promise 实例必须实现then这个方法</li><li>then() 必须可以接收两个函数作为参数</li><li>then() 返回的必须是一个Promise实例</li></ol></li></ol><h4 id="介绍一下-async-await-和Promise的区别、联系-？"><a href="#介绍一下-async-await-和Promise的区别、联系-？" class="headerlink" title="介绍一下 async/await(和Promise的区别、联系)？"></a>介绍一下 async/await(和Promise的区别、联系)？</h4><h5 id="async-await-是ECMA7提案中的，"><a href="#async-await-是ECMA7提案中的，" class="headerlink" title="async/await 是ECMA7提案中的，"></a>async/await 是ECMA7提案中的，</h5><ol><li>babel里面已经支持了，</li><li>nodejs的一个框架叫koa用了这个，</li><li>koa的作者还说ECMA7不出来它就不会发布正式版。</li></ol><h5 id="then-只是将-callback拆分了"><a href="#then-只是将-callback拆分了" class="headerlink" title="then 只是将 callback拆分了"></a>then 只是将 callback拆分了</h5><pre><code class="js">    function loadImg(src) {
+        const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            //throw new Error(&#39;自定义错误&#39;);//catch会捕获到。
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                //同样也是通过catch来进行捕获。
+                reject(&quot;图片加载失败&quot;);
+            }
+            img.src=src;
+        })
+        return promise;
+    }
+
+    var src1=&quot;http://www.baidu.com&quot;;
+    var result1=loadImg(src1);
+    var src2=&quot;http://www.baidu2.com&quot;;
+    var result2=loadImg(src2);
+
+    // 链式操作
+    result1.then(function(img1){
+        console.log(&quot;第一张图片加载完成&quot;,img1);
+        return result2;//这个非常重要，写了之后 下一个then就是相当于 result2.then了
+    }).then(function(img2){
+        console.log(&quot;第二张图片加载完成&quot;,img2);
+    }).catch(function(ex){
+        // 最后统一 catch
+        console.log(ex);
+    })
+</code></pre><h5 id="async-await-是最直接的同步写法"><a href="#async-await-是最直接的同步写法" class="headerlink" title="async/await 是最直接的同步写法"></a>async/await 是最直接的同步写法</h5><pre><code class="js">    import &#39;babel-polyfill&#39;
+
+    function loadImg(src) {
+        const promise=new Promise(function(resolve,reject){
+            var img=document.createElement(&#39;img&#39;);
+            //throw new Error(&#39;自定义错误&#39;);//catch会捕获到。
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                reject(&quot;图片加载失败&quot;);
+            }
+            img.src=src;
+        })
+        return promise;
+    }
+
+    var src1=&quot;http://www.baidu.com&quot;;
+    var src2=&quot;http://www.baidu2.com&quot;;
+
+    const load=async function(){
+        const result1=await loadImg(src1);
+        console.log(result1);
+        const result2=await loadImg(src2);
+        console.log(result2);
+    }
+    load();
+</code></pre><h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><ol><li>使用 await，函数必须使用async标识</li><li>await 后面跟的是一个 Promise实例</li><li>需要使用babel-polyfill，因为es7并没有成为标准，只是一个提案。</li><li>需要 npm install –save-dev babel-polyfill</li><li>需要在使用的js文件中 import ‘babel-polyfill’</li></ol><h4 id="总结一下当前JS解决异步的方案？"><a href="#总结一下当前JS解决异步的方案？" class="headerlink" title="总结一下当前JS解决异步的方案？"></a>总结一下当前JS解决异步的方案？</h4><h3 id="问题解答-2"><a href="#问题解答-2" class="headerlink" title="问题解答"></a>问题解答</h3><h4 id="什么是单线程，和异步有什么关系"><a href="#什么是单线程，和异步有什么关系" class="headerlink" title="什么是单线程，和异步有什么关系"></a>什么是单线程，和异步有什么关系</h4><ol><li>单线程就是同一时间只能做一件事情，两段JS不能同时执行</li><li>原因就是为了避免DOM渲染的冲突</li><li>异步是一种”无奈”的解决方案，虽然有很多问题<ol><li>问题一：没有按照书写方式执行，可读性差。</li><li>问题二：callback 中不容易模块化</li></ol></li><li>使用事件轮询event-loop的方式来实现。</li></ol><h4 id="什么是-event-loop"><a href="#什么是-event-loop" class="headerlink" title="什么是 event-loop"></a>什么是 event-loop</h4><ol><li>事件轮询，JS异步的解决方案</li><li>什么是异步队列，何时被放入异步队列<ol><li>异步队列就是存放那些异步代码的队列，如定时器、ajax的回调函数</li><li>如定时器 是等它每次倒计时结束之后会被放入异步队列中。</li><li>如ajax 是等他请求响应过程结束之后会被放入异步队列中。</li></ol></li><li>轮询的过程<ol><li>等同步代码执行完毕之后，就去异步队列中监听。</li><li>如果异步队列中有异步代码，会把他们从异步队列中取出来。</li><li>之后拿到到主线程中去执行，执行完毕之后再去异步队列中拿。</li><li>不停的拿，不停的执行，没有就拿不了，也就不会执行。</li></ol></li></ol><h4 id="是否用过jQuery的-Deferred"><a href="#是否用过jQuery的-Deferred" class="headerlink" title="是否用过jQuery的 Deferred"></a>是否用过jQuery的 Deferred</h4><ol><li>可以拿jQuery1.5之前和之后对ajax的改变来进行举例子</li><li>说明如何简单的封装、使用Deferred<ol><li>强调开放封闭原则的好处。</li></ol></li></ol><h5 id="说明promise和Deferred的区别"><a href="#说明promise和Deferred的区别" class="headerlink" title="说明promise和Deferred的区别"></a>说明promise和Deferred的区别</h5><ol><li>Deferred负责触发的API，<ol><li>resolve和reject是公开的，外界可以直接访问</li></ol></li><li>会造成负责监听的API中的回调函数与负责触发的API混在一起</li><li>不仅逻辑混乱，<ol><li>并且会让负责触发的API调用之后，后续监听的的API中的回调函数不能继续执行下去。</li></ol></li><li>Deferred的promise对象可以有效的隔离负责触发的API和负责监听的API</li><li>内部可以调用负责触发的API，<ol><li>外部不能访问负责触发的API，</li><li>只能调用负责监听的API。</li></ol></li><li>Deferred对象可以触发和监听，<ol><li>而Deferred对象promise对象只能监听，</li><li>Deferred中promise算是ES6中的promise标准的一个前世。</li></ol></li></ol><h4 id="Promise的基本使用和原理-1"><a href="#Promise的基本使用和原理-1" class="headerlink" title="Promise的基本使用和原理"></a>Promise的基本使用和原理</h4><ol><li>基础语法（复习）</li></ol><h5 id="如何捕获异常（Error和reject都要考虑）"><a href="#如何捕获异常（Error和reject都要考虑）" class="headerlink" title="如何捕获异常（Error和reject都要考虑）"></a>如何捕获异常（Error和reject都要考虑）</h5><ol><li>统一使用catch来捕获</li><li>也可以使用reject(‘自定义错误消息’)的方式来抛出自定义异常消息</li></ol><h5 id="多个串联-链式执行的好处"><a href="#多个串联-链式执行的好处" class="headerlink" title="多个串联 - 链式执行的好处"></a>多个串联 - 链式执行的好处</h5><ol><li>减少了书写多层的callback代码</li><li>并且书写时有一个流程的顺序，按照顺序执行，逻辑清晰。</li></ol><h5 id="Promise-all和Promise-race-1"><a href="#Promise-all和Promise-race-1" class="headerlink" title="Promise.all和Promise.race"></a>Promise.all和Promise.race</h5><ol><li>传入存放多个promise实例数组，<ol><li>当所有promise实例执行完成之后，</li><li>统一的执行success方法，</li><li>返回一个存有所有promise的返回值内容的数组，</li><li>你可以继续做接下来的事情了。</li></ol></li><li>传入存放多个promise实例数组，<ol><li>当有一个promise实例执行完成，</li><li>就执行success方法，</li><li>返回那个执行完毕的promise返回值内容，</li><li>并且其它的promise就不管了，</li><li>你可以继续做接下来的事情了。</li></ol></li></ol><h5 id="Promise-标准-状态变化，then函数"><a href="#Promise-标准-状态变化，then函数" class="headerlink" title="Promise 标准 -状态变化，then函数"></a>Promise 标准 -状态变化，then函数</h5><ol><li>技术推广依靠标准来支撑</li><li>状态变化不可逆也不可交叉</li><li>Promise必须实现then，<ol><li>then必须可以接收两个函数，</li><li>then返回的必须是Promise实例。</li></ol></li></ol><h4 id="介绍一下-async-await-和Promise的区别、联系"><a href="#介绍一下-async-await-和Promise的区别、联系" class="headerlink" title="介绍一下 async/await(和Promise的区别、联系)"></a>介绍一下 async/await(和Promise的区别、联系)</h4><ul><li>基本语法<ol><li>await 后面必须加一个 Promise实例，可以是函数返回的</li><li>await外层的函数前面必须加一个 async标识才行</li></ol></li><li>使用了Promise，<ol><li>并没有和Promise冲突，</li><li>其实还是使用的Promise</li></ol></li><li>Promise的then 只是将 callback拆分了，<ol><li>还是异步的写法</li></ol></li><li>async/await 完全是同步的写法，<ol><li>再也没有callback回调函数了</li></ol></li><li>但是：<ol><li>改变不了JS单线程、异步的本质，</li><li>除非JS的执行引擎发生了变化。</li></ol></li></ul><h4 id="总结一下当前JS解决异步的方案"><a href="#总结一下当前JS解决异步的方案" class="headerlink" title="总结一下当前JS解决异步的方案"></a>总结一下当前JS解决异步的方案</h4><ul><li>jQuery Deferred</li><li>ECMA6的Promise，低版本可以通过引入bluebird.js来兼容</li><li>Async/Await</li><li>Generator<ol><li>ECMA6 中的一个模块儿</li><li>原理比较复杂</li><li>方式比较复杂 容易出错</li><li>不是异步的直接替代方式，它只是一个功能</li><li>有更好更简洁的解决方案 async/await</li><li>nodejs 里的koa 也从Generator加入async/await弃暗投明了。</li></ol></li></ul><h2 id="virtual-dom-虚拟DOM"><a href="#virtual-dom-虚拟DOM" class="headerlink" title="virtual dom 虚拟DOM"></a>virtual dom 虚拟DOM</h2><ol><li>vdom 是vue和React的核心，先讲哪个都绕不开它</li><li>vdom 比较独立，使用也比较简单</li><li>如果面试问到vue和React和实现，免不了问vdom</li></ol><h3 id="问题-3"><a href="#问题-3" class="headerlink" title="问题"></a><strong>问题</strong></h3><ol><li>vdom是什么，为何会存在vdom（要讲特别清楚特别透彻）</li><li>vdom如何应用，核心API是什么（要讲特别清楚特别透彻）</li><li>介绍一下diff算法</li></ol><h3 id="实践-3"><a href="#实践-3" class="headerlink" title="实践"></a><strong>实践</strong></h3><h4 id="vdom是什么，为何使用vdom？"><a href="#vdom是什么，为何使用vdom？" class="headerlink" title="vdom是什么，为何使用vdom？"></a>vdom是什么，为何使用vdom？</h4><h5 id="什么是vdom"><a href="#什么是vdom" class="headerlink" title="什么是vdom?"></a>什么是vdom?</h5><ol><li>virtual dom，虚拟DOM</li><li>用JS模拟的DOM结构<pre><code class="html"> &lt;!-- 正常的 html结构--&gt;
+ &lt;ul id=&#39;list&#39;&gt;
+     &lt;li class=&#39;item&#39;&gt;ltem 1&lt;/li&gt;
+     &lt;li class=&#39;item&#39;&gt;ltem 2&lt;/li&gt;
+ &lt;/ul&gt;
+</code></pre><pre><code class="js"> /*上面的html结构 用js来模拟*/
+ /* 浏览器最消耗性能的就是dom操作 而js操作相对要好些，因为执行js的速度非常块儿，所以说vdom有价值 */
+ {
+     tag:&#39;ul&#39;,
+     attrs:{
+         id:&#39;list&#39;
+     },
+     children:[
+         {
+             tag:&#39;li&#39;,
+             attrs:{className:&#39;item&#39;},
+             children:[&#39;Item 1&#39;]
+         },
+         {
+             tag:&#39;li&#39;,
+             attrs:{className:&#39;item&#39;},
+             children:[&#39;Item 2&#39;]
+         }
+     ]
+ }
+</code></pre></li><li>DOM变化的对比，放在JS层来做（图灵完备语言）<ol><li>图灵完备语言：能实现各种逻辑的语言、能进行判断、循环、递归。</li><li>JS符合这个要求，html和css不行。</li></ol></li><li>提高重绘性能<ol><li>使用js来进行dom变化的对比</li><li>正常dom是干掉全部，重新添加</li><li>虚拟dom是干掉某一个，所以减少了dom的操作</li></ol></li></ol><h5 id="设计一个需求场景"><a href="#设计一个需求场景" class="headerlink" title="设计一个需求场景"></a>设计一个需求场景</h5><pre><code class="js">    //1. 将该数据展示成一个表格。2.随便修改一个信息，表格也跟着修改
+    [
+        {
+            name:&#39;张三&#39;,
+            age:&#39;20&#39;,
+            address:&#39;北京&#39;
+        },
+        {
+            name:&#39;李四&#39;,
+            age:&#39;21&#39;,
+            address:&#39;上海&#39;
+        },
+        {
+            name:&#39;王五&#39;,
+            age:&#39;22&#39;,
+            address:&#39;广州&#39;
+        }
+    ]
+</code></pre><h5 id="用jQuery实现"><a href="#用jQuery实现" class="headerlink" title="用jQuery实现"></a>用jQuery实现</h5><pre><code class="html">    &lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+    &lt;button id=&quot;btn-change&quot;&gt;change&lt;/button&gt;
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.bootcss.com/jquery/3.2.0/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var data = [
+            {
+                name: &#39;张三&#39;,
+                age: &#39;20&#39;,
+                address: &#39;北京&#39;
+            },
+            {
+                name: &#39;李四&#39;,
+                age: &#39;21&#39;,
+                address: &#39;上海&#39;
+            },
+            {
+                name: &#39;王五&#39;,
+                age: &#39;22&#39;,
+                address: &#39;广州&#39;
+            }
+        ]
+
+        // 渲染函数
+        function render(data) {
+            var $container = $(&#39;#container&#39;)
+
+            // 清空容器，重要！！！
+            $container.html(&#39;&#39;)
+
+            // 拼接 table 重新填充
+            var $table = $(&#39;&lt;table&gt;&lt;/table&gt;&#39;)
+
+            $table.append($(&#39;&lt;tr&gt;&lt;td&gt;name&lt;/td&gt;&lt;td&gt;age&lt;/td&gt;&lt;td&gt;address&lt;/td&gt;/tr&gt;&#39;))
+            data.forEach(function (item) {
+                $table.append($(&#39;&lt;tr&gt;&lt;td&gt;&#39; + item.name + &#39;&lt;/td&gt;&lt;td&gt;&#39; + item.age + &#39;&lt;/td&gt;&lt;td&gt;&#39; + item.address + &#39;&lt;/td&gt;/tr&gt;&#39;))
+            })
+
+            // 渲染到页面
+            $container.append($table)
+        }
+
+        $(&#39;#btn-change&#39;).click(function () {
+            data[1].age = 30
+            data[2].address = &#39;深圳&#39;
+            // re-render  再次渲染
+            render(data)
+        })
+
+        // 页面加载完立刻执行（初次渲染）
+        render(data)
+
+    &lt;/script&gt;
+</code></pre><h5 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h5><ol><li>查看一个DOM节点的成员<br><code>`</code> js<br>var div=document.createElement(‘div’);<br>var item,result=’’;<br>for(item in div) { //会遍历231次<br>result+=’|’+item;<br>}<br>console.log(result);//这个div的DOM有231个属性</li></ol><p>//dom 操作是昂贵的，通过js虚拟dom来模拟实际dom是非常有价值的。<br>// 少做dom操作，尽量使用js来代替这些操作的执行</p><pre><code>1. DOM 操作是&quot;昂贵&quot;的，一个dom的成员太多了，js运行效率比较高
+1. 尽量减少DOM操作，而不是先把容器清空再重新填充
+1. 项目越复杂，影响就越严重
+1. vdom 即可解决这个问题。
+
+#### vdom如何应用，核心API是什么？
+
+##### 介绍 snabbdom ,一个开源的虚拟dom的库，vue2.0升级的时候借用了它
+- 介绍 snabbdom
+``` js
+    var container=doucment.getElementById(&#39;container&#39;);
+    var vnode=h(&#39;div#container.two.classes&#39;,{on:{click:someFn}},[
+    h(&#39;span&#39;,{style:{fontWeight:&#39;bold&#39;}},&#39;这是一个 bold&#39;),
+    &#39; 这是一个普通的字符串&#39;,
+    h(&#39;a&#39;,{props:{href:&#39;/foo&#39;}},&#39;我是一个超链接&#39;)]；
+    // 把所有的信息渲染到一个空白的容器中。
+    patch(container,vnode);
+
+    var newVnode=h(&#39;div#container.two.classes&#39;,{on:{click:anotherEventHandler}},[
+    h(&#39;span&#39;,{style:{fontWeight:&#39;normal&#39;,fontStyle:&#39;italic&#39;}},&#39;这是一个 普通的斜体&#39;),
+    &#39; 这是一个普通的字符串&#39;,
+    h(&#39;a&#39;,{props:{href:&#39;/bar&#39;}},&#39;我是一个超链接&#39;)]);
+    // 让newVnode与vnode进行对比，找出变化点，然后替换这些变化点，其它没有变化的地方就不管它，这样就尽量的减少了dom操作。
+    patch(vnode,newVnode);
+</code></pre><ul><li>h函数 定义虚拟dom节点 生成 虚拟dom属性结构<pre><code class="js">  // vdom 是虚拟dom属性结构
+  // vnode 是虚拟dom节点
+  var vnode=h(&#39;ul#list&#39;,{},[
+      h(&#39;li.item&#39;,{},&#39;Item 1&#39;),
+      h(&#39;li.item&#39;,{},&#39;Item 2&#39;)
+  ]);
+  // vnode
+  {
+      tag:&#39;ul&#39;,
+      attrs:{
+          id:&#39;list&#39;
+      },
+      children:[
+          {
+              tag:&#39;li&#39;,
+              attrs:{className:&#39;item&#39;},
+              children:[&#39;Item 1&#39;]
+          },
+          {
+              tag:&#39;li&#39;,
+              attrs:{className:&#39;item&#39;},
+              children:[&#39;Item 2&#39;]
+          }
+      ]
+  }
+</code></pre></li><li><p>patch 函数 渲染虚拟DOM 或者对比替换虚拟DOM中的变化点</p><pre><code class="js">  var vnode=h(&#39;ul#list&#39;,{},[
+      h(&#39;li.item&#39;,{},&#39;Item 1&#39;),
+      h(&#39;li.item&#39;,{},&#39;Item 2&#39;)
+  ]);
+
+  var container=doucment.getElementById(&#39;container&#39;);
+
+  // 把所有的信息渲染到一个空白的容器中。
+  patch(container,vnode);
+
+  // 模拟改变
+  var btnChange=document.getElementById(&#39;btn-change&#39;);
+  btnChange.addEventListener(&#39;click&#39;,function(){
+      var newVnode=h(&#39;ul#list&#39;,{},[
+      h(&#39;li.item&#39;,{},&#39;Item 111&#39;),
+      h(&#39;li.item&#39;,{},&#39;Item 222&#39;),
+      h(&#39;li.item&#39;,{},&#39;Item 333&#39;)
+      ]);
+      // 让newVnode与vnode进行对比，找出变化点，然后替换这些变化点，最后其它没有变化的地方就不管
+      patch(vnode,newVnode);
+  )};
+</code></pre></li><li><p>使用 snabbdom</p><pre><code class="html">  &lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+  &lt;button id=&quot;btn-change&quot;&gt;change&lt;/button&gt;
+
+  &lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-class.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-props.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-style.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.1/snabbdom-eventlisteners.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.1/h.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+      var snabbdom = window.snabbdom
+
+      // 定义 patch
+      var patch = snabbdom.init([
+          snabbdom_class,
+          snabbdom_props,
+          snabbdom_style,
+          snabbdom_eventlisteners
+      ])
+
+      // 定义 h
+      var h = snabbdom.h
+
+      var container = document.getElementById(&#39;container&#39;)
+
+      // 生成 vnode
+      var vnode = h(&#39;ul#list&#39;, {}, [
+          h(&#39;li.item&#39;, {}, &#39;Item 1&#39;),
+          h(&#39;li.item&#39;, {}, &#39;Item 2&#39;)
+      ])
+      patch(container, vnode)
+
+      document.getElementById(&#39;btn-change&#39;).addEventListener(&#39;click&#39;, function () {
+          // 生成 newVnode
+          var newVnode = h(&#39;ul#list&#39;, {}, [
+              h(&#39;li.item&#39;, {}, &#39;Item 1&#39;),
+              h(&#39;li.item&#39;, {}, &#39;Item B&#39;),
+              h(&#39;li.item&#39;, {}, &#39;Item 3&#39;)
+          ])
+          patch(vnode, newVnode)
+      })
+
+  &lt;/script&gt;
+</code></pre></li></ul><h5 id="重做之前的demo"><a href="#重做之前的demo" class="headerlink" title="重做之前的demo"></a>重做之前的demo</h5><pre><code class="html">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+&lt;button id=&quot;btn-change&quot;&gt;change&lt;/button&gt;
+
+&lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.0/snabbdom.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.0/snabbdom-class.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.0/snabbdom-props.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.0/snabbdom-style.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.0/snabbdom-eventlisteners.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/snabbdom/0.7.0/h.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var snabbdom = window.snabbdom
+    // 定义关键函数 patch
+    var patch = snabbdom.init([
+        snabbdom_class,
+        snabbdom_props,
+        snabbdom_style,
+        snabbdom_eventlisteners
+    ])
+
+    // 定义关键函数 h
+    var h = snabbdom.h
+
+    // 原始数据
+    var data = [
+        {
+            name: &#39;张三&#39;,
+            age: &#39;20&#39;,
+            address: &#39;北京&#39;
+        },
+        {
+            name: &#39;李四&#39;,
+            age: &#39;21&#39;,
+            address: &#39;上海&#39;
+        },
+        {
+            name: &#39;王五&#39;,
+            age: &#39;22&#39;,
+            address: &#39;广州&#39;
+        }
+    ]
+    // 把表头也放在 data 中
+    data.unshift({
+        name: &#39;姓名&#39;,
+        age: &#39;年龄&#39;,
+        address: &#39;地址&#39;
+    })
+
+    var container = document.getElementById(&#39;container&#39;)
+
+    // 渲染函数
+    var vnode
+    function render(data) {
+        var newVnode = h(&#39;table&#39;, {}, data.map(function (item) {
+            var tds = []
+            var i
+            for (i in item) {
+                if (item.hasOwnProperty(i)) {
+                    tds.push(h(&#39;td&#39;, {}, item[i] + &#39;&#39;))
+                }
+            }
+            return h(&#39;tr&#39;, {}, tds)
+        }))
+
+        if (vnode) {
+            // re-render
+            patch(vnode, newVnode)
+        } else {
+            // 初次渲染
+            patch(container, newVnode)
+        }
+
+        // 存储当前的 vnode 结果
+        vnode = newVnode
+    }
+
+    // 初次渲染
+    render(data)
+    var btnChange = document.getElementById(&#39;btn-change&#39;)
+    btnChange.addEventListener(&#39;click&#39;, function () {
+        data[1].age = 30
+        data[2].address = &#39;深圳&#39;
+        // re-render
+        render(data)
+    });
+&lt;/script&gt;
+</code></pre><h5 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h5><ul><li>h 函数<ol><li>h(‘标签名[选择器]’,{…属性…},[…子元素…]) 第三个参数如果是数组，那么就是多个子元素。</li><li>h(‘标签名[选择器]’,{…属性…},’…’) 第三个参数是单个参数，那么就是一个文本。</li></ol></li><li>patch 函数<ol><li>patch(container,vnode) 第一次渲染dom到容器中</li><li>patch(vnode,newVnode) 对比虚拟dom的变化，只渲染不同点。</li></ol></li></ul><h4 id="介绍一下diff算法？"><a href="#介绍一下diff算法？" class="headerlink" title="介绍一下diff算法？"></a>介绍一下diff算法？</h4><h5 id="什么是diff算法？"><a href="#什么是diff算法？" class="headerlink" title="什么是diff算法？"></a>什么是diff算法？</h5><ol><li>比较算法，用来对比字符串，在vdom中用来对比两个节点，找出两者不同的差异</li><li>如linux 中diff命令，用来比较两个文本文件中的内容，找文本不同的差异</li><li>如git diff命令，比较两个版本的某一个文本文件内容，找出内容不同的差异</li></ol><h5 id="去繁就简"><a href="#去繁就简" class="headerlink" title="去繁就简"></a>去繁就简</h5><ol><li>diff算法非常复杂，实现难度很大，源码量很大，如snabbdom，使用的时候引入了六七个库。</li><li>去繁就简，讲明白核心流程，不关心细节。</li><li>二八原则，百分之二十的源码实现百分之八十的功能，另外百分之八十的源码实现百分之二十的功能。那实现百分之八十功能的百分之二十的源码就是核心流程，而那实现百分之二十功能的百分之八十的源码就是细节。</li><li>看书先看目录，找到你想要看的，然后就仔细的看，其它的你大体过一遍。</li><li>去繁就简之后，依然具有很大的挑战，并不简单。</li></ol><h5 id="vdom-为何用diff算法"><a href="#vdom-为何用diff算法" class="headerlink" title="vdom 为何用diff算法"></a>vdom 为何用diff算法</h5><ol><li>DOM 操作是 “昂贵”的，因此尽量减少DOM操作。</li><li>找出本次DOM必须跟新的节点来更新，其他的不更新。</li><li>这个 “找出”的过程，就需要diff算法</li></ol><h5 id="diff-算法的实现流程"><a href="#diff-算法的实现流程" class="headerlink" title="diff 算法的实现流程"></a>diff 算法的实现流程</h5><h6 id="patch-container-vnode-直接渲染"><a href="#patch-container-vnode-直接渲染" class="headerlink" title="patch(container,vnode) 直接渲染"></a>patch(container,vnode) 直接渲染</h6><pre><code class="js">    // vnode 的 虚拟DOM结构
+    {
+        tag:&#39;ul&#39;,
+        attrs:{
+            id:&#39;list&#39;
+        },
+        children:[
+            {
+                tag:&#39;li&#39;,
+                attrs:{
+                    className:&#39;item&#39;
+                },
+                children:[&#39;Item 1&#39;]
+            }
+        ]
+    }
+</code></pre><pre><code class="html">    &lt;!-- 最后生成的 html代码 --&gt;
+    &lt;ul id=&quot;list&quot;&gt;
+        &lt;li class=&#39;item&#39;&gt;Item 1&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre><pre><code class="js">    // 模拟 将vnode 的 虚拟DOM结构 生成真实的DOM
+    function createElement(vnode) {
+        var tag=vnode.tag;
+        var attrs=vnode.attrs||{};
+        var children=vnode.children ||{};
+        if(!tag){
+            return null
+        }
+        //创建元素
+        var elem=document.createElement(tag);
+        //属性
+        var attrName;
+        for(attrName in attrs) {
+            if(attrs.hasOwnProperty(attrName)) {
+                elem.setAttribute(attrName,attrs[attrName]);
+            }
+        }
+        //子元素
+        children.forEach(function(childVnode){
+            // 递归调用 createElement 创建子元素
+            elem.appendChild(createElement(childVnode));
+        })
+        return elem;
+    }
+</code></pre><h6 id="patch-vnode-newVnode-进行对比，打补丁渲染"><a href="#patch-vnode-newVnode-进行对比，打补丁渲染" class="headerlink" title="patch(vnode,newVnode) 进行对比，打补丁渲染"></a>patch(vnode,newVnode) 进行对比，打补丁渲染</h6><pre><code class="js">    // vnode 的 虚拟DOM结构
+    {
+        tag:&#39;ul&#39;,
+        attrs:{
+            id:&#39;list&#39;
+        },
+        children:[
+            {
+                tag:&#39;li&#39;,
+                attrs:{
+                    className:&#39;item&#39;
+                },
+                children:[&#39;Item 1&#39;]
+            },
+            {
+                tag:&#39;li&#39;,
+                attrs:{className:&#39;item&#39;},
+                children:[&#39;Item 2&#39;]
+            }
+        ]
+    }
+</code></pre><pre><code class="html">    &lt;!-- 对应 html代码 --&gt;
+    &lt;ul id=&quot;list&quot;&gt;
+        &lt;li class=&#39;item&#39;&gt;Item 1&lt;/li&gt;
+        &lt;li class=&#39;item&#39;&gt;Item 2&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre><pre><code class="js">    // newVnode 
+    {
+        tag:&#39;ul&#39;,
+        attrs:{
+            id:&#39;list&#39;
+        },
+        children:[
+            {
+                tag:&#39;li&#39;,
+                attrs:{
+                    className:&#39;item&#39;
+                },
+                children:[&#39;Item 1&#39;]
+            },
+            {
+                tag:&#39;li&#39;,
+                attrs:{className:&#39;item&#39;},
+                children:[&#39;Item 222&#39;]
+            },
+            {
+                tag:&#39;li&#39;,
+                attrs:{className:&#39;item&#39;},
+                children:[&#39;Item 3&#39;]
+            }
+        ]
+    }
+</code></pre><pre><code class="html">    &lt;!-- 对应 html代码 --&gt;
+    &lt;ul id=&quot;list&quot;&gt;
+        &lt;li class=&#39;item&#39;&gt;Item 1&lt;/li&gt;
+        &lt;li class=&#39;item&#39;&gt;Item 222&lt;/li&gt;
+        &lt;li class=&#39;item&#39;&gt;Item 3&lt;/li&gt;
+    &lt;/ul&gt;
+</code></pre><pre><code class="js">    // 模拟 将vnode 的 虚拟DOM结构 生成真实的DOM
+    function createElement(vnode) {
+        var tag=vnode.tag;
+        var attrs=vnode.attrs||{};
+        var children=vnode.children ||{};
+        if(!tag){
+            return null
+        }
+        //创建元素
+        var elem=document.createElement(tag);
+        //属性
+        var attrName;
+        for(attrName in attrs) {
+            if(attrs.hasOwnProperty(attrName)) {
+                elem.setAttribute(attrName,attrs[attrName]);
+            }
+        }
+        //子元素
+        children.forEach(function(childVnode){
+            // 递归调用 createElement 创建子元素
+            elem.appendChild(createElement(childVnode));
+        })
+        return elem;
+    }
+
+    //更新
+    function updateChildren(vnode,newVnode){
+        var children=vnode.children ||[];
+        var newChildren=newVnode.children||[];
+
+        // 遍历现有的 children
+        children.forEach(function(child,index){
+            var newChild=newChildren[index];
+            if(newChild==null){
+                return;
+            }
+            if(child.tag===newChild.tag){
+                //两者 tag一样 深层次对比，递归
+                updateChildren(child,newChild);
+            }else {
+                //两者 tag 不一样 
+                replaceNode(child,newChild);
+            }
+        })
+    }
+
+    //替换
+    replaceNode(vnode,newVnode){
+        var elem=vnode.elem;//真实的 DOM节点
+        var　newElem=createElement(newVnode);
+
+        //替换 DOM节点操作，旧的节点被新的节点替换掉 
+        elem.parentNode.replaceChildren(elem,newElem);
+    }
+</code></pre><h6 id="不仅仅是以上内容"><a href="#不仅仅是以上内容" class="headerlink" title="不仅仅是以上内容"></a>不仅仅是以上内容</h6><ol><li>节点新增和删除</li><li>节点重新排序</li><li>节点属性、样式、事件绑定等等的变化</li><li>如何极致压榨性能</li><li>…</li></ol><h6 id="diff-实现过程"><a href="#diff-实现过程" class="headerlink" title="diff 实现过程"></a>diff 实现过程</h6><ol><li><code>patch(container,vnode)</code> 和 <code>patch(vnode,newVnode)</code></li><li><code>createElement</code></li><li><code>updateChildren</code></li></ol><h3 id="问题解答-3"><a href="#问题解答-3" class="headerlink" title="问题解答"></a><strong>问题解答</strong></h3><h4 id="vdom是什么，为何会存在vdom"><a href="#vdom是什么，为何会存在vdom" class="headerlink" title="vdom是什么，为何会存在vdom"></a>vdom是什么，为何会存在vdom</h4><ol><li>virtual dom，虚拟DOM</li><li>用JS模拟的DOM结构</li><li>DOM 操作非常 “昂贵”</li><li>将DOM 对比操作放在JS层，提高效率</li></ol><h4 id="vdom如何应用，核心API是什么"><a href="#vdom如何应用，核心API是什么" class="headerlink" title="vdom如何应用，核心API是什么"></a>vdom如何应用，核心API是什么</h4><ol><li>如何使用？可以用 snabbdom的用法来举例子</li></ol><h5 id="核心API：h函数、patch函数"><a href="#核心API：h函数、patch函数" class="headerlink" title="核心API：h函数、patch函数"></a>核心API：h函数、patch函数</h5><ol><li>h函数,根据标签参数、属性参数、子节点参数 来生成虚拟DOM</li><li>patch函数<ol><li>第一种：递归创建DOM、填充容器；</li><li>第二种：递归对比虚拟DOM，替换旧DOM</li></ol></li></ol><h4 id="介绍一下diff算法"><a href="#介绍一下diff算法" class="headerlink" title="介绍一下diff算法"></a>介绍一下diff算法</h4><ol><li>知道什么是diff算法，是linux的基础命令，也是git的基础命令<ol><li>都是为了找出文本与文本之间的不同。</li></ol></li><li>vdom 中应用diff算法是为了找出需要更新的节点<ol><li>是为了找出节点与节点之间的不同。</li></ol></li><li>diff实现，<code>patch(container,vnode)</code>和<code>patch(vnode,newVnode)</code><ol><li><code>patch(container,vnode)</code>递归创建DOM 填充容器</li><li><code>patch(vnode,newVnode)</code> 递归对比虚拟DOM，替换掉需要更新的旧DOM</li></ol></li><li>核心逻辑，<code>createElement和updateChildren</code></li></ol><h2 id="MVVM-和-vue"><a href="#MVVM-和-vue" class="headerlink" title="MVVM 和 vue"></a>MVVM 和 vue</h2><ul><li>如何理解MVVM</li><li>如何实现MVVM</li><li>是否解读过vue的源码</li></ul><h3 id="问题-4"><a href="#问题-4" class="headerlink" title="问题"></a><strong>问题</strong></h3><ol><li>说一下使用jQuery和使用框架的区别</li><li>说一下对MVVM的理解</li><li>vue中如何实现响应式</li><li>vue中如何解析模板</li><li>vue的整个实现流程</li></ol><h3 id="实践-4"><a href="#实践-4" class="headerlink" title="实践"></a><strong>实践</strong></h3><h4 id="说一下使用jQuery和使用框架的区别？"><a href="#说一下使用jQuery和使用框架的区别？" class="headerlink" title="说一下使用jQuery和使用框架的区别？"></a>说一下使用jQuery和使用框架的区别？</h4><h6 id="jQuery-实现todo-list"><a href="#jQuery-实现todo-list" class="headerlink" title="jQuery 实现todo-list"></a>jQuery 实现todo-list</h6><pre><code class="html">    &lt;div&gt;
+        &lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;txt-title&quot;&gt;
+        &lt;button id=&quot;btn-submit&quot;&gt;submit&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;ul id=&quot;ul-list&quot;&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var $txtTitle = $(&#39;#txt-title&#39;)
+        var $btnSubmit = $(&#39;#btn-submit&#39;)
+        var $ulList = $(&#39;#ul-list&#39;)
+        $btnSubmit.click(function () {
+            var title = $txtTitle.val()
+            if (!title) {
+                return
+            }
+            // 这里数据与视图混在一起了
+            var $li = $(&#39;&lt;li&gt;&#39; + title + &#39;&lt;/li&gt;&#39;)
+            // 这里 没有使数据驱动视图，而是自己调用底层的api来添加数据到视图中的
+            $ulList.append($li)
+            $txtTitle.val(&#39;&#39;)
+        })
+    &lt;/script&gt;
+</code></pre><h6 id="vue-实现todo-list"><a href="#vue-实现todo-list" class="headerlink" title="vue 实现todo-list"></a>vue 实现todo-list</h6><pre><code class="html">    &lt;div id=&quot;app&quot;&gt;
+        &lt;div&gt;
+            &lt;input v-model=&quot;title&quot;&gt;
+            &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/vue/2.5.10/vue.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        // data 独立
+        var data = {
+            title: &#39;&#39;,
+            list: []
+        }
+        // 初始化 Vue 实例
+        var vm = new Vue({
+            el: &#39;#app&#39;,
+            data: data,
+            methods: {
+                add: function () {
+                    this.list.push(this.title)
+                    this.title = &#39;&#39;
+                }
+            }
+        })
+    &lt;/script&gt;
+</code></pre><h6 id="jQuery和框架的区别"><a href="#jQuery和框架的区别" class="headerlink" title="jQuery和框架的区别"></a>jQuery和框架的区别</h6><ul><li>数据和视图的分离<ol><li>jQuery 数据和视图是混在一块儿的，坏处是不能对扩展开放、对修改封闭。</li><li>Vue 中 数据与视图是分离的，好处是能够对扩展开放，对修改封闭。</li></ol></li><li>以数据驱动视图<ol><li>jQuery将标签的创建与数据的填充绑在一起了，改完数据之后，还要自己去修改视图。</li><li>Vue 只需要改数据，视图怎么变的不用去管，由框架去处理。</li></ol></li></ul><h4 id="说一下对MVVM的理解"><a href="#说一下对MVVM的理解" class="headerlink" title="说一下对MVVM的理解"></a>说一下对MVVM的理解</h4><ul><li>MVC<ol><li>Model 数据</li><li>View 视图、界面</li><li>Controller 控制器、逻辑处理</li></ol></li><li>MVVM<ol><li>M 模型、数据 ，Model通过数据绑定操作View，需要依赖vm<pre><code class="js"> // data 独立
+ var data = {
+     title: &#39;&#39;,
+     list: []
+ }
+</code></pre></li><li>V 视图、模板（视图和模型是分离的），View 通过事件绑定操作Moel，需要依赖vm<pre><code class="html"> &lt;div id=&quot;app&quot;&gt;
+     &lt;div&gt;
+         &lt;input v-model=&quot;title&quot;&gt;
+         &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+     &lt;/div&gt;
+     &lt;div&gt;
+         &lt;ul&gt;
+             &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</code></pre></li><li>VM 连接Model和View: ViewModel是视图与模型之间的一个桥梁，有了这个桥之后，v和m就彻底分开了。相对与controller而言，vm减弱了直接修改数据的能力，vm成为了一个中间者来让v和m相互作用。<pre><code class="js"> // 初始化 Vue 实例
+ var vm = new Vue({
+     el: &#39;#app&#39;,
+     data: data,
+     methods: {
+         add: function () {
+             this.list.push(this.title)
+             this.title = &#39;&#39;
+         }
+     }
+ })
+</code></pre></li></ol></li><li>关于 ViewModel<ol><li>MVVM 不算是一种创新</li><li>但其中的ViewModel确实是一种创新，其实就是设计模式里的依赖倒置原则，它就像是一个中介者，作为了底层和高层的中间层。</li><li>真正结合前端场景的应用而创建出来的，不是完全把后端的东西拿过来直接用。</li></ol></li></ul><h4 id="MVVM-框架的三大要素"><a href="#MVVM-框架的三大要素" class="headerlink" title="MVVM 框架的三大要素"></a>MVVM 框架的三大要素</h4><h5 id="再次分析-demo"><a href="#再次分析-demo" class="headerlink" title="再次分析 demo"></a>再次分析 demo</h5><pre><code class="html">    &lt;div id=&quot;app&quot;&gt;
+        &lt;div&gt;
+            &lt;input v-model=&quot;title&quot;&gt;
+            &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/vue/2.5.10/vue.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        // data 独立
+        var data = {
+            title: &#39;&#39;,
+            list: []
+        }
+        // 初始化 Vue 实例
+        var vm = new Vue({
+            el: &#39;#app&#39;,
+            data: data,
+            methods: {
+                add: function () {
+                    this.list.push(this.title)
+                    this.title = &#39;&#39;
+                }
+            }
+        })
+    &lt;/script&gt;
+</code></pre><h5 id="三要素总结"><a href="#三要素总结" class="headerlink" title="三要素总结"></a>三要素总结</h5><ol><li>响应式：vue 如何监听到 data的每个属性的变化？<ol><li>通过 Object.difineProperty 来讲data代理到vue实例对象中。</li></ol></li><li>模板引擎：vue的模板如何被解析，指令如何处理？</li><li>渲染：vue的模板如何被渲染成html？以及渲染过程？</li></ol><h4 id="vue中如何实现响应式"><a href="#vue中如何实现响应式" class="headerlink" title="vue中如何实现响应式"></a>vue中如何实现响应式</h4><h5 id="什么是响应式"><a href="#什么是响应式" class="headerlink" title="什么是响应式"></a>什么是响应式</h5><ol><li>修改data属性之后，vue立刻监听到</li><li>data属性被代理到vm上</li><li><p>演示</p><pre><code class="html"> /* 将 vue.js的放到模板上面 https://unpkg.com是npm的全球域名*/
+ &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+ &lt;div id=&quot;app&quot;&gt;
+     &lt;p&gt;{{name}}&lt;/p&gt;
+     &lt;p&gt;{{age}}&lt;/p&gt;
+ &lt;/div&gt;
+
+ &lt;script&gt;
+     var vm=new Vue({
+         el:&#39;#app&#39;,
+         data:{
+             name:&#39;zhangshan&#39;,
+             age:20
+         }
+     })
+
+     // data里的属性你可以通过Vue实例对象来访问和修改
+     console.log(vm.name);
+     console.log(vm.age);
+ &lt;/script&gt;
+</code></pre></li></ol><h5 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h5><pre><code class="js">    var obj={
+        name:&#39;zhangsan&#39;,
+        age:25
+    }
+    console.log(obj.name); //获取属性的时候，如何监听到？
+    obj.age=26;// 赋值属性的时候，如何监听到？
+</code></pre><pre><code class="js">    var obj={};
+    var _name=&#39;zhangsan&#39;; //_表示内部使用的
+    //vue核心函数，响应式就使用的这个函数
+    Object.defineProperty(obj,&#39;name&#39;,{
+        get:function(){
+            console.log(&#39;get:&#39;,_name);
+            return _name;
+        },
+        set:function(newVal){
+            _name=newVal;
+            console.log(&#39;set:&#39;,_name);
+        }
+    });
+
+    console.log(obj.name); //可以监听到
+    obj.name=&#39;lisi&#39;; //可以监听到
+</code></pre><h5 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h5><pre><code class="js">    //var vm=new Vue({
+    //    el:&#39;#app&#39;,
+    //    data:{
+    //        name:&#39;zhangshan&#39;,
+    //        price:100
+    //    }
+    //})
+
+    var mv={};
+    var data={
+        name:&#39;zhangshan&#39;,
+        price:100
+    }
+
+    var key,value;
+    for(key in data) {
+        (function(key){
+            //命中闭包，新建一个函数，保证key 的独立作用域
+            Object.difineProperty(mv,key,{
+                get:function(){
+                    console.log(&quot;get:&quot;,data[key]);
+                    return data[key];
+                },
+                set:function(newVal){
+                    data[key]=newVal;
+                    console.log(&quot;set:&quot;,data[key]);
+                }
+            })
+        })(key)
+    }
+
+    console.log(mv.name); //可以监听到
+    console.log(mv.price); //可以监听到
+</code></pre><h4 id="vue中如何解析模板"><a href="#vue中如何解析模板" class="headerlink" title="vue中如何解析模板"></a>vue中如何解析模板</h4><h5 id="模板是什么"><a href="#模板是什么" class="headerlink" title="模板是什么"></a>模板是什么</h5><ol><li>例子<pre><code class="html"> &lt;div id=&quot;app&quot;&gt;
+     &lt;div&gt;
+         &lt;input v-model=&quot;title&quot;&gt;
+         &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+     &lt;/div&gt;
+     &lt;div&gt;
+         &lt;ul&gt;
+             &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</code></pre></li><li>本质：字符串</li><li>有逻辑，如v-if、v-for等</li><li>与html格式很像，但有很大区别<ol><li>html是静态的没有逻辑</li><li>模板是动态的有逻辑</li></ol></li><li>最终还要转换为html来显示</li><li>模板最终必须转换为JS代码，因为：<ol><li>有逻辑（v-if、v-for）,必须用JS才能实现（图灵完备语言）</li><li>转换为html 渲染页面，必须用JS才能实现。</li><li>因此，模板最终要转换成一个JS函数（render函数）</li></ol></li></ol><h4 id="render-函数"><a href="#render-函数" class="headerlink" title="render 函数"></a>render 函数</h4><h5 id="with的用法"><a href="#with的用法" class="headerlink" title="with的用法"></a>with的用法</h5><pre><code class="js">    var obj={
+        name:&#39;zhangsan&#39;,
+        age:20,
+        getAddress:function(){
+            alert(&#39;beijing&#39;);
+        }
+    }
+
+    // 不用 with
+    function fn(){
+        alert(obj.name);
+        alert(obj.age);
+        obj.getAddress();
+    }
+    fn();
+</code></pre><pre><code class="js">    var obj={
+        name:&#39;zhangsan&#39;,
+        age:20,
+        getAddress:function(){
+            alert(&#39;beijing&#39;);
+        }
+    }
+
+    // 使用 with
+    function fn1(){
+        // 日常开发最好不用with,因为不好测试调试
+        with(obj) {
+            //比如alert，你不知道是obj的alert还是window的alert
+            alert(name);
+            alert(age);
+            getAddress();
+        }
+    }
+    fn1();
+</code></pre><h5 id="render函数-讲解1"><a href="#render函数-讲解1" class="headerlink" title="render函数-讲解1"></a>render函数-讲解1</h5><ol><li><p>实例</p><pre><code class="html"> &lt;div id=&quot;app&quot;&gt;
+     &lt;div&gt;
+         &lt;p&gt;{{price}}&lt;/p&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+
+ &lt;script src=&quot;https://cdn.bootcss.com/vue/2.5.10/vue.js&quot;&gt;&lt;/script&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     var vm = new Vue({
+         el: &#39;#app&#39;,
+         data: {
+                 price: 100
+               }
+         })
+ &lt;/script&gt;
+</code></pre><pre><code class="html"> &lt;!-- 把模板摘出来 --&gt;
+ &lt;div id=&quot;app&quot;&gt;
+     &lt;p&gt;{{price}}&lt;/p&gt;
+ &lt;/div&gt;
+</code></pre><pre><code class="js"> /* 模板最后生成的js代码 
+  * 也就是render函数的函数体
+  * this 就是 vm
+  */
+ with(this) {
+     return _c(
+         &#39;div&#39;,
+         {
+             attrs:{&quot;id&quot;:&quot;app&quot;}
+         },
+         [
+             _c(&#39;p&#39;,[_v(_s(price))])
+         ]
+     )
+ }
+</code></pre></li><li>模板中的所有信息都包含在了render函数中</li><li>this 即 vm</li><li>price即 this.price 即 vm.price，即data中的price</li><li>_c 即 this._c 即 vm._c ,也就是代表创建一个DOM标签</li><li>_v 代表创建一个文本节点</li><li>_s 代表将括号中的值转化为字符串</li></ol><h5 id="render函数-讲解3"><a href="#render函数-讲解3" class="headerlink" title="render函数-讲解3"></a>render函数-讲解3</h5><h6 id="从哪里可以看到render函数？"><a href="#从哪里可以看到render函数？" class="headerlink" title="从哪里可以看到render函数？"></a>从哪里可以看到render函数？</h6><ol><li>查看vue.js源码，<ol><li>搜索code.render,找到之后，</li><li>在var code下面 alert(code.render)。</li><li>这时候你使用vue.js，刷新页面后，</li><li>就能看到当前模板转换的JS函数（render函数）了。</li></ol></li></ol><h6 id="复杂一点的例子，render函数是什么样子的？"><a href="#复杂一点的例子，render函数是什么样子的？" class="headerlink" title="复杂一点的例子，render函数是什么样子的？"></a>复杂一点的例子，render函数是什么样子的？</h6><pre><code class="html">    &lt;div id=&quot;app&quot;&gt;
+        &lt;div&gt;
+            &lt;input v-model=&quot;title&quot;&gt;
+            &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;ul&gt;
+                &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+</code></pre><pre><code class="js">    /* 上面模板对应的 render函数体*/
+    with (this) {
+        return _c(&#39;div&#39;, //div#app
+                    { attrs: { &quot;id&quot;: &quot;app&quot; } },
+                    [_c(&#39;div&#39;, [ //div
+                        _c(&#39;input&#39;, { //input
+                            directives: //双向数据绑定
+                                [{
+                                    name: &quot;model&quot;, 
+                                    rawName: &quot;v-model&quot;,
+                                    value: (title), 
+                                    expression: &quot;title&quot;
+                                }],
+                            domProps: {  //get操作
+                                &quot;value&quot;: (title) 
+                            },
+                            on: { //set操作
+                                //触发 输入事件，所以才能实现文本框中的值改变，内存中的值也跟着改变
+                                &quot;input&quot;: function ($event) {
+                                    if ($event.target.composing) return; title = $event.target.value
+                                }
+                            }
+                        }
+                        ),
+                        _v(&quot; &quot;), //这个地方就是标签换行
+                        _c(&#39;button&#39;, //button
+                            { on: { &quot;click&quot;: add } },
+                            [ _v(&quot;submit&quot;)]
+                        )
+                    ]),
+                    _v(&quot; &quot;), //标签换行
+                    _c(&#39;div&#39;, //div
+                        [_c(&#39;ul&#39;, //ul
+                            _l( //_l 表示renderlist
+                                (list), 
+                                function (item) {
+                                    return _c(&#39;li&#39;, //创建li标签
+                                        [_v(_s(item))]
+                                        )
+                                }
+                              )
+                           )
+                        ]
+                        )
+                    ]
+                )
+    }
+</code></pre><h6 id="v-if-v-for-v-on-都是怎么处理的？"><a href="#v-if-v-for-v-on-都是怎么处理的？" class="headerlink" title="v-if v-for v-on 都是怎么处理的？"></a>v-if v-for v-on 都是怎么处理的？</h6><ol><li>v-if ， 进行判断的操作，三元表达式，如果判断结果为true就创建dom节点，否则就创建空的节点。</li><li>v-for ，进行for循环操作并且创键元素，最后将创建的元素放入一个数组中一块儿返回。</li><li>v-on ， 给创建的元素 绑定事件</li></ol><h6 id="看一下-todo-list-demo的render函数"><a href="#看一下-todo-list-demo的render函数" class="headerlink" title="看一下 todo-list demo的render函数"></a>看一下 todo-list demo的render函数</h6><ol><li>在上面复杂一点的例子里的js就是 todo-list demo的render函数</li><li>v-model是怎么实现的？<pre><code class="js"> _c(&#39;input&#39;, { //input
+     directives: //双向数据绑定
+         [{
+             name: &quot;model&quot;, 
+             rawName: &quot;v-model&quot;,
+             value: (title), 
+             expression: &quot;title&quot;
+         }],
+     domProps: {  //get操作
+         &quot;value&quot;: (title) 
+     },
+     on: { //set操作
+         //触发 输入事件，所以才能实现文本框中的值改变，内存中的值也跟着改变
+         &quot;input&quot;: function ($event) {
+             if ($event.target.composing) return; title = $event.target.value
+         }
+     }
+ })
+</code></pre></li><li>v-on:click 是怎么实现的？<pre><code class="js"> _c(&#39;button&#39;, //button
+     { on: { &quot;click&quot;: add } },
+     [ _v(&quot;submit&quot;)]
+ )
+</code></pre></li><li>v-for 是怎么实现的？<pre><code class="js"> [_c(&#39;ul&#39;, //ul
+     _l( //_l 表示renderlist
+         (list), 
+         function (item) {
+             return _c(&#39;li&#39;, //创建li标签
+                 [_v(_s(item))]
+                 )
+         }
+       )
+    )
+ ]
+</code></pre></li><li>v-if 是怎么实现的？<pre><code class="js"> (1==0)?_c(&#39;div&#39;):_e();
+</code></pre></li></ol><h6 id="怎样生成-render函数的"><a href="#怎样生成-render函数的" class="headerlink" title="怎样生成 render函数的"></a>怎样生成 render函数的</h6><ol><li>首先解析html，然后进行语法分析词法分析，生成一棵抽象语法树，根据抽象语法树生成对应的函数体的字符串，之后通过new Function来生成render函数，但是这一点已经不重要了，因为这些是工具化的细节。</li><li>vue2.0 开始就支持了预编译<ol><li>开发环境：写模板</li><li>编译打包：将模板编译成JS代码</li><li>生产环境：执行JS代码</li></ol></li><li>React 组件化<ol><li>JSX模板并不是js代码，也是通过编译将JSX模板生成JS代码的。</li><li>JSX 语法已经是一个标准，标准化了之后，它的工具就已经稳定已经统一了，所以工具的原理就没有必要那么深入了，就像你不会去想知道babel怎么把es6变成es5的。</li></ol></li></ol><h5 id="render函数-讲解6"><a href="#render函数-讲解6" class="headerlink" title="render函数-讲解6"></a>render函数-讲解6</h5><ol><li>已经解决了模板中 “逻辑” （v-for v-if）的问题。</li><li>还剩下模板生成 html的问题<ol><li>模板生成html是使用patch的方式，首次渲染根据vnode创建DOM</li><li>之后就会新旧vnode进行对比，然后替换掉变化的旧的DOM。</li></ol></li><li>另外，vm._c是什么？render函数返回了什么？<ol><li>vm._c 相当于 snabbdom中的h函数</li><li>render 函数执行之后，返回的是vnode</li></ol></li></ol><h5 id="render函数-与-vdom"><a href="#render函数-与-vdom" class="headerlink" title="render函数 与 vdom"></a>render函数 与 vdom</h5><ol><li><p>render函数的_c与snbbdom的h</p><pre><code class="js"> // 上文的render函数
+ with(this) {
+     return _c(
+         &#39;div&#39;,
+         {attrs:{&quot;id&quot;:&quot;app&quot;}},
+         [_c(&#39;p&#39;,[_v(_s(price))])]
+     )
+ }
+
+ // 这是学习 snabbdom 时候的 `h`函数的写法
+ var vnode=h(&#39;div#container.two.classes&#39;,{on:{click:someFn}},[
+     h(&#39;span&#39;,{style:{fontWeight:&#39;bold&#39;}},&#39;This is bold&#39;),
+     &#39;and this is just normal text&#39;,
+     h(&#39;a&#39;,{props:{href:&#39;/foo&#39;}},&#39;I\&#39;ll take you places!&#39;)
+ ]);
+</code></pre></li><li>vm._c 其实就相当于snabbdom中h函数</li><li>render 函数执行之后，返回的是vnode</li><li>patch创建dom元素填充容器与patch对比节点替换节点操作。<pre><code class="js"> vm._update(vnode) {
+     const prevVnode=vm._vnode;
+     vm._vnode=vnode;
+     if(!prevVnode) {
+         // 首次渲染DOM
+         vm.$el=vm.__patch__(vm.$el,vnode);
+     }else {
+         // 对比节点 替换旧节点
+         vm.$el=vm.__patch__(prevVnode,vnode);
+     }
+ }
+ function updateComponent(){
+     // vm._render 即上面的 render 函数，返回vnode
+     vm._update(vm._render());
+ }
+</code></pre></li><li>updateComponent 中实现了vdom的patch</li><li>页面首次渲染执行 updateComponent<ol><li>走的是vm.$el=vm.<strong>patch</strong>(vm.$el,vnode);</li></ol></li><li>data 中每次修改属性，执行updateComponent</li><li>data 中添加新属性的时候不会执行updateComponent，<ol><li>只有当你使用这个新属性的时候才会被监听。</li><li>这么做是为了减少重复性的渲染，</li><li>因为你添加属性并没有在页面使用，</li><li>所以没必须要渲染。</li></ol></li></ol><h4 id="vue的整个实现流程"><a href="#vue的整个实现流程" class="headerlink" title="vue的整个实现流程"></a>vue的整个实现流程</h4><h5 id="第一步：解析模板成render函数"><a href="#第一步：解析模板成render函数" class="headerlink" title="第一步：解析模板成render函数"></a>第一步：解析模板成render函数</h5><ol><li>根据demo<pre><code class="html"> &lt;div id=&quot;app&quot;&gt;
+     &lt;div&gt;
+         &lt;input v-model=&quot;title&quot;&gt;
+         &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+     &lt;/div&gt;
+     &lt;div&gt;
+         &lt;ul&gt;
+             &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;script src=&quot;https://cdn.bootcss.com/vue/2.5.10/vue.js&quot;&gt;&lt;/script&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+     // data 独立
+     var data = {
+         title: &#39;&#39;,
+         list: []
+     }
+     // 初始化 Vue 实例
+     var vm = new Vue({
+         el: &#39;#app&#39;,
+         data: data,
+         methods: {
+             add: function () {
+                 this.list.push(this.title)
+                 this.title = &#39;&#39;
+             }
+         }
+     })
+ &lt;/script&gt;
+</code></pre></li><li>解析模板生成render函数<pre><code class="html"> &lt;div id=&quot;app&quot;&gt;
+     &lt;div&gt;
+         &lt;input v-model=&quot;title&quot;&gt;
+         &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+     &lt;/div&gt;
+     &lt;div&gt;
+         &lt;ul&gt;
+             &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+</code></pre><pre><code class="js"> /* 生成的js代码 render函数函数体 */ 
+ // 未格式化 的render函数函数体  因为是给机器看的，所以没必要格式化
+ with(this){return _c(&#39;div&#39;,{attrs:{&quot;id&quot;:&quot;app&quot;}},[_c(&#39;div&#39;,[_c(&#39;input&#39;,{directives:[{name:&quot;model&quot;,rawName:&quot;v-model&quot;,value:(title),expression:&quot;title&quot;}],domProps:{&quot;value&quot;:(title)},on:{&quot;input&quot;:function($event){if($event.target.composing)return;title=$event.target.value}}}),_v(&quot; &quot;),_c(&#39;button&#39;,{on:{&quot;click&quot;:add}},[_v(&quot;submit&quot;)])]),_v(&quot; &quot;),_c(&#39;div&#39;,[_c(&#39;ul&#39;,_l((list),function(item){return _c(&#39;li&#39;,[_v(_s(item))])}))])])}
+</code></pre><pre><code class="html"> // 格式化后的render函数函数体  
+ with (this) {
+     return _c(&#39;div&#39;, //div#app
+                 { attrs: { &quot;id&quot;: &quot;app&quot; } },
+                 [_c(&#39;div&#39;, [ //div
+                     _c(&#39;input&#39;, { //input
+                         directives: //双向数据绑定
+                             [{
+                                 name: &quot;model&quot;, 
+                                 rawName: &quot;v-model&quot;,
+                                 value: (title), 
+                                 expression: &quot;title&quot;
+                             }],
+                         domProps: {  //get操作
+                             &quot;value&quot;: (title) 
+                         },
+                         on: { //set操作
+                             //触发 输入事件，所以才能实现文本框中的值改变，内存中的值也跟着改变
+                             &quot;input&quot;: function ($event) {
+                                 if ($event.target.composing) return; title = $event.target.value
+                             }
+                         }
+                     }
+                     ),
+                     _v(&quot; &quot;), //这个地方就是标签换行
+                     _c(&#39;button&#39;, //button
+                         { on: { &quot;click&quot;: add } },
+                         [ _v(&quot;submit&quot;)]
+                     )
+                 ]),
+                 _v(&quot; &quot;), //标签换行
+                 _c(&#39;div&#39;, //div
+                     [_c(&#39;ul&#39;, //ul
+                         _l( //_l 表示renderlist
+                             (list), 
+                             function (item) {
+                                 return _c(&#39;li&#39;, //创建li标签
+                                     [_v(_s(item))]
+                                     )
+                             }
+                           )
+                        )
+                     ]
+                     )
+                 ]
+             )
+ }
+</code></pre></li><li>with的用法</li><li>模板中的所有信息都被render函数包含</li><li>模板中用到的data中的属性，都变成了JS变量</li><li>模板中的 v-model、v-for、v-on都变成了JS逻辑</li><li>render函数返回vnode</li></ol><h5 id="第二步：-响应式开始监听"><a href="#第二步：-响应式开始监听" class="headerlink" title="第二步： 响应式开始监听"></a>第二步： 响应式开始监听</h5><ol><li><p>模拟响应式监听</p><pre><code class="js"> //var vm=new Vue({
+ //    el:&#39;#app&#39;,
+ //    data:{
+ //        name:&#39;zhangshan&#39;,
+ //        price:100
+ //    }
+ //})
+
+ var mv={};
+ var data={
+     name:&#39;zhangshan&#39;,
+     price:100
+ }
+
+ var key,value;
+ for(key in data) {
+     (function(key){
+         //命中闭包，新建一个函数，保证key 的独立作用域
+         Object.difineProperty(mv,key,{
+             get:function(){
+                 console.log(&quot;get:&quot;,data[key]);
+                 return data[key];
+             },
+             set:function(newVal){
+                 data[key]=newVal;
+                 console.log(&quot;set:&quot;,data[key]);
+             }
+         })
+     })(key)
+ }
+
+ console.log(mv.name); //可以监听到
+ console.log(mv.price); //可以监听到
+</code></pre></li><li>Object.defineProperty</li><li>将data的属性代理到vm上</li></ol><h5 id="第三步：首次渲染，显示页面，且绑定依赖"><a href="#第三步：首次渲染，显示页面，且绑定依赖" class="headerlink" title="第三步：首次渲染，显示页面，且绑定依赖"></a>第三步：首次渲染，显示页面，且绑定依赖</h5><ol><li>patch函数的使用,创建DOM填充容器，对比vnode替换新DOM<pre><code class="js"> vm._update(vnode) {
+     const prevVnode=vm._vnode;
+     vm._vnode=vnode;
+     if(!prevVnode) {
+         // 首次渲染DOM
+         vm.$el=vm.__patch__(vm.$el,vnode);
+     }else {
+         // 对比节点 替换旧节点
+         vm.$el=vm.__patch__(prevVnode,vnode);
+     }
+ }
+ function updateComponent(){
+     // vm._render 即上面的 render 函数，返回vnode
+     vm._update(vm._render());
+ }
+</code></pre></li><li>初次渲染，执行 updateComponent，执行vm._render()</li><li>执行render函数，会访问到vm.list和vm.title</li><li>会被响应式的get方法监听到<pre><code class="js"> Object.difineProperty(mv,key,{
+             get:function(){
+                 console.log(&quot;get:&quot;,data[key]); //此处被监听
+                 return data[key];
+             },
+             set:function(newVal){
+                 data[key]=newVal;
+                 console.log(&quot;set:&quot;,data[key]);
+             }
+ })
+</code></pre></li><li>执行 updateComponent，会走到vdom的patch方法</li><li>patch 将vnode渲染成DOM,初次渲染完成</li><li>为何要监听get，直接监听set不行吗？<ol><li>data中有很多属性，有些被用到，有些可能不被用到</li><li>被用到的会走到get，不会用到的不会走get</li><li>未走到get中的属性，set的时候无需关心<br>1.避免不必要的重复渲染</li></ol></li><li>data 中添加新属性的时候不会执行updateComponent，<ol><li>只有当你使用这个新属性的时候才会被监听。</li><li>这么做是为了减少重复性的渲染，</li><li>因为你添加属性并没有在页面使用，</li><li>所以没必须要渲染。<pre><code class="html">&lt;div id=&quot;app&quot;&gt;
+ &lt;div&gt;
+     &lt;input v-model=&quot;title&quot;&gt;
+     &lt;button v-on:click=&quot;add&quot;&gt;submit&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div&gt;
+     &lt;ul&gt;
+         &lt;li v-for=&quot;item in list&quot;&gt;{{item}}&lt;/li&gt;
+     &lt;/ul&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/vue/2.5.10/vue.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+ // data 独立
+ var data = {
+     title: &#39;&#39;,
+     list: [],
+     aaa:&quot;&quot; //新增的属性
+ }
+ // 初始化 Vue 实例
+ var vm = new Vue({
+     el: &#39;#app&#39;,
+     data: data,
+     methods: {
+         add: function () {
+             this.aaa=&quot;aaaaa&quot;;//会被set监听到，但是不会去执行updateComponent。因为它没有被get所监听到，页面中并没有使用它。
+         }
+     }
+ })
+&lt;/script&gt;
+</code></pre></li></ol></li></ol><h5 id="第四步：data属性变化，触发rerender"><a href="#第四步：data属性变化，触发rerender" class="headerlink" title="第四步：data属性变化，触发rerender"></a>第四步：data属性变化，触发rerender</h5><ol><li>data属性变化，会命中响应式<pre><code class="js"> var vm = new Vue({
+     el: &#39;#app&#39;,
+     data: data,
+     methods: {
+         add: function () {
+             this.list.push(this.title) //修改属性
+             this.title = &#39;&#39; //修改属性
+         }
+     }
+ })
+</code></pre></li><li>被set所监听，走set的时候要看有没有走get<pre><code class="js"> Object.difineProperty(mv,key,{
+     get:function(){
+         console.log(&quot;get:&quot;,data[key]); 
+         return data[key];
+     },
+     set:function(newVal){
+         data[key]=newVal;
+         console.log(&quot;set:&quot;,data[key]);//此处被监听
+     }
+ })
+</code></pre></li><li>修改属性，被响应式的set监听到</li><li>set 中执行updateComponent，<ol><li>但是set会看这个属性有没有被get所监听，</li><li>如果被监听了才会去执行updateComponent，</li><li>这么做是为了减少页面渲染，</li><li>因为不用这个属性，就没必要调用updateComponent。</li></ol></li><li>updateComponent 重新执行 vm._render()</li><li>生成的vnode和之前的preVnode通过patch进行对比</li><li>渲染到html中，会走else中的vm.$el=vm.<strong>patch</strong>(prevVnode,vnode);</li></ol><h3 id="问题解答-4"><a href="#问题解答-4" class="headerlink" title="问题解答"></a><strong>问题解答</strong></h3><h4 id="说一下使用jQuery和使用框架的区别"><a href="#说一下使用jQuery和使用框架的区别" class="headerlink" title="说一下使用jQuery和使用框架的区别"></a>说一下使用jQuery和使用框架的区别</h4><ol><li>数据与视图的分离，解耦（开放封闭原则）<ol><li>使用jQuery，视图和数据是混在一起的，因为创建标签和填充数据是在一起做的</li><li>使用Vue，数据和视图是分开的，因为有一个中间层ViewModel让他们解耦了。</li></ol></li><li>以数据驱动视图，只关心数据，DOM 操作被封装<ol><li>使用 jQuery，并不能以数据来驱动视图，因为它还是直接使用了底层的DOM操作，并不是直接修改数据就可以让视图变化。</li><li>使用 Vue，可以直接修改数据，视图变化的操作交给框架去做，这样就做到了以数据驱动视图。</li></ol></li></ol><h4 id="说一下对MVVM的理解-1"><a href="#说一下对MVVM的理解-1" class="headerlink" title="说一下对MVVM的理解"></a>说一下对MVVM的理解</h4><ol><li>MVVM - Model View ViewModel<ol><li>Model 数据、模型，Model通过数据绑定来操作View。</li><li>View 视图、界面，View通过事件绑定来操作Model。</li><li>ViewModel 视图模型，用来连接View和Model的一座桥梁，相对与Controller而言减弱了直接操作数据和视图的能力。</li><li>Model和View 都依赖于ViewModel，但是也通过ViewModel让Model和View解耦了。</li></ol></li><li>三者之间的联系，以及如何对应各段代码<ol><li>Model 对应了 数据，也就是json</li><li>View 对应了 界面，也就是html</li><li>ViewModel 对应了 视图模型，也就是Vue实例对象</li></ol></li><li>ViewModel的理解，联系View和Model<ol><li>MVVM 不算是一种创新</li><li>但其中的ViewModel确实是一种创新，其实就是设计模式里的依赖倒置原则，它就像是一个中介者，作为了底层和高层的中间层。</li><li>真正结合前端场景的应用而创建出来的，不是完全把后端的东西拿过来直接用。</li></ol></li></ol><h4 id="MVVM-框架的三大要素-1"><a href="#MVVM-框架的三大要素-1" class="headerlink" title="MVVM 框架的三大要素"></a>MVVM 框架的三大要素</h4><ol><li>再次分析 demo</li><li>三要素总结<ol><li>响应式：vue 如何监听到 data的每个属性的变化？</li><li>模板引擎：vue的模板如何被解析，指令如何处理？</li><li>渲染：vue的模板如何被渲染成html？以及渲染过程？</li></ol></li></ol><h4 id="vue中如何实现响应式-1"><a href="#vue中如何实现响应式-1" class="headerlink" title="vue中如何实现响应式"></a>vue中如何实现响应式</h4><ol><li>关键是理解 Object.defineProperty</li><li>将data 的属性代理到vm上</li></ol><h4 id="vue中如何解析模板-1"><a href="#vue中如何解析模板-1" class="headerlink" title="vue中如何解析模板"></a>vue中如何解析模板</h4><ol><li>模板：字符串，有逻辑、嵌入JS变量……</li><li>模板必须转换为JS代码(有逻辑、渲染html、JS变量)</li><li>模板最后会被转换为render函数的函数体<ol><li>render函数中的_c相当于snabbdom中的h函数</li><li>render函数最终返回的就是 vnode</li></ol></li><li>render函数是什么样子，render函数执行是返回vnode。</li><li>updateComponent<ol><li>调用了vm._update(vm._render())，里面进行了patch操作</li><li>首次渲染的时候 patch操作是根据vnode创建node，然后填充容器</li><li>之后渲染的时候，patch操作是进行vnode对比，然后将新的vnode创建node，替换掉vnode中旧的node。</li><li>只要data属性发生了修改操作，就会执行updateComponent，但是要看页面中是否使用到了这个属性，如果没有使用到，就不会执行updateComponent。</li></ol></li></ol><h4 id="vue的整个实现流程-1"><a href="#vue的整个实现流程-1" class="headerlink" title="vue的整个实现流程"></a>vue的整个实现流程</h4><ol><li>第一步：解析模板成render函数</li><li>第二步：响应式开始监听</li><li>第三步：首次渲染，显示页面，且绑定依赖</li><li>第四步：data属性变化，触发rerender</li></ol><h2 id="组件化与React"><a href="#组件化与React" class="headerlink" title="组件化与React"></a>组件化与React</h2><ol><li>是否做过React开发？</li><li>React 以及组件化的一些核心概念</li><li>实现流程</li></ol><h3 id="问题-5"><a href="#问题-5" class="headerlink" title="问题"></a><strong>问题</strong></h3><ol><li>说一下对组件化的理解</li><li>JSX本质是什么</li><li>JSX和vdom的关系</li><li>说一下 setState的过程</li><li>阐述自己对React和vue的认识</li></ol><h3 id="实践-5"><a href="#实践-5" class="headerlink" title="实践"></a><strong>实践</strong></h3><h4 id="说一下对组件化的理解？"><a href="#说一下对组件化的理解？" class="headerlink" title="说一下对组件化的理解？"></a>说一下对组件化的理解？</h4><ol><li>用React 实现to-do-list<ol><li>使用命令安装： <code>npm i create-react-app -g</code></li><li>使用命令创建app：<code>create-react-app react-app</code></li></ol></li><li>组件的封装<ol><li>视图<pre><code class="react"> render(){
+     return (
+             &lt;div&gt;
+                 &lt;h3&gt;我是TodoList&lt;/h3&gt;
+                 &lt;Input addTitle={this.addTitle.bind(this)} /&gt;
+                 &lt;List data={this.state.list} /&gt;
+             &lt;/div&gt;
+         );
+ }
+</code></pre></li><li>数据<pre><code class="react">     constructor(props){
+         super(props);   
+         // 数据部分     
+         this.state={
+             list:[
+                 &#39;a&#39;,
+                 &#39;b&#39;,
+                 &#39;c&#39;,
+                 &#39;d&#39;
+             ]
+         }
+     }
+</code></pre></li><li>变化逻辑（数据驱动视图变化）<pre><code class="react">     addTitle(title) {
+         //变化逻辑
+         const currentList=this.state.list;
+         this.setState({
+             list:currentList.concat(title)
+         })
+     }
+</code></pre></li></ol></li><li><p>组件的复用</p><ol><li><p>props 传递</p><pre><code class="react"> import React,{Component} from &#39;react&#39;;
+
+ class List extends Component {
+     constructor(props) {
+         super(props);
+     }
+     render(){
+         {/* ---通过props来获取传递过来的数据--- */}
+         const list=this.props.data;
+         return (
+             &lt;ul&gt;
+                 {
+                     list.map((item,index)=&gt;{
+                         return &lt;li key={index}&gt;{item}&lt;/li&gt;
+                     })
+                 }
+             &lt;/ul&gt;
+         )
+     }
+ }
+
+ export default List;
+</code></pre></li><li><p>复用</p><pre><code class="react"> import React,{Component} from &#39;react&#39;;
+ import List from &#39;./list/index.js&#39;;
+ import Input from &#39;./input/index.js&#39;;
+
+ class TodoList extends Component {
+     constructor(props){
+         super(props);        
+         this.state={
+             list:[
+                 &#39;a&#39;,
+                 &#39;b&#39;,
+                 &#39;c&#39;,
+                 &#39;d&#39;
+             ]
+         }
+     }
+     render(){
+         return (
+                 &lt;div&gt;
+                     &lt;h3&gt;我是TodoList&lt;/h3&gt;
+                     &lt;Input addTitle={this.addTitle.bind(this)} /&gt;
+                     {/* ---组件复用--- */}
+                     &lt;List data={this.state.list} /&gt;
+                     &lt;List data={[1,2,3,4,5]} /&gt;
+                     &lt;List data={&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;} /&gt;
+                     &lt;List data={&#39;x&#39;,&#39;y&#39;,&#39;z&#39;,&#39;w&#39;} /&gt;
+                 &lt;/div&gt;
+             );
+     }
+     addTitle(title) {
+         const currentList=this.state.list;
+         this.setState({
+             list:currentList.concat(title)
+         })
+     }
+ }
+
+ export default TodoList;
+</code></pre></li></ol></li></ol><h4 id="JSX本质是什么？"><a href="#JSX本质是什么？" class="headerlink" title="JSX本质是什么？"></a>JSX本质是什么？</h4><h5 id="JSX-语法"><a href="#JSX-语法" class="headerlink" title="JSX 语法"></a>JSX 语法</h5><ol><li>注释： {/**/}</li><li>html形式<pre><code class="react"> render(){
+     return (
+         &lt;div&gt;
+             {/*注释*/}
+             {/*直接写html，但是最外层要包一层div*/}
+             &lt;p&gt;&lt;/p&gt;
+             &lt;img src=&quot;url&quot; /&gt;
+         &lt;/div&gt;
+         )
+ }
+</code></pre></li><li>引入JS变量和表达式<pre><code class="react">render(){
+     const name=&quot;zhangsan&quot;;
+     return (
+         &lt;div&gt;
+             {/* 里面可以写js变量 */}
+              &lt;p&gt;{name}&lt;/p&gt;
+             {/* 里面可以写js表达式，只要最后有值就可以 */}
+              &lt;p&gt;{1+1}&lt;/p&gt;
+         &lt;/div&gt;
+     )
+ }
+</code></pre></li><li>if…else…<pre><code class="react">  render(){
+     const show=true;
+     return (
+         &lt;div&gt;
+             {/*if-else操作使用三元表达式*/}
+             {/*如果show为true 就显示段落，否则显示空*/}
+             {show?&lt;p&gt;显示一个段落&lt;/p&gt;:&#39;&#39;}
+         &lt;/div&gt;
+     )
+ }
+</code></pre></li><li>循环<pre><code class="react"> render(){
+         const list=[1,2,3,4,5,6];
+         return (
+             &lt;div&gt;
+                 &lt;ul&gt;
+                     {list.map((item,index)=&gt; {
+                         return (
+                                 &lt;li key={index}&gt;{item}&lt;/li&gt;
+                             )
+                     })}
+                 &lt;/ul&gt;
+             &lt;/div&gt;
+         )
+ }
+</code></pre></li></ol><ul><li>style 和 className<pre><code class="react">  render(){
+          return (
+              &lt;div className=&#39;container&#39;&gt;
+                  {/* style属性是一个对象,所以你要传递一个对象进去，于是就要包两层{},第一层是表示传递js变量进去，第二层表示这个变量是一个对象 */}
+                  &lt;p style={{fontSize:'40px',color:'#0f0'}}&gt;显示一个段落&lt;/p&gt;
+              &lt;/div&gt;
+          )
+  }
+</code></pre></li><li>事件<pre><code class="react">  onClick = { handel}
+</code></pre></li><li><p>JSX 语法根本无法被浏览器所解析</p><pre><code class="react">  import React, { Component } from &#39;react&#39;;
+  import logo from &#39;./logo.svg&#39;;
+  import &#39;./App.css&#39;;
+
+  import TodoList from &#39;./components/todo/index.js&#39;;
+
+  class App extends Component {
+    render() {
+      return (
+        &lt;div className=&quot;App&quot;&gt;
+          &lt;TodoList/&gt;
+        &lt;/div&gt;
+      );
+    }
+  }
+
+  export default App;
+</code></pre></li><li>那么它如何在浏览器运行？</li></ul><h5 id="JSX-解析成JS"><a href="#JSX-解析成JS" class="headerlink" title="JSX 解析成JS"></a>JSX 解析成JS</h5><ol><li>JSX 其实是语法糖</li><li>开发环境下会将JSX编译成JS代码，这一点react和vue是一样的</li><li>JSX的写法大大降低了学习成本和编码工作量</li><li>同时，JSX 也会增加debug成本</li><li><p>简单解析</p><pre><code class="react"> /*JSX 代码*/
+ var profile=(
+         &lt;div&gt;
+             &lt;img src=&#39;avatar.png&#39; className=&#39;profile&#39; /&gt;
+             &lt;h3&gt;{[user.firstName,user.lastName].join(&#39; &#39;)}&lt;/h3&gt;
+         &lt;/div&gt;
+     );
+
+ // 解析结果
+ var profile=React.createElement(&quot;div&quot;,null,
+     React.createElement(&quot;img&quot;,{src:&#39;avatar.png&#39;,className:&#39;profile&#39;}),React.createElement(&quot;h3&quot;,null,[user.firstName,user.lastName].join(&quot; &quot;))
+ );
+</code></pre></li><li>参数说明<pre><code class="react"> // React.createElment 参数说明
+ // 标签名、属性、子节点
+ React.createElement(&quot;div&quot;,{id:&#39;div1&#39;},child1,child2,child3);
+ // 标签名、属性、一个数组里面装着所有子元素
+ React.createElement(&quot;div&quot;,{id:&#39;div1&#39;},[...]);
+ // 标签名、属性
+ React.createElement(&quot;div&quot;,{id:&#39;div1&#39;});
+</code></pre></li><li><p>再次解析</p><pre><code class="react"> /*JSX 代码*/
+ render(){
+     const list=this.props.data;
+     return (
+         &lt;ul&gt;
+             {
+                 list.map((item,index)=&gt;{
+                     return &lt;li key={index}&gt;{item}&lt;/li&gt;
+                 })
+             }
+         &lt;/ul&gt;
+     )
+ }
+
+ //解析结果
+ function render(){
+     const list=this.props.data;
+     return React.createElement(
+         &quot;ul&quot;,
+          null,
+          list.map((item,index)=&gt;{
+             return React.createElement(
+                 &quot;li&quot;,
+                 {key:index},
+                 item
+             )
+         })
+     );
+ }
+</code></pre></li></ol><h5 id="独立的标准"><a href="#独立的标准" class="headerlink" title="独立的标准"></a>独立的标准</h5><ol><li>JSX是React引入的，但不是React独有的</li><li>React已经将它作为一个独立标准开放，<ol><li>其他项目也可用（PReact用到了它，PReact是单独的一个项目，与React没有多大关系）</li></ol></li><li>React.createElement 是可以自定义修改的（PReact中将它改成了h，直接使用h()来使用）</li><li>说明：本身功能已经完备；和其他标准兼容和扩展没问题</li><li>另外：有机会录制《1000行代码实现React》，就用JSX标准，和PReact一样做一个微型的React</li><li>新建文件夹，进入文件夹，安装依赖，命令：<code>npm init -y;npm i -g babale;npm i --save-dev babel-plugin-transform-react-jsx</code></li><li>新建.babelrc文件，填充内容：<code>{&quot;plugins&quot;:[&quot;transform-react-jsx&quot;]}</code></li><li>新建demo.jsx文件，填充实例代码<pre><code class="react"> class Input extends Component {
+     render(){
+         return (
+             &lt;div&gt;
+                 &lt;input type=&quot;text&quot; value={this.state.title} onChange={this.changeHandler.bind(this)}/&gt; &lt;button onClick={this.clickHandler.bind(this)}&gt;提交&lt;/button&gt;
+             &lt;/div&gt;
+         )
+     }
+ }
+</code></pre></li><li>调用命令，<code>babel --plugins transform-react-jsx demo.jsx</code></li><li>编译后的结果<pre><code class="react"> class Input extends Component {
+     render() {
+         return React.createElement(
+             &quot;div&quot;,
+             null,
+             React.createElement(&quot;input&quot;, { type: &quot;text&quot;, value: this.state.title, onChange: this.changeHandler.bind(this) }),
+             &quot; &quot;,
+             React.createElement(
+                 &quot;button&quot;,
+                 { onClick: this.clickHandler.bind(this) },
+                 &quot;\u63D0\u4EA4&quot;
+             )
+         );
+     }
+ }
+</code></pre></li><li>修改 React.createElement 变成 h函数，第一行加一个注释即可<pre><code class="react"> /* @jsx h */
+ class Input extends Component {
+     render(){
+         return (
+             &lt;div&gt;
+                 &lt;input type=&quot;text&quot; value={this.state.title} onChange={this.changeHandler.bind(this)}/&gt; &lt;button onClick={this.clickHandler.bind(this)}&gt;提交&lt;/button&gt;
+             &lt;/div&gt;
+         )
+     }
+ }
+</code></pre></li><li><p>修改后的编译结果</p><pre><code class="react"> /* @jsx h */
+
+ class Input extends Component {
+     render() {
+         return h(
+             &quot;div&quot;,
+             null,
+             h(&quot;input&quot;, { type: &quot;text&quot;, value: this.state.title, onChange: this.changeHandler.bind(this) }),
+             &quot; &quot;,
+             h(
+                 &quot;button&quot;,
+                 { onClick: this.clickHandler.bind(this) },
+                 &quot;\u63D0\u4EA4&quot;
+             )
+         );
+     }
+ }
+</code></pre></li></ol><h4 id="JSX和vdom的关系？"><a href="#JSX和vdom的关系？" class="headerlink" title="JSX和vdom的关系？"></a>JSX和vdom的关系？</h4><h5 id="分析：为何需要vdom"><a href="#分析：为何需要vdom" class="headerlink" title="分析：为何需要vdom?"></a>分析：为何需要vdom?</h5><ol><li>vdom 是React初次推广开来的，结合JSX</li><li>JSX就是模板，最终要渲染成html</li><li>初次渲染 修改state后的re-render</li><li>正好符合vdom的应用场景</li></ol><h5 id="React-createElement和h"><a href="#React-createElement和h" class="headerlink" title="React.createElement和h?"></a>React.createElement和h?</h5><pre><code class="react">    class Input extends Component {
+        render() {
+            return React.createElement(
+                &quot;div&quot;,
+                null,
+                React.createElement(&quot;input&quot;, { type: &quot;text&quot;, value: this.state.title, onChange: this.changeHandler.bind(this) }),
+                &quot; &quot;,
+                React.createElement(
+                    &quot;button&quot;,
+                    { onClick: this.clickHandler.bind(this) },
+                    &quot;\u63D0\u4EA4&quot;
+                )
+            );
+        }
+    }
+</code></pre><pre><code class="react">    /* @jsx h */
+
+    class Input extends Component {
+        render() {
+            return h(
+                &quot;div&quot;,
+                null,
+                h(&quot;input&quot;, { type: &quot;text&quot;, value: this.state.title, onChange: this.changeHandler.bind(this) }),
+                &quot; &quot;,
+                h(
+                    &quot;button&quot;,
+                    { onClick: this.clickHandler.bind(this) },
+                    &quot;\u63D0\u4EA4&quot;
+                )
+            );
+        }
+    }
+</code></pre><h5 id="何时patch"><a href="#何时patch" class="headerlink" title="何时patch ?"></a>何时patch ?</h5><ol><li>初次渲染-<code>ReactDOM.render(&lt;App/&gt;,container);</code></li><li>会触发<code>patch(container,vnode)</code></li><li><code>re-render</code> - <code>setState</code>修改了属性的值</li><li>会触发<code>patch(vnode,newVnode)</code></li></ol><h5 id="自定义组件的解析？"><a href="#自定义组件的解析？" class="headerlink" title="自定义组件的解析？"></a>自定义组件的解析？</h5><ol><li>自定义组件内的render函数是返回虚拟DOM</li><li>ReactDOM.render是将虚拟DOM转化为真正的DOM</li><li><p>实例代码</p><pre><code class="react"> import React,{Component} from &#39;react&#39;;
+ import List from &#39;./list/index.js&#39;;
+ import Input from &#39;./input/index.js&#39;;
+
+ class TodoList extends Component {
+     render(){
+         return (
+                 &lt;div&gt;
+                     &lt;h3 style={{fontSize:'40px',color:'#0f0'}}&gt;我是TodoList&lt;/h3&gt;
+                     &lt;Input addTitle={this.addTitle.bind(this)} /&gt; 
+                     &lt;List data={this.state.list} /&gt;
+                 &lt;/div&gt;
+             );
+     }
+ }
+</code></pre></li><li><p>解析后的代码</p><pre><code class="react"> import React, { Component } from &#39;react&#39;;
+ import List from &#39;./list/index.js&#39;;
+ import Input from &#39;./input/index.js&#39;;
+
+ class TodoList extends Component {
+     render() {
+         return React.createElement(
+             &#39;div&#39;,
+             null,
+             React.createElement(
+                 &#39;h3&#39;,
+                 { style: { fontSize: &#39;40px&#39;, color: &#39;#0f0&#39; } },
+                 &#39;\u6211\u662FTodoList&#39;
+             ),
+             /* 自定义组件被解析成 类，也就是构造函数，而不是标签名了 */
+             React.createElement(Input, { addTitle: this.addTitle.bind(this) }),
+             React.createElement(List, { data: this.state.list })
+         );
+     }
+ }
+</code></pre></li><li><code>&#39;div&#39;</code>-直接渲染成 <code>&lt;div&gt;</code>即可，vdom可以做到</li><li>Input和List，是自定义组件（class），vdom默认不认识</li><li>因此Input和List定义的时候必须声明render函数</li><li>根据props(传递过去的属性对象)初始化实例，然后执行实例的render函数</li><li><p>render函数返回的还是vnode对象</p><pre><code class="react"> /* 原始代码 */
+ render(){
+     return (
+             &lt;div&gt;
+                 &lt;List data={this.state.list} /&gt;
+             &lt;/div&gt;
+         );
+ }
+</code></pre><pre><code class="react"> /* 解析成js代码 */
+ render() {
+     return React.createElement(
+         &#39;div&#39;,
+         null,
+         /* 自定义组件被解析成 类，也就是构造函数，而不是标签名了 */
+         React.createElement(List, { data: this.state.list })
+     );
+ }
+</code></pre><pre><code class="react"> /* List 组件的render函数*/
+ render(){
+         //获取传递过来的props中的成员
+         const list=this.props.data;
+         return (
+             &lt;ul&gt;
+                 {
+                     list.map((item,index)=&gt;{
+                         return &lt;li key={index}&gt;{item}&lt;/li&gt;
+                     })
+                 }
+             &lt;/ul&gt;
+         )
+     }
+ }
+</code></pre><pre><code class="react"> //jsx模板
+ &lt;List data={this.state.list} /&gt;
+
+ //转换为h函数
+ React.createElement(List, { data: this.state.list });
+
+ //内部会做这样的处理 ，传递数据进去，这也是为什么要调用 super(props)的原因，使用父类中的方法来初始化一个props成员，子类就可以通过this.props来调用了。
+ var list=new List({ data: this.state.list });
+ var vnode=list.render();
+ return vnode;
+</code></pre></li></ol><h4 id="说一下-setState的过程？"><a href="#说一下-setState的过程？" class="headerlink" title="说一下 setState的过程？"></a>说一下 setState的过程？</h4><h5 id="setState-的异步"><a href="#setState-的异步" class="headerlink" title="setState 的异步"></a>setState 的异步</h5><ol><li>实例代码<pre><code class="react"> addTitle(title) {
+     const currentList=this.state.list; 
+     console.log(this.state.list); //[&#39;a&#39;,&#39;b&#39;]
+     this.setState({
+         list:currentList.concat(title) //&#39;c&#39;
+     })
+     console.log(this.state.list); //[&#39;a&#39;,&#39;b&#39;]
+ }
+</code></pre></li><li>setState为何要异步？<ol><li>可能会一次执行多次setState</li><li>你无法规定、限制用户如何使用setState</li><li>没必要每次setState都重新渲染，考虑性能</li><li>即便是每次重新渲染，用户也看不到中间的效果（JS执行和DOM渲染是单线程的）</li><li>只看到最后的结果即可<pre><code class="react"> addTitle(title) {
+ const currentList=this.state.list; 
+ // 初次想增加 title
+ this.setState({
+     list:currentList.concat(title)
+ })
+ // 改变主意，想增加title + 1
+ this.setState({
+     list:currentList.concat(title+1)
+ })
+ // 又改变主意，想增加title+2
+ this.setState({
+     list:currentList.concat(title+2)
+ })
+ // 只会执行最后一个，前面的都被覆盖掉了
+}
+</code></pre></li></ol></li></ol><h5 id="vue-修改属性也是异步"><a href="#vue-修改属性也是异步" class="headerlink" title="vue 修改属性也是异步"></a>vue 修改属性也是异步</h5><ol><li>效果、原因和setState一样</li><li>对比记忆，印象深刻</li></ol><h6 id="权当复习一下-vue-的渲染流程"><a href="#权当复习一下-vue-的渲染流程" class="headerlink" title="权当复习一下 vue 的渲染流程"></a>权当复习一下 vue 的渲染流程</h6><ol><li>第一步：解析模板成render函数</li><li>第二步：响应式开始监听</li><li>第三步：首次渲染，显示页面，且绑定依赖</li><li>第四步：data属性变化，触发rerender<ol><li>其中的set中执行 <code>updateComponent</code> 是异步的操作</li></ol></li></ol><h5 id="setState-的过程"><a href="#setState-的过程" class="headerlink" title="setState 的过程"></a>setState 的过程</h5><ol><li><p>每个组件实例，都有<code>renderComponent</code>方法，这个方法是父类<code>Component</code>的。</p><pre><code class="react"> // 模拟定义
+ class Component{
+     constructor(props){
+
+     }
+     renderComponent(){
+         const preVnode=this._vode;
+         const newVnode=this.render();
+         patch(preVnode,newVnode);
+         this._vnode=newVnode;
+     }
+ }
+</code></pre></li><li>执行<code>renderComponent</code> 会重新执行实例的<code>render</code></li><li><code>render</code>函数返回<code>newVnode</code>，然后拿到<code>preVnode</code></li><li>执行 <code>patch(preVnode,newVnode)</code><pre><code class="react"> addTitle(title) {
+     const currentList=this.state.list; 
+     this.setState({
+         list:currentList.concat(title)//&#39;c&#39;
+     }
+ //   ,()=&gt;{
+ //       //console.log(this.state.list);//[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]
+ //          setState内部自动调用这个方法 renderComponent
+ //          this.renderComponent();
+ //   }
+    )
+ }
+</code></pre></li></ol><h4 id="阐述自己对React和vue的认识？"><a href="#阐述自己对React和vue的认识？" class="headerlink" title="阐述自己对React和vue的认识？"></a>阐述自己对React和vue的认识？</h4><ol><li>React 组件化</li><li>vue MVVM</li></ol><h3 id="问题解答-5"><a href="#问题解答-5" class="headerlink" title="问题解答"></a><strong>问题解答</strong></h3><h4 id="说一下对组件化的理解"><a href="#说一下对组件化的理解" class="headerlink" title="说一下对组件化的理解"></a>说一下对组件化的理解</h4><ol><li>组件的封装： 视图、 数据、变化逻辑（数据驱动视图变化）</li><li>组件的复用： props 传递（可以传递不同数据进去）、 复用（模板复用）</li></ol><h4 id="JSX本质是什么"><a href="#JSX本质是什么" class="headerlink" title="JSX本质是什么"></a>JSX本质是什么</h4><ol><li>JSX语法（标签、JS表达式、判断、循环、事件绑定）</li><li>JSX的本质就是语法糖，需被解析成JS才能运行</li><li>JSX是独立的标准，可被其他项目使用</li></ol><h4 id="JSX和vdom的关系"><a href="#JSX和vdom的关系" class="headerlink" title="JSX和vdom的关系"></a>JSX和vdom的关系</h4><ol><li>为何需要vdom：JSX需要渲染成html，以数据驱动视图触发<code>rerender</code></li><li><code>React.createElement</code>和<code>h</code>，都生成<code>vnode</code></li><li>何时patch：<code>ReactDOM.render()</code>和<code>setState</code></li><li>自定义组件的解析：根据props（传递过来的数据）来初始化实例，然后执行render然后vnode<ol><li>这也是为什么组件中必须加一个c<code>onstructor(props){super(props)}</code>的原因</li><li>使用父类中的方法来初始化一个props成员，子类就可以通过this.props来获取传递过来的数据了</li></ol></li></ol><h4 id="说一下-setState的过程"><a href="#说一下-setState的过程" class="headerlink" title="说一下 setState的过程"></a>说一下 setState的过程</h4><h5 id="setState-的异步：效果、原因"><a href="#setState-的异步：效果、原因" class="headerlink" title="setState 的异步：效果、原因"></a>setState 的异步：效果、原因</h5><ol><li>你使用setState给属性赋值时异步的，<ol><li>你直接在后面<code>console.log(属性);</code>，</li><li>会发现setState中给属性赋值的操作还没有执行。</li></ol></li><li>原因是防止后续有更多的setState操作，<ol><li>从而导致renderComponent的操作重复执行，</li><li>这样就会导致重复渲染。</li><li>所以setState的操作就是异步的了，</li><li>setState中的中的属性赋值操作会被放到一个函数的函数体中去，</li><li>然后调用setTimeOut。</li><li>后续更多的setState只会修改这个函数的函数体，</li><li>所以会不停的覆盖，只会执行最后一个函数。</li></ol></li></ol><h5 id="vue-修改属性也是异步：效果、原因"><a href="#vue-修改属性也是异步：效果、原因" class="headerlink" title="vue 修改属性也是异步：效果、原因"></a>vue 修改属性也是异步：效果、原因</h5><ol><li>set中执行 updateComponent 是异步的操作</li><li>一次操作有多次修改data中成员的值的时候，<ol><li>会将这么一次操作的多次修改data中成员的值的操作汇总一下</li></ol></li><li>只把最后的结果渲染出来，<ol><li>这样既能满足用户的要求，</li><li>也能最大限度地提高性能</li></ol></li><li>内部维护一个函数队列，<ol><li>每次操作都会往队列中加函数，</li><li>然后使用setTimeOut，</li><li>循环执行队列中的函数，</li><li>最后才执行updateComponent 渲染DOM。</li></ol></li><li>但是先判断你是否在页面中使用了，<ol><li>如果使用了，</li><li>才会把本次的set操作放入队列中去，</li><li>如果没有使用，就直接使用set赋值。</li></ol></li></ol><h5 id="setState的过程："><a href="#setState的过程：" class="headerlink" title="setState的过程："></a>setState的过程：</h5><ol><li>最终走到<code>ptach(preVnode,newVnode)</code></li></ol><h4 id="阐述自己对React和vue的认识"><a href="#阐述自己对React和vue的认识" class="headerlink" title="阐述自己对React和vue的认识"></a>阐述自己对React和vue的认识</h4><h5 id="两者本质的区别"><a href="#两者本质的区别" class="headerlink" title="两者本质的区别"></a>两者本质的区别</h5><ol><li>vue 本质是MVVM框架，有MVC发展而来</li><li>React 本质是前端组件化框架，由后端组件化发展而来（ASP.NET WebForm）</li><li>但这并不妨碍他们两者都能实现相同的功能</li></ol><h5 id="看模板和组件化的区别"><a href="#看模板和组件化的区别" class="headerlink" title="看模板和组件化的区别"></a>看模板和组件化的区别</h5><h6 id="模板的区别"><a href="#模板的区别" class="headerlink" title="模板的区别"></a>模板的区别</h6><ol><li><p>实例代码-1</p><pre><code class="html"> // Vue中
+ &lt;div&gt;
+     &lt;h1 v-if=&quot;ok&quot;&gt;Yes&lt;/h1&gt;
+     &lt;h1 v-else&gt;No&lt;/h1&gt;
+ &lt;/div&gt;
+
+ // React中
+ &lt;div&gt;
+     {ok？&lt;h1&gt;Yes&lt;/h1&gt;:&lt;h1&gt;No&lt;/h1&gt;}
+ &lt;/div&gt;
+</code></pre></li><li><p>实例代码-2</p><pre><code class="html"> // Vue中
+ &lt;ul id=&quot;example-1&quot;&gt;
+     &lt;li v-for=&quot;(item,index) in items&quot; :key=&quot;index&quot;&gt;
+         {{item.message}}
+     &lt;/li&gt;
+ &lt;/ul&gt;
+
+ // React中
+ &lt;ul id=&quot;example-1&quot;&gt;
+     {
+         items.map((item,index)=&gt;{
+             return &lt;li key={index}&gt;{item.message}&lt;/li&gt;
+         })
+     }
+ &lt;/ul&gt;
+</code></pre></li><li>vue 使用模板 （最初是由angular提出的）</li><li>React 使用JSX (已经是标准化了)</li><li>模板语法上，我更加倾向于JSX<ol><li>就是html+js，没有其它的什么指令之类的</li></ol></li><li>模板分离上，我更加倾向于vue<ol><li>模板应该和JS逻辑分离</li><li>React 很明显是模板与JS混在了一起</li><li>Vue 很明显模板与JS分开了</li><li>回顾 “开放封闭原则”</li></ol></li></ol><h6 id="组件化的区别"><a href="#组件化的区别" class="headerlink" title="组件化的区别"></a>组件化的区别</h6><ol><li>React本身就是组件化，没有组件化就不是React</li><li>Vue 也支持组件化，不过是在MVVM上扩展</li><li>查阅vue组件化的文档，洋洋洒洒很多（侧面反映）</li><li>对于组件化，我更倾向与React，做的彻底而清晰</li></ol><h5 id="两者共同点"><a href="#两者共同点" class="headerlink" title="两者共同点"></a>两者共同点</h5><ol><li>都支持组件化，前端不支持组件化就像你写的JS不支持模块儿化一样</li><li>都是数据驱动视图</li><li>国内使用，首推vue。文档更易读、易学、社区够大。</li><li>如果团队水平较高，推荐使用React。组件化和JSX。<ol><li>组件化更加彻底</li><li>JSX已经成为标准</li></ol></li></ol><h5 id="总结问题答案"><a href="#总结问题答案" class="headerlink" title="总结问题答案"></a>总结问题答案</h5><ol><li>前言<ol><li>文物第一武无第二，技术选型没有绝对的对与错</li><li>技术选型要考虑的因素非常多</li><li>作为面试者，你要有自己的主见</li><li>和面试观的观点不一致没关系，只要能说出理由</li></ol></li></ol><h2 id="hybrid-1"><a href="#hybrid-1" class="headerlink" title="hybrid"></a>hybrid</h2><ol><li>移动端占大部分流量，已经远远超过PC</li><li>一线互联网公司都有自己的App</li><li>这些App中有很大比例的前端代码（不要惊讶）</li><li>拿微信举例子，你每天浏览微信的内容，多少是前端？</li></ol><h3 id="问题-6"><a href="#问题-6" class="headerlink" title="问题"></a><strong>问题</strong></h3><ol><li>hybrid是什么，为何用hybrid</li><li>介绍一下 hybrid 更新和上线的流程</li><li>hybrid 和 h5 的主要区别</li><li>前端JS 和客户端如何通讯</li></ol><h3 id="实践-6"><a href="#实践-6" class="headerlink" title="实践"></a><strong>实践</strong></h3><h4 id="hybrid是什么，为何用hybrid？"><a href="#hybrid是什么，为何用hybrid？" class="headerlink" title="hybrid是什么，为何用hybrid？"></a>hybrid是什么，为何用hybrid？</h4><h5 id="hybrid-文字解释"><a href="#hybrid-文字解释" class="headerlink" title="hybrid 文字解释"></a>hybrid 文字解释</h5><ol><li>hybrid 既”混合”，既前端和客户端的混合开发</li><li>某前端开发人员和客户端人员配合完成</li><li>某些环节也可能涉及到server端</li><li>PS：不要以为自己是前端就可以不用理会客户端的知识。</li><li>大前端就是一个比较广义的前端<ol><li>客户端的知识你要了解</li><li>前端的知识你要精</li><li>服务端的知识你也要了解</li></ol></li><li>以前说的前端是一个比较狭义的前端<ol><li>会写html</li><li>会写css</li><li>会写js</li></ol></li></ol><h5 id="存在价值，为何会用hybrid"><a href="#存在价值，为何会用hybrid" class="headerlink" title="存在价值，为何会用hybrid"></a>存在价值，为何会用hybrid</h5><ol><li>可以快速迭代更新【关键】（无需app审核，思考为何？）<ol><li>app需要审核是因为 app获取通过权限来获取用户的隐私。</li><li>hybrid是纯前端代码，权限低，不能够访问到用户的隐私。</li></ol></li><li>体验流畅（和 NA 的体验基本类似）</li><li>减少开发和沟通成本，双端公用一套代码（安卓和ios百分之九十通用）</li></ol><h5 id="webview"><a href="#webview" class="headerlink" title="webview"></a>webview</h5><ol><li>是app中的一个组件（app可以有webview，也可以没有）</li><li>用于加载h5页面，即一个小型的浏览器内核</li></ol><h5 id="file-协议"><a href="#file-协议" class="headerlink" title="file:// 协议"></a>file:// 协议</h5><ol><li>其实在一开始接触html开发，就已经使用了file协议</li><li>只不过你当时没有”协议” “标准” 等这些概念</li><li>再从强调 “协议” “标准” 的重要性！！！</li></ol><h6 id="http-s-协议与file协议"><a href="#http-s-协议与file协议" class="headerlink" title="http(s)协议与file协议"></a>http(s)协议与file协议</h6><ol><li>只要是本地的就是用file协议</li><li>在网络上的就是用http(s)协议</li><li>两者的区别<ol><li>file协议：本地文件，快</li><li>http(s)协议：网络加载，慢</li></ol></li><li>演示<ol><li>http(s)协议</li><li>file协议，借用webpack的测试页面</li><li>看file:// 和整个 url的关系【重要】</li></ol></li></ol><h5 id="hybrid-实现流程"><a href="#hybrid-实现流程" class="headerlink" title="hybrid 实现流程"></a>hybrid 实现流程</h5><ol><li>不是所有场景都适合使用hybrid：<ol><li>使用NA：体验要求极致，变化不频繁（如头条的首页）</li><li>使用bybrid：体验要求高，变化频繁（如头条的新闻详情页）</li><li>使用h5：体验无要求，不常用（如举报、反馈等页面）</li></ol></li><li>前端做好静态页面（html、js、css）,将文件交给客户端</li><li>客户端拿到前端静态页面，以文件形式存储在app中</li><li>客户端在一个webview中</li><li>使用file协议加载静态页面</li><li>遗留问题<ol><li>app发布之后，静态文件如何实时更新？</li><li>静态文件如何获取内容？</li></ol></li></ol><h4 id="介绍一下-hybrid-更新和上线的流程？"><a href="#介绍一下-hybrid-更新和上线的流程？" class="headerlink" title="介绍一下 hybrid 更新和上线的流程？"></a>介绍一下 hybrid 更新和上线的流程？</h4><h5 id="回顾hybrid-实现流程"><a href="#回顾hybrid-实现流程" class="headerlink" title="回顾hybrid 实现流程"></a>回顾hybrid 实现流程</h5><ol><li>前端做好静态页面（html、js、css）,将文件交给客户端</li><li>客户端拿到前端静态页面，以文件形式存储在app中</li><li>客户端在一个webview中</li><li>使用file协议加载静态页面</li></ol><h5 id="思考（目的，实现途径）"><a href="#思考（目的，实现途径）" class="headerlink" title="思考（目的，实现途径）"></a>思考（目的，实现途径）</h5><ol><li>将数据上传到server端，一天传一万次都没有问题</li><li>app安装到用户的手机上</li><li>每次app打开，都会自动去server端去看一看，然后把最新静态文件下载下来。</li></ol><h5 id="更新流程"><a href="#更新流程" class="headerlink" title="更新流程"></a>更新流程</h5><ol><li>粗略流程<ol><li>要替换每个客户端的静态文件</li><li>只能客户端来做（客户端是我们开发的）</li><li>客户端去 server下载最新的静态文件</li><li>我们维护server的静态文件</li></ol></li><li>具体流程<ol><li>将静态文件(html、css、js)打包放到服务端，每一个包都有版本号</li><li>客户端去服务端看看静态文件资源的版本号</li><li>如果当前本地资源包的版本号比服务端的资源包版本号低，那就下载，否则就不下载。</li><li>下载最新的压缩包之后，然后自己解压。</li></ol></li><li>完整流程<ol><li>分版本，有版本号，如201803211015</li><li>将静态文件压缩成zip包，上传到服务端</li><li>客户端每次启动，都去服务端检查版本号</li><li>如果服务端版本号大于客户端版本号，就去下载最新的zip包</li><li>下载完成之后解压包，然后将现有文件覆盖</li></ol></li></ol><h4 id="hybrid-和-h5-的主要区别？"><a href="#hybrid-和-h5-的主要区别？" class="headerlink" title="hybrid 和 h5 的主要区别？"></a>hybrid 和 h5 的主要区别？</h4><ol><li>优点<ol><li>体验更好，跟NA（本地app）体验基本一致</li><li>可快速迭代，无需app审核（关键）</li></ol></li><li>缺点<ol><li>开发成本高。联调、测试、查bug都比较麻烦</li><li>运维成本高。参考此前讲过的更新上线的流程。</li></ol></li><li>适用场景<ol><li>hybrid：产品的稳定功能，体验要求高，迭代频繁</li><li>h5：单次的运营活动（如xx红包）或不常用功能</li></ol></li></ol><h4 id="前端JS-和客户端如何通讯？"><a href="#前端JS-和客户端如何通讯？" class="headerlink" title="前端JS 和客户端如何通讯？"></a>前端JS 和客户端如何通讯？</h4><h5 id="回顾之前遗留的问题"><a href="#回顾之前遗留的问题" class="headerlink" title="回顾之前遗留的问题"></a>回顾之前遗留的问题</h5><ol><li>新闻详情页使用hybrid，前端如何获取新闻内容？<ol><li>不能用ajax获取。协议不一样，第一跨域，第二速度慢</li><li>客户端获取新闻内容，然后JS通讯拿到内容，再渲染</li></ol></li></ol><h5 id="JS-和客户端通讯的基本形式"><a href="#JS-和客户端通讯的基本形式" class="headerlink" title="JS 和客户端通讯的基本形式"></a>JS 和客户端通讯的基本形式</h5><ol><li>基本总结<ol><li>webview中的html、js、css</li><li>js触发某个方法，将参数和callback传递给客户端app</li><li>客户端app使用它的能力获取数据后，执行callback，将获取到的数据传递给webview中页面中。</li></ol></li><li>简单总结<ol><li>JS访问客户端能力，传递参数和回调函数</li><li>客户端通过回调函数返回内容</li></ol></li></ol><h5 id="schema-协议简介和使用"><a href="#schema-协议简介和使用" class="headerlink" title="schema 协议简介和使用"></a>schema 协议简介和使用</h5><ol><li>之前介绍了http(s)和file协议</li><li>schema协议 —- 前端和客户端通讯的约定</li><li>如：weixin://dl/scan ，<ol><li>weixin就是协议名，</li><li>这个协议可以自己定，</li><li>但是不能瞎取，</li><li>取了之后就成了协议的一部分了。</li></ol></li><li>协议定义好了之后，前端JS就可以和客户端进行通讯了</li><li>实例代码-最简单的使用schema协议<pre><code class="js"> /*以下是演示，无法正常运行，微信有严格的权限验证，外部页面不能随意使用 schema*/
+ var iframe=document.createElement(&#39;iframe&#39;);
+ iframe.style.display=&#39;none&#39;;
+ iframe.src=&#39;weixin://dl/scan&#39;; //iframe 访问 schema
+ var body=document.body||document.getElementsByTagName(&#39;body&#39;)[0];
+ body.appendChild(iframe);
+ setTimeout(function(){
+     body.removeChild(iframe); //销毁 iframe
+     iframe=null; //这么做是为了防止造成内存泄漏
+ })
+</code></pre></li><li>实例代码 - 传递参数<pre><code class="js"> /*如果要加上参数和callback，那么就要这么写*/
+ window[&#39;_weixin_scan_callback&#39;]=function(result) {
+     alert(result);
+ }
+ // 使用这种方式来传递参数
+ iframe.src=&#39;weixin://dl/scan?k1=v1&amp;k2=v2&amp;callback=_weixin_scan_callabck&#39;;
+</code></pre></li></ol><h5 id="schema-使用的封装"><a href="#schema-使用的封装" class="headerlink" title="schema 使用的封装"></a>schema 使用的封装</h5><ol><li>简单的调用<pre><code class="js"> /* 傻瓜式调用，而且不用再自己定义全局函数 */
+ window.invoke.share({title:&#39;xxx&#39;,content:&#39;xxx&#39;},function(result){
+     if(result.errno===0) {
+         alert(&#39;分享成功&#39;);
+     }else {
+         //分享失败
+         alert(result.message);
+     }
+ });
+</code></pre></li><li><p>封装 invoke</p><pre><code class="js"> //分享
+ function invokeShare(data,callback) {
+     _invoke(&#39;share&#39;,data,callback);   
+ }
+ //登陆
+ function invokeLogin(data,callback) {
+     _invoke(&#39;login&#39;,data,callback);
+ }
+ // 打开扫一扫
+ function invokeScan(data,callback) {
+     _invoke(&#39;scan&#39;,data,callback);
+ }
+
+ // 暴露给全局
+ window.invoke={
+     share:invokeShare,
+     login:invokeLogin,
+     scan:invokeScan
+ }
+</code></pre></li><li><p>封装_invoke</p><pre><code class="js"> function _invoke(action,data,callback) {
+     // 拼接 schema协议
+     var schema=&#39;myapp://utils&#39;;
+     schema+=&#39;/&#39;+action;
+
+     schema+=&#39;?a=a&#39;;
+     var key
+     for(key in data) {
+         if(data.hasOwnProperty(key)) {
+             schema+=&#39;&amp;&#39;+key+&#39;=&#39;+data[key]
+         }
+     }
+
+     //处理callback
+     var callbackName=&#39;&#39;;
+
+     // 如果传递过来的callback是字符串类型的
+     if(typeof callback===&#39;string&#39;) {
+         // 就当他传递过来的是一个全局的函数
+         callbackName=callback;
+
+     }else {
+         // 防止callbackName重复
+         callbackName=action+Date.now();
+
+         // 将传递过来的函数 赋值给全局一个函数
+         window[callbackName]=callback;
+     }
+
+     schema+=&#39;&amp;callback&#39;+callbackName;
+
+     // iframe 中调用 schema
+     var iframe=document.createElement(&#39;iframe&#39;);
+     iframe.style.display=&#39;none&#39;;
+     iframe.src=schema;
+      var body=document.body||document.getElementsByTagName(&#39;body&#39;)[0];
+     body.appendChild(iframe);
+     setTimeout(function(){
+         body.removeChild(iframe); //销毁 iframe
+         iframe=null; //这么做是为了防止造成内存泄漏
+     })
+ }
+</code></pre></li></ol><h5 id="内置上线"><a href="#内置上线" class="headerlink" title="内置上线"></a>内置上线</h5><ol><li>将以上封装的代码打包，叫做invoke.js，内置到客户端</li><li>客户端每次启动webview，都默认执行invoke.js</li><li>本地加载，免去网路加载的时间，更快。</li><li>本地加载，没有网络请求，黑客看不到schema协议，更安全</li></ol><h3 id="问题解答-6"><a href="#问题解答-6" class="headerlink" title="问题解答"></a><strong>问题解答</strong></h3><h4 id="hybrid是什么，为何用hybrid"><a href="#hybrid是什么，为何用hybrid" class="headerlink" title="hybrid是什么，为何用hybrid"></a>hybrid是什么，为何用hybrid</h4><ol><li>hybrid 是客户端和前端的混合开发。</li><li>hybrid 存在的核心意义在于快速迭代，无需审核。<ol><li>hybrid是一个很老的技术</li></ol></li><li>hybrid 实现流程,以及webview和file协议</li></ol><h4 id="介绍一下-hybrid-更新和上线的流程"><a href="#介绍一下-hybrid-更新和上线的流程" class="headerlink" title="介绍一下 hybrid 更新和上线的流程"></a>介绍一下 hybrid 更新和上线的流程</h4><ol><li>掌握流程</li><li>要点1：服务端的版本和zip包维护</li><li>要点2：更新zip包之前，先对比版本号</li><li>要点3：zip下载解压和覆盖</li></ol><h4 id="hybrid-和-h5-的主要区别"><a href="#hybrid-和-h5-的主要区别" class="headerlink" title="hybrid 和 h5 的主要区别"></a>hybrid 和 h5 的主要区别</h4><ol><li>体验好，可快速迭代</li><li>缺点：开发成本高，运维成本高</li><li>使用的场景：hybrid适合产品型，h5适合运营型（临时用的）</li></ol><h4 id="前端JS-和客户端如何通讯"><a href="#前端JS-和客户端如何通讯" class="headerlink" title="前端JS 和客户端如何通讯"></a>前端JS 和客户端如何通讯</h4><ol><li>通讯的基本形式：调用能力，传递参数，监听回调。</li><li>对 schema协议的理解和使用<ol><li>是前端和客户端通讯的基础</li></ol></li><li>调用schema 代码的封装</li><li>内置上线的好处：更快、更安全</li></ol><h2 id="课程总结"><a href="#课程总结" class="headerlink" title="课程总结"></a>课程总结</h2><h3 id="为何不讲-nodejs"><a href="#为何不讲-nodejs" class="headerlink" title="为何不讲 nodejs"></a>为何不讲 nodejs</h3><ol><li>小白程序员到nodejs的距离：10公里</li><li>java程序员到nodejs的距离：3公里</li><li>纯前端程序员到nodejs的距离：7公里</li></ol><h3 id="nodejs到底是什么？"><a href="#nodejs到底是什么？" class="headerlink" title="nodejs到底是什么？"></a>nodejs到底是什么？</h3><ol><li>nodejs：后端开发，选用了JS这个语言</li><li>你了解后端开发吗？光会一门语言的语法可远远不够！</li><li>后端开发和前端开发完全是不同的思路和设计。</li><li>stream：server端的概念</li><li>fs的存储：server端的概念</li><li>以及服务器的运维（均衡、监控、报警等）</li><li>nodejs并不是像原型、异步一样，隶属于JS的一个模块儿</li><li>nodejs 是一个独立的技术栈，只不过用了JS语法而已</li><li>会计划一门课程，专门讲《nodejs面试技巧》</li></ol><h3 id="你热爱编程吗？"><a href="#你热爱编程吗？" class="headerlink" title="你热爱编程吗？"></a>你热爱编程吗？</h3><ol><li>热爱！</li><li>怎么证明？</li></ol><h3 id="如何证明你热爱编程？"><a href="#如何证明你热爱编程？" class="headerlink" title="如何证明你热爱编程？"></a>如何证明你热爱编程？</h3><h4 id="看书"><a href="#看书" class="headerlink" title="看书"></a>看书</h4><h5 id="看书-手下不离书"><a href="#看书-手下不离书" class="headerlink" title="看书-手下不离书"></a>看书-手下不离书</h5><ol><li>构建知识体系的最好方式</li><li>自己买书，不要借书</li><li>看书有技巧</li><li>想要2w的月薪？那你先看完2k元的书！</li><li>看书写笔记</li></ol><h4 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h4><h5 id="博客-合格程序员的必备"><a href="#博客-合格程序员的必备" class="headerlink" title="博客 -合格程序员的必备"></a>博客 -合格程序员的必备</h5><ol><li>我写博客的经历和感悟</li><li>写博客的好处</li><li>如何让更多的人看？<ol><li>去人多的人去写</li></ol></li><li>面对质疑和打击怎么看待？</li></ol><h4 id="做开源"><a href="#做开源" class="headerlink" title="做开源"></a>做开源</h4><ol><li>开源 github的star 是硬通货<ol><li>我做开源的经历和感悟</li><li>做什么？ 另外，立刻开始写，不要思考太多！</li><li>写好官网和文档，以及QQ群、微信群等社区</li><li>及时回复issue，及时迭代发版</li><li>如何推广？以及推广过程中的质疑</li></ol></li></ol><h3 id="我："><a href="#我：" class="headerlink" title="我："></a>我：</h3><ol><li>看公司里的框架源码，优化框架，增加新的功能。</li></ol><h2 id="一篇赞美的诗"><a href="#一篇赞美的诗" class="headerlink" title="一篇赞美的诗"></a>一篇赞美的诗</h2><p>可爱的人她的心必定是理想的。<br>她喜欢诗歌、绘画、音乐，<br>因为她喜欢玫瑰的芳香。<br>她的心灵填满高尚的情趣，<br>她的理想使她更加出众。<br>在她坎坷的人生里，<br>生活往往不尽如人意，<br>但她绝不是可怜的。<br>她不会因为自己的外形而担忧，<br>因为她的理想纯洁了她的气质。<br>她平凡但是绝不平庸，<br>她不会因为蝇头小利放弃自己的理想，<br>也不会因为某种潮流改换自己的信念，<br>所以她是这世界上最不令人生厌的女人。<br>她知道理想不是实惠的东西，<br>她懂得尘世中虚的东西太多，<br>她习惯了无人欣赏，<br>她学会了精神享受，<br>学会了与她人不同。<br>人生太过短促，<br>很容易眼花缭乱，<br>最终一事无成。<br>她不流于浅薄与虚浮，<br>她不会因为事情太难而投机取巧，<br>她珍惜感情绝不放弃，<br>她知道朋友终会离去，<br>诺大世界因缘而感激。<br>她不轻视平凡的人，<br>她的心如溪水般柔软，<br>她的眼波像春天般明媚。<br>有时她也会流泪，<br>也会孤身一人坐在黑暗中听伤感的音乐，<br>她不再害怕欣赏悲剧，<br>悲剧也渐渐丰富了她的心灵。<br>她不再媚俗而是一个独立的人，<br>她的独立性让她不再向世俗妥协。<br>她喜欢欣赏真，<br>慢慢的也能够在重重面具下看到真。<br>她知道在形式上无法与既定的世俗斗争，<br>她的出类拔萃隐藏在卑琐狂荡之下，<br>在她的内心里她一直都是女王。<br>她了解世俗许多东西虽然耀眼却无价值，<br>因此她不会把自己置于大众的天枰之上，<br>所以她不是一个娇气的人。<br>她在一年年地长大，<br>她发现比她强比她优秀的人很多，<br>也慢慢发现自己身上有许多令她厌恶的缺点，<br>她会因此沮丧和自卑，<br>但她是一个勇敢的人，<br>她正视她的缺点毫不躲避，<br>她一天一天的加以改正，<br>她知道战胜自己比征服他人还要艰巨和有意义。<br>不管世界潮流如何变化，<br>人的优秀品质却是永恒的，<br>正直、勇敢、独立。<br>她不再轻易接受别人的恩惠，<br>也不再无所适从、人云亦云，<br>因为她变成一个优秀的人。</p></div><div><div class="my_post_copyright"><script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script><script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><p><span>本文标题:</span><a href="/2018/09/08/前端JS高级知识/">前端JS高级知识</a></p><p><span>文章作者:</span><a href="/" title="访问 jwl 的个人博客">jwl</a></p><p><span>发布时间:</span>2018年09月08日 - 13:09</p><p><span>最后更新:</span>2018年09月08日 - 13:09</p><p><span>原始链接:</span><a href="/2018/09/08/前端JS高级知识/" title="前端JS高级知识">https://www.52jwl.com/2018/09/08/前端JS高级知识/</a> <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://www.52jwl.com/2018/09/08/前端JS高级知识/" aria-label="复制成功！"></i></span></p><p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p></div><script>var clipboard=new Clipboard(".fa-clipboard");$(".fa-clipboard").click(function(){clipboard.on("success",function(){swal({title:"",text:"亲！好了哦",icon:"success",showConfirmButton:!0,confirmButtonColor:"#ef4e7b"})})})</script></div><div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" width="100" height="100" src="http://static.dramastyle.com/images/3/7/1301/My-NeighborTotoro__6.jpg" alt="jwl WeChat Pay"><p>龙猫打赏</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" width="100" height="100" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535968240695&di=983c0ca46cee2ca40f9d6df3d33a95bd&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201506%2F13%2F20150613121207_AGkUF.jpeg" alt="jwl Alipay"><p>金鱼姬打赏</p></div></div></div></div><div><div><div style="text-align:center;color:#555;font-size:14px">--------------------i love jwl--------------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="./tags/react/"><i class="fa fa-tag"></i> react</a> <a href="./tags/JS/"><i class="fa fa-tag"></i> JS</a> <a href="./tags/ES6/"><i class="fa fa-tag"></i> ES6</a> <a href="./tags/虚拟DOM/"><i class="fa fa-tag"></i> 虚拟DOM</a> <a href="./tags/vue/"><i class="fa fa-tag"></i> vue</a> <a href="./tags/hybrid/"><i class="fa fa-tag"></i> hybrid</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/09/07/前端常用库及实用技术/" rel="next" title="前端常用库及实用技术"><i class="fa fa-chevron-left"></i> 前端常用库及实用技术</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/09/09/前端开发与其它工程师配合/" rel="prev" title="前端开发与其它工程师配合">前端开发与其它工程师配合 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"><div class="addthis_inline_share_toolbox"><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b8917fd9ef2beb8" async></script></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQwOC8xNTkzNQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="jwl"><p class="site-author-name" itemprop="name">jwl</p><p class="site-description motion-element" itemprop="description">从喜欢到爱的一路前端风</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories"><span class="site-state-item-count">27</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags"><span class="site-state-item-count">88</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/52jwl" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://www.freecodecamp.cn/52jwl" target="_blank" title="fcc"><i class="fa fa-fw fa-free-code-camp"></i> fcc </a></span><span class="links-of-author-item"><a href="https://www.jianshu.com/u/439a6eee60e1" target="_blank" title="简书"><i class="fa fa-fw fa-book"></i> 简书 </a></span><span class="links-of-author-item"><a href="http://blog.csdn.net/jwl_lwj" target="_blank" title="CSDN"><i class="fa fa-fw fa-rotate-right"></i> CSDN</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-inline"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="http://www.alloyteam.com/nav/" title="Web前端导航" target="_blank">Web前端导航</a></li><li class="links-of-blogroll-item"><a href="http://www.chuangzaoshi.com/code" title="创造狮导航" target="_blank">创造狮导航</a></li><li class="links-of-blogroll-item"><a href="http://www.36zhen.com/t?id=3448" title="前端书籍资料" target="_blank">前端书籍资料</a></li><li class="links-of-blogroll-item"><a href="http://e.xitu.io/" title="掘金酱" target="_blank">掘金酱</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a></li><li class="links-of-blogroll-item"><a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a></li></ul></div><div id="days"></div><script>function show_date_time(){window.setTimeout("show_date_time()",1e3),BirthDay=new Date("01/10/2017 12:34:56"),today=new Date,timeold=today.getTime()-BirthDay.getTime(),sectimeold=timeold/1e3,secondsold=Math.floor(sectimeold),msPerDay=864e5,e_daysold=timeold/msPerDay,daysold=Math.floor(e_daysold),e_hrsold=24*(e_daysold-daysold),hrsold=setzero(Math.floor(e_hrsold)),e_minsold=60*(e_hrsold-hrsold),minsold=setzero(Math.floor(60*(e_hrsold-hrsold))),seconds=setzero(Math.floor(60*(e_minsold-minsold))),document.getElementById("days").innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"}function setzero(e){return e<10&&(e="0"+e),e}show_date_time()</script></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端高级知识"><span class="nav-number">1.</span> <span class="nav-text">前端高级知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#课程概述"><span class="nav-number">1.1.</span> <span class="nav-text">课程概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#做什么？"><span class="nav-number">1.1.1.</span> <span class="nav-text">做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哪些部分？"><span class="nav-number">1.1.2.</span> <span class="nav-text">哪些部分？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术？"><span class="nav-number">1.1.3.</span> <span class="nav-text">技术？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点介绍"><span class="nav-number">1.2.</span> <span class="nav-text">知识点介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">1.2.1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架原理"><span class="nav-number">1.2.2.</span> <span class="nav-text">框架原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合开发"><span class="nav-number">1.2.3.</span> <span class="nav-text">混合开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试时如何讲述自己热爱编程"><span class="nav-number">1.2.4.</span> <span class="nav-text">面试时如何讲述自己热爱编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排"><span class="nav-number">1.3.</span> <span class="nav-text">课程安排</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高级基础"><span class="nav-number">1.3.1.</span> <span class="nav-text">高级基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架原理-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">框架原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-混合开发"><span class="nav-number">1.3.3.</span> <span class="nav-text">App 混合开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热爱编程"><span class="nav-number">1.3.4.</span> <span class="nav-text">热爱编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讲授方式"><span class="nav-number">1.3.5.</span> <span class="nav-text">讲授方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课程收获"><span class="nav-number">1.3.6.</span> <span class="nav-text">课程收获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习前提"><span class="nav-number">1.3.7.</span> <span class="nav-text">学习前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#课程优势"><span class="nav-number">1.3.8.</span> <span class="nav-text">课程优势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题架构"><span class="nav-number">1.4.</span> <span class="nav-text">面试题架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#es6"><span class="nav-number">1.4.1.</span> <span class="nav-text">es6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型"><span class="nav-number">1.4.2.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步"><span class="nav-number">1.4.3.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vdom"><span class="nav-number">1.4.4.</span> <span class="nav-text">vdom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVM"><span class="nav-number">1.4.5.</span> <span class="nav-text">MVVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件化"><span class="nav-number">1.4.6.</span> <span class="nav-text">组件化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hybrid"><span class="nav-number">1.4.7.</span> <span class="nav-text">hybrid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.4.8.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-语法"><span class="nav-number">1.5.</span> <span class="nav-text">ES6 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述"><span class="nav-number">1.5.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.5.2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践"><span class="nav-number">1.5.3.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-模块儿化如何使用，开发环境如何打包？"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">ES6 模块儿化如何使用，开发环境如何打包？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模块化的基本语法"><span class="nav-number">1.5.3.1.1.</span> <span class="nav-text">模块化的基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#默认导出导入"><span class="nav-number">1.5.3.1.1.1.</span> <span class="nav-text">默认导出导入</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#按需导出导入"><span class="nav-number">1.5.3.1.1.2.</span> <span class="nav-text">按需导出导入</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开发环境配置"><span class="nav-number">1.5.3.1.2.</span> <span class="nav-text">开发环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#开发环境-babel"><span class="nav-number">1.5.3.1.2.1.</span> <span class="nav-text">开发环境 babel</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#开发环境-webpack"><span class="nav-number">1.5.3.1.2.2.</span> <span class="nav-text">开发环境 webpack</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#开发环境-rollup"><span class="nav-number">1.5.3.1.2.3.</span> <span class="nav-text">开发环境 rollup</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于JS众多模块儿化标准"><span class="nav-number">1.5.3.1.3.</span> <span class="nav-text">关于JS众多模块儿化标准</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Class-和普通构造函数有何区别？"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">Class 和普通构造函数有何区别？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JS-构造函数"><span class="nav-number">1.5.3.2.1.</span> <span class="nav-text">JS 构造函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Class-基本语法"><span class="nav-number">1.5.3.2.2.</span> <span class="nav-text">Class 基本语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#语法糖"><span class="nav-number">1.5.3.2.3.</span> <span class="nav-text">语法糖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#继承"><span class="nav-number">1.5.3.2.4.</span> <span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-的基本使用和原理？"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">Promise 的基本使用和原理？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Callback-Hell"><span class="nav-number">1.5.3.3.1.</span> <span class="nav-text">Callback Hell</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise-语法"><span class="nav-number">1.5.3.3.2.</span> <span class="nav-text">Promise 语法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下ES6-其他常用功能？"><span class="nav-number">1.5.3.4.</span> <span class="nav-text">总结一下ES6 其他常用功能？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答"><span class="nav-number">1.5.4.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-模块儿化如何使用，开发环境如何打包"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">ES6 模块儿化如何使用，开发环境如何打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Class-和普通构造函数有何区别"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">Class 和普通构造函数有何区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-的基本使用和原理"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">Promise 的基本使用和原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下ES6-其他常用功能"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">总结一下ES6 其他常用功能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型-1"><span class="nav-number">1.6.</span> <span class="nav-text">原型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-1"><span class="nav-number">1.6.2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践-1"><span class="nav-number">1.6.3.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说一个原型的实际应用？"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">说一个原型的实际应用？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#jquery-和-zepto的简单使用"><span class="nav-number">1.6.3.1.1.</span> <span class="nav-text">jquery 和 zepto的简单使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zepto-如何使用原型"><span class="nav-number">1.6.3.1.2.</span> <span class="nav-text">zepto 如何使用原型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#jquery-如何使用原型"><span class="nav-number">1.6.3.1.3.</span> <span class="nav-text">jquery 如何使用原型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型如何体现它的扩展性？"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">原型如何体现它的扩展性？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结zepto-和jquery-原型的使用"><span class="nav-number">1.6.3.2.1.</span> <span class="nav-text">总结zepto 和jquery 原型的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插件机制"><span class="nav-number">1.6.3.2.2.</span> <span class="nav-text">插件机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答-1"><span class="nav-number">1.6.4.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说一个原型的实际应用"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">说一个原型的实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#描述一下jquery如何使用原型"><span class="nav-number">1.6.4.1.1.</span> <span class="nav-text">描述一下jquery如何使用原型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#描述一下zepto如何使用原型"><span class="nav-number">1.6.4.1.2.</span> <span class="nav-text">描述一下zepto如何使用原型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再集合自己的项目经验，说一个自己开发的例子"><span class="nav-number">1.6.4.1.3.</span> <span class="nav-text">再集合自己的项目经验，说一个自己开发的例子</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何体现原型的扩展性"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">如何体现原型的扩展性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结zepto-和jquery-原型的使用-1"><span class="nav-number">1.6.4.2.1.</span> <span class="nav-text">总结zepto 和jquery 原型的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插件机制-1"><span class="nav-number">1.6.4.2.2.</span> <span class="nav-text">插件机制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#好处"><span class="nav-number">1.6.4.2.2.1.</span> <span class="nav-text">好处</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步-1"><span class="nav-number">1.7.</span> <span class="nav-text">异步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-2"><span class="nav-number">1.7.2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践-2"><span class="nav-number">1.7.3.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是单线程，和异步有什么关系？"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">什么是单线程，和异步有什么关系？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单线程：只有一个线程，同一时间只能关注一件事情"><span class="nav-number">1.7.3.1.1.</span> <span class="nav-text">单线程：只有一个线程，同一时间只能关注一件事情</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#原因：避免DOM渲染的冲突"><span class="nav-number">1.7.3.1.2.</span> <span class="nav-text">原因：避免DOM渲染的冲突</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方案：异步"><span class="nav-number">1.7.3.1.3.</span> <span class="nav-text">解决方案：异步</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-event-loop？"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">什么是 event-loop？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#文字解释"><span class="nav-number">1.7.3.2.1.</span> <span class="nav-text">文字解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例分析"><span class="nav-number">1.7.3.2.2.</span> <span class="nav-text">实例分析</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是否用过jQuery的-Deferred？"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">是否用过jQuery的 Deferred？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#jQuery1-5的变化"><span class="nav-number">1.7.3.3.1.</span> <span class="nav-text">jQuery1.5的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#很好的体现了：开放封闭原则"><span class="nav-number">1.7.3.3.1.1.</span> <span class="nav-text">很好的体现了：开放封闭原则</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用jQuery-Deferred"><span class="nav-number">1.7.3.3.2.</span> <span class="nav-text">使用jQuery Deferred</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结，dtd的API可分成两类，用意不同"><span class="nav-number">1.7.3.3.3.</span> <span class="nav-text">总结，dtd的API可分成两类，用意不同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初步引入-Promise概念"><span class="nav-number">1.7.3.3.4.</span> <span class="nav-text">初步引入 Promise概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不是异步所有的网站都是vue和React开发的"><span class="nav-number">1.7.3.3.5.</span> <span class="nav-text">不是异步所有的网站都是vue和React开发的</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise的基本使用和原理"><span class="nav-number">1.7.3.4.</span> <span class="nav-text">Promise的基本使用和原理?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基础语法回顾"><span class="nav-number">1.7.3.4.1.</span> <span class="nav-text">基础语法回顾</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常捕获"><span class="nav-number">1.7.3.4.2.</span> <span class="nav-text">异常捕获</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多个串联"><span class="nav-number">1.7.3.4.3.</span> <span class="nav-text">多个串联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise-all和Promise-race"><span class="nav-number">1.7.3.4.4.</span> <span class="nav-text">Promise.all和Promise.race</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise标准"><span class="nav-number">1.7.3.4.5.</span> <span class="nav-text">Promise标准</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍一下-async-await-和Promise的区别、联系-？"><span class="nav-number">1.7.3.5.</span> <span class="nav-text">介绍一下 async/await(和Promise的区别、联系)？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#async-await-是ECMA7提案中的，"><span class="nav-number">1.7.3.5.1.</span> <span class="nav-text">async/await 是ECMA7提案中的，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#then-只是将-callback拆分了"><span class="nav-number">1.7.3.5.2.</span> <span class="nav-text">then 只是将 callback拆分了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#async-await-是最直接的同步写法"><span class="nav-number">1.7.3.5.3.</span> <span class="nav-text">async/await 是最直接的同步写法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用法"><span class="nav-number">1.7.3.5.4.</span> <span class="nav-text">用法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下当前JS解决异步的方案？"><span class="nav-number">1.7.3.6.</span> <span class="nav-text">总结一下当前JS解决异步的方案？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答-2"><span class="nav-number">1.7.4.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是单线程，和异步有什么关系"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">什么是单线程，和异步有什么关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是-event-loop"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">什么是 event-loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是否用过jQuery的-Deferred"><span class="nav-number">1.7.4.3.</span> <span class="nav-text">是否用过jQuery的 Deferred</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#说明promise和Deferred的区别"><span class="nav-number">1.7.4.3.1.</span> <span class="nav-text">说明promise和Deferred的区别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise的基本使用和原理-1"><span class="nav-number">1.7.4.4.</span> <span class="nav-text">Promise的基本使用和原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何捕获异常（Error和reject都要考虑）"><span class="nav-number">1.7.4.4.1.</span> <span class="nav-text">如何捕获异常（Error和reject都要考虑）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多个串联-链式执行的好处"><span class="nav-number">1.7.4.4.2.</span> <span class="nav-text">多个串联 - 链式执行的好处</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise-all和Promise-race-1"><span class="nav-number">1.7.4.4.3.</span> <span class="nav-text">Promise.all和Promise.race</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Promise-标准-状态变化，then函数"><span class="nav-number">1.7.4.4.4.</span> <span class="nav-text">Promise 标准 -状态变化，then函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍一下-async-await-和Promise的区别、联系"><span class="nav-number">1.7.4.5.</span> <span class="nav-text">介绍一下 async/await(和Promise的区别、联系)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结一下当前JS解决异步的方案"><span class="nav-number">1.7.4.6.</span> <span class="nav-text">总结一下当前JS解决异步的方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#virtual-dom-虚拟DOM"><span class="nav-number">1.8.</span> <span class="nav-text">virtual dom 虚拟DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-3"><span class="nav-number">1.8.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践-3"><span class="nav-number">1.8.2.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vdom是什么，为何使用vdom？"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">vdom是什么，为何使用vdom？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是vdom"><span class="nav-number">1.8.2.1.1.</span> <span class="nav-text">什么是vdom?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计一个需求场景"><span class="nav-number">1.8.2.1.2.</span> <span class="nav-text">设计一个需求场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用jQuery实现"><span class="nav-number">1.8.2.1.3.</span> <span class="nav-text">用jQuery实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.8.2.1.4.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重做之前的demo"><span class="nav-number">1.8.2.1.5.</span> <span class="nav-text">重做之前的demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#核心API"><span class="nav-number">1.8.2.1.6.</span> <span class="nav-text">核心API</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍一下diff算法？"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">介绍一下diff算法？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是diff算法？"><span class="nav-number">1.8.2.2.1.</span> <span class="nav-text">什么是diff算法？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#去繁就简"><span class="nav-number">1.8.2.2.2.</span> <span class="nav-text">去繁就简</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vdom-为何用diff算法"><span class="nav-number">1.8.2.2.3.</span> <span class="nav-text">vdom 为何用diff算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#diff-算法的实现流程"><span class="nav-number">1.8.2.2.4.</span> <span class="nav-text">diff 算法的实现流程</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#patch-container-vnode-直接渲染"><span class="nav-number">1.8.2.2.4.1.</span> <span class="nav-text">patch(container,vnode) 直接渲染</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#patch-vnode-newVnode-进行对比，打补丁渲染"><span class="nav-number">1.8.2.2.4.2.</span> <span class="nav-text">patch(vnode,newVnode) 进行对比，打补丁渲染</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#不仅仅是以上内容"><span class="nav-number">1.8.2.2.4.3.</span> <span class="nav-text">不仅仅是以上内容</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#diff-实现过程"><span class="nav-number">1.8.2.2.4.4.</span> <span class="nav-text">diff 实现过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答-3"><span class="nav-number">1.8.3.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vdom是什么，为何会存在vdom"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">vdom是什么，为何会存在vdom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vdom如何应用，核心API是什么"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">vdom如何应用，核心API是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#核心API：h函数、patch函数"><span class="nav-number">1.8.3.2.1.</span> <span class="nav-text">核心API：h函数、patch函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍一下diff算法"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">介绍一下diff算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVVM-和-vue"><span class="nav-number">1.9.</span> <span class="nav-text">MVVM 和 vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-4"><span class="nav-number">1.9.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践-4"><span class="nav-number">1.9.2.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下使用jQuery和使用框架的区别？"><span class="nav-number">1.9.2.1.</span> <span class="nav-text">说一下使用jQuery和使用框架的区别？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#jQuery-实现todo-list"><span class="nav-number">1.9.2.1.0.1.</span> <span class="nav-text">jQuery 实现todo-list</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#vue-实现todo-list"><span class="nav-number">1.9.2.1.0.2.</span> <span class="nav-text">vue 实现todo-list</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#jQuery和框架的区别"><span class="nav-number">1.9.2.1.0.3.</span> <span class="nav-text">jQuery和框架的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下对MVVM的理解"><span class="nav-number">1.9.2.2.</span> <span class="nav-text">说一下对MVVM的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM-框架的三大要素"><span class="nav-number">1.9.2.3.</span> <span class="nav-text">MVVM 框架的三大要素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#再次分析-demo"><span class="nav-number">1.9.2.3.1.</span> <span class="nav-text">再次分析 demo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三要素总结"><span class="nav-number">1.9.2.3.2.</span> <span class="nav-text">三要素总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue中如何实现响应式"><span class="nav-number">1.9.2.4.</span> <span class="nav-text">vue中如何实现响应式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是响应式"><span class="nav-number">1.9.2.4.1.</span> <span class="nav-text">什么是响应式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Object-defineProperty"><span class="nav-number">1.9.2.4.2.</span> <span class="nav-text">Object.defineProperty</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模拟"><span class="nav-number">1.9.2.4.3.</span> <span class="nav-text">模拟</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue中如何解析模板"><span class="nav-number">1.9.2.5.</span> <span class="nav-text">vue中如何解析模板</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模板是什么"><span class="nav-number">1.9.2.5.1.</span> <span class="nav-text">模板是什么</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#render-函数"><span class="nav-number">1.9.2.6.</span> <span class="nav-text">render 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#with的用法"><span class="nav-number">1.9.2.6.1.</span> <span class="nav-text">with的用法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#render函数-讲解1"><span class="nav-number">1.9.2.6.2.</span> <span class="nav-text">render函数-讲解1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#render函数-讲解3"><span class="nav-number">1.9.2.6.3.</span> <span class="nav-text">render函数-讲解3</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#从哪里可以看到render函数？"><span class="nav-number">1.9.2.6.3.1.</span> <span class="nav-text">从哪里可以看到render函数？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#复杂一点的例子，render函数是什么样子的？"><span class="nav-number">1.9.2.6.3.2.</span> <span class="nav-text">复杂一点的例子，render函数是什么样子的？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#v-if-v-for-v-on-都是怎么处理的？"><span class="nav-number">1.9.2.6.3.3.</span> <span class="nav-text">v-if v-for v-on 都是怎么处理的？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#看一下-todo-list-demo的render函数"><span class="nav-number">1.9.2.6.3.4.</span> <span class="nav-text">看一下 todo-list demo的render函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#怎样生成-render函数的"><span class="nav-number">1.9.2.6.3.5.</span> <span class="nav-text">怎样生成 render函数的</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#render函数-讲解6"><span class="nav-number">1.9.2.6.4.</span> <span class="nav-text">render函数-讲解6</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#render函数-与-vdom"><span class="nav-number">1.9.2.6.5.</span> <span class="nav-text">render函数 与 vdom</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue的整个实现流程"><span class="nav-number">1.9.2.7.</span> <span class="nav-text">vue的整个实现流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步：解析模板成render函数"><span class="nav-number">1.9.2.7.1.</span> <span class="nav-text">第一步：解析模板成render函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步：-响应式开始监听"><span class="nav-number">1.9.2.7.2.</span> <span class="nav-text">第二步： 响应式开始监听</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三步：首次渲染，显示页面，且绑定依赖"><span class="nav-number">1.9.2.7.3.</span> <span class="nav-text">第三步：首次渲染，显示页面，且绑定依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四步：data属性变化，触发rerender"><span class="nav-number">1.9.2.7.4.</span> <span class="nav-text">第四步：data属性变化，触发rerender</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答-4"><span class="nav-number">1.9.3.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下使用jQuery和使用框架的区别"><span class="nav-number">1.9.3.1.</span> <span class="nav-text">说一下使用jQuery和使用框架的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下对MVVM的理解-1"><span class="nav-number">1.9.3.2.</span> <span class="nav-text">说一下对MVVM的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM-框架的三大要素-1"><span class="nav-number">1.9.3.3.</span> <span class="nav-text">MVVM 框架的三大要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue中如何实现响应式-1"><span class="nav-number">1.9.3.4.</span> <span class="nav-text">vue中如何实现响应式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue中如何解析模板-1"><span class="nav-number">1.9.3.5.</span> <span class="nav-text">vue中如何解析模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue的整个实现流程-1"><span class="nav-number">1.9.3.6.</span> <span class="nav-text">vue的整个实现流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件化与React"><span class="nav-number">1.10.</span> <span class="nav-text">组件化与React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-5"><span class="nav-number">1.10.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践-5"><span class="nav-number">1.10.2.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下对组件化的理解？"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">说一下对组件化的理解？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX本质是什么？"><span class="nav-number">1.10.2.2.</span> <span class="nav-text">JSX本质是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JSX-语法"><span class="nav-number">1.10.2.2.1.</span> <span class="nav-text">JSX 语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSX-解析成JS"><span class="nav-number">1.10.2.2.2.</span> <span class="nav-text">JSX 解析成JS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#独立的标准"><span class="nav-number">1.10.2.2.3.</span> <span class="nav-text">独立的标准</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX和vdom的关系？"><span class="nav-number">1.10.2.3.</span> <span class="nav-text">JSX和vdom的关系？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析：为何需要vdom"><span class="nav-number">1.10.2.3.1.</span> <span class="nav-text">分析：为何需要vdom?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#React-createElement和h"><span class="nav-number">1.10.2.3.2.</span> <span class="nav-text">React.createElement和h?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#何时patch"><span class="nav-number">1.10.2.3.3.</span> <span class="nav-text">何时patch ?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自定义组件的解析？"><span class="nav-number">1.10.2.3.4.</span> <span class="nav-text">自定义组件的解析？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下-setState的过程？"><span class="nav-number">1.10.2.4.</span> <span class="nav-text">说一下 setState的过程？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#setState-的异步"><span class="nav-number">1.10.2.4.1.</span> <span class="nav-text">setState 的异步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-修改属性也是异步"><span class="nav-number">1.10.2.4.2.</span> <span class="nav-text">vue 修改属性也是异步</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#权当复习一下-vue-的渲染流程"><span class="nav-number">1.10.2.4.2.1.</span> <span class="nav-text">权当复习一下 vue 的渲染流程</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setState-的过程"><span class="nav-number">1.10.2.4.3.</span> <span class="nav-text">setState 的过程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阐述自己对React和vue的认识？"><span class="nav-number">1.10.2.5.</span> <span class="nav-text">阐述自己对React和vue的认识？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答-5"><span class="nav-number">1.10.3.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下对组件化的理解"><span class="nav-number">1.10.3.1.</span> <span class="nav-text">说一下对组件化的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX本质是什么"><span class="nav-number">1.10.3.2.</span> <span class="nav-text">JSX本质是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX和vdom的关系"><span class="nav-number">1.10.3.3.</span> <span class="nav-text">JSX和vdom的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说一下-setState的过程"><span class="nav-number">1.10.3.4.</span> <span class="nav-text">说一下 setState的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#setState-的异步：效果、原因"><span class="nav-number">1.10.3.4.1.</span> <span class="nav-text">setState 的异步：效果、原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-修改属性也是异步：效果、原因"><span class="nav-number">1.10.3.4.2.</span> <span class="nav-text">vue 修改属性也是异步：效果、原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setState的过程："><span class="nav-number">1.10.3.4.3.</span> <span class="nav-text">setState的过程：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阐述自己对React和vue的认识"><span class="nav-number">1.10.3.5.</span> <span class="nav-text">阐述自己对React和vue的认识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#两者本质的区别"><span class="nav-number">1.10.3.5.1.</span> <span class="nav-text">两者本质的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#看模板和组件化的区别"><span class="nav-number">1.10.3.5.2.</span> <span class="nav-text">看模板和组件化的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#模板的区别"><span class="nav-number">1.10.3.5.2.1.</span> <span class="nav-text">模板的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#组件化的区别"><span class="nav-number">1.10.3.5.2.2.</span> <span class="nav-text">组件化的区别</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#两者共同点"><span class="nav-number">1.10.3.5.3.</span> <span class="nav-text">两者共同点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结问题答案"><span class="nav-number">1.10.3.5.4.</span> <span class="nav-text">总结问题答案</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hybrid-1"><span class="nav-number">1.11.</span> <span class="nav-text">hybrid</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题-6"><span class="nav-number">1.11.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践-6"><span class="nav-number">1.11.2.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hybrid是什么，为何用hybrid？"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">hybrid是什么，为何用hybrid？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hybrid-文字解释"><span class="nav-number">1.11.2.1.1.</span> <span class="nav-text">hybrid 文字解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#存在价值，为何会用hybrid"><span class="nav-number">1.11.2.1.2.</span> <span class="nav-text">存在价值，为何会用hybrid</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#webview"><span class="nav-number">1.11.2.1.3.</span> <span class="nav-text">webview</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#file-协议"><span class="nav-number">1.11.2.1.4.</span> <span class="nav-text">file:// 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#http-s-协议与file协议"><span class="nav-number">1.11.2.1.4.1.</span> <span class="nav-text">http(s)协议与file协议</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hybrid-实现流程"><span class="nav-number">1.11.2.1.5.</span> <span class="nav-text">hybrid 实现流程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍一下-hybrid-更新和上线的流程？"><span class="nav-number">1.11.2.2.</span> <span class="nav-text">介绍一下 hybrid 更新和上线的流程？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回顾hybrid-实现流程"><span class="nav-number">1.11.2.2.1.</span> <span class="nav-text">回顾hybrid 实现流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#思考（目的，实现途径）"><span class="nav-number">1.11.2.2.2.</span> <span class="nav-text">思考（目的，实现途径）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新流程"><span class="nav-number">1.11.2.2.3.</span> <span class="nav-text">更新流程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hybrid-和-h5-的主要区别？"><span class="nav-number">1.11.2.3.</span> <span class="nav-text">hybrid 和 h5 的主要区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端JS-和客户端如何通讯？"><span class="nav-number">1.11.2.4.</span> <span class="nav-text">前端JS 和客户端如何通讯？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#回顾之前遗留的问题"><span class="nav-number">1.11.2.4.1.</span> <span class="nav-text">回顾之前遗留的问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JS-和客户端通讯的基本形式"><span class="nav-number">1.11.2.4.2.</span> <span class="nav-text">JS 和客户端通讯的基本形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#schema-协议简介和使用"><span class="nav-number">1.11.2.4.3.</span> <span class="nav-text">schema 协议简介和使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#schema-使用的封装"><span class="nav-number">1.11.2.4.4.</span> <span class="nav-text">schema 使用的封装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内置上线"><span class="nav-number">1.11.2.4.5.</span> <span class="nav-text">内置上线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解答-6"><span class="nav-number">1.11.3.</span> <span class="nav-text">问题解答</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hybrid是什么，为何用hybrid"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">hybrid是什么，为何用hybrid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍一下-hybrid-更新和上线的流程"><span class="nav-number">1.11.3.2.</span> <span class="nav-text">介绍一下 hybrid 更新和上线的流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hybrid-和-h5-的主要区别"><span class="nav-number">1.11.3.3.</span> <span class="nav-text">hybrid 和 h5 的主要区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端JS-和客户端如何通讯"><span class="nav-number">1.11.3.4.</span> <span class="nav-text">前端JS 和客户端如何通讯</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程总结"><span class="nav-number">1.12.</span> <span class="nav-text">课程总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为何不讲-nodejs"><span class="nav-number">1.12.1.</span> <span class="nav-text">为何不讲 nodejs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs到底是什么？"><span class="nav-number">1.12.2.</span> <span class="nav-text">nodejs到底是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你热爱编程吗？"><span class="nav-number">1.12.3.</span> <span class="nav-text">你热爱编程吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何证明你热爱编程？"><span class="nav-number">1.12.4.</span> <span class="nav-text">如何证明你热爱编程？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#看书"><span class="nav-number">1.12.4.1.</span> <span class="nav-text">看书</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#看书-手下不离书"><span class="nav-number">1.12.4.1.1.</span> <span class="nav-text">看书-手下不离书</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写博客"><span class="nav-number">1.12.4.2.</span> <span class="nav-text">写博客</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#博客-合格程序员的必备"><span class="nav-number">1.12.4.2.1.</span> <span class="nav-text">博客 -合格程序员的必备</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#做开源"><span class="nav-number">1.12.4.3.</span> <span class="nav-text">做开源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我："><span class="nav-number">1.12.5.</span> <span class="nav-text">我：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一篇赞美的诗"><span class="nav-number">1.13.</span> <span class="nav-text">一篇赞美的诗</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright" style="text-align:center;line-height:50px;font-size:16px">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-snowflake-o"></i> </span><span class="author" itemprop="copyrightHolder">jwl</span><div class="powered-by">| <i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv"><a class="theme-link" href="https://www.52jwl.com">i love jwl：</a> <span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><span class="post-count">已统计字数:199.1k</span></div></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fancybox/3.4.0/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">var isfetched=!1,search_path="search.xml";0==search_path.length&&(search_path="search.xml");var path="/"+search_path;function proceedsearch(){$("body").append('<div class="local-search-pop-overlay">').css("overflow","hidden"),$(".popup").toggle()}var searchFunc=function(e,c,s){"use strict";$.ajax({url:e,dataType:"xml",async:!0,success:function(e){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var t=$("entry",e).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get(),a=document.getElementById(c),r=document.getElementById(s);a.addEventListener("input",function(){var u=0,d='<ul class="search-result-list">',f=this.value.trim().toLowerCase().split(/[\s\-]+/);r.innerHTML="",1<this.value.trim().length&&t.forEach(function(e){var a=!1,r=e.title.trim().toLowerCase(),c=e.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),t=decodeURIComponent(e.url),s=-1,n=-1,o=-1;if(""!=r&&f.forEach(function(e,t){s=r.indexOf(e),n=c.indexOf(e),(0<=s||0<=n)&&(a=!0,0==t&&(o=n))}),a){u+=1,d+="<li><a href='"+t+"' class='search-result-title'>"+r+"</a>";var i=e.content.trim().replace(/<[^>]+>/g,"");if(0<=o){var l=o-20,p=o+80;l<0&&(l=0),0==l&&(p=50),p>i.length&&(p=i.length);var h=i.substring(l,p);f.forEach(function(e){var t=new RegExp(e,"gi");h=h.replace(t,'<b class="search-keyword">'+e+"</b>")}),d+='<p class="search-result">'+h+"...</p>"}d+="</li>"}}),d+="</ul>",0==u&&(d='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'),""==f&&(d='<div id="no-result"><i class="fa fa-search fa-5x" /></div>'),r.innerHTML=d}),proceedsearch()}})};$(".popup-trigger").click(function(e){e.stopPropagation(),0==isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(function(e){$(".popup").hide(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")}),$(".popup").click(function(e){e.stopPropagation()})</script><script type="text/javascript" color="255,0,0" opacity="0.5" zindex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script><script type="text/javascript">var live2dIsExistsTimer=setInterval(function(){var e=document.getElementById("live2dcanvas");if(e){function t(e){e.style.right=document.body.offsetWidth/4+"px"}t(e),addEventListener("resize",function(){t(e)}),clearInterval(live2dIsExistsTimer)}else console.log(e,"获取失败")},500)</script><script type="text/javascript" src="/js/src/dynamicTitle.js"></script><script src="https://cdn.staticfile.org/prettify/r298/prettify.min.js"></script><script>$(function(){$("pre").addClass("prettyprint linenums").attr("style","overflow:auto;"),prettyPrint()})</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":75,"height":150,"hOffset":320,"vOffset":-20},"log":false});</script></body></html>
